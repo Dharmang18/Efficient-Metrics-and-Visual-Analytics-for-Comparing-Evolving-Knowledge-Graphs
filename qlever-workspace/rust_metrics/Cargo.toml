@@ -1,0 +1,13 @@
+[package]
+name = "rust_metrics"
+version = "0.1.0"
+edition = "2021"
+description = "Thesis KG metrics over YAGO, computed as SPARQL + Rust dictionaries (mirrors Knowgly)"
+
+[dependencies]
+ureq = "2"          # tiny blocking HTTP client to talk to the QLever SPARQL endpoint
+serde_json = "1"    # parse QLever's JSON results
+rayon = "1"         # run the per-type queries in parallel (like Knowgly)
+
+[profile.release]
+opt-level = 3
