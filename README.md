@@ -1,4 +1,4 @@
-# Knowledge-Graph Metrics over YAGO (Master's Thesis)
+# Knowledge-Graph Metrics over YAGO (Bachelor's Thesis)
 
 Compute **metrics over a knowledge graph** (YAGO 4.5) and visualize them in a dashboard.
 The knowledge graph is served locally with **QLever**, metrics are computed as a mix of
