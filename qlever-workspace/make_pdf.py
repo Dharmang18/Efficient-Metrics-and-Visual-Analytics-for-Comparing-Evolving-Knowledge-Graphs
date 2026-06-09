@@ -80,7 +80,7 @@ def cells(rows):  # wrap each cell string in a Paragraph for wrapping
 
 # ============================================================ TITLE
 P("Thesis Setup — Full Explanation", TITLE)
-P("Deploying YAGO locally with QLever, querying it from Python, and the metrics plan", SUB)
+P("Deploying YAGO locally with QLever, computing metrics in Rust + SPARQL, and a niceGUI dashboard", SUB)
 gap(6)
 P("Author: Dharmang Pambhar &nbsp;|&nbsp; Date: 9 June 2026 &nbsp;|&nbsp; "
   "Advisor: Samuel García (TUM)", SUB)
@@ -159,6 +159,8 @@ table(cells([
     ["8. Python querying", "Wrote sparql.py + metrics_examples.py and confirmed real results against the local index."],
     ["9. Web UI", "Launched the QLever UI at localhost:8176 and pointed it at the local index."],
     ["10. Moved off iCloud", "Discovered the Desktop is iCloud-synced (it corrupted the venv); moved the whole project to ~/thesis (not synced)."],
+    ["11. First Rust + SPARQL metric", "Built rust_metrics/ (Entity Type Importance), writing results to JSON + CSV."],
+    ["12. niceGUI dashboard", "Built dashboard.py — reads the metric's JSON and charts each type's characteristic predicates at localhost:8080."],
 ]), [110, 380])
 
 # ============================================================ 5. THE INDEX
@@ -207,8 +209,10 @@ code(
 "      src/qlever_client.rs     <- SPARQL endpoint client\n"
 "      src/common.rs            <- reusable queries\n"
 "      src/entity_type_importance.rs  <- the metric\n"
-"      src/main.rs              <- runs it, prints results\n"
-"    sparql.py                  <- lightweight Python query reference (for dashboard)\n"
+"      src/main.rs              <- runs it, writes results/*\n"
+"      results/entity_type_importance.{json,csv}  <- the metric output\n"
+"    dashboard.py               <- niceGUI dashboard (reads results JSON, charts at :8080)\n"
+"    sparql.py                  <- lightweight Python query reference\n"
 "    metrics_examples.py        <- Python example metrics (reference)\n"
 "    make_pdf.py                <- generates this PDF\n"
 "    RUNBOOK.md                 <- start/stop/query/metrics commands\n"
@@ -216,9 +220,9 @@ code(
 "    yago/                      <- THE DATABASE (41.6 GB index, not code)\n"
 "    .venv/                     <- isolated Python 3.12 + qlever + requests\n"
 "  Thesis_Setup_Explained.pdf   <- this document")
-P("Categories: <b>thesis metrics</b> (the Rust project rust_metrics/), <b>config</b> "
-  "(Qleverfiles), <b>data + tooling</b> (yago/, .venv/ — set up once), and a small <b>Python "
-  "reference</b> (sparql.py) that will later feed the dashboard.")
+P("Categories: <b>thesis metrics</b> (the Rust project rust_metrics/), the <b>dashboard</b> "
+  "(dashboard.py), <b>config</b> (Qleverfiles), <b>data + tooling</b> (yago/, .venv/ — set up "
+  "once), and a small <b>Python reference</b> (sparql.py, metrics_examples.py).")
 
 # ============================================================ 8. CODE
 P("8. The metric implementation (Rust + SPARQL)", H1)
@@ -231,7 +235,7 @@ table(cells([
     ["src/qlever_client.rs", "One global SPARQL endpoint; query() sends a SELECT and returns rows as var->value maps (reads results via a streaming reader so large result sets work)."],
     ["src/common.rs", "Reusable queries: fetch_top_type_iris(N) and entity_count_per_type() (|E_t|)."],
     ["src/entity_type_importance.rs", "The metric. Per-type SPARQL GROUP BY queries run in parallel (rayon); results stored in HashMap<Type, HashMap<Predicate, score>>."],
-    ["src/main.rs", "Initialises the endpoint, runs the metric, prints each type's most-important predicates."],
+    ["src/main.rs", "Initialises the endpoint, runs the metric, and writes results/entity_type_importance.json + .csv (which the dashboard reads)."],
 ]), [150, 340])
 P("<b>The implemented metric — Entity Type Importance</b> (a TF-IDF for predicates):")
 code("ETImp(p, t) = EF_p(p, t) * log2( |E_t| / EF_p(p, t) )\n"
@@ -254,8 +258,40 @@ P("<b>Python files (reference only).</b> <font face='Courier'>sparql.py</font> a
   "checks and to feed the future niceGUI dashboard — they are <i>not</i> the thesis metric "
   "implementation (that is the Rust project above).")
 
-# ============================================================ 9. RUNBOOK
-P("9. How to start / stop / query (runbook)", H1)
+# ============================================================ 9. DASHBOARD
+P("9. The dashboard (niceGUI)", H1)
+P("The final layer visualises the metric. <font face='Courier'>dashboard.py</font> is a "
+  "<b>niceGUI</b> web app (Python) that reads the Rust metric's output "
+  "(<font face='Courier'>rust_metrics/results/entity_type_importance.json</font>) and presents it "
+  "interactively in the browser — no SPARQL is run at view time, it simply reads the pre-computed "
+  "JSON, so the page is instant.")
+P("<b>What it shows:</b>")
+bullets([
+    "A <b>dropdown</b> to pick any entity type that the metric was computed for (Person, Galaxy, "
+    "Politician, ...).",
+    "A <b>Top-N selector</b> (3&ndash;40) controlling how many predicates are charted.",
+    "An interactive <b>horizontal bar chart</b> (ECharts) of that type's most characteristic "
+    "predicates, ranked by ETImp score, with the value labelled on each bar.",
+    "A <b>full ranked table</b> of every predicate for the type (rank, predicate, ETImp score), "
+    "paginated and sortable.",
+])
+P("<b>How it is built:</b> long IRIs are trimmed to their readable last segment (e.g. "
+  "<font face='Courier'>...#birthDate</font> -> <font face='Courier'>birthDate</font>); the chart "
+  "and table are wrapped in an <font face='Courier'>@ui.refreshable</font> block so changing the "
+  "type or Top-N redraws them without reloading the page. The JSON is read once at startup, so to "
+  "pick up regenerated data you restart the app.")
+P("Run it (after the metric has produced results/):")
+code("cd ~/thesis/qlever-workspace\n"
+     "source .venv/bin/activate\n"
+     "python dashboard.py            # then open http://localhost:8080")
+gap(2)
+story.append(Paragraph("This completes the full pipeline end to end: "
+    "YAGO index -> QLever (:9004) -> Rust + SPARQL metric -> results JSON -> niceGUI dashboard (:8080).",
+    NOTE))
+story.append(PageBreak())
+
+# ============================================================ 10. RUNBOOK
+P("10. How to start / stop / query (runbook)", H1)
 P("Set up the shell each session:")
 code('export PATH="$HOME/.local/bin:$PATH"\n'
      'source ~/thesis/qlever-workspace/.venv/bin/activate')
@@ -270,8 +306,8 @@ code("docker ps                                   # see the running server\n"
 P("Query from the browser UI: <b>http://localhost:8176/yago-4</b>")
 story.append(PageBreak())
 
-# ============================================================ 10. KNOWGLY
-P("10. The Knowgly metrics — the idea", H1)
+# ============================================================ 11. KNOWGLY
+P("11. The Knowgly metrics — the idea", H1)
 P("The advisor asked you to <b>understand</b> Knowgly's metrics (not reimplement them). The whole "
   "approach is one pattern:")
 story.append(Paragraph("Metric = SPARQL does the counting (GROUP BY ... COUNT) -> code plugs the "
@@ -299,8 +335,8 @@ P("Your thesis metrics are <b>simpler than Knowgly's</b> but implemented the <b>
   "+ Rust dictionaries</b>. The first one, Entity Type Importance, is already built in "
   "<font face='Courier'>rust_metrics/</font> (see Section 8) and runs against your local YAGO.")
 
-# ============================================================ 11. SUPERVISOR MAP
-P("11. Does this cover the supervisor's instructions?", H1)
+# ============================================================ 12. SUPERVISOR MAP
+P("12. Does this cover the supervisor's instructions?", H1)
 table(cells([
     ["Supervisor's instruction", "Status"],
     ["Explore / use QLever to deploy YAGO locally", "DONE"],
@@ -315,20 +351,22 @@ P("Everything in the message is implemented. The only line not literally execute
   "<font face='Courier'>qlever index</font> — intentionally, because the advisor's pre-built index "
   "exists precisely so you can skip that slow step.")
 
-# ============================================================ 12. NEXT
-P("12. Current status and next steps", H1)
+# ============================================================ 13. NEXT
+P("13. Current status and next steps", H1)
 table(cells([
     ["Thesis piece", "Status"],
     ["Deploy YAGO locally with QLever", "DONE"],
     ["Query SPARQL (Python + Rust)", "DONE"],
     ["Understand the Knowgly metrics", "DONE"],
     ["First metric in Rust + SPARQL (Entity Type Importance)", "DONE"],
+    ["Rust metric writes results as JSON + CSV", "DONE"],
+    ["niceGUI dashboard (charts the metric at :8080)", "DONE"],
     ["Add more metrics (e.g. entropy-based)", "TODO"],
-    ["Build the niceGUI dashboard", "TODO"],
 ]), [320, 170])
-P("The architecture is settled and the first metric works. What remains: add a few more metrics in "
-  "the same Rust + SPARQL style, have the Rust program write its results (e.g. as JSON), and build a "
-  "niceGUI dashboard that reads those results and charts them.")
+P("The full pipeline now works end to end — YAGO index, QLever endpoint, Rust + SPARQL metric, "
+  "results JSON, and the niceGUI dashboard. What remains: add a few more metrics in the same "
+  "Rust + SPARQL style (e.g. the entropy-based one) and surface them in the dashboard alongside "
+  "Entity Type Importance.")
 
 SimpleDocTemplate(OUT, pagesize=A4, topMargin=18*mm, bottomMargin=16*mm,
                   leftMargin=18*mm, rightMargin=16*mm,

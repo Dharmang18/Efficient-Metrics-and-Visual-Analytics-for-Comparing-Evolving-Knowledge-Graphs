@@ -85,3 +85,26 @@ ETImp(p, t) = EF_p(p, t) * log2( |E_t| / EF_p(p, t) )
 
 A TF-IDF for predicates: properties everyone has (e.g. `rdf:type`) score ~0; characteristic
 properties (e.g. `birthDate` for Person, `radialVelocity` for Star) score high.
+
+## The dashboard (niceGUI)
+
+`dashboard.py` is a [niceGUI](https://nicegui.io) web app that visualizes the metric. It reads the
+Rust metric's `rust_metrics/results/entity_type_importance.json` — **no SPARQL runs at view time**,
+it just reads the pre-computed JSON, so the page is instant.
+
+```bash
+source qlever-workspace/.venv/bin/activate
+cd qlever-workspace
+python dashboard.py        # open http://localhost:8080
+```
+
+It shows, for any entity type:
+
+- a **type dropdown** and a **Top-N selector** (3–40 predicates);
+- an interactive **horizontal bar chart** (ECharts) of that type's most characteristic predicates,
+  ranked by ETImp score, with the value labelled on each bar;
+- a **full ranked, paginated table** of every predicate for that type.
+
+IRIs are trimmed to their readable last segment (e.g. `…#birthDate` → `birthDate`). The JSON is
+loaded once at startup, so re-run the Rust metric and **restart the dashboard** to see new data.
+If it reports "No results found", generate the data first (step 2 of the quick start).

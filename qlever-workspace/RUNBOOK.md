@@ -46,11 +46,32 @@ Layout (mirrors Knowgly):
 - `src/common.rs` — reusable queries (`fetch_top_type_iris`, `entity_count_per_type`).
 - `src/entity_type_importance.rs` — the metric: `ETImp(p,t) = EF_p(p,t) * log2(|E_t| / EF_p(p,t))`,
   per-type SPARQL `GROUP BY` queries run in parallel (rayon), results in nested HashMaps.
-- `src/main.rs` — runs the metric and prints each type's most-important predicates.
+- `src/main.rs` — runs the metric and writes `results/entity_type_importance.json` + `.csv`
+  (the JSON is what the dashboard reads).
+
+## Dashboard — niceGUI (the visualization)
+`dashboard.py` reads the Rust metric's `results/entity_type_importance.json` and charts it in the
+browser. It runs **no SPARQL at view time** — it just reads the pre-computed JSON, so it's instant.
+```bash
+source ~/thesis/qlever-workspace/.venv/bin/activate
+cd ~/thesis/qlever-workspace
+python dashboard.py                        # then open http://localhost:8080
+```
+What it shows:
+- A **type dropdown** + a **Top-N selector** (3–40).
+- An interactive **horizontal bar chart** (ECharts) of the selected type's most characteristic
+  predicates, ranked by ETImp score.
+- A **full ranked, paginated table** of every predicate for that type.
+
+Notes:
+- The JSON is loaded **once at startup**, so after re-running the Rust metric, restart `dashboard.py`
+  to pick up the new data.
+- IRIs are shown trimmed to their readable last segment (e.g. `…#birthDate` → `birthDate`).
+- If it shows "No results found", run the Rust metric first (above) to generate `results/`.
 
 ## (Optional) quick Python querying
-The Python files `sparql.py` / `metrics_examples.py` are a lightweight reference and will feed the
-future niceGUI dashboard. Not the thesis metric implementation (that's Rust, above).
+The Python files `sparql.py` / `metrics_examples.py` are a lightweight SPARQL reference for quick
+checks. Not the thesis metric implementation (that's Rust, above) nor the dashboard.
 ```bash
 export QLEVER_ENDPOINT=http://localhost:9004
 python metrics_examples.py
