@@ -41,7 +41,9 @@ NOTE = ParagraphStyle("NOTE", parent=BODY, fontSize=9, textColor=colors.HexColor
 story = []
 def P(t, s=BODY): story.append(Paragraph(t, s))
 def gap(h=4): story.append(Spacer(1, h))
-def code(t): story.append(Preformatted(escape(t), CODE))
+# Preformatted escapes its own input; escaping first double-escapes and prints
+# literal &lt; / &gt; in every code block (it did, for 20 lines, until 2026-08-19).
+def code(t): story.append(Preformatted(t, CODE))
 def bullets(items):
     for it in items:
         story.append(Paragraph(it, BULLET, bulletText="•"))
@@ -80,9 +82,9 @@ def cells(rows):  # wrap each cell string in a Paragraph for wrapping
 
 # ============================================================ TITLE
 P("Thesis Setup — Full Explanation", TITLE)
-P("Deploying YAGO locally with QLever, computing metrics in Rust + SPARQL, and a niceGUI dashboard", SUB)
+P("Deploying knowledge graphs with QLever, computing all 13 thesis metrics in Rust + SPARQL, and a niceGUI dashboard", SUB)
 gap(6)
-P("Author: Dharmang Pambhar &nbsp;|&nbsp; Date: 9 June 2026 &nbsp;|&nbsp; "
+P("Author: Dharmang Pambhar &nbsp;|&nbsp; Updated: 19 August 2026 &nbsp;|&nbsp; "
   "Advisor: Samuel García (TUM)", SUB)
 hr()
 P("This document explains, from the ground up, what the thesis task is, the tools involved, "
@@ -206,11 +208,12 @@ code(
 "  qlever-workspace/            <- project root\n"
 "    rust_metrics/              <- THESIS METRICS (Rust + SPARQL, mirrors Knowgly)\n"
 "      Cargo.toml\n"
-"      src/qlever_client.rs     <- SPARQL endpoint client\n"
-"      src/common.rs            <- reusable queries\n"
-"      src/entity_type_importance.rs  <- the metric\n"
-"      src/main.rs              <- runs it, writes results/*\n"
-"      results/entity_type_importance.{json,csv}  <- the metric output\n"
+"      src/qlever_client.rs     <- SPARQL client (can hold TWO endpoints at once)\n"
+"      src/common.rs            <- shared queries + entropy helpers\n"
+"      src/out.rs               <- writes results/[<label>/]<metric>.{json,csv}\n"
+"      src/<metric>.rs          <- ONE MODULE PER METRIC (13 + 2 baselines)\n"
+"      src/main.rs              <- subcommand dispatch ('help' lists everything)\n"
+"      results/[<label>/]*.{json,csv}  <- metric output, one folder per snapshot\n"
 "    dashboard.py               <- niceGUI dashboard (reads results JSON, charts at :8080)\n"
 "    sparql.py                  <- lightweight Python query reference\n"
 "    metrics_examples.py        <- Python example metrics (reference)\n"
@@ -228,35 +231,102 @@ P("Categories: <b>thesis metrics</b> (the Rust project rust_metrics/), the <b>da
 P("8. The metric implementation (Rust + SPARQL)", H1)
 P("Per the advisor and the Knowgly reference, the metrics are implemented as a <b>mix of SPARQL "
   "and Rust working with dictionaries (HashMaps)</b>: SPARQL does the heavy counting on the "
-  "server, and Rust holds the aggregated counts in nested HashMaps and applies the formula. "
-  "The project is <font face='Courier'>rust_metrics/</font> and mirrors Knowgly's structure.")
+  "server, and Rust holds the aggregated counts and applies the formula. The project is "
+  "<font face='Courier'>rust_metrics/</font> and mirrors Knowgly's structure. "
+  "<b>All 13 metrics of the final metrics list are implemented</b> — about 2350 lines across 19 "
+  "modules, one module per metric plus a subcommand.")
 table(cells([
     ["File", "Role"],
-    ["src/qlever_client.rs", "One global SPARQL endpoint; query() sends a SELECT and returns rows as var->value maps (reads results via a streaming reader so large result sets work)."],
-    ["src/common.rs", "Reusable queries: fetch_top_type_iris(N) and entity_count_per_type() (|E_t|)."],
-    ["src/entity_type_importance.rs", "The metric. Per-type SPARQL GROUP BY queries run in parallel (rayon); results stored in HashMap<Type, HashMap<Predicate, score>>."],
-    ["src/main.rs", "Initialises the endpoint, runs the metric, and writes results/entity_type_importance.json + .csv (which the dashboard reads)."],
+    ["src/qlever_client.rs", "SPARQL client. Holds a global endpoint for the per-snapshot metrics and can build a second one for the cross-version metrics. Surfaces QLever's own error text, and aborts on a failed query rather than returning an empty result."],
+    ["src/common.rs", "Shared queries (top types, |E_t|, class and predicate lists) and the entropy helpers."],
+    ["src/out.rs", "Result writing: results/[<label>/]<metric>.json + .csv."],
+    ["src/<metric>.rs", "One module per metric — the formula and its queries."],
+    ["src/main.rs", "Subcommand dispatch, environment handling, and the 'all' runner."],
 ]), [150, 340])
-P("<b>The implemented metric — Entity Type Importance</b> (a TF-IDF for predicates):")
-code("ETImp(p, t) = EF_p(p, t) * log2( |E_t| / EF_p(p, t) )\n"
-     "  EF_p(p,t) = # distinct entities of type t that use predicate p   (SPARQL COUNT DISTINCT)\n"
-     "  |E_t|     = # distinct entities of type t")
-P("Run it against your local index:")
+
+P("<b>The 13 metrics</b> (baselines <font face='Courier'>etimp</font> and "
+  "<font face='Courier'>pagerank</font> come from Knowgly and are not thesis contributions):", H2)
+table(cells([
+    ["#", "Metric", "Command", "Level"],
+    ["1", "Class population & share", "population", "class"],
+    ["2", "Property entropy per type", "entf", "class"],
+    ["3", "Entropy-weighted type importance", "entetimp", "class"],
+    ["4", "Class entropy", "classentropy", "class"],
+    ["5", "Entity informativeness", "inforank", "entity"],
+    ["6", "Object diversity", "diversity", "entity"],
+    ["7", "Entropy-weighted PageRank (own variant)", "entropy-pagerank", "global"],
+    ["8", "Graph size & shape", "shape", "global"],
+    ["9", "Class-level change rate (churn)", "churn", "global, 2 endpoints"],
+    ["10", "Triple diff, integer-encoded", "diff", "global, 2 endpoints"],
+    ["11", "Metric trajectories", "trajectories", "global, stored results"],
+    ["12", "Vocabulary / schema evolution", "vocab", "global, 2 endpoints"],
+    ["13", "Cross-KG class comparison", "crosskg", "global, 2 endpoints"],
+]), [20, 230, 130, 110])
+
+P("<b>How to run them</b>", H2)
 code('source "$HOME/.cargo/env"\n'
      "cd ~/thesis/qlever-workspace/rust_metrics\n"
      "export QLEVER_ENDPOINT=http://localhost:9004\n"
-     "cargo run --release 8        # top 8 most-populated types")
-P("Example output (characteristic predicates surface correctly): <b>Person</b> -> deathDate, "
-  "birthDate, children, spouse; &nbsp; <b>Galaxy</b> -> radialVelocity, distanceFromEarth, parallax; "
-  "&nbsp; <b>Politician</b> -> memberOf, birthPlace, deathPlace.")
-P("<b>Note on scope:</b> Knowgly computes this for <i>all</i> types; on a 16 GB laptop one query "
-  "per type over 1.3B triples is slow, so we restrict to the top-N most-populated types (the "
-  "<font face='Courier'>cargo run --release N</font> argument). Same metric, tractable scope.")
+     "export QLEVER_LABEL=yago-4.5.0.2        # names this snapshot -> results/<label>/\n"
+     "cargo run --release all 8               # every single-endpoint metric, top-8 classes\n"
+     "cargo run --release help                # the full list\n"
+     "\n"
+     "# comparing two versions needs a second endpoint\n"
+     "export QLEVER_ENDPOINT_B=http://localhost:9005\n"
+     "cargo run --release diff 'http://schema.org/Person' 5000\n"
+     "cargo run --release trajectories graph_shape yago-4 yago-4.5.0.2")
+P("The <font face='Courier'>QLEVER_LABEL</font> is what makes evolution work: the same metric run "
+  "against two versions under two labels lands in two folders, and metric 11 reads both back and "
+  "reports the deltas.")
+
+P("<b>Three implementation decisions worth knowing</b>", H2)
+P("<b>1. Entropy is computed from a count-of-counts histogram.</b> Shannon entropy depends only "
+  "on the multiset of counts, never on the values themselves, so there is no reason to stream "
+  "millions of object values over HTTP. A nested GROUP BY makes QLever fold them into a histogram "
+  "of a few hundred rows, and the entropy is recovered exactly:")
+code("H = log2 N - (1/N) * sum_c  m_c * c * log2 c\n"
+     "  m_c = how many distinct values occur exactly c times\n"
+     "  N   = total value occurrences        (exact, not sampled)")
+P("<b>2. The triple diff uses a subject window.</b> The obvious way to take a comparable slice of "
+  "two versions is ORDER BY ?s ?p ?o LIMIT n, but that forces the server to sort the entire graph "
+  "before it can take n rows — on a 1.5 billion triple graph QLever asked for 12.7 GB and refused. "
+  "Instead the diff takes the lexicographically first n subjects of each version (ordering a "
+  "subject list is an index scan, not a sort of every triple), cuts both lists at the smaller "
+  "upper bound, and fetches those subjects' triples by name. Inside that window both versions are "
+  "covered completely, so the diff is exact there — including entities that appear or vanish — "
+  "and nothing needs a global sort. Metrics 9 and 10 should therefore always be scoped to a class.")
+P("<b>3. Metric 10 compares two versions of one KG, not two different KGs.</b> YAGO and DBpedia "
+  "use disjoint subject IRIs, so the window falls entirely inside one of them and every triple of "
+  "the other is reported as 'added' — arithmetically correct and completely meaningless. The code "
+  "detects this and says so. Comparing two different KGs is metric 13's job, which matches classes "
+  "by name and compares their metric values instead.")
+
+P("<b>The efficiency contribution, measured</b>", H2)
+P("Metric 10 encodes every term into a u32 so a triple becomes 12 bytes and the comparison is a "
+  "sort plus a linear merge over integers, instead of hashing three strings per triple. Both the "
+  "integer path and the naive string path are implemented and timed against each other, and the "
+  "code asserts that the two agree — so the benchmark cannot drift away from being correct. "
+  "Measured on real data:")
+table(cells([
+    ["Path", "Time", "Memory"],
+    ["integer-encoded sets", "43 ms", "3.3 MB"],
+    ["naive string hash sets", "259 ms", "53.9 MB"],
+    ["ratio", "6.0x faster", "16.5x smaller"],
+]), [200, 145, 145])
+
+P("<b>Verification</b>", H2)
+P("All 13 metrics were run against live endpoints. Metrics 1-8 on the olympics dataset and on "
+  "YAGO; metrics 9 and 10 self-tested against a single endpoint, where the diff must be exactly "
+  "zero, and then at scale on YAGO; metric 12 across two different graphs; metric 13 on YAGO "
+  "versus DBpedia (Person: 6.43 M entities at 20.6 bits of class entropy against DBpedia's "
+  "1.86 M at 17.4 bits); metric 11 across two stored snapshots.")
+P("Metric 7 also demonstrates its own premise on the olympics graph: the predicate weights come "
+  "out as athlete = 1.000 against type = 0.008, so the low-entropy class nodes drop out of the top "
+  "ranks and every athlete rises exactly five places against the unweighted baseline.")
 gap(2)
 P("<b>Python files (reference only).</b> <font face='Courier'>sparql.py</font> and "
   "<font face='Courier'>metrics_examples.py</font> are a small Python query helper kept for quick "
-  "checks and to feed the future niceGUI dashboard — they are <i>not</i> the thesis metric "
-  "implementation (that is the Rust project above).")
+  "checks — they are <i>not</i> the thesis metric implementation (that is the Rust project above).")
 
 # ============================================================ 9. DASHBOARD
 P("9. The dashboard (niceGUI)", H1)
@@ -355,18 +425,26 @@ P("Everything in the message is implemented. The only line not literally execute
 P("13. Current status and next steps", H1)
 table(cells([
     ["Thesis piece", "Status"],
-    ["Deploy YAGO locally with QLever", "DONE"],
+    ["Deploy a KG locally with QLever", "DONE"],
     ["Query SPARQL (Python + Rust)", "DONE"],
     ["Understand the Knowgly metrics", "DONE"],
-    ["First metric in Rust + SPARQL (Entity Type Importance)", "DONE"],
-    ["Rust metric writes results as JSON + CSV", "DONE"],
-    ["niceGUI dashboard (charts the metric at :8080)", "DONE"],
-    ["Add more metrics (e.g. entropy-based)", "TODO"],
+    ["Final metrics list agreed (13 metrics, 3 levels)", "DONE"],
+    ["All 13 metrics implemented in Rust + SPARQL", "DONE"],
+    ["Metrics verified against live endpoints", "DONE"],
+    ["Efficiency benchmark for the triple diff", "DONE (6.0x faster, 16.5x smaller)"],
+    ["Results written as JSON + CSV, one folder per snapshot", "DONE"],
+    ["niceGUI dashboard (charts ETImp + PageRank at :8080)", "PARTIAL"],
+    ["Dashboard reads the other 11 metrics + results/<label>/", "TODO"],
+    ["Index a second YAGO version and run the cross-version metrics on it", "TODO"],
+    ["Add DBpedia versions", "TODO"],
 ]), [320, 170])
-P("The full pipeline now works end to end — YAGO index, QLever endpoint, Rust + SPARQL metric, "
-  "results JSON, and the niceGUI dashboard. What remains: add a few more metrics in the same "
-  "Rust + SPARQL style (e.g. the entropy-based one) and surface them in the dashboard alongside "
-  "Entity Type Importance.")
+P("The computation side of the thesis is complete: every metric on the final list is implemented, "
+  "runs against a real endpoint, and writes its results. Two things remain. First, the dashboard "
+  "still only knows about the two original result files, so it needs to learn the other eleven "
+  "metrics and the per-snapshot folder layout. Second, the cross-version metrics (9, 10, 11, 12) "
+  "have been verified for correctness but not yet run on two real versions of YAGO — that needs "
+  "the second index finished on the server, at which point they produce thesis results rather "
+  "than test results.")
 
 SimpleDocTemplate(OUT, pagesize=A4, topMargin=18*mm, bottomMargin=16*mm,
                   leftMargin=18*mm, rightMargin=16*mm,

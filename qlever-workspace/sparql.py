@@ -54,3 +54,47 @@ def scalar(query: str, endpoint: str | None = None) -> str | None:
 if __name__ == "__main__":
     print("Endpoint:", ENDPOINT)
     print("Total triples:", scalar("SELECT (COUNT(*) AS ?n) WHERE { ?s ?p ?o }"))
+
+
+
+Query 1 — Biggest entity types (the thesis "which types" query)
+
+Counts how many entities each type has — exactly query #1 behind your dashboard's dropdown.
+
+SELECT ?type (COUNT(DISTINCT ?s) AS ?count) WHERE {
+  ?s a ?type .
+}
+GROUP BY ?type
+ORDER BY DESC(?count)
+LIMIT 15
+
+---
+Query 2 — Most-used predicates for Stars (the EF_p query)
+
+For one type, how many distinct entities use each predicate. This is the per-type query (#3) that feeds the ETImp score.
+
+SELECT ?predicate (COUNT(DISTINCT ?s) AS ?entities) WHERE {
+  ?s a <http://yago-knowledge.org/resource/Star> .
+  ?s ?predicate ?o .
+}
+GROUP BY ?predicate
+ORDER BY DESC(?entities)
+LIMIT 15
+
+▎ Swap Star for <http://schema.org/Person> or <http://schema.org/Taxon> to explore other types.
+
+---
+Query 3 — Actual data: stars and their radial velocity
+
+A concrete lookup (not just counts) — shows real star names with the characteristic radialVelocity predicate the metric flagged as most distinctive for stars.
+
+PREFIX yago: <http://yago-knowledge.org/resource/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT DISTINCT ?name ?radialVelocity WHERE {
+  ?star a yago:Star .
+  ?star yago:radialVelocity ?radialVelocity .
+  ?star rdfs:label ?name .
+}
+LIMIT 50
+(returns rows like 100 Aquarii | -8.0)

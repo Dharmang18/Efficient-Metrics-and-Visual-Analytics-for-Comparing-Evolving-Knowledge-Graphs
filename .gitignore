@@ -13,6 +13,12 @@ target/
 # ───────── Generated metric outputs (regenerate via `cargo run --release`) ─────────
 results/
 
+# ───────── Third-party reference clone (has its own .git — never vendor it) ─────────
+reference/
+
+# ───────── University VPN profile — infrastructure config, repo is public ─────────
+vpn/
+
 # ───────── OS / editor ─────────
 .DS_Store
 .vscode/

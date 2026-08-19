@@ -1,110 +1,150 @@
-# Knowledge-Graph Metrics over YAGO (Bachelor's Thesis)
+# Efficient Metrics and Visual Analytics for Comparing Evolving Knowledge Graphs
 
-Compute **metrics over a knowledge graph** (YAGO 4.5) and visualize them in a dashboard.
-The knowledge graph is served locally with **QLever**, metrics are computed as a mix of
-**SPARQL + Rust** (mirroring the Knowgly approach), and results are shown in an interactive
-**niceGUI** dashboard.
+Bachelor's thesis (TUM). Compute **metrics over knowledge graphs** — several versions of YAGO,
+DBpedia later — and compare them **across versions and across KGs** in a dashboard. The graphs
+are served with **QLever**, the metrics are computed as a mix of **SPARQL + Rust** (mirroring the
+Knowgly approach), and results are shown in an interactive **niceGUI** dashboard.
 
-> Advisor: Samuel García (TUM)
+> Examiner: Prof. Maribel Acosta · Supervisor: M.Sc. Samuel García (TUM)
 
 ## Pipeline
 
 ```
-YAGO 4.5 index (local, not in repo)
+YAGO / DBpedia index (local, not in repo)
       │  SPARQL
       ▼
-QLever  ──►  localhost:9004        # SPARQL endpoint
-      │  per-type COUNT queries + formula
+QLever  ──►  :9004  (and :9005 for a second version)
+      │  counting queries (GROUP BY / COUNT) + formula in Rust
       ▼
-rust_metrics/  (Rust + SPARQL)     # computes the metric into dictionaries
+rust_metrics/  (Rust + SPARQL)      # 13 metrics, dictionaries + formulas
       │  writes
       ▼
-results/entity_type_importance.{json,csv}
+results/[<label>/]<metric>.{json,csv}
       │  reads
       ▼
-dashboard.py  (niceGUI)  ──►  localhost:8080   # interactive charts
+dashboard.py  (niceGUI)  ──►  localhost:8080
 ```
+
+The `<label>` is what makes evolution work: run the same metric against two versions with
+different labels, and metric 11 lines the two result sets up and reports the deltas.
+
+## The 13 metrics
+
+All are implemented in `qlever-workspace/rust_metrics/`, one module per metric plus a
+subcommand. Run `cargo run --release help` for the full usage.
+
+### Class-level
+
+| # | Metric | Command | Formula |
+|---|---|---|---|
+| 1 | Class population & share | `population` | `share(t) = \|E_t\| / \|E\|` |
+| 2 | Property entropy per type | `entf` | `EntF(p,t) = −Σ P(o) log2 P(o)` |
+| 3 | Entropy-weighted type importance | `entetimp` | `EntF^w · ETImp^(1−w)`, w = 0.75 |
+| 4 | Class entropy | `classentropy` | `H(t)` over all object values of the class |
+
+### Entity-level
+
+| # | Metric | Command | Formula |
+|---|---|---|---|
+| 5 | Entity informativeness | `inforank` | `IR(v) = dtp(v) / Σ dtp(u)` |
+| 6 | Object diversity | `diversity` | `OD(p,t) = ` distinct objects of p in t |
+
+### Global
+
+| # | Metric | Command | Formula |
+|---|---|---|---|
+| 7 | **Entropy-weighted PageRank** (own variant) | `entropy-pagerank` | `PR(v) = (1−d) + d·Σ w(p)·PR(u)/outdeg(u)` |
+| 8 | Graph size & shape | `shape` | `density = \|T\|/\|E\|` |
+| 9 | Class-level churn | `churn` | `(\|A_t\|+\|D_t\|) / \|T_t(v1)\|` |
+| 10 | Triple diff, integer-encoded | `diff` | `Added = T2−T1`, … |
+| 11 | Metric trajectories | `trajectories` | `Δm(v_i) = m(v_i+1) − m(v_i)` |
+| 12 | Vocabulary / schema evolution | `vocab` | `C_added = C2−C1`, … |
+| 13 | Cross-KG class comparison | `crosskg` | `Δm(t) = m_A(t) − m_B(t)` |
+
+`etimp` and `pagerank` are also available — those are the **provided Knowgly baselines**, not
+thesis contributions. Metric 7 is the thesis's own variant: PageRank in which each edge is
+weighted by the property entropy of its predicate, so rank flows preferentially through
+informative predicates.
 
 ## Repository layout
 
 ```
 qlever-workspace/
-  rust_metrics/            # THE METRICS (Rust + SPARQL, mirrors Knowgly)
-    src/qlever_client.rs   #   SPARQL endpoint client
-    src/common.rs          #   reusable queries (types, |E_t|)
-    src/entity_type_importance.rs   # the metric: ETImp(p,t) = EF_p * log2(|E_t| / EF_p)
-    src/main.rs            #   runs it, writes results/*.json + *.csv
-  dashboard.py             # niceGUI dashboard (reads the results JSON)
-  sparql.py                # small Python SPARQL helper (reference / future use)
-  metrics_examples.py      # Python example metrics (reference)
-  Qleverfiles/             # QLever recipes (yago-4, dbpedia, olympics)
-  RUNBOOK.md               # full start/stop/query/metrics commands
-Thesis_Setup_Explained.pdf # written explanation of the whole setup
+  rust_metrics/              # THE METRICS (Rust + SPARQL, mirrors Knowgly)
+    src/qlever_client.rs     #   SPARQL client — supports two endpoints at once
+    src/common.rs            #   shared queries + the entropy helpers
+    src/out.rs               #   results/[<label>/]<metric>.{json,csv}
+    src/<metric>.rs          #   one module per metric (13 + 2 baselines)
+    src/main.rs              #   subcommand dispatch — `help` lists everything
+  dashboard.py               # niceGUI dashboard (reads the results JSON)
+  sparql.py                  # small Python SPARQL helper (reference)
+  Qleverfiles/               # QLever recipes (yago-4, dbpedia, olympics)
+  RUNBOOK.md                 # start/stop/query commands
+docs/                        # metrics list + PDF generators
+Thesis_Setup_Explained.pdf   # written explanation of the whole setup
 ```
 
-> **Not in the repo:** the 41 GB YAGO index (`qlever-workspace/yago/`), the Python `.venv/`,
-> and the Rust `target/` build dir — all git-ignored. See below for how to obtain the index.
-
-## Prerequisites
-
-- **The YAGO 4.5.0.2 QLever index** (pre-built, ~41 GB) placed in `qlever-workspace/yago/`.
-- **A Docker engine** to run QLever (this project uses Colima, installed user-space).
-- **Rust** (`rustup`) and **Python 3.12** (a `.venv` with `qlever`, `requests`, `nicegui`).
-
-Full, copy-paste setup and run commands are in [`qlever-workspace/RUNBOOK.md`](qlever-workspace/RUNBOOK.md).
+> **Not in the repo** (all git-ignored): the 41 GB YAGO index (`qlever-workspace/yago/`), the
+> Python `.venv/`, the Rust `target/`, the generated `results/`, the Knowgly reference clone
+> (`reference/`, it has its own `.git`) and the TUM VPN profile (`vpn/`).
 
 ## Quick start
 
 ```bash
-# 1. Start the QLever engine + server (serves localhost:9004)
+# 1. Serve a graph (or point at one that is already running)
 export PATH="$HOME/.local/bin:$PATH"
 colima start
-cd qlever-workspace/yago && qlever --qleverfile Qleverfile start
+cd qlever-workspace/yago && qlever --qleverfile Qleverfile start   # -> :9004
 
-# 2. Compute the metric (Rust + SPARQL) -> writes results/
+# 2. Compute metrics (Rust + SPARQL) -> writes results/
 source "$HOME/.cargo/env"
 cd ../rust_metrics
 export QLEVER_ENDPOINT=http://localhost:9004
-cargo run --release 10        # top 10 most-populated types
+export QLEVER_LABEL=yago-4.5.0.2          # names this snapshot
+cargo run --release all 8                 # every single-endpoint metric, top-8 classes
 
-# 3. Launch the dashboard
-cd ..
-source .venv/bin/activate
-python dashboard.py            # open http://localhost:8080
+# 3. Compare two versions (needs a second endpoint)
+export QLEVER_ENDPOINT_B=http://localhost:9005
+cargo run --release diff 'http://schema.org/Person' 5000
+cargo run --release trajectories graph_shape yago-4 yago-4.5.0.2
+
+# 4. Launch the dashboard
+cd .. && source .venv/bin/activate
+python dashboard.py                       # open http://localhost:8080
 ```
 
-## The metric: Entity Type Importance
+No local index? Every metric runs against a public endpoint too:
 
-For each entity type `t` and predicate `p`:
-
-```
-ETImp(p, t) = EF_p(p, t) * log2( |E_t| / EF_p(p, t) )
-  EF_p(p,t) = # distinct entities of type t that use predicate p   (SPARQL COUNT DISTINCT)
-  |E_t|     = # distinct entities of type t
+```bash
+export QLEVER_ENDPOINT=https://qlever.dev/api/olympics
+cargo run --release all 5
 ```
 
-A TF-IDF for predicates: properties everyone has (e.g. `rdf:type`) score ~0; characteristic
-properties (e.g. `birthDate` for Person, `radialVelocity` for Star) score high.
+## Notes on the implementation
+
+- **Entropy is computed from a count-of-counts histogram.** Entropy depends only on the multiset
+  of counts, so a nested `GROUP BY` has QLever fold millions of object values into a few hundred
+  rows. The result is exact, not sampled.
+- **The triple diff uses a subject window,** not `ORDER BY ?s ?p ?o LIMIT n` — the latter makes
+  the server sort the entire graph. It takes the lexicographically first *n* subjects of each
+  version, cuts both at the smaller bound, and fetches those subjects' triples by name. Exact
+  inside the window, and no global sort. Scope metrics 9 and 10 to a class.
+- **Metric 10 compares two versions of one KG,** not two different KGs: YAGO and DBpedia have
+  disjoint subject IRIs, so a triple diff between them is meaningless. Metric 13 does that job.
+- The diff benchmark runs the integer-encoded and naive string paths and asserts they agree.
+  Measured on real data: **5.7–6.0× faster, 16.5× less memory.**
 
 ## The dashboard (niceGUI)
 
-`dashboard.py` is a [niceGUI](https://nicegui.io) web app that visualizes the metric. It reads the
-Rust metric's `rust_metrics/results/entity_type_importance.json` — **no SPARQL runs at view time**,
-it just reads the pre-computed JSON, so the page is instant.
+`dashboard.py` reads the pre-computed JSON — no SPARQL runs at view time, so the page is instant.
+It shows, for any entity type, a type dropdown and Top-N selector, an interactive ECharts bar
+chart of the most characteristic predicates, and a full ranked table.
 
 ```bash
 source qlever-workspace/.venv/bin/activate
-cd qlever-workspace
-python dashboard.py        # open http://localhost:8080
+cd qlever-workspace && python dashboard.py      # http://localhost:8080
 ```
 
-It shows, for any entity type:
-
-- a **type dropdown** and a **Top-N selector** (3–40 predicates);
-- an interactive **horizontal bar chart** (ECharts) of that type's most characteristic predicates,
-  ranked by ETImp score, with the value labelled on each bar;
-- a **full ranked, paginated table** of every predicate for that type.
-
-IRIs are trimmed to their readable last segment (e.g. `…#birthDate` → `birthDate`). The JSON is
-loaded once at startup, so re-run the Rust metric and **restart the dashboard** to see new data.
-If it reports "No results found", generate the data first (step 2 of the quick start).
+The JSON is loaded once at startup — re-run a metric and **restart the dashboard** to see new
+data. It currently reads the ETImp and PageRank results only; wiring the other 11 metrics and
+the `results/<label>/` layout into it is the next task.
