@@ -1,0 +1,6 @@
+https://databus.dbpedia.org/dbpedia/mappings/instance-types/2022.12.01/instance-types_inference=specific_lang=en.ttl.bz2
+https://databus.dbpedia.org/dbpedia/mappings/mappingbased-objects/2022.12.01/mappingbased-objects_lang=en.ttl.bz2
+https://databus.dbpedia.org/dbpedia/mappings/mappingbased-literals/2022.12.01/mappingbased-literals_lang=en.ttl.bz2
+https://databus.dbpedia.org/dbpedia/generic/infobox-properties/2022.12.01/infobox-properties_lang=en.ttl.bz2
+https://databus.dbpedia.org/dbpedia/generic/labels/2022.12.01/labels_lang=en.ttl.bz2
+https://databus.dbpedia.org/dbpedia/generic/redirects/2022.12.01/redirects_lang=en.ttl.bz2

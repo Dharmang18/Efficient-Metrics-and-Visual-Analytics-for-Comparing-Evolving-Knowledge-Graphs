@@ -71,6 +71,13 @@ Environment
   QLEVER_ENDPOINT    graph to measure    (default http://localhost:9004)
   QLEVER_ENDPOINT_B  second graph        (needed by churn / diff / vocab / crosskg)
   QLEVER_LABEL       snapshot name       (results/<label>/... — required for trajectories)
+  QLEVER_PARALLELISM concurrent queries  (default 4; lower it if the server reports
+                                          "Tried to allocate ... but only ... available")
+  QLEVER_CLASSES     pinned class list   (comma-separated local names, e.g.
+                                          Person,Taxon,Star — same classes in every
+                                          snapshot, so per-class metrics compare)
+  QLEVER_MAX_CLASS_SIZE  skip classes bigger than this when NOT pinned (default 10M)
+  QLEVER_SUFFIX      output suffix       (e.g. _pinned -> results/<label>/entf_pinned.json)
 "#;
 
 fn arg(n: usize) -> Option<String> {

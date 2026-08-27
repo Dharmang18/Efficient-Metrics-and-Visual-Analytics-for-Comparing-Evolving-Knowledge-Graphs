@@ -1,9 +1,15 @@
 # Efficient Metrics and Visual Analytics for Comparing Evolving Knowledge Graphs
 
-Bachelor's thesis (TUM). Compute **metrics over knowledge graphs** — several versions of YAGO,
-DBpedia later — and compare them **across versions and across KGs** in a dashboard. The graphs
+Bachelor's thesis (TUM). Compute **metrics over knowledge graphs** — two versions of YAGO and
+three of DBpedia — and compare them **across versions and across KGs** in a dashboard. The graphs
 are served with **QLever**, the metrics are computed as a mix of **SPARQL + Rust** (mirroring the
 Knowgly approach), and results are shown in an interactive **niceGUI** dashboard.
+
+**The five snapshots:** YAGO 4 (2020), YAGO 4.5.0.2 (2024), DBpedia 2015-10, DBpedia 2022.12.01,
+DBpedia 2025-12-01. The three DBpedia releases are built from a **matched five-role file subset**
+(direct+transitive types, ontology-mapped properties, raw infobox properties, labels, redirects)
+so that measured differences are real evolution, not artefacts of which files each release
+shipped. See `qlever-workspace/dbpedia-matched/MATCHED_SUBSET.md`.
 
 > Examiner: Prof. Maribel Acosta · Supervisor: M.Sc. Samuel García (TUM)
 
@@ -13,7 +19,7 @@ Knowgly approach), and results are shown in an interactive **niceGUI** dashboard
 YAGO / DBpedia index (local, not in repo)
       │  SPARQL
       ▼
-QLever  ──►  :9004  (and :9005 for a second version)
+QLever  ──►  :9005 YAGO 4 · :9006 YAGO 4.5 (home server) · :7014 DBpedia (TUM VM)
       │  counting queries (GROUP BY / COUNT) + formula in Rust
       ▼
 rust_metrics/  (Rust + SPARQL)      # 13 metrics, dictionaries + formulas

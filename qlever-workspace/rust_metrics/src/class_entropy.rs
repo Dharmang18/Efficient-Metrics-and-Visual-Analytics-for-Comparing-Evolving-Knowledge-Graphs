@@ -8,7 +8,7 @@
 //! predicate-side entropy is reported next to it, because a class can be varied
 //! in its values while being described by a very narrow set of predicates.
 
-use crate::common::{entropy_from_histogram, short, top_type_iris, value_histogram};
+use crate::common::{entropy_from_histogram, short, value_histogram};
 use crate::out;
 use crate::qlever_client::SparqlEndpoint;
 use rayon::prelude::*;
@@ -24,8 +24,8 @@ pub struct Entry {
 }
 
 pub fn compute(ep: &SparqlEndpoint, num_types: usize) -> Vec<Entry> {
-    let types = top_type_iris(ep, num_types);
-    let pool = rayon::ThreadPoolBuilder::new().num_threads(4).build().unwrap();
+    let types = crate::common::selected_type_iris(ep, num_types);
+    let pool = crate::common::query_pool();
 
     pool.install(|| {
         types

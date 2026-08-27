@@ -19,8 +19,18 @@ pub struct ClassPopulation {
 
 pub fn compute(ep: &SparqlEndpoint, limit: usize) -> (Vec<ClassPopulation>, f64) {
     // |E| — all entities that carry any type at all.
+    //
+    // Written as COUNT(*) over a DISTINCT subquery rather than the obvious
+    // COUNT(DISTINCT ?s). The two are equivalent, but QLever evaluates them very
+    // differently: COUNT(DISTINCT ?s) materialises the whole subject column,
+    // which on YAGO 4 (2.49B triples, 73M typed subjects) exhausted the entire
+    // 5G query budget and then failed on a 24-byte allocation. The subquery form
+    // streams the DISTINCT off the already-sorted permutation and answered the
+    // same 73,260,634 in 3.5s. Note this is NOT the COUNT(*) shortcut used below
+    // for the per-type counts: here the DISTINCT is required, because a subject
+    // with several types must be counted once, not once per type.
     let total = ep.scalar(
-        "SELECT (COUNT(DISTINCT ?s) AS ?n) WHERE { ?s a ?type }", "n");
+        "SELECT (COUNT(*) AS ?n) WHERE { { SELECT DISTINCT ?s WHERE { ?s a ?type } } }", "n");
 
     // COUNT(*) rather than COUNT(DISTINCT ?s): in a set-semantics store the
     // (subject, type) pairs are already unique, so the counts are identical

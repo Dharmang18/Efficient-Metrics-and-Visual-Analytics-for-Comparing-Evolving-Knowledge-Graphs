@@ -12,7 +12,7 @@
 //! fold them into a count-of-counts of a few hundred rows instead. Exact, not
 //! sampled, and small enough that the per-pair queries can run in parallel.
 
-use crate::common::{property_entropy, short, top_predicates_for_type, top_type_iris};
+use crate::common::{property_entropy, short, top_predicates_for_type};
 use crate::out;
 use crate::qlever_client::SparqlEndpoint;
 use rayon::prelude::*;
@@ -29,7 +29,7 @@ pub struct Entry {
 
 /// EntF for the top `num_preds` predicates of the top `num_types` classes.
 pub fn compute(ep: &SparqlEndpoint, num_types: usize, num_preds: usize) -> Vec<Entry> {
-    let types = top_type_iris(ep, num_types);
+    let types = crate::common::selected_type_iris(ep, num_types);
 
     // (type, predicate) work list — one histogram query each.
     let pairs: Vec<(String, String)> = types
@@ -44,7 +44,7 @@ pub fn compute(ep: &SparqlEndpoint, num_types: usize, num_preds: usize) -> Vec<E
              types.len(), num_preds, pairs.len());
 
     // Small pool: the point is to keep a 16 GB laptop's QLever responsive.
-    let pool = rayon::ThreadPoolBuilder::new().num_threads(4).build().unwrap();
+    let pool = crate::common::query_pool();
     pool.install(|| {
         pairs
             .par_iter()

@@ -1,0 +1,82 @@
+\documentclass[IN,11pt,twoside,openright,bachelor,english]{tumthesis}
+
+% Common packages shipped with the TUM template
+\usepackage{packages}
+
+\usepackage[backend=bibtex,style=ieee]{biblatex}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{url}
+\usepackage[style=base]{caption}
+\captionsetup{font={rm,footnotesize}, labelfont={sc}}
+\usepackage{subcaption}
+\usepackage[hang]{footmisc}
+\usepackage[printonlyused]{acronym}
+\usepackage{amsmath}
+\usepackage{amsthm}   % proof environment, used in Chapter 3
+\usepackage{listings}
+
+\setlength\footnotemargin{5pt}
+
+% Theorem environments
+\newtheorem{definition}{Definition}
+\newtheorem{example}{Example}
+
+\hyphenation{know-ledge gra-phs SPARQL}
+
+% ---------------------------------------------------------------- metadata
+\titleenglish{Efficient Metrics and Visual Analytics for Comparing Evolving Knowledge Graphs}
+% \titlegerman{Effiziente Metriken und Visual Analytics zum Vergleich sich entwickelnder Wissensgraphen}
+\author{Dharmang~Pambhar}
+\supervisor{Prof.~Dr.~Maribel~Acosta}
+\assistants{Samuel~García\tlc{}~M.\,Sc.}
+\advisor{Samuel~García, M.Sc.}
+
+% TODO: confirm your exact degree programme as printed in TUMonline
+\courseofstudy{Information Engineering}
+
+% TODO: set the real hand-in date before submitting
+\date{September 2026}
+\location{Heilbronn}
+
+\setcounter{tocdepth}{2}
+
+\addbibresource{bib/IEEEfull.bib}
+\addbibresource{bib/literature.bib}
+
+\usepackage{bib}
+\usepackage[colorlinks=false,pdfborder={0 0 0}]{hyperref}
+
+\begin{document}%
+
+\pagenumbering{gobble}
+\maketitle%
+\cleardoublepage
+
+\begin{abstract}
+	\input{include/abstract-en}
+\end{abstract}
+
+\acresetall
+
+\tableofcontents
+\listoffigures
+\listoftables
+\startcontent
+
+\input{include/introduction}
+\input{include/relatedwork}
+\input{include/approach}
+\input{include/experiment}
+\input{include/conclusion}
+
+\appendix
+\input{include/appendix}
+
+% NOTE: tumthesis is based on the 'report' class, which has no \backmatter.
+\input{include/acronym}
+
+\printbibliography[heading=bibintoc]
+
+\end{document}

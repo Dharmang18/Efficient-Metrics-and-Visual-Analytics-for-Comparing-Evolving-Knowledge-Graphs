@@ -1,0 +1,45 @@
+\chapter{Introduction}
+\label{chap:introduction}
+
+% ~1100-1300 words in total (reference thesis: 1131).
+
+\section{Motivation}
+\label{sec:motivation}
+% Knowledge graphs are not static: YAGO, DBpedia and Wikidata publish new versions
+% regularly, and each release adds, removes and rewrites facts. Consumers of a KG
+% (search, QA, recommendation) inherit those changes blindly.
+% Argue: we have plenty of metrics that describe ONE snapshot, and almost nothing
+% that describes the DIFFERENCE between two, at a scale where the graphs are
+% billions of triples.
+% TODO
+
+\section{Research Objectives}
+\label{sec:research_objectives}
+% State them as answerable questions, e.g.
+%   RQ1  Which metrics characterise a KG snapshot, and can they be computed
+%        efficiently over a billion-triple graph through a SPARQL endpoint?
+%   RQ2  How do those metrics change between two versions of the same KG, and
+%        where in the graph does the change concentrate?
+%   RQ3  Can the comparison of two versions be made efficient enough to run on
+%        commodity hardware rather than a cluster?
+%   RQ4  What do the same metrics say when applied across two different KGs?
+% TODO
+
+\section{Contributions}
+\label{sec:contributions}
+% Be precise about what is yours versus what is adopted:
+%   - a catalogue of 13 metrics over three analysis levels, implemented as
+%     SPARQL + Rust and runnable against any QLever endpoint;
+%   - entropy-weighted PageRank, a variant in which every edge is weighted by the
+%     property entropy of its predicate (Chapter 3);
+%   - an integer-encoded triple diff with a subject-window scoping scheme, which
+%     makes version comparison tractable without a global sort;
+%   - a dashboard that puts metric values of several versions side by side;
+%   - an evaluation over YAGO and DBpedia.
+% Adopted, NOT claimed: ETImp and classic PageRank (Knowgly baselines).
+% TODO
+
+\section{Organization}
+\label{sec:organization}
+% One short paragraph naming each remaining chapter.
+% TODO

@@ -10,6 +10,17 @@ use std::fs;
 use std::io::Write;
 use std::path::PathBuf;
 
+/// An optional suffix on the metric file name, from `QLEVER_SUFFIX`.
+///
+/// Per-class metrics are run twice per snapshot: once over that snapshot's own
+/// top-N classes (descriptive) and once over a pinned, cross-version class list
+/// (comparative, see `common::selected_type_iris`). Without a suffix the second
+/// run would overwrite the first, so the pinned pass sets `QLEVER_SUFFIX=_pinned`
+/// and writes `entf_pinned.json` beside `entf.json`.
+pub fn suffix() -> String {
+    std::env::var("QLEVER_SUFFIX").unwrap_or_default()
+}
+
 pub fn label() -> Option<String> {
     std::env::var("QLEVER_LABEL").ok().filter(|s| !s.is_empty())
 }
@@ -31,14 +42,14 @@ pub fn read_json(label: &str, metric: &str) -> Option<serde_json::Value> {
 }
 
 pub fn write_json(metric: &str, value: &serde_json::Value) {
-    let path = out_dir().join(format!("{metric}.json"));
+    let path = out_dir().join(format!("{metric}{}.json", suffix()));
     fs::write(&path, serde_json::to_string_pretty(value).unwrap())
         .unwrap_or_else(|e| panic!("could not write {}: {e}", path.display()));
     println!("  {}", path.display());
 }
 
 pub fn write_csv(metric: &str, header: &str, rows: &[String]) {
-    let path = out_dir().join(format!("{metric}.csv"));
+    let path = out_dir().join(format!("{metric}{}.csv", suffix()));
     let mut f = fs::File::create(&path)
         .unwrap_or_else(|e| panic!("could not write {}: {e}", path.display()));
     writeln!(f, "{header}").unwrap();

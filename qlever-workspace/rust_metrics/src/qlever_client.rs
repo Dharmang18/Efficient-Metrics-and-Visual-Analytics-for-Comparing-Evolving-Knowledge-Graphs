@@ -9,16 +9,40 @@
 use std::collections::HashMap;
 use std::error::Error;
 use std::sync::OnceLock;
+use std::time::Duration;
 
 pub struct SparqlEndpoint {
     url: String,
+    agent: ureq::Agent,
+}
+
+/// Connect and read timeouts for every SPARQL request.
+///
+/// Without these, ureq waits forever. That is not theoretical: a metric run
+/// against the home server over Tailscale sat blocked for **3.5 hours** using
+/// 0.03s of CPU, with two sockets still ESTABLISHED to a server that had long
+/// since gone idle — the tunnel had dropped the connections without either end
+/// noticing, so the reads could never complete. It looked exactly like a slow
+/// query, which is the dangerous part.
+///
+/// READ must exceed the server's own query timeout (`TIMEOUT = 600s` in our
+/// Qleverfiles) so that a legitimately long query is never cut short by the
+/// client; anything past that is a dead socket, not a slow answer.
+const CONNECT_TIMEOUT: Duration = Duration::from_secs(30);
+const READ_TIMEOUT: Duration = Duration::from_secs(900);
+
+fn build_agent() -> ureq::Agent {
+    ureq::AgentBuilder::new()
+        .timeout_connect(CONNECT_TIMEOUT)
+        .timeout_read(READ_TIMEOUT)
+        .build()
 }
 
 static ENDPOINT: OnceLock<SparqlEndpoint> = OnceLock::new();
 
 /// Initialise the global endpoint once at program start.
 pub fn init(url: &str) {
-    let _ = ENDPOINT.set(SparqlEndpoint { url: url.to_string() });
+    let _ = ENDPOINT.set(SparqlEndpoint { url: url.to_string(), agent: build_agent() });
 }
 
 /// Access the global endpoint (call `init` first).
@@ -29,7 +53,7 @@ pub fn endpoint() -> &'static SparqlEndpoint {
 impl SparqlEndpoint {
     /// A second (or third) endpoint, for comparing two graphs.
     pub fn new(url: &str) -> Self {
-        SparqlEndpoint { url: url.to_string() }
+        SparqlEndpoint { url: url.to_string(), agent: build_agent() }
     }
 
     pub fn url(&self) -> &str {
@@ -41,7 +65,7 @@ impl SparqlEndpoint {
         // POST the query as a form field, ask for JSON results.
         // Parse from the response READER (not into_string), because some result
         // sets are tens of MB and ureq's into_string() caps at 10 MB.
-        let resp = match ureq::post(&self.url)
+        let resp = match self.agent.post(&self.url)
             .set("Accept", "application/sparql-results+json")
             .send_form(&[("query", query)])
         {

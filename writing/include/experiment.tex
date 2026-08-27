@@ -1,0 +1,96 @@
+\chapter{Experiments and Results}
+\label{chap:experiments}
+
+% ~8000-8500 words (reference thesis: 8406, 8 figures, 12 tables).
+% MORE THAN HALF THE BODY. Every experiment below follows the same three
+% subsections as the reference thesis: Objective and Methodology / Results /
+% Discussion. The Discussion is where marks are won: explain the mechanism, and
+% compare against the literature from Chapter 2.
+
+\section{Dataset Description}
+\label{sec:datasets}
+% YAGO 4 (2020-02-24) and YAGO 4.5.0.2, DBpedia. For each: triples, entities,
+% classes, predicates -- which is exactly what metric 8 outputs, so this table is
+% generated, not hand-written.
+% TABLE 1: dataset characteristics.
+% Verified so far: YAGO 4.5.0.2 local index = 1,305,431,407 triples, 123
+% predicates, 49,688,174 subjects. Public YAGO 4 endpoint = 2,489,858,800 triples,
+% 157 predicates, 73,260,634 typed entities, 10,103 classes.
+% TODO
+
+\section{Evaluation Metrics}
+\label{sec:evaluation_metrics}
+% Restate each metric compactly with its formula, as the yardstick used below.
+% TODO
+
+\section{Experimental Setup}
+\label{sec:experimental_setup}
+
+\subsection{Hardware and Software}
+\label{subsec:hardware_software}
+% The three machines, because they explain every runtime number in this chapter:
+%   - MacBook Air M-series, 16 GB RAM  (client: Rust metrics + dashboard)
+%   - Windows laptop, 16 GB RAM, 1 TB  (WSL2 + Docker, QLever server)
+%   - TUM VM cdevm2, 6 CPU, 8 GB RAM   (native QLever, no root)
+% Software: QLever (image pinned commit-e5f6724 for the 4.5 index), Rust 1.96,
+% Python 3.12 + niceGUI. MEMORY_FOR_QUERIES settings matter -- report them.
+% TODO
+
+\subsection{Protocol}
+\label{subsec:protocol}
+% How each measurement was taken: warm vs cold cache, repetitions, and the fact
+% that the metrics are deterministic given a fixed index.
+% TODO
+
+\section{Experiment 1: Per-Snapshot Metric Profile}
+\label{sec:exp1}
+\subsection{Objective and Methodology}
+% Run metrics 1-8 over one KG version; show the profile is meaningful.
+\subsection{Results}
+% TABLE + FIGURE: class population/share, property entropy, class entropy.
+\subsection{Discussion}
+% TODO
+
+\section{Experiment 2: Evolution Between Two Versions}
+\label{sec:exp2}
+% THE CORE EXPERIMENT OF THE THESIS -- and the one still blocked on the second
+% YAGO index. Metrics 9, 10, 11, 12 across YAGO 4 -> YAGO 4.5.
+\subsection{Objective and Methodology}
+\subsection{Results}
+\subsection{Discussion}
+% TODO
+
+\section{Experiment 3: Efficiency of the Triple Diff}
+\label{sec:exp3}
+% DATA ALREADY EXISTS. Integer-encoded sets vs naive string hash sets, on equal
+% inputs, with both paths asserted to produce identical results.
+% Measured: 42.8 ms / 3.3 MB versus 259.9 ms / 53.9 MB -> 6.0x faster, 16.5x
+% smaller, on a 150k-triple window. Re-run across several window sizes so the
+% table has a scaling column rather than a single point.
+\subsection{Objective and Methodology}
+\subsection{Results}
+\subsection{Discussion}
+% TODO
+
+\section{Experiment 4: Entropy-Weighted vs Classic PageRank}
+\label{sec:exp4}
+% Same edge set, both rankings, and the rank shift between them.
+% Demonstrated on the olympics graph: w(athlete)=1.000 vs w(type)=0.008, which
+% pushes the five low-entropy class nodes out of the top and lifts every athlete
+% by exactly five ranks. Repeat on YAGO, where the predicate set is far richer.
+\subsection{Objective and Methodology}
+\subsection{Results}
+\subsection{Discussion}
+% TODO
+
+\section{Experiment 5: Cross-KG Comparison}
+\label{sec:exp5}
+% DATA ALREADY EXISTS. The same class in two different KGs.
+% Measured: schema:Person in YAGO 4 = 6,433,965 entities at 20.645 bits of class
+% entropy; in DBpedia = 1,860,208 entities at 17.370 bits.
+% Note the honest limitation: classes are matched by local name at the schema
+% level, not by instance-level sameAs linkage.
+\subsection{Objective and Methodology}
+\subsection{Results}
+\subsection{Discussion}
+% TODO

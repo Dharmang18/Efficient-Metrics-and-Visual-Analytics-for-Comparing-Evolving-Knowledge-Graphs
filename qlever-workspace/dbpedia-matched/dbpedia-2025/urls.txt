@@ -1,0 +1,5 @@
+https://downloads.dbpedia.org/repo/dbpedia/dbpedia-wikipedia-kg-dump/instance-types/2025-12-01/instance-types_graph%3Ddbpedia-org_partition%3Drdf-type.ttl.gz
+https://downloads.dbpedia.org/repo/dbpedia/dbpedia-wikipedia-kg-dump/dbpedia-ontology-properties/2025-12-01/dbpedia-ontology-properties_graph%3Ddbpedia-org_partition%3Ddbo.ttl.gz
+https://downloads.dbpedia.org/repo/dbpedia/dbpedia-wikipedia-kg-dump/raw-source-properties/2025-12-01/raw-source-properties_graph%3Ddbpedia-org_partition%3Ddbp.ttl.gz
+https://downloads.dbpedia.org/repo/dbpedia/dbpedia-wikipedia-kg-dump/labels/2025-12-01/labels_graph%3Ddbpedia-org_partition%3Drdfs-label.ttl.gz
+https://downloads.dbpedia.org/repo/dbpedia/dbpedia-wikipedia-kg-dump/redirects/2025-12-01/redirects_graph%3Ddbpedia-org_partition%3Ddbo-wikiPageRedirects.ttl.gz

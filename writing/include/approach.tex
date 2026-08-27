@@ -1,0 +1,532 @@
+\chapter{Approach}
+\label{chap:approach}
+
+This chapter describes what is computed and how. Section~\ref{sec:preliminaries}
+fixes the notation, Section~\ref{sec:architecture} explains the shape of the
+pipeline, and Sections~\ref{sec:class_level_metrics}--\ref{sec:global_metrics}
+define the thirteen metrics grouped by the level of the graph they describe.
+Section~\ref{sec:entropy_weighted_pagerank} presents the entropy-weighted
+PageRank variant proposed by this thesis, and
+Section~\ref{sec:efficient_computation} covers the techniques that make the
+computation tractable on billion-triple graphs.
+
+\section{Preliminaries}
+\label{sec:preliminaries}
+
+A knowledge graph is a set of RDF triples $T \subseteq (I \cup B) \times I
+\times (I \cup B \cup L)$, where $I$ are \acp{IRI}, $B$ blank nodes and $L$
+literals. A triple $(s, p, o)$ states that subject $s$ stands in relation $p$ to
+object $o$. Throughout this thesis the following symbols are used:
+
+\begin{itemize}
+  \item $T$ --- the set of triples of one snapshot, $|T|$ its cardinality;
+  \item $S$ --- the set of distinct subjects, $O$ the set of distinct objects;
+  \item $P$ --- the set of distinct predicates;
+  \item $C$ --- the set of classes, that is the objects of \texttt{rdf:type} triples;
+  \item $E$ --- the set of typed entities, $E_t \subseteq E$ those of class $t$.
+\end{itemize}
+
+An entity may carry several types, so the sets $E_t$ overlap and
+$\sum_{t \in C} |E_t| \geq |E|$ in general. This matters when reading
+Section~\ref{sec:class_level_metrics}: class shares are fractions of $|E|$ but
+need not sum to one.
+
+Two versions of the same knowledge graph are written $v_1$ and $v_2$ with triple
+sets $T_1$ and $T_2$; two different knowledge graphs are written $A$ and $B$.
+The distinction is not cosmetic. Two versions of one graph share their \ac{IRI}
+namespace, so their triples can be compared directly; two different graphs
+generally do not, and Section~\ref{sec:global_metrics} treats them with separate
+metrics for exactly that reason.
+
+All metrics are computed over data served by QLever~\cite{bast2017qlever}, a
+SPARQL engine that answers queries from a precomputed index. Every metric in
+this chapter is therefore expressible as one or more SPARQL queries plus a
+formula applied to their results.
+
+\section{Architecture}
+\label{sec:architecture}
+
+The pipeline follows the pattern established by Knowgly~\cite{garcia2025information}:
+\emph{SPARQL performs the counting, the host language holds the aggregated counts
+in dictionaries and applies the formula, and a separate layer visualises the
+result}. Concretely it has four stages:
+
+\begin{enumerate}
+  \item a QLever index of one snapshot of a knowledge graph, served as a SPARQL
+        endpoint over HTTP;
+  \item a set of counting queries, one or a few per metric, evaluated on the
+        server so that no triple ever crosses the network unnecessarily;
+  \item a Rust program that collects the counts into hash maps, applies the
+        metric formula, and writes the result as JSON and CSV;
+  \item a niceGUI dashboard that reads those files and renders them.
+\end{enumerate}
+
+Splitting the work this way is what keeps the approach applicable to graphs of
+this size. The expensive part of every metric is an aggregation over hundreds of
+millions of triples, which the engine can answer from its index; what remains is
+arithmetic over a few hundred or a few thousand numbers, which is trivial in any
+language. The role of Rust is therefore not raw speed in the formula itself but
+predictable memory behaviour in the two places where data volume does reach the
+client: the triple diff of Section~\ref{subsec:integer_encoding} and the
+PageRank iteration of Section~\ref{sec:entropy_weighted_pagerank}.
+
+The endpoint is not compiled in. It is read from the environment, so the same
+binary runs against a laptop, a server on the local network, or a university
+virtual machine without modification. A second endpoint may be supplied for the
+metrics that compare two graphs. Each run may additionally be given a label
+naming the snapshot being measured; results are then written to a directory of
+that name, which is the mechanism the trajectory metric of
+Section~\ref{sec:global_metrics} uses to find several versions of the same
+measurement.
+
+\section{Class-Level Metrics}
+\label{sec:class_level_metrics}
+
+Class-level metrics describe what kinds of things a graph contains and which
+predicates characterise each kind.
+
+\subsection{Class Population and Share}
+
+The most basic question about a snapshot is what is in it. For a class $t$,
+
+\begin{equation}
+  \mathrm{share}(t) = \frac{|E_t|}{|E|}
+  \label{eq:share}
+\end{equation}
+
+gives the fraction of all typed entities belonging to $t$. Both quantities come
+from a single grouped count. Tracked across versions, the share exposes which
+classes grow, shrink or vanish, and it normalises for overall growth: a class
+can double in absolute size while losing share, which is a different fact about
+the graph than simply getting bigger.
+
+\subsection{Property Entropy per Type}
+
+Population says nothing about how well a class is described. For that we ask, for
+one class $t$ and one predicate $p$, how varied the values of $p$ are. Let $P(o)$
+be the relative frequency of value $o$ among all values $p$ takes on entities of
+$t$. The Shannon entropy~\cite{shannon1948mathematical} of that distribution is
+
+\begin{equation}
+  \mathrm{EntF}(p, t) = - \sum_{o} P(o) \log_2 P(o).
+  \label{eq:entf}
+\end{equation}
+
+A predicate whose values are spread over many distinct objects --- a birth date,
+where nearly every person differs --- scores high and carries real information. A
+predicate dominated by one value --- a gender field with two outcomes, or a
+constant marker --- scores near zero. Entropy is measured in bits and is bounded
+above by $\log_2 D$, where $D$ is the number of distinct values, with equality
+when all values are equally frequent.
+
+Computing Equation~\ref{eq:entf} naively means retrieving every object value of
+every predicate of every class, which is prohibitive at this scale.
+Section~\ref{subsec:count_of_counts} shows how to obtain it exactly from a
+result of a few hundred rows.
+
+\subsection{Entropy-Weighted Type Importance}
+
+Property entropy measures how informative a predicate's values are, but not
+whether the predicate is characteristic of the class. The complementary signal is
+the \ac{ETImp} measure of Knowgly~\cite{garcia2025information}, a TF--IDF
+analogue for predicates:
+
+\begin{equation}
+  \mathrm{ETImp}(p, t) = \mathrm{EF}_p(p, t) \cdot
+    \log_2 \frac{|E_t|}{\mathrm{EF}_p(p, t)},
+  \label{eq:etimp}
+\end{equation}
+
+where $\mathrm{EF}_p(p,t)$ is the number of distinct entities of class $t$ that
+use $p$. A predicate used by every entity of the class contributes
+$\log_2 1 = 0$: universal predicates are uninformative precisely because they do
+not discriminate.
+
+Neither signal suffices alone. A predicate every entity carries scores zero on
+\ac{ETImp} regardless of how diverse its values are; a predicate with a single
+repeated value scores near zero on \ac{EntF} regardless of how characteristic it
+is. This thesis therefore combines them as a weighted geometric mean:
+
+\begin{equation}
+  \mathrm{EntETImp}(p, t) = \mathrm{EntF}(p, t)^{w} \cdot
+                            \mathrm{ETImp}(p, t)^{1 - w},
+  \qquad w = 0.75.
+  \label{eq:entetimp}
+\end{equation}
+
+The geometric mean is chosen deliberately over an arithmetic one: it collapses to
+zero whenever either factor is zero, which is the desired semantics here. A
+predicate must be both typical of the class and informative in its values to rank
+highly. The weight $w$ favours the entropy term; it is a parameter, and
+Chapter~\ref{chap:experiments} reports its effect.
+
+\subsection{Class Entropy}
+
+The two preceding metrics are defined per predicate. Aggregating to the class
+gives one number describing how diverse a class is as a whole:
+
+\begin{equation}
+  H(t) = - \sum_{o} P(o) \log_2 P(o),
+  \label{eq:class_entropy}
+\end{equation}
+
+where $P(o)$ now ranges over \emph{all} object values occurring on entities of
+$t$, irrespective of predicate. A class whose entities all look alike scores low;
+a class of varied, richly described entities scores high.
+
+The same quantity is also computed over the predicates used by the class rather
+than the object values. The two are reported together because they can diverge in
+an informative way: a class may take highly varied values through a very narrow
+set of predicates, which says something quite different about the modelling than
+a class described by many predicates with repetitive values.
+
+\section{Entity-Level Metrics}
+\label{sec:entity_level_metrics}
+
+Entity-level metrics move from kinds of things to individual things.
+
+\subsection{Entity Informativeness}
+
+Following the intuition behind InfoRank~\cite{menendez2018ranking} --- that
+important entities have a lot recorded about them --- the informativeness of an
+entity $v$ is the normalised count of its datatype properties:
+
+\begin{equation}
+  \mathrm{IR}(v) = \frac{\mathrm{dtp}(v)}{\sum_{u} \mathrm{dtp}(u)},
+  \label{eq:inforank}
+\end{equation}
+
+where $\mathrm{dtp}(v)$ is the number of triples of $v$ whose object is a
+literal. Literals are what is counted, and the restriction is deliberate: a link
+to another entity records who $v$ is related to, whereas a literal records
+something \emph{about} $v$. The measure needs a single grouped aggregation and no
+iteration, which makes it one of the cheapest metrics in the catalogue. Across
+versions it distinguishes entities that are being actively enriched from those
+that have been abandoned.
+
+\subsection{Object Diversity}
+
+Entropy weights values by how often they occur. The complementary measure counts
+them without weighting:
+
+\begin{equation}
+  \mathrm{OD}(p, t) = |\{\, o : (e, p, o) \in T \text{ and } e \in E_t \,\}|,
+  \label{eq:objdiv}
+\end{equation}
+
+the number of distinct objects a predicate takes within a class. Reported
+alongside the total number of such triples, the ratio
+$\mathrm{OD}(p,t) / |\{(e,p,o) \in T : e \in E_t\}|$ states whether values are
+mostly unique (ratio near one) or heavily reused (ratio near zero). This is an
+exact count rather than an information-theoretic quantity, and it serves as a
+sanity check on the entropy metrics: the two should agree on the extremes and may
+legitimately disagree in between.
+
+\section{Global Metrics}
+\label{sec:global_metrics}
+
+Global metrics describe the graph as a whole and, in most cases, the difference
+between two graphs.
+
+\subsection{Graph Size and Shape}
+
+The foundation table of every snapshot: the counts $|T|$, $|S|$, $|O|$, $|P|$,
+$|C|$ and $|E|$, together with
+
+\begin{equation}
+  \mathrm{density} = \frac{|T|}{|E|},
+  \qquad
+  \overline{\deg}^{\,+} = \frac{|T|}{|S|},
+  \qquad
+  \overline{\deg}^{\,-} = \frac{|T|}{|O|}.
+  \label{eq:shape}
+\end{equation}
+
+Density is triples per entity; the two degree averages are the mean out- and
+in-degree. None of these is surprising in isolation. Their value is comparative:
+computed for every version and every graph, their deltas form the growth table
+against which all other comparisons are read. A rise in absolute triple count
+means one thing if density rose with it and quite another if density fell.
+
+\subsection{Triple-Level Diff}
+
+The core of any comparison between two versions is the set difference between
+their triples:
+
+\begin{equation}
+  \mathrm{Added} = T_2 \setminus T_1,
+  \qquad
+  \mathrm{Deleted} = T_1 \setminus T_2,
+  \qquad
+  \mathrm{Unchanged} = T_1 \cap T_2.
+  \label{eq:diff}
+\end{equation}
+
+Conceptually this is elementary. Making it computable over graphs of a billion
+triples, through a SPARQL endpoint rather than over local dumps, is not; that is
+the subject of Sections~\ref{subsec:integer_encoding}
+and~\ref{subsec:subject_window}. This metric applies only to two versions of the
+same graph. Two different knowledge graphs generally use disjoint \ac{IRI}
+namespaces, and Equation~\ref{eq:diff} evaluated across them reports every triple
+of one side as added --- arithmetically correct and entirely without meaning.
+
+\subsection{Class-Level Change Rate}
+
+The diff says how much changed; it does not say where. For each class $t$, let
+$A_t$ and $D_t$ be the added and deleted triples whose subject belongs to $t$,
+and $T_t(v_1)$ its triples in the older version. The churn of the class is
+
+\begin{equation}
+  \mathrm{churn}(t) = \frac{|A_t| + |D_t|}{|T_t(v_1)|}.
+  \label{eq:churn}
+\end{equation}
+
+This distinguishes two situations a global diff conflates: a graph in which
+everything drifted slightly, and a graph in which a few classes were rewritten
+while the rest stood still. Because it reuses the diff machinery with the scope
+restricted to one class, it costs little beyond the diff itself.
+
+\subsection{Vocabulary and Schema Evolution}
+
+At the schema level the same set difference applies to the class and predicate
+vocabularies:
+
+\begin{equation}
+  C_{\mathrm{added}} = C_2 \setminus C_1,
+  \qquad
+  C_{\mathrm{removed}} = C_1 \setminus C_2,
+  \label{eq:vocab}
+\end{equation}
+
+and analogously for $P$. Presence in the vocabulary is, however, a weak signal on
+its own: a term can be introduced and remain almost unused for a version or two.
+Each newly added predicate is therefore reported together with the number of
+triples that actually use it in $v_2$, which measures adoption rather than mere
+declaration.
+
+\subsection{Metric Trajectories}
+
+The framework layer, and the reason every metric writes its result to a labelled
+directory. For a metric $m$ and consecutive versions $v_i$,
+
+\begin{equation}
+  \Delta m(v_i) = m(v_{i+1}) - m(v_i).
+  \label{eq:trajectory}
+\end{equation}
+
+The implementation is deliberately generic over $m$: it reads the stored results
+of a metric for a list of labelled snapshots, flattens each to its numeric
+leaves, and reports the series and its deltas for every value present in all
+snapshots. Values that appear in only some snapshots are counted and reported
+separately, since their appearance or disappearance is itself a finding. A metric
+added later requires no change to this component.
+
+\subsection{Cross-KG Class Comparison}
+
+Finally, the same class may exist in two different knowledge graphs, and its
+metric values can be placed side by side:
+
+\begin{equation}
+  \Delta m(t) = m_A(t) - m_B(t).
+  \label{eq:crosskg}
+\end{equation}
+
+Classes are matched at the schema level, by local name. This is a real
+limitation and is stated as such: aligning the \emph{instances} of two knowledge
+graphs through \texttt{owl:sameAs} links is impractical at this scale, so no
+union, overlap or merge gain is estimated here, unlike the analysis of Ringler
+and Paulheim~\cite{ringler2017one}. What the comparison does show is how
+differently two graphs model and populate the same concept: how many entities
+they assign to it, how many predicates they use to describe it, and how diverse
+the resulting values are.
+
+\section{Entropy-Weighted PageRank}
+\label{sec:entropy_weighted_pagerank}
+
+Classic PageRank~\cite{page1999pagerank} treats every link alike: a node
+distributes its rank uniformly over its outgoing edges. In a knowledge graph that
+assumption is questionable, because the edges are typed and the types differ
+enormously in what they tell us. An edge labelled with a near-constant predicate
+connects two nodes without saying much about either; an edge labelled with a
+highly varied predicate is far more specific. Knowgly~\cite{garcia2025information}
+makes a related observation and weights its links using an InfoRank-derived
+factor.
+
+This thesis proposes a simpler variant: weight each edge by the property entropy
+of its predicate, the quantity already defined in Equation~\ref{eq:entf}. Let
+
+\begin{equation}
+  w(p) = \frac{\mathrm{EntF}(p)}{\max_{q \in P} \mathrm{EntF}(q)}
+  \label{eq:weight}
+\end{equation}
+
+be the entropy of predicate $p$ over the whole graph, normalised into $[0, 1]$ by
+the largest entropy of any predicate. The rank update becomes
+
+\begin{equation}
+  \mathrm{PR}(v) = (1 - d) + d \sum_{u \rightarrow v}
+                   w(p_{uv}) \cdot \frac{\mathrm{PR}(u)}{\mathrm{outdeg}(u)},
+  \label{eq:entropy_pagerank}
+\end{equation}
+
+with damping factor $d = 0.85$. Rank now flows preferentially through
+informative predicates. Setting $w(p) = 1$ for all $p$ recovers classic PageRank
+exactly, which is convenient: the baseline is not a separate implementation but
+the same code path with uniform weights, so the two rankings are computed over an
+identical edge set and are directly comparable.
+
+Three properties of Equation~\ref{eq:entropy_pagerank} deserve comment. First,
+the weight is a property of the predicate and is computed over the entire graph,
+not over whatever subgraph the ranking is run on; it is a statement about what
+the predicate means in this knowledge graph, not about the sample. Second, only
+edges between entities participate --- triples with literal objects are not
+links, and including them would let rank leak into values. Third, the
+normalisation divides by $\mathrm{outdeg}(u)$, the number of outgoing edges,
+rather than by the sum of outgoing weights. This means a node whose outgoing
+edges are all low-entropy passes on less total rank than it received, so the
+weighted variant is not rank-preserving in the way classic PageRank is. This is a
+deliberate consequence: a node that connects to the rest of the graph only
+through uninformative predicates should not confer as much importance. It is also
+a clear point of comparison against a weight-normalised alternative, and
+Chapter~\ref{chap:experiments} reports the difference between the two rankings
+rather than either in isolation.
+
+\section{Efficient Computation}
+\label{sec:efficient_computation}
+
+The definitions above are straightforward. Evaluating them over graphs of one to
+two billion triples, through a query endpoint, on commodity hardware, is where
+the work lies. Three techniques carry most of the weight.
+
+\subsection{Entropy from Count-of-Counts Histograms}
+\label{subsec:count_of_counts}
+
+A direct evaluation of Equation~\ref{eq:entf} requires the frequency of every
+distinct object value of a predicate within a class. For a predicate such as a
+label on a class with millions of members, that is millions of rows transferred
+and counted --- per predicate, per class.
+
+The observation that removes this cost is that entropy depends only on the
+\emph{multiset} of counts, never on the values that carry them. Two predicates
+whose value distributions are permutations of one another have identical entropy.
+It is therefore sufficient to know, for each multiplicity $c$, how many distinct
+values occur exactly $c$ times. Writing $m_c$ for that number, and
+$N = \sum_c m_c \, c$ for the total number of value occurrences, the entropy of
+Equation~\ref{eq:entf} can be rewritten as
+
+\begin{equation}
+  H = \log_2 N - \frac{1}{N} \sum_{c} m_c \cdot c \cdot \log_2 c.
+  \label{eq:entropy_histogram}
+\end{equation}
+
+\begin{proof}[Derivation]
+With $P(o) = c_o / N$ for a value occurring $c_o$ times,
+\[
+  H = -\sum_{o} \frac{c_o}{N} \log_2 \frac{c_o}{N}
+    = \log_2 N - \frac{1}{N} \sum_{o} c_o \log_2 c_o ,
+\]
+and grouping the values by their multiplicity $c$ replaces the sum over values
+by a sum over multiplicities weighted by $m_c$.
+\end{proof}
+
+The histogram $(c, m_c)$ is obtained from a nested grouped query: the inner query
+counts occurrences per value, the outer counts values per occurrence count. Both
+aggregations run on the server, and the result has as many rows as there are
+distinct multiplicities --- typically a few hundred, sometimes fewer than ten.
+The number of distinct values, needed for Equation~\ref{eq:objdiv}, falls out of
+the same histogram as $\sum_c m_c$.
+
+The essential point is that this is not an approximation. Equation~\ref{eq:entropy_histogram}
+is an algebraic identity, so the entropy obtained from the histogram is exactly
+the entropy of the full distribution. The saving is in transport and client-side
+work, not in fidelity, which distinguishes it from sampling-based estimators.
+
+\subsection{Integer-Encoded Triple Sets}
+\label{subsec:integer_encoding}
+
+The set operations of Equation~\ref{eq:diff} are the one place where triples
+themselves, rather than counts, must reach the client. Comparing them as strings
+is expensive in both time and space: each triple carries three \acp{IRI} of
+typically 30 to 60 bytes, and every set operation hashes all three.
+
+Instead, each distinct term encountered on either side is interned once into a
+32-bit integer, with a single dictionary shared across both versions so that
+equal strings receive equal identifiers. A triple becomes a triple of integers
+occupying twelve bytes, and the comparison reduces to sorting two integer arrays
+and merging them linearly. String data is touched exactly once, during
+interning; the set operations themselves never look at a byte of text.
+
+Both this path and a naive implementation using hash sets of string triples are
+implemented, and Chapter~\ref{chap:experiments} benchmarks them against each
+other. The two are also cross-checked at run time: the implementation asserts
+that both produce identical added, deleted and unchanged counts, so the reported
+speedup cannot silently be a speedup of the wrong answer.
+
+\subsection{Subject-Window Scoping}
+\label{subsec:subject_window}
+
+Even encoded, the full triple set of a billion-triple version does not fit in the
+memory of the machines used here, so the diff must run over a well-defined
+subset. The subset has to satisfy two conditions: it must be cheap to obtain, and
+both versions must return \emph{the same} subset, or the difference between them
+is an artefact of the sampling rather than of the data.
+
+A bare \texttt{LIMIT} fails the second condition, since the engine may return any
+rows it likes. The obvious repair, ordering the triples and taking a prefix,
+fails the first: ordering by subject, predicate and object forces the server to
+sort the entire graph before it can return the first row. Measured on a graph of
+roughly 1.5 billion triples, QLever attempted to allocate 12.7\,GB for such a
+query and aborted.
+
+The scheme adopted instead is a \emph{subject window}. Ordering a list of
+distinct subjects is far cheaper than ordering every triple, so from each version
+the lexicographically first $n$ subjects are retrieved. The two prefixes are then
+truncated at whichever ends earlier, and their union forms the window. Every
+triple of every subject in the window is fetched by naming the subjects
+explicitly, which requires no ordering at all, since naming them already
+determines the result set exactly.
+
+The window has a property worth stating precisely: within it, both versions are
+covered \emph{completely}. Any triple of any subject in the window is present in
+the fetched data for whichever versions contain it, so the diff restricted to the
+window is exact --- including for entities that appear in one version and not the
+other. Truncating at the earlier of the two upper bounds is what guarantees this;
+beyond that bound one version would be missing subjects the other has, and their
+absence would be indistinguishable from deletion. The diff is thus not an
+estimate of the global diff, but an exact diff of a precisely characterised
+region, and the region can be enlarged by increasing $n$ or restricted to a class
+of interest.
+
+\subsection{Query Formulation}
+\label{subsec:query_formulation}
+
+A final class of savings comes from formulating the counting queries so that the
+engine does no work the semantics do not require. The clearest example concerns
+counting the members of each class. The natural formulation counts distinct
+subjects per type, but under the set semantics of RDF the subject--type pairs are
+already unique, so a plain count returns exactly the same numbers while sparing
+the engine a deduplicating sort. On the graphs used here the equivalent query is
+approximately 1.6 times faster, and the equality of the two results is verified
+rather than assumed.
+
+The complementary case is worth stating too, since the substitution is not
+universally valid: counting distinct entities that \emph{use} a given predicate
+does require deduplication, because an entity may use the same predicate several
+times. Equation~\ref{eq:etimp} depends on that distinction, and the
+implementation preserves it.
+
+\section{The Dashboard}
+\label{sec:dashboard}
+
+The visual-analytics component reads the stored metric results and renders them.
+No SPARQL query is issued when a page is viewed: the metrics are precomputed and
+the dashboard reads their JSON output, so interaction is immediate and
+independent of the availability or load of the endpoint. The cost of this
+decision is that the dashboard shows the state of the last computation rather
+than of the live graph, which is the right trade for metrics that describe
+published snapshots and change only when a new version is released.
+
+Because results are stored per labelled snapshot, the same view can be populated
+from several versions at once, which is what turns the per-snapshot metrics of
+this chapter into the evolution views that
+Chapter~\ref{chap:experiments} evaluates.
