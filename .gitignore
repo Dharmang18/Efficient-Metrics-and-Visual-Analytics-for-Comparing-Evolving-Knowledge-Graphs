@@ -2,6 +2,13 @@
 yago/
 *.zip
 
+# DBpedia: the 4 GB of downloaded parts and the index built from them. The small
+# files that let anyone rebuild it — Qleverfile, download.sh, rdf-input.urls and
+# DATASET.md — are deliberately NOT ignored.
+qlever-workspace/dbpedia/rdf-input/
+qlever-workspace/dbpedia/dbpedia.*
+qlever-workspace/dbpedia/*.log
+
 # ───────── Python ─────────
 .venv/
 __pycache__/

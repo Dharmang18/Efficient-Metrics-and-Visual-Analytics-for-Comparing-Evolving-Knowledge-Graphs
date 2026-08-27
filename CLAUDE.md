@@ -10,13 +10,22 @@ M.Sc. Samuel García. Timeline: June–September 2026.
 
 ## What the thesis does
 
-Compute metrics over multiple versions of multiple KGs (YAGO 4 + YAGO 4.5, DBpedia later)
-and compare them across versions/KGs in a dashboard. Pattern (from Knowgly): **SPARQL does
-the counting → Rust holds dictionaries and applies the formula → niceGUI visualizes.**
+Compute metrics over multiple versions of multiple KGs and compare them across
+versions/KGs in a dashboard. Pattern (from Knowgly): **SPARQL does the counting → Rust
+holds dictionaries and applies the formula → niceGUI visualizes.**
+
+**Five snapshots** (2026-08-27): YAGO 4 (2020) and YAGO 4.5.0.2 (2024) give within-KG
+evolution for YAGO; DBpedia **2015-10 / 2022.12.01 / 2025-12-01** give a decade of
+within-KG evolution for DBpedia; and any YAGO-vs-DBpedia pair gives cross-KG comparison.
+The three DBpedia releases are built from a **matched five-role file subset** so that
+metric 10/12 differences are real, not artefacts of which files each release shipped —
+see `qlever-workspace/dbpedia-matched/MATCHED_SUBSET.md`. Note the snapshots are not
+date-aligned (YAGO 4.5 = 2024, DBpedia core = 2022), which the cross-KG chapter states.
 
 **Status: all 13 metrics are implemented in Rust** (2026-08-19) and verified against live
-endpoints. What is left is wiring them into the dashboard and running them on real
-second versions. See "The metrics" below.
+endpoints. The dashboard is rebuilt metric-first for phase-1 results across snapshots
+(2026-08-26). What is left is running phases 2–3, and indexing DBpedia 2015 + 2025 on the
+home server. See "The metrics" below.
 
 - Final metric list (13 metrics, 3 proposal levels): `docs/metrics_final.pdf` —
   **source of truth is the generator** `docs/make_metrics_visual_pdf.py` (rerun to
@@ -34,13 +43,36 @@ second versions. See "The metrics" below.
 | Windows laptop `dharmang128` | QLever KG server (home) | WSL2 Ubuntu, 1 TB ext4, 16 GB RAM |
 | TUM VM `cdevm2` | QLever KG server (university) | Ubuntu 24.04, 6 CPU, 8 GB RAM, ~86 GB disk |
 
+### Which snapshot is served where (2026-08-27)
+
+| snapshot | machine | port | triples |
+|---|---|---|---|
+| YAGO 4 (2020) | home server | 9005 | 2,489,858,800 |
+| YAGO 4.5.0.2 | home server (+ 39 GB backup on the Mac) | 9006 | 1,305,431,407 |
+| DBpedia 2022 — full `latest-core` (86 files) | TUM VM | 7013 | 526,462,483 |
+| DBpedia 2022 — **matched** subset | TUM VM | 7014 | ~530 M (built 08-27) |
+| DBpedia 2015-10 — matched | home server (planned) | 9008 | — |
+| DBpedia 2025-12-01 — matched | home server (planned) | 9010 | — |
+
+The full 2022 index (`:7013`) is a cross-check, NOT one of the five compared snapshots.
+16 GB RAM means the home server serves at most two endpoints at once — fine, since every
+cross-version/cross-KG metric needs exactly two.
+
 ### Windows laptop (home server)
 
 - Connected via **Tailscale**: server `100.113.106.12`, Mac `100.123.31.73`.
-- SSH: `ssh dharmang@100.113.106.12` (WSL password; **no passwordless sudo** — for sudo
-  steps give Dharmang a `! ssh -t ...` one-liner to run himself).
-- Server endpoints: YAGO 4.5.0.2 on **:9004** (image pinned `adfreiburg/qlever:commit-e5f6724`,
-  never `:latest` for this index), YAGO 4 (2020) on **:9005** once indexed.
+- SSH is currently **BROKEN** (2026-08-27): port 22 is now answered by *Windows* OpenSSH,
+  not WSL's sshd, so the Mac's key is rejected (the key lives in WSL's `authorized_keys`,
+  which Windows sshd does not read). The old `ssh dharmang@100.113.106.12` no longer works.
+  The QLever endpoints on :9005/:9006 are unaffected. **Fix (needs Dharmang at the laptop):**
+  add the Mac key to the Windows account — standard account →
+  `%USERPROFILE%\.ssh\authorized_keys`, admin account →
+  `C:\ProgramData\ssh\administrators_authorized_keys` (then restrict its ACL). SSH auth is
+  the **Windows account password**, NOT the Windows Hello PIN and NOT the old WSL password.
+  Once in Windows, run WSL work via `wsl -d Ubuntu -- bash -lc '...'`.
+- Server endpoints: YAGO 4.5.0.2 on **:9006** (image pinned `adfreiburg/qlever:commit-e5f6724`,
+  never `:latest` for this index — moved off :9004 because a stale Windows port-proxy
+  intercepts :9004 from outside the box), YAGO 4 (2020) on **:9005**.
 - Server paths: indexes in `~/qlever/<name>/` (ext4 only, NEVER `/mnt/c|d`),
   qlever CLI venv at `~/qlever/.venv`. Docker auto-starts via `/etc/wsl.conf`.
 - The Windows laptop sleeps → if Tailscale shows it offline, Dharmang must wake it.
@@ -76,7 +108,8 @@ second versions. See "The metrics" below.
     sparql.py              # small Python SPARQL client (QLEVER_ENDPOINT env var)
     RUNBOOK.md             # local Colima/QLever serving runbook
   docs/                    # metrics docs, PDF generators, server runbooks
-  vpn/                     # TUM CIT OpenVPN profile (vpn-cde-standard.ovpn)
+  vpn/                     # TUM CIT OpenVPN profile (git-ignored)
+  writing/                 # THE THESIS DOCUMENT (LaTeX, TUM tumthesis class)
   reference/Knowgly/       # cloned reference repo (Java) — understand, don't copy (git-ignored)
 ```
 
@@ -167,7 +200,8 @@ metric 11 reads back). Every metric writes `<dir>/<metric>.{json,csv}`.
 
 1. **iCloud**: `~/Desktop` & `~/Documents` are synced — they corrupted a venv once.
    Keep everything under `~/thesis/`.
-2. **No Docker Desktop / Homebrew / sudo on the Mac** — user-space Colima only.
+2. **No Docker Desktop on the Mac** — user-space Colima only. (Homebrew WAS absent
+   until ~Aug 2026; it is now installed, v6.0.14, so `brew install` is available.)
 3. QLever engine is Linux-only; the `qlever` pip package is just the controller.
 4. macOS `unzip`/Python 3.9 mishandle large Zip64 archives.
 5. ureq `into_string()` silently truncates at 10 MB — always use `into_reader()`.
@@ -198,6 +232,27 @@ metric 11 reads back). Every metric writes `<dir>/<metric>.{json,csv}`.
     and a metric computed from nothing is worse than no metric at all.
 17. `reference/` (the Knowgly clone, has its own `.git`) and `vpn/` (TUM CIT profile) are
     git-ignored: **the GitHub repo is public.**
+
+## Writing the thesis
+
+`writing/` holds the LaTeX source (TUM `tumthesis` class, based on `report` — so
+no `\backmatter`). Chapter outlines are in `writing/include/`, bibliography in
+`writing/bib/literature.bib`.
+
+LaTeX **is** installed: **TinyTeX** at `~/Library/TinyTeX` (user-space TeX Live —
+this Mac has no passwordless sudo, so `brew --cask basictex` would stall on a
+password prompt). Build with `cd writing && ./build.sh`; add packages with
+`tlmgr install <name>`, no sudo. `~/.zshrc` exports the bin directory.
+Two template fixes were needed for TeX Live 2026: `etex` is commented out of
+`packages.sty` (removed from TL, kernel-provided since 2019), and `thesis.tex`
+must avoid `\backmatter` (class is `report`-based) and `\bstctlcite`.
+
+Scale to aim for, calibrated against a March 2026 bachelor thesis from the same
+chair (advisor Johannes Mäkelburg, cloned at `~/Desktop/Thesis_writing`):
+~16,000 words, ~57 pages, 12 figures, 12 tables, ~95 citations. Chapter 4
+(Experiments) is **more than half the body**, and each experiment follows
+Objective and Methodology / Results / Discussion. Read that thesis for structure
+and depth — never reuse its prose, tables or bibliography.
 
 ## Conventions
 

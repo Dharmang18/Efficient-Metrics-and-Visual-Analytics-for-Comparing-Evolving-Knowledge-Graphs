@@ -1,0 +1,25 @@
+### freebase-links_lang=en.ttl.bz2 (13556 lines)
+<http://dbpedia.org/resource/"populate_or_perish"> <http://www.w3.org/2002/07/owl#sameAs> <http://rdf.freebase.com/ns/m.01182wk6> .
+<http://dbpedia.org/resource/"Populate_or_perish"> <http://www.w3.org/2002/07/owl#sameAs> <http://rdf.freebase.com/ns/m.01182wk6> .
+<http://dbpedia.org/resource/Pacific_Trim_7"> <http://www.w3.org/2002/07/owl#sameAs> <http://rdf.freebase.com/ns/m.01h7nbt> .
+<http://dbpedia.org/resource/Zsuzsanna_"Susan"_Polgar> <http://www.w3.org/2002/07/owl#sameAs> <http://rdf.freebase.com/ns/m.01htw_> .
+<http://dbpedia.org/resource/Edvin_"Edi"_Rama> <http://www.w3.org/2002/07/owl#sameAs> <http://rdf.freebase.com/ns/m.01pkks> .
+
+### infobox-properties_lang=en.ttl.bz2 (1650 lines)
+<http://dbpedia.org/resource/.er> <http://dbpedia.org/property/registereddomains> "<70"@en .
+<http://dbpedia.org/resource/16th_Lok_Sabha> <http://dbpedia.org/property/label> "Assets <"@en .
+<http://dbpedia.org/resource/1821_Norfolk_and_Long_Island_hurricane> <http://dbpedia.org/property/pressurepre> "<"@en .
+<http://dbpedia.org/resource/1857_Fort_Tejon_earthquake> <http://dbpedia.org/property/depth> "<"@en .
+<http://dbpedia.org/resource/1868_United_States_presidential_election> <http://dbpedia.org/property/pvPct> "<0.01%"@en .
+
+### infobox-property-definitions_lang=en.ttl.bz2 (2 lines)
+<http://dbpedia.org/property/.%22%7D%3E%3E%5CnewStaff%3C%3C%5CnewVoice%7B%5CclefPercussion%5Ctime2/4%5CsetStaff.timesignaturefraction> <http://www.w3.org/2000/01/rdf-schema#label> ".\"\n       } >>\n       \\new Staff <<\n          \\new voice {\n              \\clef percussion\n              \\time 2/4\n              \\set Staff.timeSignatureFraction"@en .
+<http://dbpedia.org/property/.%22%7D%5Caddlyrics%7BPulTusEst,SePulTusEst.%7D%3E%3E%5CnewStaff%3C%3C%5CsetStaff.midiinstrument> <http://www.w3.org/2000/01/rdf-schema#label> ".\"\n                }\n            \\addlyrics { pul -- tus est, se -- pul -- tus est. }\n            >>\n        \\new Staff <<\n            \\set Staff.midiInstrument"@en .
+
+### mappingbased-literals_lang=en.ttl.bz2 (65 lines)
+<http://dbpedia.org/resource/Actites> <http://dbpedia.org/ontology/synonym> "*Sonchus megalocarpus <" .
+<http://dbpedia.org/resource/Ahmed_Shafik> <http://xmlns.com/foaf/0.1/name> "<span"@en .
+<http://dbpedia.org/resource/Aira_Ferreira> <http://dbpedia.org/ontology/eyeColor> "Brown<" .
+<http://dbpedia.org/resource/Alfredo_Marqueríe__PersonFunction__1> <http://dbpedia.org/ontology/title> "Novelist<Biographer"@en .
+<http://dbpedia.org/resource/Battle_of_Byeokjegwan> <http://dbpedia.org/ontology/strength> "<41,000" .
+

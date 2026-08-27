@@ -9,7 +9,7 @@
 //! The ratio distinct/total is reported too — it says whether the values are
 //! mostly unique (near 1) or heavily repeated (near 0).
 
-use crate::common::{short, top_type_iris};
+use crate::common::short;
 use crate::out;
 use crate::qlever_client::SparqlEndpoint;
 use rayon::prelude::*;
@@ -35,8 +35,8 @@ impl Entry {
 }
 
 pub fn compute(ep: &SparqlEndpoint, num_types: usize) -> Vec<Entry> {
-    let types = top_type_iris(ep, num_types);
-    let pool = rayon::ThreadPoolBuilder::new().num_threads(4).build().unwrap();
+    let types = crate::common::selected_type_iris(ep, num_types);
+    let pool = crate::common::query_pool();
 
     // One GROUP BY per class gives every predicate of that class at once.
     pool.install(|| {

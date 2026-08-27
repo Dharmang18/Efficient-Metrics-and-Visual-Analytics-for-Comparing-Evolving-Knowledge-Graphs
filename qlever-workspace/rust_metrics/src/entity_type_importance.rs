@@ -41,10 +41,7 @@ pub fn get_entity_type_importances(num_types: usize) -> HashMap<String, HashMap<
 
     // Run the per-type queries in parallel (like Knowgly), but with a small
     // pool so we don't overwhelm a 16 GB laptop running QLever.
-    let pool = rayon::ThreadPoolBuilder::new()
-        .num_threads(4)
-        .build()
-        .unwrap();
+    let pool = crate::common::query_pool();
 
     // Type IRI -> Predicate IRI -> EF_p(p, t)
     let ef_p_t: HashMap<String, HashMap<String, u64>> = pool.install(|| {

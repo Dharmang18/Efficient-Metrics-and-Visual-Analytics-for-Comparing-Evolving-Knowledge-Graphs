@@ -15,7 +15,7 @@ pub fn short(iri: &str) -> &str {
 /// 1.3B triples is slow, so we restrict to the busiest types. Same metric,
 /// tractable scope. Raise `limit` (or remove it) when running on a server.
 pub fn fetch_top_type_iris(limit: usize) -> Vec<String> {
-    top_type_iris(endpoint(), limit)
+    selected_type_iris(endpoint(), limit)
 }
 
 /// Same, against an explicit endpoint (used when comparing two graphs).
@@ -28,6 +28,108 @@ pub fn top_type_iris(ep: &SparqlEndpoint, limit: usize) -> Vec<String> {
          GROUP BY ?type ORDER BY DESC(?n) LIMIT {limit}"
     );
     ep.column(&q, "type")
+}
+
+/// Top types with their entity counts (one GROUP BY, same query as metric 1).
+pub fn top_types_with_counts(ep: &SparqlEndpoint, limit: usize) -> Vec<(String, u64)> {
+    let q = format!(
+        "SELECT ?type (COUNT(*) AS ?n) WHERE {{ ?s a ?type }} \
+         GROUP BY ?type ORDER BY DESC(?n) LIMIT {limit}"
+    );
+    ep.rows(&q)
+        .into_iter()
+        .filter_map(|r| Some((r.get("type")?.clone(), r.get("n")?.parse().ok()?)))
+        .collect()
+}
+
+/// The classes a per-class metric should actually measure.
+///
+/// Two things this solves, both learned the hard way on YAGO:
+///
+/// 1. **Comparability.** "The top N classes" picks a DIFFERENT set in each
+///    snapshot — YAGO 4's top 8 and YAGO 4.5's top 8 share only `Person` — so
+///    per-class metrics computed that way cannot be compared across versions,
+///    which is the whole point of the thesis. Setting `QLEVER_CLASSES` to a
+///    comma-separated list of local names (e.g. `Person,Taxon,Star`) pins the
+///    same classes everywhere; each name is resolved to whatever IRI that
+///    snapshot actually uses, since the namespace is not stable either
+///    (`schema:Taxon` in one version, `yago:Politician` in another).
+/// 2. **Tractability.** Unpinned, a class like `schema:Thing` (66.9M entities on
+///    YAGO 4) needs more than the server's whole query budget for a single
+///    histogram. `QLEVER_MAX_CLASS_SIZE` (default 10M) skips such classes and
+///    says so, instead of letting the metric die part-way through.
+pub fn selected_type_iris(ep: &SparqlEndpoint, limit: usize) -> Vec<String> {
+    match std::env::var("QLEVER_CLASSES").ok().filter(|s| !s.trim().is_empty()) {
+        Some(list) => pinned_type_iris(ep, &list),
+        None => {
+            let max = std::env::var("QLEVER_MAX_CLASS_SIZE")
+                .ok()
+                .and_then(|v| v.parse::<u64>().ok())
+                .unwrap_or(10_000_000);
+            let mut kept = Vec::new();
+            for (iri, n) in top_types_with_counts(ep, limit * 3) {
+                if kept.len() >= limit {
+                    break;
+                }
+                if n > max {
+                    println!("  skipping {} ({} entities > QLEVER_MAX_CLASS_SIZE {})",
+                             short(&iri), n, max);
+                } else {
+                    kept.push(iri);
+                }
+            }
+            kept
+        }
+    }
+}
+
+/// Resolve pinned local names to this snapshot's actual class IRIs.
+///
+/// Aborts if a name cannot be found: a silently missing class would quietly
+/// shrink the comparison set and make two snapshots look more alike than they
+/// are, which is exactly the kind of wrong number a metric must never produce.
+fn pinned_type_iris(ep: &SparqlEndpoint, list: &str) -> Vec<String> {
+    let wanted: Vec<&str> = list.split(',').map(|s| s.trim()).filter(|s| !s.is_empty()).collect();
+    // One cheap scan of the busiest classes; every pinned class is by definition
+    // a populated one, so the top few thousand always contain it.
+    let scan = std::env::var("QLEVER_CLASS_SCAN")
+        .ok()
+        .and_then(|v| v.parse::<usize>().ok())
+        .unwrap_or(5_000);
+    let table = top_types_with_counts(ep, scan);
+
+    let mut out = Vec::new();
+    let mut missing = Vec::new();
+    for name in &wanted {
+        let hits: Vec<&(String, u64)> = table
+            .iter()
+            .filter(|(iri, _)| short(iri).eq_ignore_ascii_case(name))
+            .collect();
+        match hits.split_first() {
+            Some(((iri, n), rest)) => {
+                println!("  pinned {:<22} -> {} ({} entities)", name, iri, n);
+                // A local name can be shared by several namespaces -- DBpedia has
+                // dbo:Person (1,922,501), schema:Person and foaf:Person (1,860,208
+                // each). We take the most populated, which is deterministic, but
+                // silently choosing between them would hide a real modelling
+                // difference between the graphs, so say so.
+                for (other, on) in rest {
+                    println!("      NOTE: {} also matches {} ({} entities) -- using the \
+                              most populated", name, other, on);
+                }
+                out.push(iri.clone());
+            }
+            None => missing.push(*name),
+        }
+    }
+    if !missing.is_empty() {
+        eprintln!("\n  ERROR: pinned class(es) not found in the top {scan} classes of {}: {}",
+                  ep.url(), missing.join(", "));
+        eprintln!("  A missing class would silently shrink the comparison set. Fix the name,");
+        eprintln!("  or raise QLEVER_CLASS_SCAN if the class is real but rare.\n");
+        std::process::exit(1);
+    }
+    out
 }
 
 /// |E_t| for every type t: number of distinct entities of that type.
@@ -65,16 +167,31 @@ pub fn top_predicates_for_type(ep: &SparqlEndpoint, type_iri: &str, limit: usize
         .collect()
 }
 
-/// All class IRIs of a graph (capped, so a runaway query can't blow up memory).
+/// All class IRIs of a graph, ordered so the cap is deterministic.
 pub fn class_iris(ep: &SparqlEndpoint, limit: usize) -> Vec<String> {
-    let q = format!("SELECT DISTINCT ?type WHERE {{ ?s a ?type }} LIMIT {limit}");
-    ep.column(&q, "type")
+    let q = format!("SELECT DISTINCT ?type WHERE {{ ?s a ?type }} ORDER BY ?type LIMIT {limit}");
+    truncation_guard(ep.column(&q, "type"), limit, "classes")
 }
 
-/// All predicate IRIs of a graph (capped for the same reason).
+/// All predicate IRIs of a graph, ordered for the same reason.
 pub fn predicate_iris(ep: &SparqlEndpoint, limit: usize) -> Vec<String> {
-    let q = format!("SELECT DISTINCT ?p WHERE {{ ?s ?p ?o }} LIMIT {limit}");
-    ep.column(&q, "p")
+    let q = format!("SELECT DISTINCT ?p WHERE {{ ?s ?p ?o }} ORDER BY ?p LIMIT {limit}");
+    truncation_guard(ep.column(&q, "p"), limit, "predicates")
+}
+
+/// A set comparison is only meaningful over COMPLETE sets. If the cap was hit,
+/// the two sides were arbitrary samples and every "added"/"removed" term is an
+/// artefact of the cap — which looks exactly like a real result unless we say so.
+/// (This bit once: YAGO 4 has 10,103 classes, a cap of 300 reported 273 added
+/// and 273 removed, both of which are just 300 minus the overlap.)
+fn truncation_guard(terms: Vec<String>, limit: usize, what: &str) -> Vec<String> {
+    if terms.len() >= limit {
+        eprintln!(
+            "\n  WARNING: hit the cap of {limit} {what}. The graph has at least that\n\
+             \x20 many, so this is a SAMPLE, not the full set, and any added/removed\n\
+             \x20 counts derived from it are meaningless. Re-run with a larger cap.\n");
+    }
+    terms
 }
 
 // ------------------------------------------------------------------ entropy
@@ -125,4 +242,26 @@ pub fn property_entropy(ep: &SparqlEndpoint, type_iri: &str, predicate_iri: &str
 {
     let pattern = format!("?s a <{type_iri}> . ?s <{predicate_iri}> ?v");
     entropy_from_histogram(&value_histogram(ep, &pattern))
+}
+
+// ------------------------------------------------------------- parallelism
+
+/// A rayon pool for firing SPARQL queries concurrently, sized by
+/// `QLEVER_PARALLELISM` (default 4).
+///
+/// The size matters more than it looks: QLever's `MEMORY_FOR_QUERIES` budget is
+/// shared by all queries in flight, so N concurrent `GROUP BY`s over a large
+/// class divide that budget N ways. On a 1.3B-triple YAGO with `-m 5G`, four
+/// parallel count-of-counts histograms exhausted it and the server answered
+/// "Tried to allocate 67.1 MB, but only 65.5 MB were available" — while the very
+/// same query on its own finished in 6 seconds. Lower this before lowering the
+/// scope of a metric: fewer workers costs wall-clock, a smaller scope costs
+/// results.
+pub fn query_pool() -> rayon::ThreadPool {
+    let n = std::env::var("QLEVER_PARALLELISM")
+        .ok()
+        .and_then(|v| v.parse::<usize>().ok())
+        .filter(|n| *n > 0)
+        .unwrap_or(4);
+    rayon::ThreadPoolBuilder::new().num_threads(n).build().unwrap()
 }

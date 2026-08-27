@@ -68,7 +68,7 @@ pub fn power_iteration(graph: &WeightedGraph, weighted: bool) -> Vec<f64> {
 /// EntF(p) for each predicate, computed over the WHOLE graph (not just the
 /// sampled edges) — the weight is a property of the predicate, not of the sample.
 pub fn predicate_weights(ep: &SparqlEndpoint, predicates: &[String]) -> HashMap<String, f64> {
-    let pool = rayon::ThreadPoolBuilder::new().num_threads(4).build().unwrap();
+    let pool = crate::common::query_pool();
     let entropies: Vec<(String, f64)> = pool.install(|| {
         predicates
             .par_iter()

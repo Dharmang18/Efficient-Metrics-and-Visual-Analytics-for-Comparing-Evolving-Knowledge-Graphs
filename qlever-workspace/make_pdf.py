@@ -405,6 +405,41 @@ P("Your thesis metrics are <b>simpler than Knowgly's</b> but implemented the <b>
   "+ Rust dictionaries</b>. The first one, Entity Type Importance, is already built in "
   "<font face='Courier'>rust_metrics/</font> (see Section 8) and runs against your local YAGO.")
 
+# ============================================================ 11b. SNAPSHOTS
+story.append(PageBreak())
+P("The five snapshots and the matched DBpedia subset", H1)
+P("The thesis compares <b>five snapshots</b>: two versions of YAGO for within-KG evolution, "
+  "three versions of DBpedia for a decade of within-KG evolution, and any YAGO-vs-DBpedia pair "
+  "for cross-KG comparison.")
+table(cells([
+    ["Snapshot", "Served on", "Port", "Triples"],
+    ["YAGO 4 (2020)", "home server", "9005", "2,489,858,800"],
+    ["YAGO 4.5.0.2 (2024)", "home server (+ Mac backup)", "9006", "1,305,431,407"],
+    ["DBpedia 2015-10 (matched)", "home server (planned)", "9008", "-"],
+    ["DBpedia 2022.12.01 (matched)", "TUM VM", "7014", "~530 M"],
+    ["DBpedia 2025-12-01 (matched)", "home server (planned)", "9010", "-"],
+]), [200, 150, 55, 105])
+P("Every DBpedia release ships a <b>different set of files</b> from a different extraction "
+  "pipeline (2015: the classic core-i18n dump; 2022: the Databus latest-core collection, the "
+  "last classic release; 2025: the new wikipedia-kg-dump, partitioned by predicate family). If "
+  "each were indexed as-shipped, the vocabulary-evolution and triple-diff metrics would report "
+  "our download choices as change. So all three are built from the <b>same five roles</b> and "
+  "nothing else:")
+bullets([
+    "Direct + transitive types (<font face='Courier'>?s a ?type</font>) — BOTH inference levels, "
+    "so a footballer counts under dbo:Person, comparable to YAGO's direct schema:Person typing. "
+    "Specific-only would collapse Person from 1.92 M to 0.30 M and Species from 1.98 M to 360.",
+    "Ontology-mapped object + literal properties (the clean dbo: facts).",
+    "Raw infobox properties (the messy dbp: predicates).",
+    "Labels (rdfs:label) and redirects (dbo:wikiPageRedirects).",
+])
+P("Excluded everywhere: categories, abstracts, page metadata, interlanguage/external/Freebase "
+  "links, and the stale 2016-2019 link dumps latest-core drags in. The full 86-file 2022 index "
+  "(TUM VM :7013) is kept only as an independent cross-check, not as one of the five compared "
+  "snapshots. Full spec: <font face='Courier'>qlever-workspace/dbpedia-matched/MATCHED_SUBSET.md</font>. "
+  "Caveat for the cross-KG chapter: the snapshots are not date-aligned (YAGO 4.5 = 2024, "
+  "DBpedia core = 2022).")
+
 # ============================================================ 12. SUPERVISOR MAP
 P("12. Does this cover the supervisor's instructions?", H1)
 table(cells([
@@ -433,18 +468,19 @@ table(cells([
     ["Metrics verified against live endpoints", "DONE"],
     ["Efficiency benchmark for the triple diff", "DONE (6.0x faster, 16.5x smaller)"],
     ["Results written as JSON + CSV, one folder per snapshot", "DONE"],
-    ["niceGUI dashboard (charts ETImp + PageRank at :8080)", "PARTIAL"],
-    ["Dashboard reads the other 11 metrics + results/<label>/", "TODO"],
-    ["Index a second YAGO version and run the cross-version metrics on it", "TODO"],
-    ["Add DBpedia versions", "TODO"],
+    ["Second YAGO version indexed + cross-version metrics run", "DONE (YAGO 4 vs 4.5)"],
+    ["niceGUI dashboard rebuilt metric-first across snapshots (phase 1)", "DONE"],
+    ["DBpedia 2022 indexed (full + matched subset) on the TUM VM", "DONE"],
+    ["DBpedia 2015 + 2025 indexed on the home server", "TODO (blocked on server SSH)"],
+    ["Run phases 2-3 across all five snapshots", "TODO"],
 ]), [320, 170])
-P("The computation side of the thesis is complete: every metric on the final list is implemented, "
-  "runs against a real endpoint, and writes its results. Two things remain. First, the dashboard "
-  "still only knows about the two original result files, so it needs to learn the other eleven "
-  "metrics and the per-snapshot folder layout. Second, the cross-version metrics (9, 10, 11, 12) "
-  "have been verified for correctness but not yet run on two real versions of YAGO — that needs "
-  "the second index finished on the server, at which point they produce thesis results rather "
-  "than test results.")
+P("The computation side of the thesis is complete: every metric is implemented, runs against a "
+  "real endpoint, and writes its results, and the cross-version metrics have produced real "
+  "YAGO 4 vs 4.5 numbers. The dashboard has been rebuilt metric-first and shows phase-1 results "
+  "for YAGO 4, YAGO 4.5 and DBpedia 2022 side by side. Two things remain. First, DBpedia 2015 and "
+  "2025 still need indexing on the home server (currently blocked — the server's SSH is answered "
+  "by Windows OpenSSH instead of WSL, see CLAUDE.md). Second, phases 2-3 (the entity-level and "
+  "global metrics) must be run across all five snapshots and surfaced in the dashboard.")
 
 SimpleDocTemplate(OUT, pagesize=A4, topMargin=18*mm, bottomMargin=16*mm,
                   leftMargin=18*mm, rightMargin=16*mm,

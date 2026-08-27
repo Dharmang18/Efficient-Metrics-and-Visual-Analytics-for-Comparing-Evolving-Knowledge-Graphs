@@ -1,0 +1,5 @@
+     13556  freebase-links_lang=en.ttl.bz2
+      1650  infobox-properties_lang=en.ttl.bz2
+         2  infobox-property-definitions_lang=en.ttl.bz2
+        65  mappingbased-literals_lang=en.ttl.bz2
+     15273  TOTAL

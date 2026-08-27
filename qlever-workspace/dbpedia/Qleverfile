@@ -1,0 +1,43 @@
+# Qleverfile for DBpedia latest-core (snapshot 2022.12.01), tuned for the MacBook Air.
+#
+# Differs from the upstream recipe (qlever-control/Qleverfiles/Qleverfile.dbpedia):
+#   - GET_DATA_CMD replaced by ./download.sh — the recipe uses wget, this Mac has
+#     only curl. Same 157 files, resumable, safe to re-run.
+#   - PORT 7012 -> 9007, to sit beside YAGO 4.5.0.2 on 9004.
+#   - MEMORY_FOR_QUERIES 10G -> 4G and CACHE_MAX_SIZE 5G -> 2G: the Colima VM has
+#     10 GB total and may serve YAGO at the same time.
+#   - TIMEOUT added — the qlever CLI default of 30s is far too short for a cold
+#     COUNT(*) over ~850M triples (learned on YAGO).
+
+[data]
+NAME         = dbpedia
+DATABUS_URL  = https://databus.dbpedia.org/dbpedia/collections/latest-core
+GET_DATA_CMD = ./download.sh
+DESCRIPTION  = RDF data from ${DATABUS_URL} (157 files, ~4.2 GB compressed)
+
+[index]
+INPUT_FILES     = rdf-input/*
+CAT_INPUT_FILES = (cat rdf-input/*.nt; lbzcat -n2 rdf-input/*.bz2) | perl iri_filter.pl rejected-triples.txt
+# num-triples-per-batch raised from the recipe's 1,000,000: at that size DBpedia's
+# 546.9M filtered triples produced 530 partial vocabularies, and merging them opens
+# ~2 files each -- past the container's 1024 file-descriptor limit, so the build died
+# with "Too many open files" AFTER a full 30-minute parse. 5,000,000 gives ~110
+# partial vocabularies (~220 descriptors) and merges faster. Lower it again only if
+# the builder runs out of memory.
+SETTINGS_JSON   = { "ascii-prefixes-only": true, "num-triples-per-batch": 5000000, "prefixes-external": [""] }
+STXXL_MEMORY    = 4G
+WITH_TEXT_INDEX = false
+
+[server]
+PORT               = 9007
+ACCESS_TOKEN       = ${data:NAME}
+MEMORY_FOR_QUERIES = 4G
+CACHE_MAX_SIZE     = 2G
+TIMEOUT            = 600s
+
+[runtime]
+SYSTEM = docker
+IMAGE  = docker.io/adfreiburg/qlever:latest
+
+[ui]
+UI_CONFIG = dbpedia
