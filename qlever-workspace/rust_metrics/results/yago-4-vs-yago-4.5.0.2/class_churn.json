@@ -1,0 +1,66 @@
+{
+  "http://schema.org/Article": {
+    "added": 17,
+    "churn": 0.8253003525878205,
+    "deleted": 758368,
+    "triples_v1": 918920,
+    "triples_v2": 97,
+    "unchanged": 62
+  },
+  "http://schema.org/CreativeWork": {
+    "added": 7482,
+    "churn": 0.8112086669108137,
+    "deleted": 692484,
+    "triples_v1": 862868,
+    "triples_v2": 25643,
+    "unchanged": 9269
+  },
+  "http://schema.org/GeoCoordinates": {
+    "added": 0,
+    "churn": 1.0,
+    "deleted": 25303,
+    "triples_v1": 25303,
+    "triples_v2": 0,
+    "unchanged": 0
+  },
+  "http://schema.org/Person": {
+    "added": 223227,
+    "churn": 0.7826081873884225,
+    "deleted": 245398,
+    "triples_v1": 598799,
+    "triples_v2": 593309,
+    "unchanged": 184799
+  },
+  "http://schema.org/Place": {
+    "added": 0,
+    "churn": 0.5621762287612143,
+    "deleted": 277597,
+    "triples_v1": 493790,
+    "triples_v2": 0,
+    "unchanged": 0
+  },
+  "http://schema.org/ScholarlyArticle": {
+    "added": 0,
+    "churn": 0.8214504082195394,
+    "deleted": 68518,
+    "triples_v1": 83411,
+    "triples_v2": 0,
+    "unchanged": 0
+  },
+  "http://schema.org/Thing": {
+    "added": 16788,
+    "churn": 0.6036235441962827,
+    "deleted": 365555,
+    "triples_v1": 633413,
+    "triples_v2": 119917,
+    "unchanged": 51421
+  },
+  "http://yago-knowledge.org/resource/Human": {
+    "added": 182626,
+    "churn": 0.7139198221978983,
+    "deleted": 245239,
+    "triples_v1": 599318,
+    "triples_v2": 540625,
+    "unchanged": 185094
+  }
+}

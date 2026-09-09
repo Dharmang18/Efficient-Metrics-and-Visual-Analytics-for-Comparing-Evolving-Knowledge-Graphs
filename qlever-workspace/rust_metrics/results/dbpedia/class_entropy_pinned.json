@@ -1,0 +1,44 @@
+{
+  "http://dbpedia.org/ontology/ChemicalCompound": {
+    "distinct_objects": 161723.0,
+    "distinct_predicates": 398.0,
+    "object_entropy": 12.134039733003021,
+    "predicate_entropy": 3.849354914731034,
+    "triples": 477542.0
+  },
+  "http://dbpedia.org/ontology/Galaxy": {
+    "distinct_objects": 27672.0,
+    "distinct_predicates": 128.0,
+    "object_entropy": 10.742341912046404,
+    "predicate_entropy": 4.11452501411733,
+    "triples": 87888.0
+  },
+  "http://dbpedia.org/ontology/Person": {
+    "distinct_objects": 18938648.0,
+    "distinct_predicates": 9430.0,
+    "object_entropy": 15.710291786238818,
+    "predicate_entropy": 5.327490079410158,
+    "triples": 107519396.0
+  },
+  "http://dbpedia.org/ontology/Species": {
+    "distinct_objects": 19824030.0,
+    "distinct_predicates": 9298.0,
+    "object_entropy": 15.78280354185004,
+    "predicate_entropy": 5.432246591459947,
+    "triples": 111976564.0
+  },
+  "http://dbpedia.org/ontology/Star": {
+    "distinct_objects": 78886.0,
+    "distinct_predicates": 289.0,
+    "object_entropy": 11.337461202016645,
+    "predicate_entropy": 4.412740946587805,
+    "triples": 302098.0
+  },
+  "http://schema.org/AdministrativeArea": {
+    "distinct_objects": 1053664.0,
+    "distinct_predicates": 2889.0,
+    "object_entropy": 14.886348006299183,
+    "predicate_entropy": 6.674117887154562,
+    "triples": 3923949.0
+  }
+}

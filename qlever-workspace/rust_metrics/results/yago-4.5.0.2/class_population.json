@@ -1,0 +1,85 @@
+{
+  "classes": {
+    "http://schema.org/AdministrativeArea": {
+      "population": 518290,
+      "share": 0.01043091162794573
+    },
+    "http://schema.org/Person": {
+      "population": 2982308,
+      "share": 0.060020820766975194
+    },
+    "http://schema.org/Taxon": {
+      "population": 3506350,
+      "share": 0.07056749500597641
+    },
+    "http://yago-knowledge.org/resource/Association_football_player": {
+      "population": 341060,
+      "share": 0.006864046614496075
+    },
+    "http://yago-knowledge.org/resource/Astronomical_radio_source": {
+      "population": 353644,
+      "share": 0.007117307514621621
+    },
+    "http://yago-knowledge.org/resource/Chemical_compound": {
+      "population": 1114868,
+      "share": 0.022437418404415675
+    },
+    "http://yago-knowledge.org/resource/Clinical_trial": {
+      "population": 391843,
+      "share": 0.007886086370620963
+    },
+    "http://yago-knowledge.org/resource/Collection__u0028_museum_u0029_": {
+      "population": 501407,
+      "share": 0.010091130653945445
+    },
+    "http://yago-knowledge.org/resource/Editorial": {
+      "population": 512925,
+      "share": 0.010322937634845479
+    },
+    "http://yago-knowledge.org/resource/Encyclopedia_Article_Q13433827": {
+      "population": 578773,
+      "share": 0.011648169973646094
+    },
+    "http://yago-knowledge.org/resource/Galaxy": {
+      "population": 2094595,
+      "share": 0.04215503934348914
+    },
+    "http://yago-knowledge.org/resource/Mountain": {
+      "population": 526631,
+      "share": 0.010598779489352849
+    },
+    "http://yago-knowledge.org/resource/Painting__u0028_object_u0029_": {
+      "population": 668266,
+      "share": 0.01344927278157167
+    },
+    "http://yago-knowledge.org/resource/Politician": {
+      "population": 750961,
+      "share": 0.015113561571772084
+    },
+    "http://yago-knowledge.org/resource/Researcher": {
+      "population": 1917474,
+      "share": 0.038590368023468734
+    },
+    "http://yago-knowledge.org/resource/Review_article": {
+      "population": 2059990,
+      "share": 0.04145859199377168
+    },
+    "http://yago-knowledge.org/resource/River": {
+      "population": 418684,
+      "share": 0.008426278346166875
+    },
+    "http://yago-knowledge.org/resource/Star": {
+      "population": 3278545,
+      "share": 0.06598277636698245
+    },
+    "http://yago-knowledge.org/resource/Street": {
+      "population": 647958,
+      "share": 0.013040561532386231
+    },
+    "http://yago-knowledge.org/resource/Villages_of_China": {
+      "population": 588555,
+      "share": 0.011845038864700456
+    }
+  },
+  "total_entities": 49687891.0
+}

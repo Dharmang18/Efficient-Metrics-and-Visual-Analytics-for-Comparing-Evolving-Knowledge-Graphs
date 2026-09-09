@@ -1,0 +1,98 @@
+{
+  "http://schema.org/Person": {
+    "http://schema.org/alternateName": 19.792341332833434,
+    "http://schema.org/birthDate": 13.974518000675765,
+    "http://schema.org/children": 19.55389071843103,
+    "http://schema.org/deathDate": 13.409677673036942,
+    "http://schema.org/gender": 0.8928134425069452,
+    "http://schema.org/mainEntityOfPage": 19.73453101851077,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0008202506095855711,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 18.104487325126886,
+    "http://www.w3.org/2000/01/rdf-schema#label": 23.026594864833864,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.507997830006065
+  },
+  "http://schema.org/Taxon": {
+    "http://schema.org/alternateName": 19.974706417940467,
+    "http://schema.org/image": 17.821624952878583,
+    "http://schema.org/mainEntityOfPage": 23.154388225157614,
+    "http://schema.org/parentTaxon": 15.885856427752923,
+    "http://schema.org/sameAs": 20.447356919195105,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.00008902493326701233,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 8.790941742319063,
+    "http://www.w3.org/2000/01/rdf-schema#label": 26.738166159596588,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.741538580841485,
+    "http://yago-knowledge.org/resource/consumes": 6.3956117102752215
+  },
+  "http://yago-knowledge.org/resource/Chemical_compound": {
+    "http://schema.org/alternateName": 17.316064406336725,
+    "http://schema.org/image": 11.435113771927417,
+    "http://schema.org/mainEntityOfPage": 16.71644438044291,
+    "http://schema.org/manufacturer": 2.0650766960272615,
+    "http://schema.org/sameAs": 14.185970461371731,
+    "http://schema.org/url": 3.700439718141092,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.02478656692325032,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 5.9350822911927,
+    "http://www.w3.org/2000/01/rdf-schema#label": 20.234429558494785,
+    "http://www.w3.org/2002/07/owl#sameAs": 20.08844018091799
+  },
+  "http://yago-knowledge.org/resource/Galaxy": {
+    "http://schema.org/alternateName": 14.332665981212996,
+    "http://schema.org/mainEntityOfPage": 18.030257613415504,
+    "http://schema.org/sameAs": 11.98469812387983,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.007938971200005085,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 5.938098429634625,
+    "http://www.w3.org/2000/01/rdf-schema#label": 25.238487786825655,
+    "http://www.w3.org/2002/07/owl#sameAs": 20.998239199430166,
+    "http://yago-knowledge.org/resource/distanceFromEarth": 11.433602744878584,
+    "http://yago-knowledge.org/resource/parallax": 12.590847230164679,
+    "http://yago-knowledge.org/resource/radialVelocity": 15.311804450985209
+  },
+  "http://yago-knowledge.org/resource/Politician": {
+    "http://schema.org/alternateName": 20.101384467615397,
+    "http://schema.org/birthDate": 15.059507005523848,
+    "http://schema.org/gender": 0.5614869726859908,
+    "http://schema.org/mainEntityOfPage": 20.754845605016897,
+    "http://schema.org/nationality": 4.954563563377203,
+    "http://schema.org/sameAs": 18.86920691956891,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2.7067862641753493,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 11.816248758245324,
+    "http://www.w3.org/2000/01/rdf-schema#label": 23.270460700625303,
+    "http://www.w3.org/2002/07/owl#sameAs": 19.518378459982497
+  },
+  "http://yago-knowledge.org/resource/Researcher": {
+    "http://schema.org/alternateName": 19.30652266001909,
+    "http://schema.org/alumniOf": 10.904463655807216,
+    "http://schema.org/gender": 0.9603081074570596,
+    "http://schema.org/nationality": 3.729123455796758,
+    "http://schema.org/sameAs": 17.98170577782315,
+    "http://schema.org/worksFor": 12.297136681244652,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.27362381019925763,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 6.216749308868309,
+    "http://www.w3.org/2000/01/rdf-schema#label": 22.411989369451145,
+    "http://www.w3.org/2002/07/owl#sameAs": 20.87077483255937
+  },
+  "http://yago-knowledge.org/resource/Review_article": {
+    "http://schema.org/about": 11.131866486526985,
+    "http://schema.org/alternateName": 13.269899402095009,
+    "http://schema.org/author": 17.161735133436558,
+    "http://schema.org/dateCreated": 10.101545005462752,
+    "http://schema.org/inLanguage": 0.8543564687564,
+    "http://schema.org/mainEntityOfPage": 7.409390936137702,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.09027873474143888,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 8.945288155940084,
+    "http://www.w3.org/2000/01/rdf-schema#label": 22.268566921448286,
+    "http://www.w3.org/2002/07/owl#sameAs": 20.974205203000714
+  },
+  "http://yago-knowledge.org/resource/Star": {
+    "http://schema.org/alternateName": 16.089145128984523,
+    "http://schema.org/mainEntityOfPage": 15.199595668955244,
+    "http://schema.org/sameAs": 13.117355417307367,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.045306303930562564,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 9.14341172881913,
+    "http://www.w3.org/2000/01/rdf-schema#label": 26.039625992850695,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.644623826136957,
+    "http://yago-knowledge.org/resource/distanceFromEarth": 15.756150038819696,
+    "http://yago-knowledge.org/resource/parallax": 15.44891599691891,
+    "http://yago-knowledge.org/resource/radialVelocity": 14.011163945660003
+  }
+}

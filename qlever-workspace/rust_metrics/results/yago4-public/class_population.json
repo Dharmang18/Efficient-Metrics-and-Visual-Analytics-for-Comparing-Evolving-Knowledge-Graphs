@@ -1,0 +1,53 @@
+{
+  "classes": {
+    "http://bioschemas.org/BioChemEntity": {
+      "population": 3247696,
+      "share": 0.04433071108830426
+    },
+    "http://bioschemas.org/Taxon": {
+      "population": 2726502,
+      "share": 0.03721646744143656
+    },
+    "http://schema.org/Article": {
+      "population": 32689220,
+      "share": 0.44620443770661333
+    },
+    "http://schema.org/CreativeWork": {
+      "population": 35894732,
+      "share": 0.48995934160220345
+    },
+    "http://schema.org/GeoCoordinates": {
+      "population": 6335654,
+      "share": 0.08648101516566183
+    },
+    "http://schema.org/Landform": {
+      "population": 3030004,
+      "share": 0.041359238032256176
+    },
+    "http://schema.org/Organization": {
+      "population": 2144509,
+      "share": 0.029272323796706426
+    },
+    "http://schema.org/Person": {
+      "population": 6433965,
+      "share": 0.08782295004435807
+    },
+    "http://schema.org/Place": {
+      "population": 14252116,
+      "share": 0.1945398943721945
+    },
+    "http://schema.org/ScholarlyArticle": {
+      "population": 32127570,
+      "share": 0.43853797388649407
+    },
+    "http://schema.org/Thing": {
+      "population": 66905417,
+      "share": 0.9132519519282347
+    },
+    "http://yago-knowledge.org/resource/Human": {
+      "population": 6422652,
+      "share": 0.0876685287763139
+    }
+  },
+  "total_entities": 73260634.0
+}

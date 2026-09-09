@@ -1,0 +1,58 @@
+{
+  "http://dbpedia.org/ontology/Agent": {
+    "distinct_objects": 7165060.0,
+    "distinct_predicates": 22128.0,
+    "object_entropy": 13.465323870953709,
+    "predicate_entropy": 5.488546513571844,
+    "triples": 41031663.0
+  },
+  "http://dbpedia.org/ontology/Person": {
+    "distinct_objects": 5322105.0,
+    "distinct_predicates": 11257.0,
+    "object_entropy": 12.839731501206046,
+    "predicate_entropy": 4.993325922137512,
+    "triples": 32716002.0
+  },
+  "http://schema.org/Person": {
+    "distinct_objects": 5322105.0,
+    "distinct_predicates": 11257.0,
+    "object_entropy": 12.839731501206046,
+    "predicate_entropy": 4.993325922137512,
+    "triples": 32716002.0
+  },
+  "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent": {
+    "distinct_objects": 7165060.0,
+    "distinct_predicates": 22128.0,
+    "object_entropy": 13.465323870953709,
+    "predicate_entropy": 5.488546513571844,
+    "triples": 41031663.0
+  },
+  "http://www.w3.org/2002/07/owl#Thing": {
+    "distinct_objects": 17992583.0,
+    "distinct_predicates": 49115.0,
+    "object_entropy": 15.277029864616424,
+    "predicate_entropy": 7.150080875910291,
+    "triples": 111973659.0
+  },
+  "http://www.wikidata.org/entity/Q215627": {
+    "distinct_objects": 5322105.0,
+    "distinct_predicates": 11257.0,
+    "object_entropy": 12.839731501206046,
+    "predicate_entropy": 4.993325922137512,
+    "triples": 32716002.0
+  },
+  "http://www.wikidata.org/entity/Q24229398": {
+    "distinct_objects": 7165060.0,
+    "distinct_predicates": 22128.0,
+    "object_entropy": 13.465323870953709,
+    "predicate_entropy": 5.488546513571844,
+    "triples": 41031663.0
+  },
+  "http://www.wikidata.org/entity/Q5": {
+    "distinct_objects": 5322105.0,
+    "distinct_predicates": 11257.0,
+    "object_entropy": 12.839731501206046,
+    "predicate_entropy": 4.993325922137512,
+    "triples": 32716002.0
+  }
+}

@@ -17,8 +17,12 @@ __pycache__/
 # ───────── Rust build artifacts ─────────
 target/
 
-# ───────── Generated metric outputs (regenerate via `cargo run --release`) ─────────
-results/
+# ───────── Generated metric outputs ─────────
+# These ARE the thesis evidence, and several cannot be regenerated on demand:
+# metrics 9/10 need two live endpoints at the same time. So results/ is TRACKED,
+# except the two bulky pieces that a public endpoint rebuilds in minutes.
+qlever-workspace/rust_metrics/results/olympics/
+qlever-workspace/rust_metrics/results/page_rank.*
 
 # ───────── Third-party reference clone (has its own .git — never vendor it) ─────────
 reference/

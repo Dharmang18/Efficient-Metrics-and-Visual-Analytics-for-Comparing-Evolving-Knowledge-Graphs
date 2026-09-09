@@ -1,0 +1,69 @@
+{
+  "http://bioschemas.org/Taxon": {
+    "http://bioschemas.org/parentTaxon": 15.778646608095954,
+    "http://bioschemas.org/taxonRank": 1.025027167621694,
+    "http://schema.org/alternateName": 19.64485351506445,
+    "http://schema.org/award": 2.127387765191275,
+    "http://schema.org/image": 17.46212941758381,
+    "http://schema.org/sameAs": 22.845376531946776,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1.060772981999488,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 8.470386151284238,
+    "http://www.w3.org/2000/01/rdf-schema#label": 25.26670474352489,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.630865345302894
+  },
+  "http://schema.org/AdministrativeArea": {
+    "http://schema.org/alternateName": 20.354208155178366,
+    "http://schema.org/containedInPlace": 15.803537584553311,
+    "http://schema.org/containsPlace": 19.892125907051977,
+    "http://schema.org/geo": 19.380936787798216,
+    "http://schema.org/location": 13.065404379636643,
+    "http://schema.org/sameAs": 22.71433118304598,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3.140451003858324,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 8.307885201691967,
+    "http://www.w3.org/2000/01/rdf-schema#label": 23.28054131605997,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.302780422811644
+  },
+  "http://schema.org/Person": {
+    "http://schema.org/alternateName": 22.441476094494934,
+    "http://schema.org/birthDate": 14.90799518483316,
+    "http://schema.org/gender": 0.7658129101667264,
+    "http://schema.org/givenName": 10.91746213837245,
+    "http://schema.org/hasOccupation": 7.03242291879276,
+    "http://schema.org/sameAs": 23.1973706723453,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1.589150544885733,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 15.99327800629435,
+    "http://www.w3.org/2000/01/rdf-schema#label": 25.66737405298553,
+    "http://www.w3.org/2002/07/owl#sameAs": 23.01958947147676
+  },
+  "http://yago-knowledge.org/resource/Chemical_compound": {
+    "http://bioschemas.org/bioChemInteraction": 5.855922840084666,
+    "http://bioschemas.org/inChIKey": 9.753216749178955,
+    "http://bioschemas.org/smiles": 9.420372713042243,
+    "http://schema.org/alternateName": 17.926326849651296,
+    "http://schema.org/image": 10.89163185093245,
+    "http://schema.org/sameAs": 17.31023111278034,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2.050389157362776,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 5.828950633989869,
+    "http://www.w3.org/2000/01/rdf-schema#label": 20.189991029454156,
+    "http://www.w3.org/2002/07/owl#sameAs": 19.98801144708199
+  },
+  "http://yago-knowledge.org/resource/Galaxy": {
+    "http://schema.org/alternateName": 14.67909840309226,
+    "http://schema.org/image": 12.062012112991754,
+    "http://schema.org/sameAs": 17.241694596722947,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1.5939533667028343,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 5.04376219190684,
+    "http://www.w3.org/2000/01/rdf-schema#label": 21.385940444910084,
+    "http://www.w3.org/2002/07/owl#sameAs": 20.35185045967313
+  },
+  "http://yago-knowledge.org/resource/Star": {
+    "http://schema.org/alternateName": 15.142339471441382,
+    "http://schema.org/containedInPlace": 0.0,
+    "http://schema.org/image": 8.119115777266007,
+    "http://schema.org/sameAs": 15.524449890891663,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1.6005530152824825,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 5.478159728696369,
+    "http://www.w3.org/2000/01/rdf-schema#label": 21.2318662388444,
+    "http://www.w3.org/2002/07/owl#sameAs": 20.708606531684918
+  }
+}

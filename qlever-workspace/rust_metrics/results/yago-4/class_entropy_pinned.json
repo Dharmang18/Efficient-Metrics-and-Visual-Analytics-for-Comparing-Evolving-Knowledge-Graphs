@@ -1,0 +1,44 @@
+{
+  "http://bioschemas.org/Taxon": {
+    "distinct_objects": 52992296.0,
+    "distinct_predicates": 16.0,
+    "object_entropy": 18.072848558159574,
+    "predicate_entropy": 2.0497738233028997,
+    "triples": 106300022.0
+  },
+  "http://schema.org/AdministrativeArea": {
+    "distinct_objects": 28542676.0,
+    "distinct_predicates": 30.0,
+    "object_entropy": 16.3967961197773,
+    "predicate_entropy": 2.3075329891702125,
+    "triples": 78198513.0
+  },
+  "http://schema.org/Person": {
+    "distinct_objects": 88928916.0,
+    "distinct_predicates": 38.0,
+    "object_entropy": 20.644811431083284,
+    "predicate_entropy": 3.210535330232137,
+    "triples": 180983829.0
+  },
+  "http://yago-knowledge.org/resource/Chemical_compound": {
+    "distinct_objects": 2673812.0,
+    "distinct_predicates": 23.0,
+    "object_entropy": 8.137058914193087,
+    "predicate_entropy": 1.357870683859037,
+    "triples": 22842765.0
+  },
+  "http://yago-knowledge.org/resource/Galaxy": {
+    "distinct_objects": 4266187.0,
+    "distinct_predicates": 7.0,
+    "object_entropy": 10.687034531200196,
+    "predicate_entropy": 1.9056075484910444,
+    "triples": 14341644.0
+  },
+  "http://yago-knowledge.org/resource/Star": {
+    "distinct_objects": 4263721.0,
+    "distinct_predicates": 8.0,
+    "object_entropy": 11.85995953911055,
+    "predicate_entropy": 1.6578927664058618,
+    "triples": 9702940.0
+  }
+}

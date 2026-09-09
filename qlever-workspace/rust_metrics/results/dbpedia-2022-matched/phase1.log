@@ -1,0 +1,247 @@
+==========================================================
+phase 1   label=dbpedia-2022-matched   endpoint=http://131.159.130.53:7014
+started 2026-08-28 14:52:29
+==========================================================
+
+########## descriptive pass ##########
+
+---- population (descriptive, parallelism 2) ---- 14:52:29
+Endpoint:  http://131.159.130.53:7014
+Snapshot:  dbpedia-2022-matched  (results/dbpedia-2022-matched/)
+
+Metric 1: Class population & share   share(t) = |E_t| / |E|
+Scope:    top 20 classes
+
+  |E| = 7564288 typed entities
+
+      population    share   class
+         5465152   72.25 %   Thing
+         2091566   27.65 %   TimePeriod
+         2091566   27.65 %   TimeInterval
+         1975461   26.12 %   Species
+         1968827   26.03 %   Eukaryote
+         1968827   26.03 %   Q19088
+         1957965   25.88 %   Q729
+         1957965   25.88 %   Animal
+         1860208   24.59 %   Person
+         1860208   24.59 %   Q5
+         1860208   24.59 %   Person
+         1860208   24.59 %   Q215627
+         1860208   24.59 %   Person
+         1860208   24.59 %   NaturalPerson
+         1731520   22.89 %   CareerStation
+
+Results saved to:
+  results/dbpedia-2022-matched/class_population.json
+  results/dbpedia-2022-matched/class_population.csv
+   ok in 2s
+
+---- entf (descriptive, parallelism 2) ---- 14:52:31
+Endpoint:  http://131.159.130.53:7014
+Snapshot:  dbpedia-2022-matched  (results/dbpedia-2022-matched/)
+
+Metric 2: Property entropy per type   EntF(p,t) = -Σ P(o) log2 P(o)
+Scope:    top 8 classes, top 10 predicates each
+
+  8 classes x top 10 predicates = 80 histogram queries
+
+  most informative (type, predicate) pairs:
+       bits      distinct  predicate                    class
+     22.083       4441996  label                        Thing
+     21.162       3006251  name                         Thing
+     20.964       3235631  name                         Thing
+     20.711       1716420  careerStation                Thing
+     20.711       1716420  careerStation                Species
+     20.711       1716420  careerStation                Eukaryote
+     20.711       1716420  careerStation                Q19088
+     20.711       1716420  careerStation                Q729
+     20.711       1716420  careerStation                Animal
+     20.514       1497318  label                        Species
+     20.508       1490685  label                        Eukaryote
+     20.508       1490685  label                        Q19088
+     20.497       1479839  label                        Q729
+     20.497       1479839  label                        Animal
+     20.156       1359267  name                         Species
+
+Results saved to:
+  results/dbpedia-2022-matched/property_entropy.json
+  results/dbpedia-2022-matched/property_entropy.csv
+   ok in 41s
+
+---- entetimp (descriptive, parallelism 2) ---- 14:53:12
+Endpoint:  http://131.159.130.53:7014
+Snapshot:  dbpedia-2022-matched  (results/dbpedia-2022-matched/)
+
+Metric 3: Entropy-weighted type importance
+          EntETImp(p,t) = EntF(p,t)^0.75 · ETImp(p,t)^0.25
+Scope:    top 8 classes, top 10 predicates each
+
+  computing EntF (metric 2) ...
+  8 classes x top 10 predicates = 80 histogram queries
+  computing ETImp (Knowgly baseline) ...
+
+      EntETImp       EntF          ETImp  predicate                  class
+        398.17     21.162        2652169  name                       Thing
+        376.97     20.964        2191894  name                       Thing
+        345.84     22.083        1328395  label                      Thing
+        332.86     18.835        1837075  title                      Thing
+        315.06     20.711        1109124  careerStation              Thing
+        291.94     14.174        2550877  birthPlace                 Thing
+        285.11     20.711         743784  careerStation              Species
+        284.99     20.711         742576  careerStation              Q19088
+        284.99     20.711         742576  careerStation              Eukaryote
+        284.80     20.711         740590  careerStation              Q729
+        284.80     20.711         740590  careerStation              Animal
+        282.81     20.156         781242  name                       Species
+        282.51     20.151         778577  name                       Q19088
+        282.51     20.151         778577  name                       Eukaryote
+        281.84     20.146         771744  name                       Q729
+
+Results saved to:
+  results/dbpedia-2022-matched/ent_etimp.json
+  results/dbpedia-2022-matched/ent_etimp.csv
+   ok in 43s
+
+---- classentropy (descriptive, parallelism 1) ---- 14:53:55
+Endpoint:  http://131.159.130.53:7014
+Snapshot:  dbpedia-2022-matched  (results/dbpedia-2022-matched/)
+
+Metric 4: Class entropy   H(t) = -Σ P(o) log2 P(o) over all values of class t
+Scope:    top 8 classes
+
+  H(objects)    H(preds)         triples  class
+      16.520       7.771       178407344  Thing
+      13.856       5.629        70775502  Species
+      13.844       5.622        70630593  Eukaryote
+      13.844       5.622        70630593  Q19088
+      13.828       5.610        70365385  Q729
+      13.828       5.610        70365385  Animal
+       7.998       2.686        13235000  TimePeriod
+       7.998       2.686        13235000  TimeInterval
+
+Results saved to:
+  results/dbpedia-2022-matched/class_entropy.json
+  results/dbpedia-2022-matched/class_entropy.csv
+   ok in 63s
+
+########## pinned pass ##########
+
+---- entf (pinned, parallelism 2) ---- 14:54:58
+Endpoint:  http://131.159.130.53:7014
+Snapshot:  dbpedia-2022-matched  (results/dbpedia-2022-matched/)
+
+Metric 2: Property entropy per type   EntF(p,t) = -Σ P(o) log2 P(o)
+Scope:    top 8 classes, top 10 predicates each
+
+  pinned Person                 -> http://xmlns.com/foaf/0.1/Person (1860208 entities)
+      NOTE: Person also matches http://dbpedia.org/ontology/Person (1860208 entities) -- using the most populated
+      NOTE: Person also matches http://schema.org/Person (1860208 entities) -- using the most populated
+  pinned Species                -> http://dbpedia.org/ontology/Species (1975461 entities)
+  pinned Star                   -> http://dbpedia.org/ontology/Star (5019 entities)
+  pinned Galaxy                 -> http://dbpedia.org/ontology/Galaxy (1984 entities)
+  pinned ChemicalCompound       -> http://dbpedia.org/ontology/ChemicalCompound (12767 entities)
+  pinned AdministrativeRegion   -> http://dbpedia.org/ontology/AdministrativeRegion (54915 entities)
+  6 classes x top 10 predicates = 60 histogram queries
+
+  most informative (type, predicate) pairs:
+       bits      distinct  predicate                    class
+     20.711       1716420  careerStation                Person
+     20.711       1716420  careerStation                Species
+     20.514       1497318  label                        Species
+     20.398       1382085  label                        Person
+     20.156       1359267  name                         Species
+     20.108       1319836  name                         Person
+     20.027       1512587  name                         Species
+     19.981       1472284  name                         Person
+     15.727         54230  label                        AdministrativeRegion
+     15.712        104632  birthDate                    Person
+     15.712        104632  birthDate                    Species
+     15.374         60502  name                         AdministrativeRegion
+     15.138         38418  name                         AdministrativeRegion
+     14.170        248432  birthPlace                   Person
+     14.170        248432  birthPlace                   Species
+
+Results saved to:
+  results/dbpedia-2022-matched/property_entropy_pinned.json
+  results/dbpedia-2022-matched/property_entropy_pinned.csv
+   ok in 15s
+
+---- entetimp (pinned, parallelism 2) ---- 14:55:13
+Endpoint:  http://131.159.130.53:7014
+Snapshot:  dbpedia-2022-matched  (results/dbpedia-2022-matched/)
+
+Metric 3: Entropy-weighted type importance
+          EntETImp(p,t) = EntF(p,t)^0.75 · ETImp(p,t)^0.25
+Scope:    top 8 classes, top 10 predicates each
+
+  computing EntF (metric 2) ...
+  pinned Person                 -> http://xmlns.com/foaf/0.1/Person (1860208 entities)
+      NOTE: Person also matches http://dbpedia.org/ontology/Person (1860208 entities) -- using the most populated
+      NOTE: Person also matches http://schema.org/Person (1860208 entities) -- using the most populated
+  pinned Species                -> http://dbpedia.org/ontology/Species (1975461 entities)
+  pinned Star                   -> http://dbpedia.org/ontology/Star (5019 entities)
+  pinned Galaxy                 -> http://dbpedia.org/ontology/Galaxy (1984 entities)
+  pinned ChemicalCompound       -> http://dbpedia.org/ontology/ChemicalCompound (12767 entities)
+  pinned AdministrativeRegion   -> http://dbpedia.org/ontology/AdministrativeRegion (54915 entities)
+  6 classes x top 10 predicates = 60 histogram queries
+  computing ETImp (Knowgly baseline) ...
+  pinned Person                 -> http://xmlns.com/foaf/0.1/Person (1860208 entities)
+      NOTE: Person also matches http://dbpedia.org/ontology/Person (1860208 entities) -- using the most populated
+      NOTE: Person also matches http://schema.org/Person (1860208 entities) -- using the most populated
+  pinned Species                -> http://dbpedia.org/ontology/Species (1975461 entities)
+  pinned Star                   -> http://dbpedia.org/ontology/Star (5019 entities)
+  pinned Galaxy                 -> http://dbpedia.org/ontology/Galaxy (1984 entities)
+  pinned ChemicalCompound       -> http://dbpedia.org/ontology/ChemicalCompound (12767 entities)
+  pinned AdministrativeRegion   -> http://dbpedia.org/ontology/AdministrativeRegion (54915 entities)
+
+      EntETImp       EntF          ETImp  predicate                  class
+        285.11     20.711         743784  careerStation              Species
+        283.02     20.711         722202  careerStation              Person
+        282.81     20.156         781242  name                       Species
+        275.07     20.108         704096  name                       Person
+        268.12     20.514         598641  label                      Species
+        266.29     20.398         592386  label                      Person
+        242.28     15.712         888282  birthDate                  Species
+        235.08     15.712         787338  birthDate                  Person
+        227.08     14.170         934605  birthPlace                 Species
+        226.14     20.027         325594  name                       Species
+        221.51     13.661         944234  team                       Species
+        221.11     14.170         840005  birthPlace                 Person
+        219.30     13.661         907133  team                       Person
+        216.09     12.956        1002653  birthPlace                 Species
+        211.50     12.956         920102  birthPlace                 Person
+
+Results saved to:
+  results/dbpedia-2022-matched/ent_etimp_pinned.json
+  results/dbpedia-2022-matched/ent_etimp_pinned.csv
+   ok in 15s
+
+---- classentropy (pinned, parallelism 1) ---- 14:55:28
+Endpoint:  http://131.159.130.53:7014
+Snapshot:  dbpedia-2022-matched  (results/dbpedia-2022-matched/)
+
+Metric 4: Class entropy   H(t) = -Σ P(o) log2 P(o) over all values of class t
+Scope:    top 8 classes
+
+  pinned Person                 -> http://xmlns.com/foaf/0.1/Person (1860208 entities)
+      NOTE: Person also matches http://dbpedia.org/ontology/Person (1860208 entities) -- using the most populated
+      NOTE: Person also matches http://schema.org/Person (1860208 entities) -- using the most populated
+  pinned Species                -> http://dbpedia.org/ontology/Species (1975461 entities)
+  pinned Star                   -> http://dbpedia.org/ontology/Star (5019 entities)
+  pinned Galaxy                 -> http://dbpedia.org/ontology/Galaxy (1984 entities)
+  pinned ChemicalCompound       -> http://dbpedia.org/ontology/ChemicalCompound (12767 entities)
+  pinned AdministrativeRegion   -> http://dbpedia.org/ontology/AdministrativeRegion (54915 entities)
+  H(objects)    H(preds)         triples  class
+      13.856       5.629        70775502  Species
+      13.756       5.476        67468222  Person
+      13.506       7.252         2514117  AdministrativeRegion
+      11.830       5.032          137476  Star
+      11.023       3.743          190374  ChemicalCompound
+      10.080       3.915           43039  Galaxy
+
+Results saved to:
+  results/dbpedia-2022-matched/class_entropy_pinned.json
+  results/dbpedia-2022-matched/class_entropy_pinned.csv
+   ok in 19s
+
+phase 1 done 2026-08-28 14:55:47 — 0 failure(s)

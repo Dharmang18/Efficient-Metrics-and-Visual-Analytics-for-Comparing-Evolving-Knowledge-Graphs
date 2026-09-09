@@ -1,0 +1,205 @@
+{
+  "entities": {
+    "http://schema.org/Person": {
+      "inforank": 1.0158780427267819e-6,
+      "literal_properties": 1147
+    },
+    "http://yago-knowledge.org/resource/Arthur_Dale_Trendall": {
+      "inforank": 9.733652737199068e-7,
+      "literal_properties": 1099
+    },
+    "http://yago-knowledge.org/resource/Attilâ_İlhan": {
+      "inforank": 9.92850292848058e-7,
+      "literal_properties": 1121
+    },
+    "http://yago-knowledge.org/resource/Basshunter": {
+      "inforank": 1.0557337636707272e-6,
+      "literal_properties": 1192
+    },
+    "http://yago-knowledge.org/resource/Bracket": {
+      "inforank": 3.3523089727296156e-6,
+      "literal_properties": 3785
+    },
+    "http://yago-knowledge.org/resource/China": {
+      "inforank": 9.839934659716257e-7,
+      "literal_properties": 1111
+    },
+    "http://yago-knowledge.org/resource/Christianity": {
+      "inforank": 1.0893897058011696e-6,
+      "literal_properties": 1230
+    },
+    "http://yago-knowledge.org/resource/Conrad_M_U002E__Stibbe_Q1126891": {
+      "inforank": 1.161130003500271e-6,
+      "literal_properties": 1311
+    },
+    "http://yago-knowledge.org/resource/Dawn_Richardson_Wilson": {
+      "inforank": 1.1035606288034614e-6,
+      "literal_properties": 1246
+    },
+    "http://yago-knowledge.org/resource/Desireé_Cousteau": {
+      "inforank": 2.8793544175281323e-6,
+      "literal_properties": 3251
+    },
+    "http://yago-knowledge.org/resource/Earth": {
+      "inforank": 3.67735451909468e-6,
+      "literal_properties": 4152
+    },
+    "http://yago-knowledge.org/resource/Ecuador": {
+      "inforank": 1.3497804159682785e-6,
+      "literal_properties": 1524
+    },
+    "http://yago-knowledge.org/resource/Eduard_Crăciun_Q105599653": {
+      "inforank": 1.4755473576136168e-6,
+      "literal_properties": 1666
+    },
+    "http://yago-knowledge.org/resource/Eleni-Alexandra_Amburger_Q20800727": {
+      "inforank": 2.2735474591801646e-6,
+      "literal_properties": 2567
+    },
+    "http://yago-knowledge.org/resource/Elfriede_Knauer": {
+      "inforank": 1.1469590804979796e-6,
+      "literal_properties": 1295
+    },
+    "http://yago-knowledge.org/resource/Evelyn_Hartnick-Geismeier_Q1381751": {
+      "inforank": 1.1522731766238388e-6,
+      "literal_properties": 1301
+    },
+    "http://yago-knowledge.org/resource/France": {
+      "inforank": 1.1558159073744117e-6,
+      "literal_properties": 1305
+    },
+    "http://yago-knowledge.org/resource/Friederike_Sinn_Q20871698": {
+      "inforank": 1.016763725414425e-6,
+      "literal_properties": 1148
+    },
+    "http://yago-knowledge.org/resource/Germany": {
+      "inforank": 1.020306456164998e-6,
+      "literal_properties": 1152
+    },
+    "http://yago-knowledge.org/resource/Gisela_Richter": {
+      "inforank": 9.680511775940476e-7,
+      "literal_properties": 1093
+    },
+    "http://yago-knowledge.org/resource/Irving_L_U002E__Finston_Q107285919": {
+      "inforank": 1.0442198887313651e-6,
+      "literal_properties": 1179
+    },
+    "http://yago-knowledge.org/resource/Japan": {
+      "inforank": 9.85764831346912e-7,
+      "literal_properties": 1113
+    },
+    "http://yago-knowledge.org/resource/Jess_Wade": {
+      "inforank": 1.028277600353787e-6,
+      "literal_properties": 1161
+    },
+    "http://yago-knowledge.org/resource/John_Manuel_Cook": {
+      "inforank": 9.609657160929017e-7,
+      "literal_properties": 1085
+    },
+    "http://yago-knowledge.org/resource/Jonathan_Gustafson": {
+      "inforank": 1.1053319941787477e-6,
+      "literal_properties": 1248
+    },
+    "http://yago-knowledge.org/resource/Karl_Jakob_Weber": {
+      "inforank": 1.1593586381249847e-6,
+      "literal_properties": 1309
+    },
+    "http://yago-knowledge.org/resource/Kwan_Ting_Sean_Q111693465": {
+      "inforank": 1.0486483021695812e-6,
+      "literal_properties": 1184
+    },
+    "http://yago-knowledge.org/resource/Liselotte_Welskopf-Henrich": {
+      "inforank": 1.1584729554373414e-6,
+      "literal_properties": 1308
+    },
+    "http://yago-knowledge.org/resource/Main_Page": {
+      "inforank": 1.3612942909076405e-6,
+      "literal_properties": 1537
+    },
+    "http://yago-knowledge.org/resource/Mandy_Mystery_Q1889104": {
+      "inforank": 1.1531588593114822e-6,
+      "literal_properties": 1302
+    },
+    "http://yago-knowledge.org/resource/Mina_Schreiber_Q27567934": {
+      "inforank": 1.063704907859516e-6,
+      "literal_properties": 1201
+    },
+    "http://yago-knowledge.org/resource/Minecraft": {
+      "inforank": 1.1000178980528885e-6,
+      "literal_properties": 1242
+    },
+    "http://yago-knowledge.org/resource/Mustafa_Kemal_Atatürk": {
+      "inforank": 9.485661584658966e-7,
+      "literal_properties": 1071
+    },
+    "http://yago-knowledge.org/resource/Myles_Burnyeat": {
+      "inforank": 9.751366390951934e-7,
+      "literal_properties": 1101
+    },
+    "http://yago-knowledge.org/resource/North_Macedonia": {
+      "inforank": 1.036248744542576e-6,
+      "literal_properties": 1170
+    },
+    "http://yago-knowledge.org/resource/Olwen_Brogan": {
+      "inforank": 2.2859470168071698e-6,
+      "literal_properties": 2581
+    },
+    "http://yago-knowledge.org/resource/Poland": {
+      "inforank": 1.4808614537394762e-6,
+      "literal_properties": 1672
+    },
+    "http://yago-knowledge.org/resource/Q87496387": {
+      "inforank": 1.1992143590689298e-6,
+      "literal_properties": 1354
+    },
+    "http://yago-knowledge.org/resource/Q87532705": {
+      "inforank": 1.1992143590689298e-6,
+      "literal_properties": 1354
+    },
+    "http://yago-knowledge.org/resource/Republic_of_Ireland": {
+      "inforank": 9.724795910322637e-7,
+      "literal_properties": 1098
+    },
+    "http://yago-knowledge.org/resource/Russia": {
+      "inforank": 9.760223217828366e-7,
+      "literal_properties": 1102
+    },
+    "http://yago-knowledge.org/resource/Schlomo_Samson_Q90487401": {
+      "inforank": 1.052191032920154e-6,
+      "literal_properties": 1188
+    },
+    "http://yago-knowledge.org/resource/Sg_Nickelhütte_Aue_Q60540266": {
+      "inforank": 9.54765937279399e-7,
+      "literal_properties": 1078
+    },
+    "http://yago-knowledge.org/resource/Sofía_Ugarriza_Q62752201": {
+      "inforank": 1.1053319941787477e-6,
+      "literal_properties": 1248
+    },
+    "http://yago-knowledge.org/resource/Switzerland": {
+      "inforank": 1.269183291392745e-6,
+      "literal_properties": 1433
+    },
+    "http://yago-knowledge.org/resource/Tatjana_Gordienko_Q27893690": {
+      "inforank": 1.4773187229889033e-6,
+      "literal_properties": 1668
+    },
+    "http://yago-knowledge.org/resource/Thomas_Dempster": {
+      "inforank": 1.3524374640312082e-6,
+      "literal_properties": 1527
+    },
+    "http://yago-knowledge.org/resource/United_States": {
+      "inforank": 1.6305418279511817e-6,
+      "literal_properties": 1841
+    },
+    "http://yago-knowledge.org/resource/Walter-Herwig_Schuchhardt": {
+      "inforank": 1.156701590062055e-6,
+      "literal_properties": 1306
+    },
+    "http://yago-knowledge.org/resource/Wsv_Ilmenau_Q55170822": {
+      "inforank": 1.900675047682366e-6,
+      "literal_properties": 2146
+    }
+  },
+  "total_literal_properties": 1129072538.0
+}

@@ -1,0 +1,58 @@
+{
+  "http://bioschemas.org/BioChemEntity": {
+    "distinct_objects": 15561241.0,
+    "distinct_predicates": 42.0,
+    "object_entropy": 13.493499976722346,
+    "predicate_entropy": 2.4764954029065223,
+    "triples": 53613232.0
+  },
+  "http://bioschemas.org/Taxon": {
+    "distinct_objects": 52992296.0,
+    "distinct_predicates": 16.0,
+    "object_entropy": 18.072848558159574,
+    "predicate_entropy": 2.0497738233028997,
+    "triples": 106300022.0
+  },
+  "http://schema.org/AdministrativeArea": {
+    "distinct_objects": 28542676.0,
+    "distinct_predicates": 30.0,
+    "object_entropy": 16.3967961197773,
+    "predicate_entropy": 2.3075329891702125,
+    "triples": 78198513.0
+  },
+  "http://schema.org/GeoCoordinates": {
+    "distinct_objects": 6613571.0,
+    "distinct_predicates": 3.0,
+    "object_entropy": 15.471223190565178,
+    "predicate_entropy": 1.5849583782516987,
+    "triples": 19066339.0
+  },
+  "http://schema.org/Landform": {
+    "distinct_objects": 19715253.0,
+    "distinct_predicates": 32.0,
+    "object_entropy": 16.316149446201152,
+    "predicate_entropy": 2.5493636331023453,
+    "triples": 51301072.0
+  },
+  "http://schema.org/Organization": {
+    "distinct_objects": 25960416.0,
+    "distinct_predicates": 39.0,
+    "object_entropy": 19.465755113564473,
+    "predicate_entropy": 2.9733313677345876,
+    "triples": 45391408.0
+  },
+  "http://schema.org/Person": {
+    "distinct_objects": 88928916.0,
+    "distinct_predicates": 38.0,
+    "object_entropy": 20.644811431083284,
+    "predicate_entropy": 3.210535330232137,
+    "triples": 180983829.0
+  },
+  "http://yago-knowledge.org/resource/Human": {
+    "distinct_objects": 88833973.0,
+    "distinct_predicates": 35.0,
+    "object_entropy": 20.642401127638315,
+    "predicate_entropy": 3.2106490861598544,
+    "triples": 180842678.0
+  }
+}

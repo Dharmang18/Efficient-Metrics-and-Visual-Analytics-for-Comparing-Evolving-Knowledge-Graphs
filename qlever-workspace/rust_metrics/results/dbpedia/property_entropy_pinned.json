@@ -1,0 +1,74 @@
+{
+  "http://dbpedia.org/ontology/ChemicalCompound": {
+    "http://dbpedia.org/ontology/alternativeName": 13.719600869571634,
+    "http://dbpedia.org/ontology/wikiPageID": 13.637983303777853,
+    "http://dbpedia.org/property/imagefile": 13.259601527449048,
+    "http://dbpedia.org/property/othernames": 12.47178020106621,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 5.838193253263995,
+    "http://purl.org/dc/terms/subject": 10.581325347690214,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2.56022234179685,
+    "http://www.w3.org/2002/07/owl#sameAs": 14.255417202219357,
+    "http://www.w3.org/ns/prov#wasDerivedFrom": 13.637983303777853,
+    "http://xmlns.com/foaf/0.1/isPrimaryTopicOf": 13.637983303777853
+  },
+  "http://dbpedia.org/ontology/Galaxy": {
+    "http://dbpedia.org/ontology/wikiPageID": 10.939579214314692,
+    "http://dbpedia.org/ontology/wikiPageLength": 10.609125470403539,
+    "http://dbpedia.org/ontology/wikiPageRevisionID": 10.939579214314692,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 5.376492762063746,
+    "http://purl.org/dc/terms/subject": 5.940645858373175,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2.807354922057602,
+    "http://www.w3.org/2000/01/rdf-schema#label": 10.939579214314692,
+    "http://www.w3.org/ns/prov#wasDerivedFrom": 10.939579214314692,
+    "http://xmlns.com/foaf/0.1/isPrimaryTopicOf": 10.939579214314692,
+    "http://xmlns.com/foaf/0.1/name": 11.506636522233944
+  },
+  "http://dbpedia.org/ontology/Person": {
+    "http://dbpedia.org/ontology/birthPlace": 12.986591247805254,
+    "http://dbpedia.org/ontology/careerStation": 20.710971186134106,
+    "http://dbpedia.org/ontology/wikiPageExternalLink": 20.6649866937877,
+    "http://dbpedia.org/property/birthPlace": 14.169585899689185,
+    "http://dbpedia.org/property/name": 20.11256016435507,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 8.390034872401014,
+    "http://purl.org/dc/terms/subject": 15.017198516879619,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.404829552645058,
+    "http://www.w3.org/2002/07/owl#sameAs": 20.9349728581443,
+    "http://xmlns.com/foaf/0.1/name": 19.980851786720006
+  },
+  "http://dbpedia.org/ontology/Species": {
+    "http://dbpedia.org/ontology/birthPlace": 12.986596576870912,
+    "http://dbpedia.org/ontology/careerStation": 20.710971186134106,
+    "http://dbpedia.org/ontology/wikiPageExternalLink": 20.641918676062033,
+    "http://dbpedia.org/property/birthPlace": 14.170129213293649,
+    "http://dbpedia.org/property/name": 20.155549559201784,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 8.401142125082238,
+    "http://purl.org/dc/terms/subject": 15.096476184427486,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.450775531530802,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.019843731722716,
+    "http://xmlns.com/foaf/0.1/name": 20.027273592320046
+  },
+  "http://dbpedia.org/ontology/Star": {
+    "http://dbpedia.org/ontology/wikiPageRevisionID": 12.290594888082572,
+    "http://dbpedia.org/property/appmagV": 9.945099086005893,
+    "http://dbpedia.org/property/class": 10.126144590794972,
+    "http://dbpedia.org/property/epoch": 1.8864297909648098,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 5.331996255142334,
+    "http://purl.org/dc/terms/subject": 6.065062845456527,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2.5854186157211636,
+    "http://www.w3.org/2000/01/rdf-schema#label": 12.290594888082572,
+    "http://www.w3.org/2002/07/owl#sameAs": 12.924441392339197,
+    "http://www.w3.org/ns/prov#wasDerivedFrom": 12.290594888082572
+  },
+  "http://schema.org/AdministrativeArea": {
+    "http://dbpedia.org/ontology/wikiPageExternalLink": 15.703081338449449,
+    "http://dbpedia.org/ontology/wikiPageID": 15.726803549902572,
+    "http://dbpedia.org/ontology/wikiPageLength": 13.515520224225359,
+    "http://dbpedia.org/property/subdivisionName": 11.235985719019911,
+    "http://dbpedia.org/property/subdivisionType": 6.1494526986348585,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 8.281276097673658,
+    "http://purl.org/dc/terms/subject": 13.365850721972118,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3.591983756822886,
+    "http://www.w3.org/2002/07/owl#sameAs": 16.536146487115168,
+    "http://xmlns.com/foaf/0.1/name": 15.373804440778173
+  }
+}

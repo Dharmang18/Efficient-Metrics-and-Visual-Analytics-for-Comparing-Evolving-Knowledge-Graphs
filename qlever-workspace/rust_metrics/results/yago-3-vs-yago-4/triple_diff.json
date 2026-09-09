@@ -1,0 +1,20 @@
+{
+  "added": 56021,
+  "benchmark": {
+    "encoded_bytes": 672252,
+    "encoded_ms": 9.458499999999999,
+    "naive_bytes": 9023467,
+    "naive_ms": 7.018292,
+    "speedup": 0.7420089866257863
+  },
+  "churn": 0.0,
+  "deleted": 0,
+  "scope": "whole-graph",
+  "subject_window": 50000,
+  "subjects_compared": 18669,
+  "triples_v1": 0,
+  "triples_v2": 56021,
+  "unchanged": 0,
+  "version_1": "http://100.113.106.12:9007",
+  "version_2": "http://100.113.106.12:9005"
+}

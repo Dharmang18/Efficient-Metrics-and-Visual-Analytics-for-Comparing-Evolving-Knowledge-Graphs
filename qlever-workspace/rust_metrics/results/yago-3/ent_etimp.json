@@ -1,0 +1,98 @@
+{
+  "http://yago-knowledge.org/resource/wikicat_Ethnic_German_people": {
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 0.0,
+    "http://www.w3.org/2004/02/skos/core#prefLabel": 0.0,
+    "http://yago-knowledge.org/resource/diedOnDate": 80.97857164242878,
+    "http://yago-knowledge.org/resource/hasFamilyName": 62.967904868018074,
+    "http://yago-knowledge.org/resource/hasGender": 10.171105791822097,
+    "http://yago-knowledge.org/resource/hasGivenName": 45.009999476640914,
+    "http://yago-knowledge.org/resource/isAffiliatedTo": 62.36602560041689,
+    "http://yago-knowledge.org/resource/redirectedFrom": 135.76498814869697,
+    "http://yago-knowledge.org/resource/wasBornOnDate": 46.34743542612407
+  },
+  "http://yago-knowledge.org/resource/wikicat_Living_people": {
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 0.0,
+    "http://www.w3.org/2004/02/skos/core#prefLabel": 0.0,
+    "http://yago-knowledge.org/resource/hasFamilyName": 114.42368892327126,
+    "http://yago-knowledge.org/resource/hasGender": 13.622191188085159,
+    "http://yago-knowledge.org/resource/hasGivenName": 97.19777656510041,
+    "http://yago-knowledge.org/resource/isAffiliatedTo": 151.07000748491765,
+    "http://yago-knowledge.org/resource/playsFor": 147.45113245454905,
+    "http://yago-knowledge.org/resource/redirectedFrom": 226.52033157855175,
+    "http://yago-knowledge.org/resource/wasBornOnDate": 126.28691540525998
+  },
+  "http://yago-knowledge.org/resource/wikicat_Women": {
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 0.0,
+    "http://www.w3.org/2004/02/skos/core#prefLabel": 0.0,
+    "http://yago-knowledge.org/resource/actedIn": 85.83625155786886,
+    "http://yago-knowledge.org/resource/created": 81.44064713858451,
+    "http://yago-knowledge.org/resource/hasFamilyName": 68.02006305115631,
+    "http://yago-knowledge.org/resource/hasGender": 1.4775674697934063,
+    "http://yago-knowledge.org/resource/hasGivenName": 56.30748070999233,
+    "http://yago-knowledge.org/resource/redirectedFrom": 113.63910556381597,
+    "http://yago-knowledge.org/resource/wasBornOnDate": 49.46688445322453
+  },
+  "http://yago-knowledge.org/resource/wordnet_administrative_district_108491826": {
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 0.0,
+    "http://www.w3.org/2004/02/skos/core#prefLabel": 0.0,
+    "http://yago-knowledge.org/resource/hasArea": 138.08034729310563,
+    "http://yago-knowledge.org/resource/hasLatitude": 153.06413422693848,
+    "http://yago-knowledge.org/resource/hasLongitude": 156.0530976236286,
+    "http://yago-knowledge.org/resource/hasNumberOfPeople": 148.39464057443612,
+    "http://yago-knowledge.org/resource/hasPopulationDensity": 126.16272573055849,
+    "http://yago-knowledge.org/resource/isLocatedIn": 86.75962008948167,
+    "http://yago-knowledge.org/resource/redirectedFrom": 184.31584938857037
+  },
+  "http://yago-knowledge.org/resource/wordnet_album_106591815": {
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 0.0,
+    "http://www.w3.org/2004/02/skos/core#prefLabel": 0.0,
+    "http://yago-knowledge.org/resource/happenedOnDate": 13.671849945150079,
+    "http://yago-knowledge.org/resource/hasDuration": 24.389068057970857,
+    "http://yago-knowledge.org/resource/hasPages": 7.910945643213315,
+    "http://yago-knowledge.org/resource/isLocatedIn": 17.829594557113243,
+    "http://yago-knowledge.org/resource/redirectedFrom": 131.36011202399078,
+    "http://yago-knowledge.org/resource/wasCreatedOnDate": 35.924370570437866,
+    "http://yago-knowledge.org/resource/wasDestroyedOnDate": 26.51680608564346
+  },
+  "http://yago-knowledge.org/resource/wordnet_artist_109812338": {
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 0.0,
+    "http://www.w3.org/2004/02/skos/core#prefLabel": 0.0,
+    "http://yago-knowledge.org/resource/created": 111.13303917928539,
+    "http://yago-knowledge.org/resource/hasFamilyName": 89.78241872397773,
+    "http://yago-knowledge.org/resource/hasGender": 10.067671521305769,
+    "http://yago-knowledge.org/resource/hasGivenName": 79.14263519526595,
+    "http://yago-knowledge.org/resource/hasMusicalRole": 40.50610884185973,
+    "http://yago-knowledge.org/resource/redirectedFrom": 121.23708631856118,
+    "http://yago-knowledge.org/resource/wasBornOnDate": 92.0851646348798
+  },
+  "http://yago-knowledge.org/resource/wordnet_movie_106613686": {
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 0.0,
+    "http://www.w3.org/2004/02/skos/core#prefLabel": 0.0,
+    "http://yago-knowledge.org/resource/happenedOnDate": 33.84971227971044,
+    "http://yago-knowledge.org/resource/hasDuration": 53.14282845192534,
+    "http://yago-knowledge.org/resource/hasPages": 17.135312116526695,
+    "http://yago-knowledge.org/resource/isLocatedIn": 37.2896304600088,
+    "http://yago-knowledge.org/resource/redirectedFrom": 124.22373067012201,
+    "http://yago-knowledge.org/resource/wasCreatedOnDate": 73.60025817286399,
+    "http://yago-knowledge.org/resource/wasDestroyedOnDate": 30.626209727967193
+  },
+  "http://yago-knowledge.org/resource/wordnet_person_100007846": {
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 0.0,
+    "http://www.w3.org/2004/02/skos/core#prefLabel": 0.0,
+    "http://yago-knowledge.org/resource/actedIn": 120.66213834338411,
+    "http://yago-knowledge.org/resource/diedOnDate": 126.2397726650671,
+    "http://yago-knowledge.org/resource/hasFamilyName": 79.80349396359132,
+    "http://yago-knowledge.org/resource/hasGender": 9.853163768208058,
+    "http://yago-knowledge.org/resource/hasGivenName": 69.71059974858302,
+    "http://yago-knowledge.org/resource/redirectedFrom": 153.30204014706288,
+    "http://yago-knowledge.org/resource/wasBornOnDate": 92.9545811640328
+  }
+}

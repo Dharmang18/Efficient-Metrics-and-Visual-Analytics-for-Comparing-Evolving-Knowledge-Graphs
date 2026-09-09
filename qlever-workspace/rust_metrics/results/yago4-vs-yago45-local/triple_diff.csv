@@ -1,0 +1,8 @@
+measure,value
+added,45568
+deleted,64103
+unchanged,37262
+churn,0.739232
+encoded_ms,30.003
+naive_ms,68.340
+speedup,2.278

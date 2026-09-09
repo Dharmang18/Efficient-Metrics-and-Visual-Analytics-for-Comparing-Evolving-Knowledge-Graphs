@@ -1,0 +1,205 @@
+{
+  "entities": {
+    "http://dbpedia.org/resource/2002_County_Championship": {
+      "inforank": 0.000028777703486862638,
+      "literal_properties": 2065
+    },
+    "http://dbpedia.org/resource/2011_County_Championship": {
+      "inforank": 0.00002937694864421619,
+      "literal_properties": 2108
+    },
+    "http://dbpedia.org/resource/2013_County_Championship": {
+      "inforank": 0.00002742591789934415,
+      "literal_properties": 1968
+    },
+    "http://dbpedia.org/resource/2014_County_Championship": {
+      "inforank": 0.000028694087883510978,
+      "literal_properties": 2059
+    },
+    "http://dbpedia.org/resource/2015_County_Championship": {
+      "inforank": 0.000029349076776432308,
+      "literal_properties": 2106
+    },
+    "http://dbpedia.org/resource/Constituency_election_results_in_the_United_Kingdom_general_election,_1923": {
+      "inforank": 0.00003672118580527024,
+      "literal_properties": 2635
+    },
+    "http://dbpedia.org/resource/Constituency_election_results_in_the_United_Kingdom_general_election,_1929": {
+      "inforank": 0.000045584439760546096,
+      "literal_properties": 3271
+    },
+    "http://dbpedia.org/resource/Folktales_from_Japan": {
+      "inforank": 0.00003601045317678114,
+      "literal_properties": 2584
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_Lancashire": {
+      "inforank": 0.00002658976186582756,
+      "literal_properties": 1908
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_Northumberland": {
+      "inforank": 0.000027189007023181116,
+      "literal_properties": 1951
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_Powys": {
+      "inforank": 0.000027398046031560265,
+      "literal_properties": 1966
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_West_Sussex": {
+      "inforank": 0.000028331753602320457,
+      "literal_properties": 2033
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_Wiltshire_(A–G)": {
+      "inforank": 0.000028206330197292967,
+      "literal_properties": 2024
+    },
+    "http://dbpedia.org/resource/Grade_I_listed_buildings_in_Essex": {
+      "inforank": 0.000026910288345342254,
+      "literal_properties": 1931
+    },
+    "http://dbpedia.org/resource/Grade_I_listed_buildings_in_Wiltshire": {
+      "inforank": 0.00002879163942075458,
+      "literal_properties": 2066
+    },
+    "http://dbpedia.org/resource/List_of_Advanced_Dungeons_&_Dragons_2nd_edition_monsters": {
+      "inforank": 0.0000450688102065442,
+      "literal_properties": 3234
+    },
+    "http://dbpedia.org/resource/List_of_Chopped_episodes": {
+      "inforank": 0.00006332488360498975,
+      "literal_properties": 4544
+    },
+    "http://dbpedia.org/resource/List_of_Debaters_radio_episodes": {
+      "inforank": 0.000031718185538062646,
+      "literal_properties": 2276
+    },
+    "http://dbpedia.org/resource/List_of_Doraemon_episodes_(1979_anime)": {
+      "inforank": 0.00006088609517389969,
+      "literal_properties": 4369
+    },
+    "http://dbpedia.org/resource/List_of_Epic_Meal_Time_episodes": {
+      "inforank": 0.00002732836636210055,
+      "literal_properties": 1961
+    },
+    "http://dbpedia.org/resource/List_of_Game_Grumps_serials": {
+      "inforank": 0.000030296720281084443,
+      "literal_properties": 2174
+    },
+    "http://dbpedia.org/resource/List_of_Gunsmoke_television_episodes": {
+      "inforank": 0.00003872796028571006,
+      "literal_properties": 2779
+    },
+    "http://dbpedia.org/resource/List_of_Hamtaro_episodes": {
+      "inforank": 0.000026506146262475903,
+      "literal_properties": 1902
+    },
+    "http://dbpedia.org/resource/List_of_Horizon_episodes": {
+      "inforank": 0.00003967560379036219,
+      "literal_properties": 2847
+    },
+    "http://dbpedia.org/resource/List_of_Humble_Bundles": {
+      "inforank": 0.00003811477919446456,
+      "literal_properties": 2735
+    },
+    "http://dbpedia.org/resource/List_of_Intel_Xeon_microprocessors": {
+      "inforank": 0.0000458770943722769,
+      "literal_properties": 3292
+    },
+    "http://dbpedia.org/resource/List_of_Maryland_state_highways": {
+      "inforank": 0.00003332081793563611,
+      "literal_properties": 2391
+    },
+    "http://dbpedia.org/resource/List_of_Nova_episodes": {
+      "inforank": 0.000034951322200993456,
+      "literal_properties": 2508
+    },
+    "http://dbpedia.org/resource/List_of_Prisoner_episodes": {
+      "inforank": 0.00003235923849709203,
+      "literal_properties": 2322
+    },
+    "http://dbpedia.org/resource/List_of_State_Routes_in_Ohio": {
+      "inforank": 0.000038184458863924273,
+      "literal_properties": 2740
+    },
+    "http://dbpedia.org/resource/List_of_The_Nerdist_Podcast_episodes": {
+      "inforank": 0.000031648505868602927,
+      "literal_properties": 2271
+    },
+    "http://dbpedia.org/resource/List_of_The_Woodwright's_Shop_episodes": {
+      "inforank": 0.000028777703486862638,
+      "literal_properties": 2065
+    },
+    "http://dbpedia.org/resource/List_of_colors_(compact)": {
+      "inforank": 0.0000303803358844361,
+      "literal_properties": 2180
+    },
+    "http://dbpedia.org/resource/List_of_law_clerks_of_the_Supreme_Court_of_the_United_States": {
+      "inforank": 0.00004020516927825603,
+      "literal_properties": 2885
+    },
+    "http://dbpedia.org/resource/List_of_licensed_and_localized_editions_of_Monopoly:_Europe": {
+      "inforank": 0.000029042486230809556,
+      "literal_properties": 2084
+    },
+    "http://dbpedia.org/resource/List_of_multiplanetary_systems": {
+      "inforank": 0.000029530243917027567,
+      "literal_properties": 2119
+    },
+    "http://dbpedia.org/resource/List_of_public_art_in_Israel": {
+      "inforank": 0.00003169031367027876,
+      "literal_properties": 2274
+    },
+    "http://dbpedia.org/resource/List_of_shipwrecks_in_1814": {
+      "inforank": 0.00002852685667680766,
+      "literal_properties": 2047
+    },
+    "http://dbpedia.org/resource/List_of_shipwrecks_in_1815": {
+      "inforank": 0.00003032459214886833,
+      "literal_properties": 2176
+    },
+    "http://dbpedia.org/resource/List_of_shipwrecks_in_1817": {
+      "inforank": 0.000029335140842540365,
+      "literal_properties": 2105
+    },
+    "http://dbpedia.org/resource/List_of_shipwrecks_in_1818": {
+      "inforank": 0.000028735895685186808,
+      "literal_properties": 2062
+    },
+    "http://dbpedia.org/resource/List_of_shipwrecks_in_1819": {
+      "inforank": 0.000030101617206597238,
+      "literal_properties": 2160
+    },
+    "http://dbpedia.org/resource/List_of_shipwrecks_in_1820": {
+      "inforank": 0.000028401433271780173,
+      "literal_properties": 2038
+    },
+    "http://dbpedia.org/resource/List_of_shipwrecks_in_1821": {
+      "inforank": 0.00003178786520752236,
+      "literal_properties": 2281
+    },
+    "http://dbpedia.org/resource/List_of_shipwrecks_in_1822": {
+      "inforank": 0.000032122327620929,
+      "literal_properties": 2305
+    },
+    "http://dbpedia.org/resource/List_of_shipwrecks_in_1833": {
+      "inforank": 0.000035954709441213365,
+      "literal_properties": 2580
+    },
+    "http://dbpedia.org/resource/List_of_shipwrecks_in_1834": {
+      "inforank": 0.000028889190957998184,
+      "literal_properties": 2073
+    },
+    "http://dbpedia.org/resource/List_of_shipwrecks_in_1835": {
+      "inforank": 0.000026394658791340356,
+      "literal_properties": 1894
+    },
+    "http://dbpedia.org/resource/National_Register_of_Historic_Places_listings_in_Los_Angeles,_California": {
+      "inforank": 0.00002826207393286074,
+      "literal_properties": 2028
+    },
+    "http://dbpedia.org/resource/Results_of_the_Queensland_state_election,_2015": {
+      "inforank": 0.00002926546117308065,
+      "literal_properties": 2100
+    }
+  },
+  "total_literal_properties": 71756942.0
+}

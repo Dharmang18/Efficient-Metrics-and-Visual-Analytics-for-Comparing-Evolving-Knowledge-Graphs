@@ -1,0 +1,138 @@
+==========================================================
+phase 2   label=dbpedia-2025   endpoint=http://100.113.106.12:9010
+started 2026-08-29 13:10:50
+==========================================================
+
+########## descriptive pass ##########
+
+---- inforank (descriptive, parallelism 2) ---- 13:10:50
+Endpoint:  http://100.113.106.12:9010
+Snapshot:  dbpedia-2025  (results/dbpedia-2025/)
+
+Metric 5: Entity informativeness   IR(v) = dtp(v) / Σ dtp(u)
+Scope:    whole graph, top 50 entities
+
+  Σ dtp(u) = 131395306 literal properties in scope
+
+  literals         IR(v)   entity
+      4893      3.724e-5   List_of_state_highways_in_Louisiana
+      4069      3.097e-5   List_of_Crayon_Shin-chan_episodes_(1992–2001)
+      4016      3.056e-5   List_of_My_Favorite_Murder_episodes
+      3937      2.996e-5   2015–16_Haitian_parliamentary_election
+      3374      2.568e-5   List_of_Chopped_episodes_(season_41–present)
+      3340      2.542e-5   Constituency_election_results_in_England_in_the_1923_United_Kingdom_general_election
+      3249      2.473e-5   Results_of_the_2020_Queensland_state_election
+      3225      2.454e-5   2022–23_EuroLeague_regular_season
+      3179      2.419e-5   2023–24_EuroLeague_regular_season
+      3150      2.397e-5   List_of_state_routes_in_Pennsylvania
+      3147      2.395e-5   Results_of_the_2018_Victorian_state_election_(Legislative_Assembly)
+      3139      2.389e-5   2024–25_EuroLeague_regular_season
+      3070      2.336e-5   Results_of_the_2024_Queensland_state_election
+      3003      2.285e-5   List_of_Advanced_Dungeons_&_Dragons_2nd_edition_monsters
+      2995      2.279e-5   Folktales_from_Japan
+      2919      2.222e-5   2021–22_EuroLeague_regular_season
+      2874      2.187e-5   List_of_state_highways_in_Maryland
+      2807      2.136e-5   Results_of_the_2022_Victorian_state_election_(Legislative_Assembly)
+      2803      2.133e-5   2020–21_EuroLeague_regular_season
+      2793      2.126e-5   Grade_II*_listed_buildings_in_North_Yorkshire_(district)
+
+Results saved to:
+  results/dbpedia-2025/entity_informativeness.json
+  results/dbpedia-2025/entity_informativeness.csv
+   ok in 15s
+
+---- diversity (descriptive, parallelism 2) ---- 13:11:05
+Endpoint:  http://100.113.106.12:9010
+Snapshot:  dbpedia-2025  (results/dbpedia-2025/)
+
+Metric 6: Object diversity   OD(p,t) = distinct objects of p within class t
+Scope:    top 8 classes
+
+  skipping Image (14246647 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+
+SPARQL query failed against http://100.113.106.12:9010
+  error: HTTP 500 from the endpoint: Tried to allocate 752.4 MB, but only 347.1 MB were available
+  query: SELECT ?p (COUNT(DISTINCT ?o) AS ?d) (COUNT(*) AS ?n) WHERE { ?s a <http://dbpedia.org/ontology/Species> . ?s ?p ?o } GROUP BY ?p
+
+   FAILED after 16s
+
+---- entropy-pagerank (descriptive, parallelism 1) ---- 13:11:21
+Endpoint:  http://100.113.106.12:9010
+Snapshot:  dbpedia-2025  (results/dbpedia-2025/)
+
+Metric 7: Entropy-weighted PageRank (own variant)
+          PR(v) = (1-d) + d · Σ w(p) · PR(u)/outdeg(u),  d = 0.85
+Scope:    up to 200000 entity-to-entity edges
+
+  fetched 200000 entity-to-entity edges
+  254 distinct predicates -> 254 entropy queries
+  362720 nodes, 200000 edges
+
+  entropy-weighted run:
+  converged after 3 iterations
+  unweighted baseline run:
+  converged after 3 iterations
+
+  predicate weights w(p) = EntF(p)/max EntF:
+    1.000   name
+    0.999   thumbnail
+    0.923   report
+    0.887   title
+    0.867   caption
+    0.864   website
+    0.827   url
+    0.823   successor
+
+  Top 20 by entropy-weighted PageRank (Δrank vs the unweighted baseline):
+      score     rank     Δrank   node
+    45.1808        1        +0   3x4.svg?width=300
+    24.2259        2        +0   ACC_Shield.svg?width=300
+    11.3599        3        +0   river_basins.jpg?width=300
+     9.7676        4        +0   1901-94_Michigan_Wolverines_Primary_Logo.png?width=300
+     8.0479        5        +0   Acanthocephala_LifeCycle_lg.jpg?width=300
+     7.6658        6        +0   1rightarrow_blue.svg?width=300
+     6.0097        7        +0   37_Lyndon_Johnson_3x4_(cropped).jpg?width=300
+     5.7550        8        +0   600px_Vertical_Red_HEX-FB090B_Black.svg?width=300
+     5.5002        9        +0   ACU_Wildcats_wordmark.svg?width=300
+     5.4365       10        +0   1uparrow_green.svg?width=300
+     5.2454       11        +0   Abbottabad_Thumb.png?width=300
+     4.9907       12        +0   2024_Swimming_at_the_2024_Summer_Olympics_-_2024-07-27_-_3.jpg?width=300
+     4.8633       13        +0   A_forest_of_national_flags_welcomed_a_delegation_of_US_Senators_who_came_to_Israel_(FL62043414).jpg?width=300
+     4.6085       14        +0   1944_portrait_of_FDR_(1)(small).jpg?width=300
+     4.2263       15        +0   AB-Kreuz-grün.svg?width=300
+     4.0990       16        +1   898-8987765_bharatiya-janata-party-bjp-symbol-1.png?width=300
+     3.9716       17        +1   ..Maharashtra_Flag(INDIA).png?width=300
+     3.9716       18        +1   12.BNF-VADM.svg?width=300
+     3.8442       19        +1   600px_trisection_vertical_HEX-FF0000_HEX-F6DE14_HEX-0434B1.svg?width=300
+     3.7168       20        +2   1rightarrow.png?width=300
+
+Results saved to:
+  results/dbpedia-2025/entropy_pagerank.json
+  results/dbpedia-2025/entropy_pagerank.csv
+   ok in 17s
+
+########## pinned pass ##########
+
+---- diversity (pinned, parallelism 2) ---- 13:11:38
+Endpoint:  http://100.113.106.12:9010
+Snapshot:  dbpedia-2025  (results/dbpedia-2025/)
+
+Metric 6: Object diversity   OD(p,t) = distinct objects of p within class t
+Scope:    top 8 classes
+
+  pinned Person                 -> http://dbpedia.org/ontology/Person (2125575 entities)
+      NOTE: Person also matches http://schema.org/Person (2125571 entities) -- using the most populated
+      NOTE: Person also matches http://xmlns.com/foaf/0.1/Person (2125569 entities) -- using the most populated
+  pinned Species                -> http://dbpedia.org/ontology/Species (2151923 entities)
+  pinned Star                   -> http://dbpedia.org/ontology/Star (5522 entities)
+  pinned Galaxy                 -> http://dbpedia.org/ontology/Galaxy (2846 entities)
+  pinned ChemicalCompound       -> http://dbpedia.org/ontology/ChemicalCompound (14395 entities)
+  pinned AdministrativeRegion   -> http://dbpedia.org/ontology/AdministrativeRegion (57382 entities)
+
+SPARQL query failed against http://100.113.106.12:9010
+  error: HTTP 500 from the endpoint: Tried to allocate 374.6 kB, but only 59520 B were available
+  query: SELECT ?p (COUNT(DISTINCT ?o) AS ?d) (COUNT(*) AS ?n) WHERE { ?s a <http://dbpedia.org/ontology/Species> . ?s ?p ?o } GROUP BY ?p
+
+   FAILED after 10s
+
+phase 2 done 2026-08-29 13:11:48 — 2 failure(s)

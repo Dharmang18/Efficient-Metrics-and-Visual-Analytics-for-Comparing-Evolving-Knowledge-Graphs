@@ -1,0 +1,20 @@
+{
+  "added": 3328,
+  "benchmark": {
+    "encoded_bytes": 92964,
+    "encoded_ms": 2.296209,
+    "naive_bytes": 1526485,
+    "naive_ms": 3.799334,
+    "speedup": 1.6546115793466536
+  },
+  "churn": 2.0209476309226932,
+  "deleted": 724,
+  "scope": "Person",
+  "subject_window": 500,
+  "subjects_compared": 497,
+  "triples_v1": 2005,
+  "triples_v2": 5742,
+  "unchanged": 531,
+  "version_1": "https://qlever.dev/api/yago-4",
+  "version_2": "http://localhost:9004"
+}

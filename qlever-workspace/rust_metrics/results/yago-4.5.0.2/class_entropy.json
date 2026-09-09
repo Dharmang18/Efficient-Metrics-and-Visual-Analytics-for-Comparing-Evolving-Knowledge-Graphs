@@ -1,0 +1,58 @@
+{
+  "http://schema.org/Person": {
+    "distinct_objects": 19222972.0,
+    "distinct_predicates": 28.0,
+    "object_entropy": 19.83870022925335,
+    "predicate_entropy": 3.185069933853743,
+    "triples": 33211484.0
+  },
+  "http://schema.org/Taxon": {
+    "distinct_objects": 128513976.0,
+    "distinct_predicates": 11.0,
+    "object_entropy": 22.54843818742257,
+    "predicate_entropy": 1.5985862602384806,
+    "triples": 182756273.0
+  },
+  "http://yago-knowledge.org/resource/Chemical_compound": {
+    "distinct_objects": 2653122.0,
+    "distinct_predicates": 13.0,
+    "object_entropy": 7.258741520171913,
+    "predicate_entropy": 0.6095597057987305,
+    "triples": 42245341.0
+  },
+  "http://yago-knowledge.org/resource/Galaxy": {
+    "distinct_objects": 42125871.0,
+    "distinct_predicates": 15.0,
+    "object_entropy": 19.24343405047548,
+    "predicate_entropy": 1.4149803255942288,
+    "triples": 66913874.0
+  },
+  "http://yago-knowledge.org/resource/Politician": {
+    "distinct_objects": 15860141.0,
+    "distinct_predicates": 37.0,
+    "object_entropy": 18.815848544300337,
+    "predicate_entropy": 2.7842050460028673,
+    "triples": 31700284.0
+  },
+  "http://yago-knowledge.org/resource/Researcher": {
+    "distinct_objects": 9674567.0,
+    "distinct_predicates": 37.0,
+    "object_entropy": 14.766402336989222,
+    "predicate_entropy": 2.5036649660160784,
+    "triples": 21954934.0
+  },
+  "http://yago-knowledge.org/resource/Review_article": {
+    "distinct_objects": 7679671.0,
+    "distinct_predicates": 16.0,
+    "object_entropy": 10.593685415662321,
+    "predicate_entropy": 0.8913854645785584,
+    "triples": 108186659.0
+  },
+  "http://yago-knowledge.org/resource/Star": {
+    "distinct_objects": 72731197.0,
+    "distinct_predicates": 15.0,
+    "object_entropy": 22.10705677433677,
+    "predicate_entropy": 1.5877053895033981,
+    "triples": 107348052.0
+  }
+}

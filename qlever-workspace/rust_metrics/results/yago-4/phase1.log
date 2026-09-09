@@ -1,0 +1,245 @@
+==========================================================
+phase 1   label=yago-4   endpoint=http://100.113.106.12:9005
+started 2026-08-20 16:48:15
+==========================================================
+
+########## descriptive pass ##########
+
+---- population (descriptive, parallelism 2) ---- 16:48:15
+Endpoint:  http://100.113.106.12:9005
+Snapshot:  yago-4  (results/yago-4/)
+
+Metric 1: Class population & share   share(t) = |E_t| / |E|
+Scope:    top 20 classes
+
+  |E| = 73260634 typed entities
+
+      population    share   class
+        66905417   91.33 %   Thing
+        35894732   49.00 %   CreativeWork
+        32689220   44.62 %   Article
+        32127570   43.85 %   ScholarlyArticle
+        14252116   19.45 %   Place
+         6433965    8.78 %   Person
+         6422652    8.77 %   Human
+         6335654    8.65 %   GeoCoordinates
+         3247696    4.43 %   BioChemEntity
+         3030004    4.14 %   Landform
+         2726502    3.72 %   Taxon
+         2144509    2.93 %   Organization
+         1942524    2.65 %   AdministrativeArea
+         1707848    2.33 %   Star
+         1377500    1.88 %   BodyOfWater
+
+Results saved to:
+  results/yago-4/class_population.json
+  results/yago-4/class_population.csv
+   ok in 4s
+
+---- entf (descriptive, parallelism 2) ---- 16:48:19
+Endpoint:  http://100.113.106.12:9005
+Snapshot:  yago-4  (results/yago-4/)
+
+Metric 2: Property entropy per type   EntF(p,t) = -Σ P(o) log2 P(o)
+Scope:    top 8 classes, top 10 predicates each
+
+  skipping Thing (66905417 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping CreativeWork (35894732 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping Article (32689220 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping ScholarlyArticle (32127570 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping Place (14252116 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  8 classes x top 10 predicates = 73 histogram queries
+
+  most informative (type, predicate) pairs:
+       bits      distinct  predicate                    class
+     25.667      57457277  label                        Person
+     25.666      57413678  label                        Human
+     25.267      40421000  label                        Taxon
+     23.454      12224767  label                        Organization
+     23.281      15208914  label                        AdministrativeArea
+     23.197       9618438  sameAs                       Person
+     23.195       9599561  sameAs                       Human
+     23.020       8503294  sameAs                       Person
+     23.017       8489656  sameAs                       Human
+     22.845       7536047  sameAs                       Taxon
+     22.714       6881689  sameAs                       AdministrativeArea
+     22.518       7780065  label                        Landform
+     22.501       5936957  sameAs                       Organization
+     22.450       6602680  label                        BioChemEntity
+     22.441       6179153  alternateName                Person
+
+Results saved to:
+  results/yago-4/property_entropy.json
+  results/yago-4/property_entropy.csv
+   ok in 235s
+
+---- entetimp (descriptive, parallelism 2) ---- 16:52:14
+Endpoint:  http://100.113.106.12:9005
+Snapshot:  yago-4  (results/yago-4/)
+
+Metric 3: Entropy-weighted type importance
+          EntETImp(p,t) = EntF(p,t)^0.75 · ETImp(p,t)^0.25
+Scope:    top 8 classes, top 10 predicates each
+
+  computing EntF (metric 2) ...
+  skipping Thing (66905417 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping CreativeWork (35894732 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping Article (32689220 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping ScholarlyArticle (32127570 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping Place (14252116 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  8 classes x top 10 predicates = 73 histogram queries
+  computing ETImp (Knowgly baseline) ...
+  skipping Thing (66905417 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping CreativeWork (35894732 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping Article (32689220 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping ScholarlyArticle (32127570 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping Place (14252116 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+
+      EntETImp       EntF          ETImp  predicate                  class
+        438.29     22.441        3264931  alternateName              Person
+        438.05     22.438        3259256  alternateName              Human
+        437.27     23.197        2928745  sameAs                     Person
+        436.95     23.195        2921299  sameAs                     Human
+        338.25     19.825        1680042  encodesBioChemEntity       BioChemEntity
+        337.69     19.800        1675153  isEncodedByBioChemEntity   BioChemEntity
+        327.53     22.501        1010194  sameAs                     Organization
+        321.41     22.714         910617  sameAs                     AdministrativeArea
+        321.30     22.845         893869  sameAs                     Taxon
+        317.92     18.945        1502438  alternateName              BioChemEntity
+        315.19     20.826        1092616  alternateName              Organization
+        310.98     14.908        2822866  birthDate                  Person
+        310.71     14.908        2813059  birthDate                  Human
+        302.00     20.354         986413  alternateName              AdministrativeArea
+        296.60     19.125        1106349  url                        Organization
+
+Results saved to:
+  results/yago-4/ent_etimp.json
+  results/yago-4/ent_etimp.csv
+   ok in 271s
+
+---- classentropy (descriptive, parallelism 1) ---- 16:56:45
+Endpoint:  http://100.113.106.12:9005
+Snapshot:  yago-4  (results/yago-4/)
+
+Metric 4: Class entropy   H(t) = -Σ P(o) log2 P(o) over all values of class t
+Scope:    top 8 classes
+
+  skipping Thing (66905417 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping CreativeWork (35894732 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping Article (32689220 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping ScholarlyArticle (32127570 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  skipping Place (14252116 entities > QLEVER_MAX_CLASS_SIZE 10000000)
+  H(objects)    H(preds)         triples  class
+      20.645       3.211       180983829  Person
+      20.642       3.211       180842678  Human
+      19.466       2.973        45391408  Organization
+      18.073       2.050       106300022  Taxon
+      16.397       2.308        78198513  AdministrativeArea
+      16.316       2.549        51301072  Landform
+      15.471       1.585        19066339  GeoCoordinates
+      13.493       2.476        53613232  BioChemEntity
+
+Results saved to:
+  results/yago-4/class_entropy.json
+  results/yago-4/class_entropy.csv
+   ok in 315s
+
+########## pinned pass ##########
+
+---- entf (pinned, parallelism 2) ---- 17:02:00
+Endpoint:  http://100.113.106.12:9005
+Snapshot:  yago-4  (results/yago-4/)
+
+Metric 2: Property entropy per type   EntF(p,t) = -Σ P(o) log2 P(o)
+Scope:    top 8 classes, top 10 predicates each
+
+  pinned Person                 -> http://schema.org/Person (6433965 entities)
+  pinned Taxon                  -> http://bioschemas.org/Taxon (2726502 entities)
+  pinned Star                   -> http://yago-knowledge.org/resource/Star (1707848 entities)
+  pinned Galaxy                 -> http://yago-knowledge.org/resource/Galaxy (1336587 entities)
+  pinned AdministrativeArea     -> http://schema.org/AdministrativeArea (1942524 entities)
+  pinned Chemical_compound      -> http://yago-knowledge.org/resource/Chemical_compound (1015809 entities)
+  6 classes x top 10 predicates = 55 histogram queries
+
+  most informative (type, predicate) pairs:
+       bits      distinct  predicate                    class
+     25.667      57457277  label                        Person
+     25.267      40421000  label                        Taxon
+     23.281      15208914  label                        AdministrativeArea
+     23.197       9618438  sameAs                       Person
+     23.020       8503294  sameAs                       Person
+     22.845       7536047  sameAs                       Taxon
+     22.714       6881689  sameAs                       AdministrativeArea
+     22.441       6179153  alternateName                Person
+     21.631       3247519  sameAs                       Taxon
+     21.386       2740432  label                        Galaxy
+     21.303       2586892  sameAs                       AdministrativeArea
+     21.232       2462838  label                        Star
+     20.709       1713609  sameAs                       Star
+     20.354       1392922  alternateName                AdministrativeArea
+     20.352       1338189  sameAs                       Galaxy
+
+Results saved to:
+  results/yago-4/property_entropy_pinned.json
+  results/yago-4/property_entropy_pinned.csv
+   ok in 201s
+
+---- entetimp (pinned, parallelism 2) ---- 17:05:21
+Endpoint:  http://100.113.106.12:9005
+Snapshot:  yago-4  (results/yago-4/)
+
+Metric 3: Entropy-weighted type importance
+          EntETImp(p,t) = EntF(p,t)^0.75 · ETImp(p,t)^0.25
+Scope:    top 8 classes, top 10 predicates each
+
+  computing EntF (metric 2) ...
+  pinned Person                 -> http://schema.org/Person (6433965 entities)
+  pinned Taxon                  -> http://bioschemas.org/Taxon (2726502 entities)
+  pinned Star                   -> http://yago-knowledge.org/resource/Star (1707848 entities)
+  pinned Galaxy                 -> http://yago-knowledge.org/resource/Galaxy (1336587 entities)
+  pinned AdministrativeArea     -> http://schema.org/AdministrativeArea (1942524 entities)
+  pinned Chemical_compound      -> http://yago-knowledge.org/resource/Chemical_compound (1015809 entities)
+  6 classes x top 10 predicates = 55 histogram queries
+  computing ETImp (Knowgly baseline) ...
+  pinned Person                 -> http://schema.org/Person (6433965 entities)
+  pinned Taxon                  -> http://bioschemas.org/Taxon (2726502 entities)
+  pinned Star                   -> http://yago-knowledge.org/resource/Star (1707848 entities)
+  pinned Galaxy                 -> http://yago-knowledge.org/resource/Galaxy (1336587 entities)
+  pinned AdministrativeArea     -> http://schema.org/AdministrativeArea (1942524 entities)
+  pinned Chemical_compound      -> http://yago-knowledge.org/resource/Chemical_compound (1015809 entities)
+
+      EntETImp       EntF          ETImp  predicate                  class
+        438.29     22.441        3264931  alternateName              Person
+        437.27     23.197        2928745  sameAs                     Person
+        321.41     22.714         910617  sameAs                     AdministrativeArea
+        321.30     22.845         893869  sameAs                     Taxon
+        310.98     14.908        2822866  birthDate                  Person
+        302.00     20.354         986413  alternateName              AdministrativeArea
+        294.33     19.381        1030860  geo                        AdministrativeArea
+        272.75     19.645         730015  alternateName              Taxon
+        256.98     15.993        1066092  comment                    Person
+        256.74     17.462         815950  image                      Taxon
+        248.58     10.917        2934383  givenName                  Person
+        229.86     19.892         354671  containsPlace              AdministrativeArea
+        199.70     13.065         713065  location                   AdministrativeArea
+        197.53     17.926         264265  alternateName              Chemical_compound
+        177.67      7.032        2864841  hasOccupation              Person
+
+Results saved to:
+  results/yago-4/ent_etimp_pinned.json
+  results/yago-4/ent_etimp_pinned.csv
+   ok in 207s
+
+---- classentropy (pinned, parallelism 1) ---- 17:08:48
+Endpoint:  http://100.113.106.12:9005
+Snapshot:  yago-4  (results/yago-4/)
+
+Metric 4: Class entropy   H(t) = -Σ P(o) log2 P(o) over all values of class t
+Scope:    top 8 classes
+
+  pinned Person                 -> http://schema.org/Person (6433965 entities)
+  pinned Taxon                  -> http://bioschemas.org/Taxon (2726502 entities)
+  pinned Star                   -> http://yago-knowledge.org/resource/Star (1707848 entities)
+  pinned Galaxy                 -> http://yago-knowledge.org/resource/Galaxy (1336587 entities)
+  pinned AdministrativeArea     -> http://schema.org/AdministrativeArea (1942524 entities)
+  pinned Chemical_compound      -> http://yago-knowledge.org/resource/Chemical_compound (1015809 entities)

@@ -1,0 +1,205 @@
+{
+  "entities": {
+    "http://yago-knowledge.org/resource/4th_millennium": {
+      "inforank": 0.0000240405999578547,
+      "literal_properties": 1198
+    },
+    "http://yago-knowledge.org/resource/5th_millennium": {
+      "inforank": 0.000023037236019713854,
+      "literal_properties": 1148
+    },
+    "http://yago-knowledge.org/resource/Afghan_detainees_at_Guantanamo_Bay": {
+      "inforank": 0.000010455052235427629,
+      "literal_properties": 521
+    },
+    "http://yago-knowledge.org/resource/Algeria": {
+      "inforank": 0.000014227700642837215,
+      "literal_properties": 709
+    },
+    "http://yago-knowledge.org/resource/Auschwitz_concentration_camp": {
+      "inforank": 0.00001175942535501073,
+      "literal_properties": 586
+    },
+    "http://yago-knowledge.org/resource/Australia": {
+      "inforank": 8.86973721316509e-6,
+      "literal_properties": 442
+    },
+    "http://yago-knowledge.org/resource/Azerbaijan": {
+      "inforank": 8.368055244094667e-6,
+      "literal_properties": 417
+    },
+    "http://yago-knowledge.org/resource/Barack_Obama": {
+      "inforank": 8.227584292754948e-6,
+      "literal_properties": 410
+    },
+    "http://yago-knowledge.org/resource/China": {
+      "inforank": 0.000012080501815215801,
+      "literal_properties": 602
+    },
+    "http://yago-knowledge.org/resource/Concepci%C3%B3n,_Chile": {
+      "inforank": 0.000010113908496459741,
+      "literal_properties": 504
+    },
+    "http://yago-knowledge.org/resource/Czech_Republic": {
+      "inforank": 8.08711334141523e-6,
+      "literal_properties": 403
+    },
+    "http://yago-knowledge.org/resource/Democratic_Republic_of_the_Congo": {
+      "inforank": 8.067046062652411e-6,
+      "literal_properties": 402
+    },
+    "http://yago-knowledge.org/resource/English_language": {
+      "inforank": 9.612226527389317e-6,
+      "literal_properties": 479
+    },
+    "http://yago-knowledge.org/resource/French_language": {
+      "inforank": 8.307853407806215e-6,
+      "literal_properties": 414
+    },
+    "http://yago-knowledge.org/resource/Fyodor_Dostoyevsky": {
+      "inforank": 8.227584292754948e-6,
+      "literal_properties": 410
+    },
+    "http://yago-knowledge.org/resource/German_language": {
+      "inforank": 7.986776947601144e-6,
+      "literal_properties": 398
+    },
+    "http://yago-knowledge.org/resource/Germany": {
+      "inforank": 8.689131704299738e-6,
+      "literal_properties": 433
+    },
+    "http://yago-knowledge.org/resource/Gospel_of_Matthew": {
+      "inforank": 0.000020388355223022016,
+      "literal_properties": 1016
+    },
+    "http://yago-knowledge.org/resource/Habeas_corpus_petitions_of_Guantanamo_Bay_detainees": {
+      "inforank": 0.000022154275754149907,
+      "literal_properties": 1104
+    },
+    "http://yago-knowledge.org/resource/Hangul": {
+      "inforank": 0.00014713328788897384,
+      "literal_properties": 7332
+    },
+    "http://yago-knowledge.org/resource/Ho_Chi_Minh_City": {
+      "inforank": 7.986776947601144e-6,
+      "literal_properties": 398
+    },
+    "http://yago-knowledge.org/resource/Insulated_glazing": {
+      "inforank": 9.351351903472697e-6,
+      "literal_properties": 466
+    },
+    "http://yago-knowledge.org/resource/Iran": {
+      "inforank": 8.127247898940864e-6,
+      "literal_properties": 405
+    },
+    "http://yago-knowledge.org/resource/Israel": {
+      "inforank": 8.006844226363961e-6,
+      "literal_properties": 399
+    },
+    "http://yago-knowledge.org/resource/Jesus": {
+      "inforank": 9.913235708831571e-6,
+      "literal_properties": 494
+    },
+    "http://yago-knowledge.org/resource/Mexico_City": {
+      "inforank": 8.08711334141523e-6,
+      "literal_properties": 403
+    },
+    "http://yago-knowledge.org/resource/Muhammad": {
+      "inforank": 8.689131704299738e-6,
+      "literal_properties": 433
+    },
+    "http://yago-knowledge.org/resource/Mustafa_Kemal_Atat%C3%BCrk": {
+      "inforank": 8.689131704299738e-6,
+      "literal_properties": 433
+    },
+    "http://yago-knowledge.org/resource/Netherlands": {
+      "inforank": 8.207517013992131e-6,
+      "literal_properties": 409
+    },
+    "http://yago-knowledge.org/resource/New_York_City": {
+      "inforank": 8.307853407806215e-6,
+      "literal_properties": 414
+    },
+    "http://yago-knowledge.org/resource/North_Korea": {
+      "inforank": 8.287786129043398e-6,
+      "literal_properties": 413
+    },
+    "http://yago-knowledge.org/resource/Polycephaly": {
+      "inforank": 8.247651571517765e-6,
+      "literal_properties": 411
+    },
+    "http://yago-knowledge.org/resource/Pyotr_Ilyich_Tchaikovsky": {
+      "inforank": 9.371419182235513e-6,
+      "literal_properties": 467
+    },
+    "http://yago-knowledge.org/resource/Russia": {
+      "inforank": 8.4081898016203e-6,
+      "literal_properties": 419
+    },
+    "http://yago-knowledge.org/resource/S%C3%A3o_Paulo": {
+      "inforank": 8.107180620178047e-6,
+      "literal_properties": 404
+    },
+    "http://yago-knowledge.org/resource/Saudi_detainees_at_Guantanamo_Bay": {
+      "inforank": 0.000014267835200362848,
+      "literal_properties": 711
+    },
+    "http://yago-knowledge.org/resource/September_11_attacks": {
+      "inforank": 0.000010073773938934107,
+      "literal_properties": 502
+    },
+    "http://yago-knowledge.org/resource/South_Africa": {
+      "inforank": 8.729266261825372e-6,
+      "literal_properties": 435
+    },
+    "http://yago-knowledge.org/resource/South_Korea": {
+      "inforank": 8.107180620178047e-6,
+      "literal_properties": 404
+    },
+    "http://yago-knowledge.org/resource/Soviet_Union": {
+      "inforank": 0.000010535321350478896,
+      "literal_properties": 525
+    },
+    "http://yago-knowledge.org/resource/Spain": {
+      "inforank": 8.247651571517765e-6,
+      "literal_properties": 411
+    },
+    "http://yago-knowledge.org/resource/Spanish_language": {
+      "inforank": 8.167382456466497e-6,
+      "literal_properties": 407
+    },
+    "http://yago-knowledge.org/resource/Switzerland": {
+      "inforank": 8.528593474197202e-6,
+      "literal_properties": 425
+    },
+    "http://yago-knowledge.org/resource/Taiwan": {
+      "inforank": 0.000010796195974395516,
+      "literal_properties": 538
+    },
+    "http://yago-knowledge.org/resource/Taymyrsky_Dolgano-Nenetsky_District": {
+      "inforank": 8.207517013992131e-6,
+      "literal_properties": 409
+    },
+    "http://yago-knowledge.org/resource/United_Kingdom": {
+      "inforank": 0.000010635657744292982,
+      "literal_properties": 530
+    },
+    "http://yago-knowledge.org/resource/United_States": {
+      "inforank": 0.000016214361240356094,
+      "literal_properties": 808
+    },
+    "http://yago-knowledge.org/resource/Washington,_D.C.": {
+      "inforank": 0.000010515254071716079,
+      "literal_properties": 524
+    },
+    "http://yago-knowledge.org/resource/Wikipedia": {
+      "inforank": 9.832966593780304e-6,
+      "literal_properties": 490
+    },
+    "http://yago-knowledge.org/resource/Yemeni_detainees_at_Guantanamo_Bay": {
+      "inforank": 0.000013705951395003974,
+      "literal_properties": 683
+    }
+  },
+  "total_literal_properties": 49832367.0
+}

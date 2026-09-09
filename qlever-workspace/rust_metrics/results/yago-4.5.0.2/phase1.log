@@ -1,0 +1,239 @@
+==========================================================
+phase 1   label=yago-4.5.0.2   endpoint=http://localhost:9004
+started 2026-08-20 15:38:49
+==========================================================
+
+########## descriptive pass ##########
+
+---- population (descriptive, parallelism 2) ---- 15:38:49
+Endpoint:  http://localhost:9004
+Snapshot:  yago-4.5.0.2  (results/yago-4.5.0.2/)
+
+Metric 1: Class population & share   share(t) = |E_t| / |E|
+Scope:    top 20 classes
+
+  |E| = 49687891 typed entities
+
+      population    share   class
+         3506350    7.06 %   Taxon
+         3278545    6.60 %   Star
+         2982308    6.00 %   Person
+         2094595    4.22 %   Galaxy
+         2059990    4.15 %   Review_article
+         1917474    3.86 %   Researcher
+         1114868    2.24 %   Chemical_compound
+          750961    1.51 %   Politician
+          668266    1.34 %   Painting__u0028_object_u0029_
+          647958    1.30 %   Street
+          588555    1.18 %   Villages_of_China
+          578773    1.16 %   Encyclopedia_Article_Q13433827
+          526631    1.06 %   Mountain
+          518290    1.04 %   AdministrativeArea
+          512925    1.03 %   Editorial
+
+Results saved to:
+  results/yago-4.5.0.2/class_population.json
+  results/yago-4.5.0.2/class_population.csv
+   ok in 1s
+
+---- entf (descriptive, parallelism 2) ---- 15:38:50
+Endpoint:  http://localhost:9004
+Snapshot:  yago-4.5.0.2  (results/yago-4.5.0.2/)
+
+Metric 2: Property entropy per type   EntF(p,t) = -Σ P(o) log2 P(o)
+Scope:    top 8 classes, top 10 predicates each
+
+  8 classes x top 10 predicates = 80 histogram queries
+
+  most informative (type, predicate) pairs:
+       bits      distinct  predicate                    class
+     26.738     112073637  label                        Taxon
+     26.040      68978270  label                        Star
+     25.238      39588665  label                        Galaxy
+     23.270      10265597  label                        Politician
+     23.154       9336100  mainEntityOfPage             Taxon
+     23.027      11025477  label                        Person
+     22.412       5847428  label                        Researcher
+     22.269       5091742  label                        Review_article
+     21.742       3506350  sameAs                       Taxon
+     21.645       3278544  sameAs                       Star
+     21.508       2982308  sameAs                       Person
+     20.998       2094594  sameAs                       Galaxy
+     20.974       2059989  sameAs                       Review_article
+     20.871       1917473  sameAs                       Researcher
+     20.755       1769421  mainEntityOfPage             Politician
+
+Results saved to:
+  results/yago-4.5.0.2/property_entropy.json
+  results/yago-4.5.0.2/property_entropy.csv
+   ok in 355s
+
+---- entetimp (descriptive, parallelism 2) ---- 15:44:45
+Endpoint:  http://localhost:9004
+Snapshot:  yago-4.5.0.2  (results/yago-4.5.0.2/)
+
+Metric 3: Entropy-weighted type importance
+          EntETImp(p,t) = EntF(p,t)^0.75 · ETImp(p,t)^0.25
+Scope:    top 8 classes, top 10 predicates each
+
+  computing EntF (metric 2) ...
+  8 classes x top 10 predicates = 80 histogram queries
+  computing ETImp (Knowgly baseline) ...
+
+      EntETImp       EntF          ETImp  predicate                  class
+        357.56     23.154        1316729  mainEntityOfPage           Taxon
+        354.63     20.447        1850090  sameAs                     Taxon
+        323.06     19.735        1417259  mainEntityOfPage           Person
+        322.66     19.554        1449738  children                   Person
+        319.63     19.792        1346096  alternateName              Person
+        291.92     19.975         911205  alternateName              Taxon
+        282.65     19.307         886914  alternateName              Researcher
+        276.94     18.104         991284  comment                    Person
+        274.97     17.822        1009928  image                      Taxon
+        269.29     17.162        1040352  author                     Review_article
+        256.09     17.982         739737  sameAs                     Researcher
+        254.80     13.975        1544605  birthDate                  Person
+        254.42     18.030         714769  mainEntityOfPage           Galaxy
+        251.59     14.011        1456577  radialVelocity             Star
+        250.08     15.312        1089528  radialVelocity             Galaxy
+
+Results saved to:
+  results/yago-4.5.0.2/ent_etimp.json
+  results/yago-4.5.0.2/ent_etimp.csv
+   ok in 2529s
+
+---- classentropy (descriptive, parallelism 1) ---- 16:26:54
+Endpoint:  http://localhost:9004
+Snapshot:  yago-4.5.0.2  (results/yago-4.5.0.2/)
+
+Metric 4: Class entropy   H(t) = -Σ P(o) log2 P(o) over all values of class t
+Scope:    top 8 classes
+
+  H(objects)    H(preds)         triples  class
+      22.548       1.599       182756273  Taxon
+      22.107       1.588       107348052  Star
+      19.839       3.185        33211484  Person
+      19.243       1.415        66913874  Galaxy
+      18.816       2.784        31700284  Politician
+      14.766       2.504        21954934  Researcher
+      10.594       0.891       108186659  Review_article
+       7.259       0.610        42245341  Chemical_compound
+
+Results saved to:
+  results/yago-4.5.0.2/class_entropy.json
+  results/yago-4.5.0.2/class_entropy.csv
+   ok in 409s
+
+########## pinned pass ##########
+
+---- entf (pinned, parallelism 2) ---- 16:33:43
+Endpoint:  http://localhost:9004
+Snapshot:  yago-4.5.0.2  (results/yago-4.5.0.2/)
+
+Metric 2: Property entropy per type   EntF(p,t) = -Σ P(o) log2 P(o)
+Scope:    top 8 classes, top 10 predicates each
+
+  pinned Person                 -> http://schema.org/Person (2982308 entities)
+  pinned Taxon                  -> http://schema.org/Taxon (3506350 entities)
+  pinned Star                   -> http://yago-knowledge.org/resource/Star (3278545 entities)
+  pinned Galaxy                 -> http://yago-knowledge.org/resource/Galaxy (2094595 entities)
+  pinned AdministrativeArea     -> http://schema.org/AdministrativeArea (518290 entities)
+  pinned Chemical_compound      -> http://yago-knowledge.org/resource/Chemical_compound (1114868 entities)
+  6 classes x top 10 predicates = 60 histogram queries
+
+  most informative (type, predicate) pairs:
+       bits      distinct  predicate                    class
+     26.738     112073637  label                        Taxon
+     26.040      68978270  label                        Star
+     25.238      39588665  label                        Galaxy
+     23.154       9336100  mainEntityOfPage             Taxon
+     23.027      11025477  label                        Person
+     21.742       3506350  sameAs                       Taxon
+     21.645       3278544  sameAs                       Star
+     21.508       2982308  sameAs                       Person
+     20.998       2094594  sameAs                       Galaxy
+     20.851       2224568  label                        AdministrativeArea
+     20.447       1431408  sameAs                       Taxon
+     20.307       1296965  mainEntityOfPage             AdministrativeArea
+     20.234       1234051  label                        Chemical_compound
+     20.088       1114867  sameAs                       Chemical_compound
+     19.975       1061374  alternateName                Taxon
+
+Results saved to:
+  results/yago-4.5.0.2/property_entropy_pinned.json
+  results/yago-4.5.0.2/property_entropy_pinned.csv
+   ok in 392s
+
+---- entetimp (pinned, parallelism 2) ---- 16:40:15
+Endpoint:  http://localhost:9004
+Snapshot:  yago-4.5.0.2  (results/yago-4.5.0.2/)
+
+Metric 3: Entropy-weighted type importance
+          EntETImp(p,t) = EntF(p,t)^0.75 · ETImp(p,t)^0.25
+Scope:    top 8 classes, top 10 predicates each
+
+  computing EntF (metric 2) ...
+  pinned Person                 -> http://schema.org/Person (2982308 entities)
+  pinned Taxon                  -> http://schema.org/Taxon (3506350 entities)
+  pinned Star                   -> http://yago-knowledge.org/resource/Star (3278545 entities)
+  pinned Galaxy                 -> http://yago-knowledge.org/resource/Galaxy (2094595 entities)
+  pinned AdministrativeArea     -> http://schema.org/AdministrativeArea (518290 entities)
+  pinned Chemical_compound      -> http://yago-knowledge.org/resource/Chemical_compound (1114868 entities)
+  6 classes x top 10 predicates = 60 histogram queries
+  computing ETImp (Knowgly baseline) ...
+  pinned Person                 -> http://schema.org/Person (2982308 entities)
+  pinned Taxon                  -> http://schema.org/Taxon (3506350 entities)
+  pinned Star                   -> http://yago-knowledge.org/resource/Star (3278545 entities)
+  pinned Galaxy                 -> http://yago-knowledge.org/resource/Galaxy (2094595 entities)
+  pinned AdministrativeArea     -> http://schema.org/AdministrativeArea (518290 entities)
+  pinned Chemical_compound      -> http://yago-knowledge.org/resource/Chemical_compound (1114868 entities)
+
+      EntETImp       EntF          ETImp  predicate                  class
+        357.56     23.154        1316729  mainEntityOfPage           Taxon
+        354.63     20.447        1850090  sameAs                     Taxon
+        323.06     19.735        1417259  mainEntityOfPage           Person
+        322.66     19.554        1449738  children                   Person
+        319.63     19.792        1346096  alternateName              Person
+        291.92     19.975         911205  alternateName              Taxon
+        276.94     18.104         991284  comment                    Person
+        274.97     17.822        1009928  image                      Taxon
+        254.80     13.975        1544605  birthDate                  Person
+        254.42     18.030         714769  mainEntityOfPage           Galaxy
+        251.59     14.011        1456577  radialVelocity             Star
+        250.08     15.312        1089528  radialVelocity             Galaxy
+        249.41     15.756         989275  distanceFromEarth          Star
+        247.95     13.410        1567560  deathDate                  Person
+        216.35     15.449         594218  parallax                   Star
+
+Results saved to:
+  results/yago-4.5.0.2/ent_etimp_pinned.json
+  results/yago-4.5.0.2/ent_etimp_pinned.csv
+   ok in 200s
+
+---- classentropy (pinned, parallelism 1) ---- 16:43:35
+Endpoint:  http://localhost:9004
+Snapshot:  yago-4.5.0.2  (results/yago-4.5.0.2/)
+
+Metric 4: Class entropy   H(t) = -Σ P(o) log2 P(o) over all values of class t
+Scope:    top 8 classes
+
+  pinned Person                 -> http://schema.org/Person (2982308 entities)
+  pinned Taxon                  -> http://schema.org/Taxon (3506350 entities)
+  pinned Star                   -> http://yago-knowledge.org/resource/Star (3278545 entities)
+  pinned Galaxy                 -> http://yago-knowledge.org/resource/Galaxy (2094595 entities)
+  pinned AdministrativeArea     -> http://schema.org/AdministrativeArea (518290 entities)
+  pinned Chemical_compound      -> http://yago-knowledge.org/resource/Chemical_compound (1114868 entities)
+  H(objects)    H(preds)         triples  class
+      22.548       1.599       182756273  Taxon
+      22.107       1.588       107348052  Star
+      19.839       3.185        33211484  Person
+      19.243       1.415        66913874  Galaxy
+      17.152       2.714         9544071  AdministrativeArea
+       7.259       0.610        42245341  Chemical_compound
+
+Results saved to:
+  results/yago-4.5.0.2/class_entropy_pinned.json
+  results/yago-4.5.0.2/class_entropy_pinned.csv
+   ok in 169s
+
+phase 1 done 2026-08-20 16:46:24 — 0 failure(s)

@@ -1,0 +1,85 @@
+{
+  "classes": {
+    "http://dbpedia.org/ontology/Agent": {
+      "population": 1529882,
+      "share": 0.3032938868880301
+    },
+    "http://dbpedia.org/ontology/CareerStation": {
+      "population": 977023,
+      "share": 0.19369147636811457
+    },
+    "http://dbpedia.org/ontology/Location": {
+      "population": 839987,
+      "share": 0.16652455690400683
+    },
+    "http://dbpedia.org/ontology/Person": {
+      "population": 1243400,
+      "share": 0.24649980779993272
+    },
+    "http://dbpedia.org/ontology/Place": {
+      "population": 839987,
+      "share": 0.16652455690400683
+    },
+    "http://dbpedia.org/ontology/PopulatedPlace": {
+      "population": 513642,
+      "share": 0.10182777406946521
+    },
+    "http://dbpedia.org/ontology/Settlement": {
+      "population": 478906,
+      "share": 0.09494148058085457
+    },
+    "http://dbpedia.org/ontology/TimePeriod": {
+      "population": 1127706,
+      "share": 0.22356386702173953
+    },
+    "http://dbpedia.org/ontology/Work": {
+      "population": 496070,
+      "share": 0.09834418502116184
+    },
+    "http://schema.org/CreativeWork": {
+      "population": 496070,
+      "share": 0.09834418502116184
+    },
+    "http://schema.org/Person": {
+      "population": 1243400,
+      "share": 0.24649980779993272
+    },
+    "http://schema.org/Place": {
+      "population": 839987,
+      "share": 0.16652455690400683
+    },
+    "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent": {
+      "population": 1529882,
+      "share": 0.3032938868880301
+    },
+    "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#NaturalPerson": {
+      "population": 1243400,
+      "share": 0.24649980779993272
+    },
+    "http://www.w3.org/2002/07/owl#Thing": {
+      "population": 5044223,
+      "share": 1.0
+    },
+    "http://www.wikidata.org/entity/Q215627": {
+      "population": 1243400,
+      "share": 0.24649980779993272
+    },
+    "http://www.wikidata.org/entity/Q24229398": {
+      "population": 1529882,
+      "share": 0.3032938868880301
+    },
+    "http://www.wikidata.org/entity/Q386724": {
+      "population": 496070,
+      "share": 0.09834418502116184
+    },
+    "http://www.wikidata.org/entity/Q5": {
+      "population": 1243400,
+      "share": 0.24649980779993272
+    },
+    "http://xmlns.com/foaf/0.1/Person": {
+      "population": 1243400,
+      "share": 0.24649980779993272
+    }
+  },
+  "total_entities": 5044223.0
+}

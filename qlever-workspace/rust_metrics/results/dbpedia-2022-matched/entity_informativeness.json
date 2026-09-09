@@ -1,0 +1,205 @@
+{
+  "entities": {
+    "http://dbpedia.org/resource/2011_County_Championship": {
+      "inforank": 0.00001703354082766411,
+      "literal_properties": 2108
+    },
+    "http://dbpedia.org/resource/2016–17_EuroLeague_Regular_Season": {
+      "inforank": 0.000019659679712384623,
+      "literal_properties": 2433
+    },
+    "http://dbpedia.org/resource/2017–18_EuroLeague_Regular_Season": {
+      "inforank": 0.000019780886122448645,
+      "literal_properties": 2448
+    },
+    "http://dbpedia.org/resource/2018_New_Hampshire_House_of_Representatives_election": {
+      "inforank": 0.000019675840567059825,
+      "literal_properties": 2435
+    },
+    "http://dbpedia.org/resource/2018–19_EuroLeague_Regular_Season": {
+      "inforank": 0.000019926333814525476,
+      "literal_properties": 2466
+    },
+    "http://dbpedia.org/resource/2019–20_EuroLeague_Regular_Season": {
+      "inforank": 0.00002139697158996896,
+      "literal_properties": 2648
+    },
+    "http://dbpedia.org/resource/2020–21_EuroLeague_Regular_Season": {
+      "inforank": 0.000022649437827297203,
+      "literal_properties": 2803
+    },
+    "http://dbpedia.org/resource/2021–22_EuroLeague_Regular_Season": {
+      "inforank": 0.000023578686971121384,
+      "literal_properties": 2918
+    },
+    "http://dbpedia.org/resource/2022_Isabela_local_elections": {
+      "inforank": 0.000020588928856208803,
+      "literal_properties": 2548
+    },
+    "http://dbpedia.org/resource/Carlow–Kilkenny_(Dáil_constituency)": {
+      "inforank": 0.000017041621255001715,
+      "literal_properties": 2109
+    },
+    "http://dbpedia.org/resource/Constituency_election_results_in_England_in_the_1923_United_Kingdom_general_election": {
+      "inforank": 0.00002699670773492685,
+      "literal_properties": 3341
+    },
+    "http://dbpedia.org/resource/Constituency_election_results_in_the_1929_United_Kingdom_general_election": {
+      "inforank": 0.000021534338854708186,
+      "literal_properties": 2665
+    },
+    "http://dbpedia.org/resource/Folktales_from_Japan": {
+      "inforank": 0.000024200879876116704,
+      "literal_properties": 2995
+    },
+    "http://dbpedia.org/resource/List_of_Advanced_Dungeons_&_Dragons_2nd_edition_monsters": {
+      "inforank": 0.000027740107049986194,
+      "literal_properties": 3433
+    },
+    "http://dbpedia.org/resource/List_of_Chopped_episodes_(seasons_1–20)": {
+      "inforank": 0.000020483883300819983,
+      "literal_properties": 2535
+    },
+    "http://dbpedia.org/resource/List_of_Crayon_Shin-chan_episodes_(1992–2001)": {
+      "inforank": 0.00003248331789715832,
+      "literal_properties": 4020
+    },
+    "http://dbpedia.org/resource/List_of_Crayon_Shin-chan_episodes_(2002–2011)": {
+      "inforank": 0.000019708162276410234,
+      "literal_properties": 2439
+    },
+    "http://dbpedia.org/resource/List_of_Crayon_Shin-chan_episodes_(2012–present)": {
+      "inforank": 0.000018431454757069184,
+      "literal_properties": 2281
+    },
+    "http://dbpedia.org/resource/List_of_Debaters_radio_episodes": {
+      "inforank": 0.00001932838219154296,
+      "literal_properties": 2392
+    },
+    "http://dbpedia.org/resource/List_of_Evolve_Wrestling_events": {
+      "inforank": 0.000017914307407462683,
+      "literal_properties": 2217
+    },
+    "http://dbpedia.org/resource/List_of_Extra_Credits_episodes": {
+      "inforank": 0.000021049513214452094,
+      "literal_properties": 2605
+    },
+    "http://dbpedia.org/resource/List_of_Nova_episodes": {
+      "inforank": 0.000023724134663198214,
+      "literal_properties": 2936
+    },
+    "http://dbpedia.org/resource/List_of_The_Woodwright's_Shop_episodes": {
+      "inforank": 0.000017397160057856183,
+      "literal_properties": 2153
+    },
+    "http://dbpedia.org/resource/List_of_Yo-kai_Watch_(2014_TV_series)_episodes": {
+      "inforank": 0.000018989004243363694,
+      "literal_properties": 2350
+    },
+    "http://dbpedia.org/resource/List_of_historic_places_in_Saskatchewan": {
+      "inforank": 0.000018019352962851504,
+      "literal_properties": 2230
+    },
+    "http://dbpedia.org/resource/List_of_public_art_in_Israel": {
+      "inforank": 0.000018382972193043576,
+      "literal_properties": 2275
+    },
+    "http://dbpedia.org/resource/List_of_shipwrecks_in_1815": {
+      "inforank": 0.00001753452732259541,
+      "literal_properties": 2170
+    },
+    "http://dbpedia.org/resource/List_of_shipwrecks_in_1819": {
+      "inforank": 0.000017566849031945817,
+      "literal_properties": 2174
+    },
+    "http://dbpedia.org/resource/List_of_state_highways_in_Arkansas": {
+      "inforank": 0.000019360703900893364,
+      "literal_properties": 2396
+    },
+    "http://dbpedia.org/resource/List_of_state_highways_in_Iowa": {
+      "inforank": 0.000021550499709383392,
+      "literal_properties": 2667
+    },
+    "http://dbpedia.org/resource/List_of_state_highways_in_Louisiana": {
+      "inforank": 0.00003789720421335137,
+      "literal_properties": 4690
+    },
+    "http://dbpedia.org/resource/List_of_state_highways_in_Maryland": {
+      "inforank": 0.000023174665604241305,
+      "literal_properties": 2868
+    },
+    "http://dbpedia.org/resource/List_of_state_routes_in_Georgia_(U.S._state)": {
+      "inforank": 0.000018423374329731582,
+      "literal_properties": 2280
+    },
+    "http://dbpedia.org/resource/List_of_state_routes_in_Ohio": {
+      "inforank": 0.000022245416460417124,
+      "literal_properties": 2753
+    },
+    "http://dbpedia.org/resource/List_of_state_routes_in_Pennsylvania": {
+      "inforank": 0.000025493748250132957,
+      "literal_properties": 3155
+    },
+    "http://dbpedia.org/resource/National_Register_of_Historic_Places_listings_in_Cleveland": {
+      "inforank": 0.000017308275357142565,
+      "literal_properties": 2142
+    },
+    "http://dbpedia.org/resource/National_Register_of_Historic_Places_listings_in_Los_Angeles": {
+      "inforank": 0.000018956682534013285,
+      "literal_properties": 2346
+    },
+    "http://dbpedia.org/resource/Results_of_the_1988_Victorian_state_election_(Legislative_Assembly)": {
+      "inforank": 0.000017413320912531386,
+      "literal_properties": 2155
+    },
+    "http://dbpedia.org/resource/Results_of_the_1998_Queensland_state_election": {
+      "inforank": 0.000017631492450646628,
+      "literal_properties": 2182
+    },
+    "http://dbpedia.org/resource/Results_of_the_1999_New_South_Wales_state_election_(Legislative_Assembly)": {
+      "inforank": 0.000020718215693610427,
+      "literal_properties": 2564
+    },
+    "http://dbpedia.org/resource/Results_of_the_2006_Victorian_state_election_(Legislative_Assembly)": {
+      "inforank": 0.000019522312447645397,
+      "literal_properties": 2416
+    },
+    "http://dbpedia.org/resource/Results_of_the_2007_New_South_Wales_state_election_(Legislative_Assembly)": {
+      "inforank": 0.000018132478945577925,
+      "literal_properties": 2244
+    },
+    "http://dbpedia.org/resource/Results_of_the_2010_Victorian_state_election_(Legislative_Assembly)": {
+      "inforank": 0.000019199095354141335,
+      "literal_properties": 2376
+    },
+    "http://dbpedia.org/resource/Results_of_the_2012_Queensland_state_election": {
+      "inforank": 0.000021881797230225056,
+      "literal_properties": 2708
+    },
+    "http://dbpedia.org/resource/Results_of_the_2015_New_South_Wales_state_election_(Legislative_Assembly)": {
+      "inforank": 0.000018665787149859628,
+      "literal_properties": 2310
+    },
+    "http://dbpedia.org/resource/Results_of_the_2018_Victorian_state_election_(Legislative_Assembly)": {
+      "inforank": 0.000025485667822795356,
+      "literal_properties": 3154
+    },
+    "http://dbpedia.org/resource/Results_of_the_2019_New_South_Wales_state_election_(Legislative_Assembly)": {
+      "inforank": 0.000021671706119447415,
+      "literal_properties": 2682
+    },
+    "http://dbpedia.org/resource/Results_of_the_2020_New_Hampshire_House_of_Representatives_election": {
+      "inforank": 0.000019805127404461453,
+      "literal_properties": 2451
+    },
+    "http://dbpedia.org/resource/Results_of_the_2020_Queensland_state_election": {
+      "inforank": 0.00002605937816376507,
+      "literal_properties": 3225
+    },
+    "http://dbpedia.org/resource/Results_of_the_2022_Victorian_state_election_(Legislative_Assembly)": {
+      "inforank": 0.000021041432787114493,
+      "literal_properties": 2604
+    }
+  },
+  "total_literal_properties": 123755831.0
+}

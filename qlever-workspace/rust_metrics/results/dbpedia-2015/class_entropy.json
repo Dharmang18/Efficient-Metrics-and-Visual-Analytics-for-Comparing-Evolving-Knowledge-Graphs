@@ -1,0 +1,58 @@
+{
+  "http://dbpedia.org/ontology/Agent": {
+    "distinct_objects": 9139464.0,
+    "distinct_predicates": 23503.0,
+    "object_entropy": 14.982769020371002,
+    "predicate_entropy": 6.185936594660902,
+    "triples": 62247295.0
+  },
+  "http://dbpedia.org/ontology/Person": {
+    "distinct_objects": 7241895.0,
+    "distinct_predicates": 12370.0,
+    "object_entropy": 14.491526471003192,
+    "predicate_entropy": 5.670030564938095,
+    "triples": 52022691.0
+  },
+  "http://schema.org/Person": {
+    "distinct_objects": 7241895.0,
+    "distinct_predicates": 12370.0,
+    "object_entropy": 14.491526471003192,
+    "predicate_entropy": 5.670030564938095,
+    "triples": 52022691.0
+  },
+  "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent": {
+    "distinct_objects": 9139464.0,
+    "distinct_predicates": 23503.0,
+    "object_entropy": 14.982769020371002,
+    "predicate_entropy": 6.185936594660902,
+    "triples": 62247295.0
+  },
+  "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#NaturalPerson": {
+    "distinct_objects": 7241895.0,
+    "distinct_predicates": 12370.0,
+    "object_entropy": 14.491526471003192,
+    "predicate_entropy": 5.670030564938095,
+    "triples": 52022691.0
+  },
+  "http://www.w3.org/2002/07/owl#Thing": {
+    "distinct_objects": 18994479.0,
+    "distinct_predicates": 50589.0,
+    "object_entropy": 16.062858428554048,
+    "predicate_entropy": 7.659705147017753,
+    "triples": 142007744.0
+  },
+  "http://www.wikidata.org/entity/Q215627": {
+    "distinct_objects": 7241895.0,
+    "distinct_predicates": 12370.0,
+    "object_entropy": 14.491526471003192,
+    "predicate_entropy": 5.670030564938095,
+    "triples": 52022691.0
+  },
+  "http://xmlns.com/foaf/0.1/Person": {
+    "distinct_objects": 7241895.0,
+    "distinct_predicates": 12370.0,
+    "object_entropy": 14.491526471003192,
+    "predicate_entropy": 5.670030564938095,
+    "triples": 52022691.0
+  }
+}

@@ -1,0 +1,102 @@
+==========================================================
+phase 2   label=yago-4.5.0.2   endpoint=http://100.113.106.12:9006
+started 2026-08-29 13:11:48
+==========================================================
+
+########## descriptive pass ##########
+
+---- inforank (descriptive, parallelism 2) ---- 13:11:48
+Endpoint:  http://100.113.106.12:9006
+Snapshot:  yago-4.5.0.2  (results/yago-4.5.0.2/)
+
+Metric 5: Entity informativeness   IR(v) = dtp(v) / Σ dtp(u)
+Scope:    whole graph, top 50 entities
+
+   FAILED after 25s
+
+---- diversity (descriptive, parallelism 2) ---- 13:12:13
+Endpoint:  http://100.113.106.12:9006
+Snapshot:  yago-4.5.0.2  (results/yago-4.5.0.2/)
+
+Metric 6: Object diversity   OD(p,t) = distinct objects of p within class t
+Scope:    top 8 classes
+
+
+SPARQL query failed against http://100.113.106.12:9006
+  error: HTTP 500 from the endpoint: Tried to allocate 375 kB, but only 309 kB were available
+  query: SELECT ?p (COUNT(DISTINCT ?o) AS ?d) (COUNT(*) AS ?n) WHERE { ?s a <http://yago-knowledge.org/resource/Review_article> . ?s ?p ?o } GROUP BY ?p
+
+   FAILED after 21s
+
+---- entropy-pagerank (descriptive, parallelism 1) ---- 13:12:34
+Endpoint:  http://100.113.106.12:9006
+Snapshot:  yago-4.5.0.2  (results/yago-4.5.0.2/)
+
+Metric 7: Entropy-weighted PageRank (own variant)
+          PR(v) = (1-d) + d · Σ w(p) · PR(u)/outdeg(u),  d = 0.85
+Scope:    up to 200000 entity-to-entity edges
+
+  fetched 200000 entity-to-entity edges
+  2 distinct predicates -> 2 entropy queries
+  200004 nodes, 200000 edges
+
+  entropy-weighted run:
+  converged after 3 iterations
+  unweighted baseline run:
+  converged after 3 iterations
+
+  predicate weights w(p) = EntF(p)/max EntF:
+    1.000   type
+    0.789   path
+
+  Top 20 by entropy-weighted PageRank (Δrank vs the unweighted baseline):
+      score     rank     Δrank   node
+  25499.5125        1        +0   AdministrativeArea
+     0.3513        2        +0   about
+     0.3513        3        +0   actor
+     0.2506        4        +0   address
+     0.1500        5        +0   CreativeWork_property_19
+     0.1500        6        +0   Event_property_105
+     0.1500        7        +0   Movie_property_86
+     0.1500        8        +0   TVSeries_property_67
+     0.1500        9        +0   Organization_property_165
+     0.1500       10        +0   03_Ajabshir_Recruit_Training_Centre
+     0.1500       11        +0   1016_Km_Q12061633
+     0.1500       12        +0   1024_Km_Q18774909
+     0.1500       13        +0   1035_Km_Q12061632
+     0.1500       14        +0   1050_Km_Q12061637
+     0.1500       15        +0   1055_Km_Q12061638
+     0.1500       16        +0   1060_Km_Q18774916
+     0.1500       17        +0   108_Mile_Ranch
+     0.1500       18        +0   10_De_Abril_Q20250431
+     0.1500       19        +0   10_De_Marzo_Q20128887
+     0.1500       20        +0   10_DOL
+
+Results saved to:
+  results/yago-4.5.0.2/entropy_pagerank.json
+  results/yago-4.5.0.2/entropy_pagerank.csv
+   ok in 4s
+
+########## pinned pass ##########
+
+---- diversity (pinned, parallelism 2) ---- 13:12:38
+Endpoint:  http://100.113.106.12:9006
+Snapshot:  yago-4.5.0.2  (results/yago-4.5.0.2/)
+
+Metric 6: Object diversity   OD(p,t) = distinct objects of p within class t
+Scope:    top 8 classes
+
+  pinned Person                 -> http://schema.org/Person (2982308 entities)
+  pinned Taxon                  -> http://schema.org/Taxon (3506350 entities)
+  pinned Star                   -> http://yago-knowledge.org/resource/Star (3278545 entities)
+  pinned Galaxy                 -> http://yago-knowledge.org/resource/Galaxy (2094595 entities)
+  pinned AdministrativeArea     -> http://schema.org/AdministrativeArea (518290 entities)
+  pinned Chemical_compound      -> http://yago-knowledge.org/resource/Chemical_compound (1114868 entities)
+
+SPARQL query failed against http://100.113.106.12:9006
+  error: HTTP 500 from the endpoint: Tried to allocate 1.3 MB, but only 1.1 MB were available
+  query: SELECT ?p (COUNT(DISTINCT ?o) AS ?d) (COUNT(*) AS ?n) WHERE { ?s a <http://schema.org/Taxon> . ?s ?p ?o } GROUP BY ?p
+
+   FAILED after 54s
+
+phase 2 done 2026-08-29 13:13:32 — 3 failure(s)
