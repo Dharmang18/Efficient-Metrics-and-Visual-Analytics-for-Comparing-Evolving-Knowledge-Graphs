@@ -4,7 +4,7 @@ Local SPARQL endpoint serving the pre-built **YAGO 4.5.0.2** index (~1.3B triple
 
 ## Locations
 - Workspace: `~/thesis/qlever-workspace`  (moved OFF the iCloud-synced Desktop on purpose — do NOT move it back to Desktop/Documents, iCloud will corrupt it)
-- Index:     `~/thesis/qlever-workspace/yago`  (~41.6 GB, 28 files)
+- Index:     `~/yago`  (~39 GB, 28 files) — moved out of the thesis folder 2026-09-09
 - Python venv: `~/thesis/qlever-workspace/.venv`  (Python 3.12)
 - Engine tools (no sudo, user-space): `~/.local/bin/{colima,limactl,docker}`
 - Endpoint:  http://localhost:9004   |  Access token: `yago-4.5.0.2`
@@ -18,7 +18,7 @@ source ~/thesis/qlever-workspace/.venv/bin/activate
 ## Start everything (e.g. after a reboot)
 ```bash
 colima start                              # boots the Docker VM (remembers 4 CPU / 10G / 80G)
-cd ~/thesis/qlever-workspace/yago
+cd ~/yago
 qlever --qleverfile Qleverfile start      # serves localhost:9004 (auto-skips indexing, index already exists)
 ```
 The container is `--restart=unless-stopped`, so once Colima is up it comes back on its own too.

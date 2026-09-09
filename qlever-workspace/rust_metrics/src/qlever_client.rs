@@ -31,6 +31,10 @@ pub struct SparqlEndpoint {
 const CONNECT_TIMEOUT: Duration = Duration::from_secs(30);
 const READ_TIMEOUT: Duration = Duration::from_secs(900);
 
+/// Attempts per query before giving up (1 initial + 3 retries, backing off
+/// 1s / 2s / 4s). Only transport failures are retried; see `rows`.
+const NETWORK_RETRIES: usize = 4;
+
 fn build_agent() -> ureq::Agent {
     ureq::AgentBuilder::new()
         .timeout_connect(CONNECT_TIMEOUT)
@@ -111,8 +115,22 @@ impl SparqlEndpoint {
     /// `query`, but a failure aborts loudly instead of silently yielding an
     /// empty result — an empty dictionary looks like a real answer otherwise,
     /// and a metric computed from nothing is worse than no metric at all.
+    ///
+    /// Transport failures are retried first. A metric like entropy-pagerank
+    /// issues one query per predicate — 1,211 of them for DBpedia 2022 — and
+    /// over a VPN or a Tailscale tunnel that many back-to-back connections
+    /// reliably trips a transient network error: `os error 49` (EADDRNOTAVAIL,
+    /// the local ephemeral-port range momentarily exhausted) or `os error 60`
+    /// (connect timeout on a tunnel blip). Both clear on their own in a second
+    /// or two, so aborting a 20-minute run on the 900th query — as happened to
+    /// dbpedia-2022-matched — throws away all the work for nothing.
+    ///
+    /// A rejection by the SERVER is not retried: an HTTP status carries
+    /// QLever's own explanation ("Tried to allocate 2.5 GB, but only 770.8 MB
+    /// were available"), which is a real answer about the query and will say
+    /// exactly the same thing the second time.
     pub fn rows(&self, query: &str) -> Vec<HashMap<String, String>> {
-        match self.query(query) {
+        match self.rows_result(query) {
             Ok(rows) => rows,
             Err(e) => {
                 eprintln!("\nSPARQL query failed against {}\n  error: {e}\n  query: {}\n",
@@ -120,6 +138,33 @@ impl SparqlEndpoint {
                 std::process::exit(1);
             }
         }
+    }
+
+    /// `query` with the transport retries, but the caller decides what a
+    /// failure means. `rows` aborts; `triple_diff::window_subjects` prints its
+    /// own hint about whole-graph windows first. Callers that need that hint
+    /// must still go through HERE rather than `query`, or they silently opt out
+    /// of the retry — which is exactly how a `Connection reset by peer` killed
+    /// a churn run six minutes in, one class into eight.
+    pub fn rows_result(&self, query: &str)
+        -> Result<Vec<HashMap<String, String>>, Box<dyn Error>>
+    {
+        let mut backoff = Duration::from_secs(1);
+        for attempt in 1..=NETWORK_RETRIES {
+            match self.query(query) {
+                Ok(rows) => return Ok(rows),
+                // Server said no, with a reason — believe it, do not retry.
+                Err(e) if e.to_string().starts_with("HTTP ") => return Err(e),
+                Err(e) if attempt < NETWORK_RETRIES => {
+                    eprintln!("  network error ({e}) — retry {attempt}/{} in {:?}",
+                              NETWORK_RETRIES - 1, backoff);
+                    std::thread::sleep(backoff);
+                    backoff *= 2;
+                }
+                Err(e) => return Err(e),
+            }
+        }
+        unreachable!("the loop returns on every path")
     }
 
     /// A query returning one row with one number, e.g. `SELECT (COUNT(*) AS ?n)`.

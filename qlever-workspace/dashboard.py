@@ -22,7 +22,11 @@ RESULTS_DIR = Path(__file__).parent / "rust_metrics" / "results"
 
 # Snapshots shown first and selected by default; anything else found on disk
 # (older demo runs) is offered but unselected.
-PREFERRED = ["yago-4", "yago-4.5.0.2", "dbpedia"]
+# The five thesis snapshots, in evolution order. `dbpedia` (the old full 86-file
+# :7013 index) and `olympics`/`yago4-public` remain discoverable but unselected —
+# only these five are the compared set.
+PREFERRED = ["yago-3", "yago-4", "yago-4.5.0.2",
+             "dbpedia-2015", "dbpedia-2016", "dbpedia-2022-matched", "dbpedia-2025"]
 
 # Classes carry different local names in different KGs (CLASS_MAPPING.md pins
 # Taxon->Species and Chemical_compound->ChemicalCompound for DBpedia), so the

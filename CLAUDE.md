@@ -50,7 +50,7 @@ home server. See "The metrics" below.
 | YAGO 4 (2020) | home server | 9005 | 2,489,858,800 |
 | YAGO 4.5.0.2 | home server (+ 39 GB backup on the Mac) | 9006 | 1,305,431,407 |
 | DBpedia 2022 — full `latest-core` (86 files) | TUM VM | 7013 | 526,462,483 |
-| DBpedia 2022 — **matched** subset | TUM VM | 7014 | ~530 M (built 08-27) |
+| DBpedia 2022 — **matched** subset | TUM VM | 7014 | 237,155,678 |
 | DBpedia 2015-10 — matched | home server (planned) | 9008 | — |
 | DBpedia 2025-12-01 — matched | home server (planned) | 9010 | — |
 
@@ -102,7 +102,6 @@ cross-version/cross-KG metric needs exactly two.
 ~/thesis/
   qlever-workspace/        # main workspace (NOT under Desktop/Documents — iCloud corrupts!)
     .venv/                 # Python 3.12 (nicegui, reportlab; NO matplotlib)
-    yago/                  # local 41.6 GB YAGO 4.5.0.2 index (backup copy, still serving)
     rust_metrics/          # cargo project: ETImp + PageRank (+ future metrics)
     dashboard.py           # niceGUI dashboard -> http://localhost:8080
     sparql.py              # small Python SPARQL client (QLEVER_ENDPOINT env var)
@@ -110,7 +109,11 @@ cross-version/cross-KG metric needs exactly two.
   docs/                    # metrics docs, PDF generators, server runbooks
   vpn/                     # TUM CIT OpenVPN profile (git-ignored)
   writing/                 # THE THESIS DOCUMENT (LaTeX, TUM tumthesis class)
-  reference/Knowgly/       # cloned reference repo (Java) — understand, don't copy (git-ignored)
+
+~/                         # BULK DATA — moved out of the thesis folder 2026-09-09
+  yago/                    # 39 GB YAGO 4.5.0.2 index (backup copy; serve with `cd ~/yago`)
+  dbpedia/rdf-input/       # 3.9 GB DBpedia latest-core parts, 86 .ttl.bz2 (not indexed)
+  reference/Knowgly/       # cloned reference repo (Java) — understand, don't copy
 ```
 
 `rust_metrics/results/` is git-ignored — regenerate it, never commit it.
@@ -120,7 +123,7 @@ cross-version/cross-KG metric needs exactly two.
 ```bash
 # local QLever (fallback; primary serving is the Windows server)
 export PATH="$HOME/.local/bin:$PATH"      # colima/limactl/docker live here (no Homebrew!)
-colima start && cd ~/thesis/qlever-workspace/yago && qlever --qleverfile Qleverfile start
+colima start && cd ~/yago && qlever --qleverfile Qleverfile start
 
 # metrics — see `cargo run --release help` for the full list
 source "$HOME/.cargo/env" && cd ~/thesis/qlever-workspace/rust_metrics
@@ -230,8 +233,9 @@ metric 11 reads back). Every metric writes `<dir>/<metric>.{json,csv}`.
     an afternoon.
 16. A failed query must **abort loudly**. An empty dictionary looks exactly like a real answer,
     and a metric computed from nothing is worse than no metric at all.
-17. `reference/` (the Knowgly clone, has its own `.git`) and `vpn/` (TUM CIT profile) are
-    git-ignored: **the GitHub repo is public.**
+17. `vpn/` (TUM CIT profile) is git-ignored: **the GitHub repo is public.** The Knowgly clone
+    now lives at `~/reference/Knowgly/`, outside the thesis folder (moved 2026-09-09) —
+    understand it, don't copy from it.
 
 ## Writing the thesis
 

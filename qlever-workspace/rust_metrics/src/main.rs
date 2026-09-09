@@ -53,7 +53,8 @@ ENTITY-LEVEL
   diversity    [classes=8]                  6  object diversity
 
 GLOBAL
-  entropy-pagerank [edges=200000]           7  entropy-weighted PageRank (own variant)
+  entropy-pagerank [seeds=50] [hops=3] [edges=200000]
+                                            7  entropy-weighted PageRank (own variant)
   shape                                     8  graph size & shape
   churn        [classes=8] [cap=50000]      9  class-level change rate      [2 endpoints]
   diff         [class-IRI|-] [cap=200000]  10  triple diff, integer-encoded [2 endpoints]
@@ -139,7 +140,8 @@ fn main() {
         "diversity" => object_diversity::run(ep, num_arg(2, 8)),
 
         // ---- global
-        "entropy-pagerank" => entropy_pagerank::run(ep, num_arg(2, 200_000)),
+        "entropy-pagerank" => entropy_pagerank::run(ep, num_arg(2, 50), num_arg(3, 3),
+                                                    num_arg(4, 200_000)),
         "shape" => graph_shape::run(ep),
         "churn" => class_churn::run(ep, &endpoint_b(), num_arg(2, 8), num_arg(3, 50_000)),
         "diff" => triple_diff::run(ep, &endpoint_b(),
@@ -182,7 +184,7 @@ fn run_all(ep: &SparqlEndpoint, classes: usize) {
         ("4  class entropy", &|e, c| class_entropy::run(e, c)),
         ("5  entity informativeness", &|e, _| entity_informativeness::run(e, None, 50)),
         ("6  object diversity", &|e, c| object_diversity::run(e, c)),
-        ("7  entropy-weighted PageRank", &|e, _| entropy_pagerank::run(e, 200_000)),
+        ("7  entropy-weighted PageRank", &|e, _| entropy_pagerank::run(e, 50, 3, 200_000)),
         ("8  graph size & shape", &|e, _| graph_shape::run(e)),
     ] {
         println!("{rule}\n{name}\n{rule}");
