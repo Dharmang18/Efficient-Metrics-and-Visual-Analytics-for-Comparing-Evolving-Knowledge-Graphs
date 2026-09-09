@@ -60,6 +60,29 @@ Measured on the 2022 index, specific-only vs specific+transitive:
 sampling: `dbr:Jack_Bauer` carries `FictionalCharacter`, `Agent`, `owl:Thing`, …), so
 it needs no second file.
 
+### Validation: matched vs full 2022 (2026-08-27)
+
+The matched index (`:7014`, 237,155,678 triples) reproduces the full 86-file index
+(`:7013`, 526 M triples) on class populations, confirming the subset loses no typed
+entities — only the extra descriptive triples we meant to drop:
+
+| class | full (:7013) | matched (:7014) | |
+|---|---:|---:|---|
+| Person | 1,922,501 | 1,860,208 | 97% — gap = excluded `sdtypes` + schema.org/foaf type files |
+| Species | 1,975,461 | 1,975,461 | exact |
+| Star / Galaxy / ChemicalCompound | — | — | exact |
+| AdministrativeArea | 0 | 0 | 0 in BOTH — see note below |
+
+Distinct classes 977 → 772 (the 205 missing are the excluded-file classes); distinct
+typed subjects is identical to the specific-only build (7,564,288), as it must be —
+transitive types add types to the same subjects, not new subjects.
+
+**`AdministrativeArea` note:** `dbo:AdministrativeArea` has zero instances in DBpedia
+2022 (full index too), so the pinned class needs a DBpedia synonym — likely
+`dbo:AdministrativeRegion` or `schema:AdministrativeArea`. Add it to `canon()`/the pinned
+list before running per-class metrics on DBpedia, the same way `Species` and
+`ChemicalCompound` are already handled.
+
 ## Class names differ by namespace
 
 The pinned comparison classes are matched by **local name**, not IRI (see

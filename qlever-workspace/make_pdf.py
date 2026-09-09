@@ -367,7 +367,7 @@ code('export PATH="$HOME/.local/bin:$PATH"\n'
      'source ~/thesis/qlever-workspace/.venv/bin/activate')
 P("Start everything (e.g. after a reboot):")
 code("colima start\n"
-     "cd ~/thesis/qlever-workspace/yago\n"
+     "cd ~/yago\n"
      "qlever --qleverfile Qleverfile start        # serves localhost:9004")
 P("Check / stop:")
 code("docker ps                                   # see the running server\n"

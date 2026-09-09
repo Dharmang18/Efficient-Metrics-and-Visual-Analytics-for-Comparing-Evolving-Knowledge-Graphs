@@ -13,8 +13,8 @@
 # The pinned pass exists because "top N by population" selects almost disjoint
 # classes in different versions (YAGO 4 and YAGO 4.5 share only Person in their
 # top 8), so the descriptive numbers cannot be compared across snapshots.
-#   phase 2  ENTITY-LEVEL  inforank, diversity                           (1 endpoint)
-#   phase 3  GLOBAL        entropy-pagerank, shape, churn, diff,
+#   phase 2  ENTITY-LEVEL  inforank, diversity, entropy-pagerank         (1 endpoint)
+#   phase 3  GLOBAL        shape, churn, diff,
 #                          vocab, crosskg, trajectories                  (2 endpoints)
 #
 # Results land in rust_metrics/results/<label>/<metric>.{json,csv}, which is the
@@ -49,9 +49,10 @@ PHASE_CLASSES="${PHASE_CLASSES:-Person,Taxon,Star,Galaxy,AdministrativeArea,Chem
 case "$PHASE" in
   1) METRICS=("$PAR_DEFAULT population 20" "$PAR_DEFAULT entf 8 10" \
               "$PAR_DEFAULT entetimp 8 10" "1 classentropy 8") ;;
-  2) METRICS=("$PAR_DEFAULT inforank 50" "$PAR_DEFAULT diversity 8") ;;
-  3) METRICS=("$PAR_DEFAULT shape" "1 entropy-pagerank 200000" \
-              "$PAR_DEFAULT churn 8 50000" "$PAR_DEFAULT vocab 200000") ;;
+  2) METRICS=("$PAR_DEFAULT inforank 50" "$PAR_DEFAULT diversity 8" \
+              "1 entropy-pagerank 50 3 200000") ;;
+  3) METRICS=("$PAR_DEFAULT shape" "$PAR_DEFAULT churn 8 50000" \
+              "$PAR_DEFAULT vocab 200000") ;;
   *) echo "unknown phase $PHASE"; exit 1 ;;
 esac
 
@@ -72,7 +73,9 @@ run_metrics() {
     set -- $m
     par="$1"; shift
     # metric 1 describes the whole snapshot; pinning classes would be meaningless
-    if [ "$pass" = "pinned" ] && [ "$1" = "population" ]; then continue; fi
+    # population + the whole-graph metrics ignore the pinned class list, so a
+    # pinned pass would just duplicate the descriptive result — skip them.
+    case "$pass:$1" in pinned:population|pinned:inforank|pinned:entropy-pagerank) continue ;; esac
     echo "" | tee -a "$LOG"
     echo "---- $1 ($pass, parallelism $par) ---- $(date '+%T')" | tee -a "$LOG"
     t0=$(date +%s)

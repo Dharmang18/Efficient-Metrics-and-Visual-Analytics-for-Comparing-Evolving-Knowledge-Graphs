@@ -90,9 +90,12 @@ docs/                        # metrics list + PDF generators
 Thesis_Setup_Explained.pdf   # written explanation of the whole setup
 ```
 
-> **Not in the repo** (all git-ignored): the 41 GB YAGO index (`qlever-workspace/yago/`), the
-> Python `.venv/`, the Rust `target/`, the generated `results/`, the Knowgly reference clone
-> (`reference/`, it has its own `.git`) and the TUM VPN profile (`vpn/`).
+> **Not in the repo**: the Python `.venv/`, the Rust `target/` and the generated `results/`
+> are git-ignored, as is the TUM VPN profile (`vpn/`). The bulk data now lives OUTSIDE the
+> thesis folder entirely (moved 2026-09-09): the 39 GB YAGO 4.5.0.2 index at `~/yago/`, the
+> 3.9 GB of downloaded DBpedia parts at `~/dbpedia/rdf-input/`, and the Knowgly reference
+> clone at `~/reference/`. The small files that let anyone rebuild the DBpedia index —
+> `Qleverfile`, `download.sh`, `rdf-input.urls`, `DATASET.md` — stay tracked in the repo.
 
 ## Quick start
 
@@ -100,7 +103,7 @@ Thesis_Setup_Explained.pdf   # written explanation of the whole setup
 # 1. Serve a graph (or point at one that is already running)
 export PATH="$HOME/.local/bin:$PATH"
 colima start
-cd qlever-workspace/yago && qlever --qleverfile Qleverfile start   # -> :9004
+cd ~/yago && qlever --qleverfile Qleverfile start   # -> :9004
 
 # 2. Compute metrics (Rust + SPARQL) -> writes results/
 source "$HOME/.cargo/env"

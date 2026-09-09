@@ -54,6 +54,28 @@ impl Diff {
 /// trips do not dominate, small enough to keep the query text sane.
 const BATCH: usize = 1000;
 
+/// The entity namespace the window is restricted to, from
+/// `QLEVER_SUBJECT_PREFIX`; unset means "every subject", the old behaviour.
+///
+/// A bare lexicographic window silently breaks between two graphs whose IRI
+/// space STARTS differently, and the failure looks like a real result rather
+/// than an error. Measured on yago-3 vs yago-4: YAGO 3's first subjects are
+/// `http://Hus` (relative-IRI artefacts of the 2014 dump) and w3.org vocabulary
+/// terms, while YAGO 4's are `geo:-0.00022,32.75067` coordinate IRIs. `geo:`
+/// sorts before `http:`, so the common upper bound landed inside YAGO 4's
+/// `geo:` block, where YAGO 3 has no subjects at all — the diff reported
+/// "added 56021, deleted 0, unchanged 0, churn 0.0000" off an empty v1 side.
+/// The entities themselves align perfectly (`yago:United_States` has 2,388
+/// triples in YAGO 3 and 1,346 in YAGO 4), so the graphs were always
+/// comparable; only the window was wrong.
+///
+/// Restricting to the shared entity namespace fixes that, and is what an
+/// entity-level triple diff should have been measuring anyway — w3.org
+/// vocabulary and SHACL shape triples are not entity facts.
+fn subject_prefix() -> Option<String> {
+    std::env::var("QLEVER_SUBJECT_PREFIX").ok().filter(|s| !s.trim().is_empty())
+}
+
 /// The lexicographically first `n` subjects — the deterministic window. This
 /// orders a subject LIST, which QLever answers from its index, unlike ordering
 /// every triple of the graph.
@@ -62,8 +84,12 @@ pub fn window_subjects(ep: &SparqlEndpoint, class: Option<&str>, n: usize) -> Ve
         Some(c) => format!("?s a <{c}>"),
         None => "?s ?p ?o".to_string(),
     };
-    let q = format!("SELECT DISTINCT ?s WHERE {{ {pattern} }} ORDER BY ?s LIMIT {n}");
-    match ep.query(&q) {
+    let filter = match subject_prefix() {
+        Some(p) => format!(" FILTER(STRSTARTS(STR(?s), \"{p}\"))"),
+        None => String::new(),
+    };
+    let q = format!("SELECT DISTINCT ?s WHERE {{ {pattern}{filter} }} ORDER BY ?s LIMIT {n}");
+    match ep.rows_result(&q) {
         Ok(rows) => rows.into_iter().filter_map(|mut r| r.remove("s")).collect(),
         Err(e) => {
             eprintln!("\ncould not take a subject window from {}\n  {e}", ep.url());
