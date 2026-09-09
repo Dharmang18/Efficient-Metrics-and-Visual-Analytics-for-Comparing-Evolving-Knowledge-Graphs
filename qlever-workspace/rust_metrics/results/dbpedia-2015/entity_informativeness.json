@@ -1,0 +1,205 @@
+{
+  "entities": {
+    "http://dbpedia.org/resource/2002_County_Championship": {
+      "inforank": 0.000023194654981023515,
+      "literal_properties": 2065
+    },
+    "http://dbpedia.org/resource/2011_County_Championship": {
+      "inforank": 0.00002367764295399398,
+      "literal_properties": 2108
+    },
+    "http://dbpedia.org/resource/2013_County_Championship": {
+      "inforank": 0.000022082659415347328,
+      "literal_properties": 1966
+    },
+    "http://dbpedia.org/resource/2014_County_Championship": {
+      "inforank": 0.000023104796753494125,
+      "literal_properties": 2057
+    },
+    "http://dbpedia.org/resource/2014–15_UEFA_Youth_League_squads": {
+      "inforank": 0.000028159322052022253,
+      "literal_properties": 2507
+    },
+    "http://dbpedia.org/resource/2015_County_Championship": {
+      "inforank": 0.000023655178397111634,
+      "literal_properties": 2106
+    },
+    "http://dbpedia.org/resource/Constituency_election_results_in_the_United_Kingdom_general_election,_1929": {
+      "inforank": 0.00003701035746366706,
+      "literal_properties": 3295
+    },
+    "http://dbpedia.org/resource/Glasgow_City_Council_election,_2012": {
+      "inforank": 0.000020330423978524242,
+      "literal_properties": 1810
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_Cornwall_(A–G)": {
+      "inforank": 0.000019982223346847862,
+      "literal_properties": 1779
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_County_Durham": {
+      "inforank": 0.000018881460059612847,
+      "literal_properties": 1681
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_Greater_Manchester": {
+      "inforank": 0.000019117337906877494,
+      "literal_properties": 1702
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_Lancashire": {
+      "inforank": 0.000021206541696935785,
+      "literal_properties": 1888
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_Northumberland": {
+      "inforank": 0.000021790620175876812,
+      "literal_properties": 1940
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_Powys": {
+      "inforank": 0.00002202649802314146,
+      "literal_properties": 1961
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_West_Dorset": {
+      "inforank": 0.000020083313852818423,
+      "literal_properties": 1788
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_West_Sussex": {
+      "inforank": 0.000022790292957141266,
+      "literal_properties": 2029
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_Wiltshire_(A–G)": {
+      "inforank": 0.000022621808780523662,
+      "literal_properties": 2014
+    },
+    "http://dbpedia.org/resource/Grade_I_listed_buildings_in_Dorset": {
+      "inforank": 0.00001922966069128923,
+      "literal_properties": 1712
+    },
+    "http://dbpedia.org/resource/Grade_I_listed_buildings_in_Essex": {
+      "inforank": 0.00002140872270887691,
+      "literal_properties": 1906
+    },
+    "http://dbpedia.org/resource/Grade_I_listed_buildings_in_Wiltshire": {
+      "inforank": 0.000023262048651670558,
+      "literal_properties": 2071
+    },
+    "http://dbpedia.org/resource/List_of_Advanced_Dungeons_&_Dragons_2nd_edition_monsters": {
+      "inforank": 0.00003632518847875547,
+      "literal_properties": 3234
+    },
+    "http://dbpedia.org/resource/List_of_Chopped_episodes": {
+      "inforank": 0.000036347653035637816,
+      "literal_properties": 3236
+    },
+    "http://dbpedia.org/resource/List_of_Doraemon_episodes_(1979_anime)": {
+      "inforank": 0.00004336782706137133,
+      "literal_properties": 3861
+    },
+    "http://dbpedia.org/resource/List_of_Gunsmoke_television_episodes": {
+      "inforank": 0.000031214501788021477,
+      "literal_properties": 2779
+    },
+    "http://dbpedia.org/resource/List_of_Hamtaro_episodes": {
+      "inforank": 0.000021352561316671043,
+      "literal_properties": 1901
+    },
+    "http://dbpedia.org/resource/List_of_Harvard_University_people": {
+      "inforank": 0.000018937621451818715,
+      "literal_properties": 1686
+    },
+    "http://dbpedia.org/resource/List_of_Horizon_episodes": {
+      "inforank": 0.000031371753686197906,
+      "literal_properties": 2793
+    },
+    "http://dbpedia.org/resource/List_of_Humble_Bundles": {
+      "inforank": 0.000028664774581875066,
+      "literal_properties": 2552
+    },
+    "http://dbpedia.org/resource/List_of_Inner_Sanctum_episodes": {
+      "inforank": 0.000019712648664259693,
+      "literal_properties": 1755
+    },
+    "http://dbpedia.org/resource/List_of_Intel_Xeon_microprocessors": {
+      "inforank": 0.000031675025204109596,
+      "literal_properties": 2820
+    },
+    "http://dbpedia.org/resource/List_of_Maryland_state_highways": {
+      "inforank": 0.000025924098642228704,
+      "literal_properties": 2308
+    },
+    "http://dbpedia.org/resource/List_of_Nova_episodes": {
+      "inforank": 0.00002691253914505198,
+      "literal_properties": 2396
+    },
+    "http://dbpedia.org/resource/List_of_Prisoner_episodes": {
+      "inforank": 0.00002610381509728748,
+      "literal_properties": 2324
+    },
+    "http://dbpedia.org/resource/List_of_Sooty_Show_episodes": {
+      "inforank": 0.000027260739776728364,
+      "literal_properties": 2427
+    },
+    "http://dbpedia.org/resource/List_of_State_Routes_in_Ohio": {
+      "inforank": 0.000023610249283346938,
+      "literal_properties": 2102
+    },
+    "http://dbpedia.org/resource/List_of_The_Woodwright's_Shop_episodes": {
+      "inforank": 0.000020869573343700576,
+      "literal_properties": 1858
+    },
+    "http://dbpedia.org/resource/List_of_colors_(compact)": {
+      "inforank": 0.000023992146750346843,
+      "literal_properties": 2136
+    },
+    "http://dbpedia.org/resource/List_of_historic_places_in_Alberta": {
+      "inforank": 0.000020240565750994856,
+      "literal_properties": 1802
+    },
+    "http://dbpedia.org/resource/List_of_historic_places_in_Saskatchewan": {
+      "inforank": 0.00002094819929278879,
+      "literal_properties": 1865
+    },
+    "http://dbpedia.org/resource/List_of_law_clerks_of_the_Supreme_Court_of_the_United_States": {
+      "inforank": 0.000029057904327316143,
+      "literal_properties": 2587
+    },
+    "http://dbpedia.org/resource/List_of_licensed_and_localized_editions_of_Monopoly:_Europe": {
+      "inforank": 0.000023475461942052855,
+      "literal_properties": 2090
+    },
+    "http://dbpedia.org/resource/List_of_listed_buildings_in_Stirling,_Stirling": {
+      "inforank": 0.00002066739233175945,
+      "literal_properties": 1840
+    },
+    "http://dbpedia.org/resource/List_of_public_art_in_Israel": {
+      "inforank": 0.000024059540420993882,
+      "literal_properties": 2142
+    },
+    "http://dbpedia.org/resource/National_Register_of_Historic_Places_listings_in_Cleveland,_Ohio": {
+      "inforank": 0.000019712648664259693,
+      "literal_properties": 1755
+    },
+    "http://dbpedia.org/resource/National_Register_of_Historic_Places_listings_in_Harris_County,_Texas": {
+      "inforank": 0.000020263030307877202,
+      "literal_properties": 1804
+    },
+    "http://dbpedia.org/resource/National_Register_of_Historic_Places_listings_in_Los_Angeles,_California": {
+      "inforank": 0.000021914175238729723,
+      "literal_properties": 1951
+    },
+    "http://dbpedia.org/resource/National_Register_of_Historic_Places_listings_in_Southwest_Portland,_Oregon": {
+      "inforank": 0.00002010577840970077,
+      "literal_properties": 1790
+    },
+    "http://dbpedia.org/resource/National_Register_of_Historic_Places_listings_in_Worcester_County,_Massachusetts": {
+      "inforank": 0.000020678624610200625,
+      "literal_properties": 1841
+    },
+    "http://dbpedia.org/resource/Political_abuse_of_psychiatry_in_the_Soviet_Union": {
+      "inforank": 0.0000188589955027305,
+      "literal_properties": 1679
+    },
+    "http://dbpedia.org/resource/Results_of_the_Queensland_state_election,_2015": {
+      "inforank": 0.00002358778472646459,
+      "literal_properties": 2100
+    }
+  },
+  "total_literal_properties": 89029132.0
+}

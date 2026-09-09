@@ -1,0 +1,74 @@
+{
+  "http://dbpedia.org/ontology/AdministrativeRegion": {
+    "http://dbpedia.org/ontology/country": 3.603304453403741,
+    "http://dbpedia.org/ontology/populationTotal": 12.774494840873592,
+    "http://dbpedia.org/property/dist": 8.599793602551,
+    "http://dbpedia.org/property/location": 8.531275431224326,
+    "http://dbpedia.org/property/longd": 6.7782421408421,
+    "http://dbpedia.org/property/name": 13.8390192905395,
+    "http://dbpedia.org/property/state": 4.827970984037675,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3.4356233632659343,
+    "http://www.w3.org/2000/01/rdf-schema#label": 14.545507513932819,
+    "http://xmlns.com/foaf/0.1/name": 14.70052939093636
+  },
+  "http://dbpedia.org/ontology/ChemicalCompound": {
+    "http://dbpedia.org/ontology/iupacName": 12.947036178311714,
+    "http://dbpedia.org/property/imagefile": 12.998397512638007,
+    "http://dbpedia.org/property/imagesize": 3.50537445476121,
+    "http://dbpedia.org/property/iupacname": 9.490236717687102,
+    "http://dbpedia.org/property/othernames": 12.266098150697598,
+    "http://dbpedia.org/property/verifiedfields": 0.006952713473657113,
+    "http://dbpedia.org/property/verifiedrevid": 12.753509841591665,
+    "http://dbpedia.org/property/watchedfields": 0.013368890931378274,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2.32192809488736,
+    "http://www.w3.org/2000/01/rdf-schema#label": 13.277432708590055
+  },
+  "http://dbpedia.org/ontology/Galaxy": {
+    "http://dbpedia.org/property/appmagV": 7.169920917738463,
+    "http://dbpedia.org/property/constellationName": 5.302671481964731,
+    "http://dbpedia.org/property/epoch": 0.5196972260652277,
+    "http://dbpedia.org/property/name": 9.379637262600584,
+    "http://dbpedia.org/property/names": 9.134167619758479,
+    "http://dbpedia.org/property/type": 7.34914927334691,
+    "http://dbpedia.org/property/z": 9.08370514405181,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2.8073549220576037,
+    "http://www.w3.org/2000/01/rdf-schema#label": 9.430452551665532,
+    "http://xmlns.com/foaf/0.1/name": 10.410695377704524
+  },
+  "http://dbpedia.org/ontology/Species": {
+    "http://dbpedia.org/ontology/class": 3.7220659879824094,
+    "http://dbpedia.org/ontology/family": 9.80433357525833,
+    "http://dbpedia.org/ontology/kingdom": 1.0929528028164945,
+    "http://dbpedia.org/ontology/order": 5.969906152597924,
+    "http://dbpedia.org/property/familia": 9.129448982167045,
+    "http://dbpedia.org/property/genus": 14.397932904631478,
+    "http://dbpedia.org/property/ordo": 5.471872778362156,
+    "http://dbpedia.org/property/regnum": 1.70421563575578,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3.590281292422521,
+    "http://www.w3.org/2000/01/rdf-schema#label": 18.162706018482417
+  },
+  "http://dbpedia.org/ontology/Star": {
+    "http://dbpedia.org/property/appmagV": 10.357776675526171,
+    "http://dbpedia.org/property/class": 9.82543080821841,
+    "http://dbpedia.org/property/constell": 6.0664047863436075,
+    "http://dbpedia.org/property/epoch": 1.76665014193906,
+    "http://dbpedia.org/property/parallax": 10.573057688514552,
+    "http://dbpedia.org/property/propMoDec": 10.881415102855351,
+    "http://dbpedia.org/property/propMoRa": 10.88309302304341,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2.584962500721156,
+    "http://www.w3.org/2000/01/rdf-schema#label": 11.449664538476192,
+    "http://xmlns.com/foaf/0.1/name": 11.333737070838495
+  },
+  "http://xmlns.com/foaf/0.1/Person": {
+    "http://dbpedia.org/ontology/birthPlace": 11.943045128000216,
+    "http://dbpedia.org/ontology/birthYear": 7.80481371365069,
+    "http://dbpedia.org/property/birthPlace": 12.79692385021476,
+    "http://dbpedia.org/property/dateOfBirth": 15.048102574465222,
+    "http://dbpedia.org/property/name": 20.705696055285458,
+    "http://dbpedia.org/property/shortDescription": 12.63821862242823,
+    "http://purl.org/dc/elements/1.1/description": 12.656964396723872,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.009348770437185,
+    "http://www.w3.org/2000/01/rdf-schema#label": 20.276420921711676,
+    "http://xmlns.com/foaf/0.1/name": 20.680876609748843
+  }
+}

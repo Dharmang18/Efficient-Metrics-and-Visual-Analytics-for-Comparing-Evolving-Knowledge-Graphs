@@ -1,0 +1,74 @@
+{
+  "http://dbpedia.org/ontology/AdministrativeRegion": {
+    "http://dbpedia.org/ontology/country": 5.196299697504394,
+    "http://dbpedia.org/ontology/populationTotal": 14.286210736389753,
+    "http://dbpedia.org/ontology/subdivision": 12.341654944089951,
+    "http://dbpedia.org/ontology/thumbnail": 14.989350201268422,
+    "http://dbpedia.org/property/name": 15.044247875561524,
+    "http://dbpedia.org/property/subdivisionName": 11.078866439571318,
+    "http://dbpedia.org/property/subdivisionType": 5.869010126171753,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 8.276091994333711,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3.4076089540544032,
+    "http://www.w3.org/2000/01/rdf-schema#label": 15.805567554372097
+  },
+  "http://dbpedia.org/ontology/ChemicalCompound": {
+    "http://dbpedia.org/ontology/alternativeName": 13.895174799440749,
+    "http://dbpedia.org/ontology/iupacName": 13.753401555072895,
+    "http://dbpedia.org/ontology/thumbnail": 13.651787891563396,
+    "http://dbpedia.org/property/imagefile": 13.39072711853166,
+    "http://dbpedia.org/property/imagesize": 3.7668639056280018,
+    "http://dbpedia.org/property/othernames": 12.525427878685317,
+    "http://dbpedia.org/property/verifiedrevid": 12.680600670086475,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 5.991647447504118,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2.3227481126868543,
+    "http://www.w3.org/2000/01/rdf-schema#label": 13.81848231971713
+  },
+  "http://dbpedia.org/ontology/Galaxy": {
+    "http://dbpedia.org/ontology/thumbnail": 11.359475251112588,
+    "http://dbpedia.org/property/caption": 11.337533875304615,
+    "http://dbpedia.org/property/constellationName": 5.352070879009379,
+    "http://dbpedia.org/property/epoch": 1.018174522534192,
+    "http://dbpedia.org/property/name": 11.26378220693317,
+    "http://dbpedia.org/property/type": 8.293616069974247,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 5.540275195258303,
+    "http://dbpedia.org/property/z": 11.034449609817674,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2.8073549220576037,
+    "http://www.w3.org/2000/01/rdf-schema#label": 11.49585502688717
+  },
+  "http://dbpedia.org/ontology/Person": {
+    "http://dbpedia.org/ontology/birthPlace": 12.919445206351067,
+    "http://dbpedia.org/ontology/careerStation": 20.921384793931484,
+    "http://dbpedia.org/ontology/team": 13.33020779823952,
+    "http://dbpedia.org/property/birthDate": 15.786869578500596,
+    "http://dbpedia.org/property/birthPlace": 14.240697801578596,
+    "http://dbpedia.org/property/name": 20.26962398524148,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 8.327914245924685,
+    "http://dbpedia.org/property/years": 6.881886469633873,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.381457373559101,
+    "http://www.w3.org/2000/01/rdf-schema#label": 20.592800092064135
+  },
+  "http://dbpedia.org/ontology/Species": {
+    "http://dbpedia.org/ontology/birthPlace": 12.91944625176074,
+    "http://dbpedia.org/ontology/careerStation": 20.921384793931484,
+    "http://dbpedia.org/ontology/team": 13.33020779823952,
+    "http://dbpedia.org/property/birthDate": 15.786864962422055,
+    "http://dbpedia.org/property/birthPlace": 14.240693398254638,
+    "http://dbpedia.org/property/name": 20.283315615333706,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 8.345311569193294,
+    "http://dbpedia.org/property/years": 6.881977201714383,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.396205525039402,
+    "http://www.w3.org/2000/01/rdf-schema#label": 20.616842256216206
+  },
+  "http://dbpedia.org/ontology/Star": {
+    "http://dbpedia.org/property/appmagV": 10.065570159385505,
+    "http://dbpedia.org/property/class": 10.297081037777568,
+    "http://dbpedia.org/property/constell": 6.219189303401225,
+    "http://dbpedia.org/property/epoch": 1.9439270439421055,
+    "http://dbpedia.org/property/mass": 9.472719755703158,
+    "http://dbpedia.org/property/pError": 10.211022956934263,
+    "http://dbpedia.org/property/parallax": 12.297826190777226,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 5.45321644510952,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2.585799931381894,
+    "http://www.w3.org/2000/01/rdf-schema#label": 12.476239906323851
+  }
+}

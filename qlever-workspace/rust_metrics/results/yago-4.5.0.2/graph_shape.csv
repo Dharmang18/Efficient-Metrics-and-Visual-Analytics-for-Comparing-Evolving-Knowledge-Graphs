@@ -1,0 +1,10 @@
+measure,value
+triples,1305431407
+distinct_subjects,49688174
+distinct_objects,645362721
+predicates,123
+classes,118303
+typed_entities,49687891
+density,26.272627
+avg_out_degree,26.272477
+avg_in_degree,2.022787

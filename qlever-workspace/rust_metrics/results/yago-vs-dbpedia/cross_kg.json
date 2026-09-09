@@ -1,0 +1,24 @@
+{
+  "classes": {
+    "person": {
+      "a": {
+        "class_entropy": 20.644811431083284,
+        "iri": "http://schema.org/Person",
+        "population": 6433965.0,
+        "predicates": 38.0
+      },
+      "b": {
+        "class_entropy": 17.369520131675955,
+        "iri": "http://schema.org/Person",
+        "population": 1860208.0,
+        "predicates": 8921.0
+      },
+      "delta_class_entropy": 3.2752912994073284,
+      "delta_population": 4573757.0,
+      "delta_predicates": -8883.0,
+      "delta_share": 0.5514421992403583
+    }
+  },
+  "kg_a": "https://qlever.dev/api/yago-4",
+  "kg_b": "https://qlever.dev/api/dbpedia"
+}

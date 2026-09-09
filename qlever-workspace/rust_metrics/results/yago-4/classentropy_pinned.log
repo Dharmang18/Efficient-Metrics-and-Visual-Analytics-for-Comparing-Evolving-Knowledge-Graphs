@@ -1,0 +1,26 @@
+==== classentropy (pinned, parallelism 1) rerun 2026-08-26 11:40:19 ====
+endpoint=http://100.113.106.12:9005 classes=Person,Taxon,Star,Galaxy,AdministrativeArea,Chemical_compound
+Endpoint:  http://100.113.106.12:9005
+Snapshot:  yago-4  (results/yago-4/)
+
+Metric 4: Class entropy   H(t) = -Σ P(o) log2 P(o) over all values of class t
+Scope:    top 8 classes
+
+  pinned Person                 -> http://schema.org/Person (6433965 entities)
+  pinned Taxon                  -> http://bioschemas.org/Taxon (2726502 entities)
+  pinned Star                   -> http://yago-knowledge.org/resource/Star (1707848 entities)
+  pinned Galaxy                 -> http://yago-knowledge.org/resource/Galaxy (1336587 entities)
+  pinned AdministrativeArea     -> http://schema.org/AdministrativeArea (1942524 entities)
+  pinned Chemical_compound      -> http://yago-knowledge.org/resource/Chemical_compound (1015809 entities)
+  H(objects)    H(preds)         triples  class
+      20.645       3.211       180983829  Person
+      18.073       2.050       106300022  Taxon
+      16.397       2.308        78198513  AdministrativeArea
+      11.860       1.658         9702940  Star
+      10.687       1.906        14341644  Galaxy
+       8.137       1.358        22842765  Chemical_compound
+
+Results saved to:
+  results/yago-4/class_entropy_pinned.json
+  results/yago-4/class_entropy_pinned.csv
+---- exit=0 after 156s at 11:42:55 ----

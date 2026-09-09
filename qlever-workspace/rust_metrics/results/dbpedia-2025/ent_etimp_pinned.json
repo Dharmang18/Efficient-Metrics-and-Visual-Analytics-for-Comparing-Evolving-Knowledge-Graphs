@@ -1,0 +1,74 @@
+{
+  "http://dbpedia.org/ontology/AdministrativeRegion": {
+    "http://dbpedia.org/ontology/country": 35.61596061266193,
+    "http://dbpedia.org/ontology/populationTotal": 93.29863426934914,
+    "http://dbpedia.org/ontology/subdivision": 86.07806554178478,
+    "http://dbpedia.org/ontology/thumbnail": 91.92021574161355,
+    "http://dbpedia.org/property/name": 90.50400173426402,
+    "http://dbpedia.org/property/subdivisionName": 79.67316333413847,
+    "http://dbpedia.org/property/subdivisionType": 49.289096069021305,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 37.85723538689529,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 61.50175158800754
+  },
+  "http://dbpedia.org/ontology/ChemicalCompound": {
+    "http://dbpedia.org/ontology/alternativeName": 64.3912874904215,
+    "http://dbpedia.org/ontology/iupacName": 55.20321177588588,
+    "http://dbpedia.org/ontology/thumbnail": 41.28533679275387,
+    "http://dbpedia.org/property/imagefile": 48.03315390156255,
+    "http://dbpedia.org/property/imagesize": 24.85018264092872,
+    "http://dbpedia.org/property/othernames": 59.57913011707647,
+    "http://dbpedia.org/property/verifiedrevid": 62.25846511058988,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 9.287857339045164,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 17.382054528580753
+  },
+  "http://dbpedia.org/ontology/Galaxy": {
+    "http://dbpedia.org/ontology/thumbnail": 23.057022946999876,
+    "http://dbpedia.org/property/caption": 25.731406330385052,
+    "http://dbpedia.org/property/constellationName": 9.968315678938087,
+    "http://dbpedia.org/property/epoch": 3.1803290384700653,
+    "http://dbpedia.org/property/name": 21.858461719944533,
+    "http://dbpedia.org/property/type": 17.946142694692803,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 8.65831330204218,
+    "http://dbpedia.org/property/z": 30.209422751387113,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 14.968929825478861
+  },
+  "http://dbpedia.org/ontology/Person": {
+    "http://dbpedia.org/ontology/birthPlace": 218.12338434063835,
+    "http://dbpedia.org/ontology/careerStation": 292.7890183326197,
+    "http://dbpedia.org/ontology/team": 221.3931966624299,
+    "http://dbpedia.org/property/birthDate": 244.50700074046776,
+    "http://dbpedia.org/property/birthPlace": 229.0146835952318,
+    "http://dbpedia.org/property/name": 287.3301158187238,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 141.0579739744212,
+    "http://dbpedia.org/property/years": 133.36518765641256,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 278.15209145969504
+  },
+  "http://dbpedia.org/ontology/Species": {
+    "http://dbpedia.org/ontology/birthPlace": 219.12387785778748,
+    "http://dbpedia.org/ontology/careerStation": 293.22444308798026,
+    "http://dbpedia.org/ontology/team": 221.8361320155055,
+    "http://dbpedia.org/property/birthDate": 246.06888884348191,
+    "http://dbpedia.org/property/birthPlace": 230.3462004665002,
+    "http://dbpedia.org/property/name": 288.71738530324495,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 141.36000456400367,
+    "http://dbpedia.org/property/years": 133.61474093324142,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 278.55538905395247
+  },
+  "http://dbpedia.org/ontology/Star": {
+    "http://dbpedia.org/property/appmagV": 29.444600140186754,
+    "http://dbpedia.org/property/class": 28.188552460351005,
+    "http://dbpedia.org/property/constell": 10.70692550207749,
+    "http://dbpedia.org/property/epoch": 4.71914916700962,
+    "http://dbpedia.org/property/mass": 38.31835695115439,
+    "http://dbpedia.org/property/pError": 27.410855918343252,
+    "http://dbpedia.org/property/parallax": 31.413117187450183,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 7.819079335977222,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 14.54550673761322
+  }
+}

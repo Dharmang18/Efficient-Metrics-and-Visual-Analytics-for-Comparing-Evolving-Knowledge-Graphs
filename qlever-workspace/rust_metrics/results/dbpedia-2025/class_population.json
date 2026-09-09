@@ -1,0 +1,85 @@
+{
+  "classes": {
+    "http://dbpedia.org/ontology/Animal": {
+      "population": 2142969,
+      "share": 0.06522778722016669
+    },
+    "http://dbpedia.org/ontology/CareerStation": {
+      "population": 2005948,
+      "share": 0.06105713583291169
+    },
+    "http://dbpedia.org/ontology/Eukaryote": {
+      "population": 2148065,
+      "share": 0.06538289949835362
+    },
+    "http://dbpedia.org/ontology/Image": {
+      "population": 14246647,
+      "share": 0.4336400849087533
+    },
+    "http://dbpedia.org/ontology/Person": {
+      "population": 2125575,
+      "share": 0.06469834786247762
+    },
+    "http://dbpedia.org/ontology/Species": {
+      "population": 2151923,
+      "share": 0.06550032947661995
+    },
+    "http://dbpedia.org/ontology/TimePeriod": {
+      "population": 2476234,
+      "share": 0.0753717223437867
+    },
+    "http://schema.org/Person": {
+      "population": 2125571,
+      "share": 0.06469822611029695
+    },
+    "http://schema.org/Place": {
+      "population": 771553,
+      "share": 0.023484565065141527
+    },
+    "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#NaturalPerson": {
+      "population": 2125572,
+      "share": 0.06469825654834212
+    },
+    "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#TimeInterval": {
+      "population": 2476237,
+      "share": 0.07537181365792221
+    },
+    "http://www.w3.org/2002/07/owl#Thing": {
+      "population": 5899058,
+      "share": 0.17955579386515721
+    },
+    "http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing": {
+      "population": 1341088,
+      "share": 0.04082009712110577
+    },
+    "http://www.w3.org/2004/02/skos/core#Concept": {
+      "population": 2554767,
+      "share": 0.07776211334513172
+    },
+    "http://www.wikidata.org/entity/Q19088": {
+      "population": 2148072,
+      "share": 0.06538311256466982
+    },
+    "http://www.wikidata.org/entity/Q215627": {
+      "population": 2125572,
+      "share": 0.06469825654834212
+    },
+    "http://www.wikidata.org/entity/Q5": {
+      "population": 2125573,
+      "share": 0.06469828698638729
+    },
+    "http://www.wikidata.org/entity/Q729": {
+      "population": 2142966,
+      "share": 0.06522769590603118
+    },
+    "http://xmlns.com/foaf/0.1/Document": {
+      "population": 7456330,
+      "share": 0.22695610934332017
+    },
+    "http://xmlns.com/foaf/0.1/Person": {
+      "population": 2125569,
+      "share": 0.0646981652342066
+    }
+  },
+  "total_entities": 32853621.0
+}

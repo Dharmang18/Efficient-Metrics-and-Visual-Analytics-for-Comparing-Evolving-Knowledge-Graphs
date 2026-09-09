@@ -1,0 +1,205 @@
+{
+  "entities": {
+    "http://dbpedia.org/resource/2015–16_Haitian_parliamentary_election": {
+      "inforank": 0.00002996301861803191,
+      "literal_properties": 3937
+    },
+    "http://dbpedia.org/resource/2016–17_EuroLeague_regular_season": {
+      "inforank": 0.000018516643204895006,
+      "literal_properties": 2433
+    },
+    "http://dbpedia.org/resource/2017–18_EuroLeague_regular_season": {
+      "inforank": 0.000018630802534148365,
+      "literal_properties": 2448
+    },
+    "http://dbpedia.org/resource/2018_New_Hampshire_House_of_Representatives_election": {
+      "inforank": 0.000018493811339044333,
+      "literal_properties": 2430
+    },
+    "http://dbpedia.org/resource/2018–19_EuroLeague_regular_season": {
+      "inforank": 0.000018767793729252397,
+      "literal_properties": 2466
+    },
+    "http://dbpedia.org/resource/2019–20_EuroLeague_regular_season": {
+      "inforank": 0.000020152926924193165,
+      "literal_properties": 2648
+    },
+    "http://dbpedia.org/resource/2020–21_EuroLeague_regular_season": {
+      "inforank": 0.000021332573326477888,
+      "literal_properties": 2803
+    },
+    "http://dbpedia.org/resource/2021_Iraqi_parliamentary_election": {
+      "inforank": 0.000020609564241206606,
+      "literal_properties": 2708
+    },
+    "http://dbpedia.org/resource/2021–22_EuroLeague_regular_season": {
+      "inforank": 0.00002221540547270387,
+      "literal_properties": 2919
+    },
+    "http://dbpedia.org/resource/2022_Isabela_local_elections": {
+      "inforank": 0.000019391864729170767,
+      "literal_properties": 2548
+    },
+    "http://dbpedia.org/resource/2022–23_EuroLeague_regular_season": {
+      "inforank": 0.00002454425578947242,
+      "literal_properties": 3225
+    },
+    "http://dbpedia.org/resource/2023–24_EuroLeague_regular_season": {
+      "inforank": 0.000024194167179762115,
+      "literal_properties": 3179
+    },
+    "http://dbpedia.org/resource/2024–25_EuroLeague_regular_season": {
+      "inforank": 0.000023889742301753154,
+      "literal_properties": 3139
+    },
+    "http://dbpedia.org/resource/Climate_of_China": {
+      "inforank": 0.00002082266165581288,
+      "literal_properties": 2736
+    },
+    "http://dbpedia.org/resource/Constituency_election_results_in_England_in_the_1923_United_Kingdom_general_election": {
+      "inforank": 0.00002541947731374818,
+      "literal_properties": 3340
+    },
+    "http://dbpedia.org/resource/Folktales_from_Japan": {
+      "inforank": 0.000022793812740920896,
+      "literal_properties": 2995
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_North_Yorkshire_(district)": {
+      "inforank": 0.00002125646710697565,
+      "literal_properties": 2793
+    },
+    "http://dbpedia.org/resource/Grade_II*_listed_buildings_in_Westmorland_and_Furness": {
+      "inforank": 0.00001790018282692686,
+      "literal_properties": 2352
+    },
+    "http://dbpedia.org/resource/List_of_Advanced_Dungeons_&_Dragons_2nd_edition_monsters": {
+      "inforank": 0.00002285469771652269,
+      "literal_properties": 3003
+    },
+    "http://dbpedia.org/resource/List_of_Chopped_episodes_(season_41–present)": {
+      "inforank": 0.000025678238460055796,
+      "literal_properties": 3374
+    },
+    "http://dbpedia.org/resource/List_of_Chopped_episodes_(seasons_1–20)": {
+      "inforank": 0.00001896566989995822,
+      "literal_properties": 2492
+    },
+    "http://dbpedia.org/resource/List_of_Crayon_Shin-chan_episodes_(1992–2001)": {
+      "inforank": 0.00003096762071546148,
+      "literal_properties": 4069
+    },
+    "http://dbpedia.org/resource/List_of_Crayon_Shin-chan_episodes_(2002–2011)": {
+      "inforank": 0.0000185470856926959,
+      "literal_properties": 2437
+    },
+    "http://dbpedia.org/resource/List_of_Crayon_Shin-chan_episodes_(2012–present)": {
+      "inforank": 0.00001936142224136987,
+      "literal_properties": 2544
+    },
+    "http://dbpedia.org/resource/List_of_How_Did_This_Get_Made%3F_episodes": {
+      "inforank": 0.00001886673181460531,
+      "literal_properties": 2479
+    },
+    "http://dbpedia.org/resource/List_of_My_Favorite_Murder_episodes": {
+      "inforank": 0.000030564257752099606,
+      "literal_properties": 4016
+    },
+    "http://dbpedia.org/resource/List_of_Pawn_Stars_episodes": {
+      "inforank": 0.000017846908473275294,
+      "literal_properties": 2345
+    },
+    "http://dbpedia.org/resource/List_of_The_Complete_Guide_to_Everything_episodes": {
+      "inforank": 0.00001790018282692686,
+      "literal_properties": 2352
+    },
+    "http://dbpedia.org/resource/List_of_The_Return_of_Superman_episodes": {
+      "inforank": 0.00001871451937560083,
+      "literal_properties": 2459
+    },
+    "http://dbpedia.org/resource/List_of_Yo-kai_Watch_(2014_TV_series)_episodes": {
+      "inforank": 0.00001787735096107619,
+      "literal_properties": 2349
+    },
+    "http://dbpedia.org/resource/List_of_state_highways_in_Arkansas": {
+      "inforank": 0.0000193385903755192,
+      "literal_properties": 2541
+    },
+    "http://dbpedia.org/resource/List_of_state_highways_in_Iowa": {
+      "inforank": 0.000021195582131373856,
+      "literal_properties": 2785
+    },
+    "http://dbpedia.org/resource/List_of_state_highways_in_Kentucky_(1000–1999)": {
+      "inforank": 0.000017953457180578428,
+      "literal_properties": 2359
+    },
+    "http://dbpedia.org/resource/List_of_state_highways_in_Louisiana": {
+      "inforank": 0.00003723877320244606,
+      "literal_properties": 4893
+    },
+    "http://dbpedia.org/resource/List_of_state_highways_in_Maryland": {
+      "inforank": 0.000021872927484943793,
+      "literal_properties": 2874
+    },
+    "http://dbpedia.org/resource/List_of_state_routes_in_Georgia": {
+      "inforank": 0.00001747398799771432,
+      "literal_properties": 2296
+    },
+    "http://dbpedia.org/resource/List_of_state_routes_in_Ohio": {
+      "inforank": 0.000020982484716767585,
+      "literal_properties": 2757
+    },
+    "http://dbpedia.org/resource/List_of_state_routes_in_Pennsylvania": {
+      "inforank": 0.00002397345914320562,
+      "literal_properties": 3150
+    },
+    "http://dbpedia.org/resource/National_Register_of_Historic_Places_listings_in_Los_Angeles": {
+      "inforank": 0.00001903416549751024,
+      "literal_properties": 2501
+    },
+    "http://dbpedia.org/resource/Results_of_the_1999_New_South_Wales_state_election_(Legislative_Assembly)": {
+      "inforank": 0.00001951363468037435,
+      "literal_properties": 2564
+    },
+    "http://dbpedia.org/resource/Results_of_the_2006_Victorian_state_election_(Legislative_Assembly)": {
+      "inforank": 0.00001839487325369142,
+      "literal_properties": 2417
+    },
+    "http://dbpedia.org/resource/Results_of_the_2010_Victorian_state_election_(Legislative_Assembly)": {
+      "inforank": 0.000018090448375682463,
+      "literal_properties": 2377
+    },
+    "http://dbpedia.org/resource/Results_of_the_2012_Queensland_state_election": {
+      "inforank": 0.000020358413716849215,
+      "literal_properties": 2675
+    },
+    "http://dbpedia.org/resource/Results_of_the_2018_Victorian_state_election_(Legislative_Assembly)": {
+      "inforank": 0.000023950627277354946,
+      "literal_properties": 3147
+    },
+    "http://dbpedia.org/resource/Results_of_the_2019_New_South_Wales_state_election_(Legislative_Assembly)": {
+      "inforank": 0.000020396466826600335,
+      "literal_properties": 2680
+    },
+    "http://dbpedia.org/resource/Results_of_the_2020_New_Hampshire_House_of_Representatives_election": {
+      "inforank": 0.00001860036004634747,
+      "literal_properties": 2444
+    },
+    "http://dbpedia.org/resource/Results_of_the_2020_Queensland_state_election": {
+      "inforank": 0.000024726910716277795,
+      "literal_properties": 3249
+    },
+    "http://dbpedia.org/resource/Results_of_the_2022_Victorian_state_election_(Legislative_Assembly)": {
+      "inforank": 0.000021363015814278783,
+      "literal_properties": 2807
+    },
+    "http://dbpedia.org/resource/Results_of_the_2023_New_South_Wales_state_election_(Legislative_Assembly)": {
+      "inforank": 0.00002064761735095773,
+      "literal_properties": 2713
+    },
+    "http://dbpedia.org/resource/Results_of_the_2024_Queensland_state_election": {
+      "inforank": 0.000023364609387187696,
+      "literal_properties": 3070
+    }
+  },
+  "total_literal_properties": 131395306.0
+}

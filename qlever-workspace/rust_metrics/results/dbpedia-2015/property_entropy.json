@@ -1,0 +1,98 @@
+{
+  "http://dbpedia.org/ontology/Agent": {
+    "http://dbpedia.org/ontology/birthPlace": 11.94276054402196,
+    "http://dbpedia.org/ontology/birthYear": 7.80481371365069,
+    "http://dbpedia.org/property/birthPlace": 12.796904274966245,
+    "http://dbpedia.org/property/dateOfBirth": 15.047927882111505,
+    "http://dbpedia.org/property/name": 20.950193645595775,
+    "http://dbpedia.org/property/shortDescription": 12.638724932007353,
+    "http://purl.org/dc/elements/1.1/description": 12.656964396723872,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.465908969506863,
+    "http://www.w3.org/2000/01/rdf-schema#label": 20.55122760359829,
+    "http://xmlns.com/foaf/0.1/name": 20.886372302182746
+  },
+  "http://dbpedia.org/ontology/Person": {
+    "http://dbpedia.org/ontology/birthPlace": 11.943045128000216,
+    "http://dbpedia.org/ontology/birthYear": 7.80481371365069,
+    "http://dbpedia.org/property/birthPlace": 12.79692385021476,
+    "http://dbpedia.org/property/dateOfBirth": 15.048102574465222,
+    "http://dbpedia.org/property/name": 20.705696055285458,
+    "http://dbpedia.org/property/shortDescription": 12.63821862242823,
+    "http://purl.org/dc/elements/1.1/description": 12.656964396723872,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.009348770437185,
+    "http://www.w3.org/2000/01/rdf-schema#label": 20.276420921711676,
+    "http://xmlns.com/foaf/0.1/name": 20.680876609748843
+  },
+  "http://schema.org/Person": {
+    "http://dbpedia.org/ontology/birthPlace": 11.943045128000216,
+    "http://dbpedia.org/ontology/birthYear": 7.80481371365069,
+    "http://dbpedia.org/property/birthPlace": 12.79692385021476,
+    "http://dbpedia.org/property/dateOfBirth": 15.048102574465222,
+    "http://dbpedia.org/property/name": 20.705696055285458,
+    "http://dbpedia.org/property/shortDescription": 12.63821862242823,
+    "http://purl.org/dc/elements/1.1/description": 12.656964396723872,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.009348770437185,
+    "http://www.w3.org/2000/01/rdf-schema#label": 20.276420921711676,
+    "http://xmlns.com/foaf/0.1/name": 20.680876609748843
+  },
+  "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent": {
+    "http://dbpedia.org/ontology/birthPlace": 11.94276054402196,
+    "http://dbpedia.org/ontology/birthYear": 7.80481371365069,
+    "http://dbpedia.org/property/birthPlace": 12.796904274966245,
+    "http://dbpedia.org/property/dateOfBirth": 15.047927882111505,
+    "http://dbpedia.org/property/name": 20.950193645595775,
+    "http://dbpedia.org/property/shortDescription": 12.638724932007353,
+    "http://purl.org/dc/elements/1.1/description": 12.656964396723872,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.465908969506863,
+    "http://www.w3.org/2000/01/rdf-schema#label": 20.55122760359829,
+    "http://xmlns.com/foaf/0.1/name": 20.886372302182746
+  },
+  "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#NaturalPerson": {
+    "http://dbpedia.org/ontology/birthPlace": 11.943045128000216,
+    "http://dbpedia.org/ontology/birthYear": 7.80481371365069,
+    "http://dbpedia.org/property/birthPlace": 12.79692385021476,
+    "http://dbpedia.org/property/dateOfBirth": 15.048102574465222,
+    "http://dbpedia.org/property/name": 20.705696055285458,
+    "http://dbpedia.org/property/shortDescription": 12.63821862242823,
+    "http://purl.org/dc/elements/1.1/description": 12.656964396723872,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.009348770437185,
+    "http://www.w3.org/2000/01/rdf-schema#label": 20.276420921711676,
+    "http://xmlns.com/foaf/0.1/name": 20.680876609748843
+  },
+  "http://www.w3.org/2002/07/owl#Thing": {
+    "http://dbpedia.org/ontology/birthPlace": 11.94276054402196,
+    "http://dbpedia.org/ontology/team": 12.831748070191729,
+    "http://dbpedia.org/property/name": 21.38960246023156,
+    "http://dbpedia.org/property/shortDescription": 12.63892885740129,
+    "http://dbpedia.org/property/subdivisionType": 5.800369150291539,
+    "http://dbpedia.org/property/title": 18.402463474633496,
+    "http://purl.org/dc/elements/1.1/description": 12.65971534654081,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 5.897345542006168,
+    "http://www.w3.org/2000/01/rdf-schema#label": 21.693933544763297,
+    "http://xmlns.com/foaf/0.1/name": 21.578656167845335
+  },
+  "http://www.wikidata.org/entity/Q215627": {
+    "http://dbpedia.org/ontology/birthPlace": 11.943045128000216,
+    "http://dbpedia.org/ontology/birthYear": 7.80481371365069,
+    "http://dbpedia.org/property/birthPlace": 12.79692385021476,
+    "http://dbpedia.org/property/dateOfBirth": 15.048102574465222,
+    "http://dbpedia.org/property/name": 20.705696055285458,
+    "http://dbpedia.org/property/shortDescription": 12.63821862242823,
+    "http://purl.org/dc/elements/1.1/description": 12.656964396723872,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.009348770437185,
+    "http://www.w3.org/2000/01/rdf-schema#label": 20.276420921711676,
+    "http://xmlns.com/foaf/0.1/name": 20.680876609748843
+  },
+  "http://xmlns.com/foaf/0.1/Person": {
+    "http://dbpedia.org/ontology/birthPlace": 11.943045128000216,
+    "http://dbpedia.org/ontology/birthYear": 7.80481371365069,
+    "http://dbpedia.org/property/birthPlace": 12.79692385021476,
+    "http://dbpedia.org/property/dateOfBirth": 15.048102574465222,
+    "http://dbpedia.org/property/name": 20.705696055285458,
+    "http://dbpedia.org/property/shortDescription": 12.63821862242823,
+    "http://purl.org/dc/elements/1.1/description": 12.656964396723872,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.009348770437185,
+    "http://www.w3.org/2000/01/rdf-schema#label": 20.276420921711676,
+    "http://xmlns.com/foaf/0.1/name": 20.680876609748843
+  }
+}

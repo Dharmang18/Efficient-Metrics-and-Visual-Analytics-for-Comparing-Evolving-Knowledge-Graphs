@@ -1,0 +1,58 @@
+{
+  "http://dbpedia.org/ontology/Eukaryote": {
+    "distinct_objects": 10807575.0,
+    "distinct_predicates": 9191.0,
+    "object_entropy": 13.387423017456149,
+    "predicate_entropy": 5.241808000268186,
+    "triples": 93951557.0
+  },
+  "http://dbpedia.org/ontology/Species": {
+    "distinct_objects": 10823648.0,
+    "distinct_predicates": 9197.0,
+    "object_entropy": 13.392874478131489,
+    "predicate_entropy": 5.246385810032436,
+    "triples": 94056059.0
+  },
+  "http://dbpedia.org/ontology/TimePeriod": {
+    "distinct_objects": 570701.0,
+    "distinct_predicates": 146.0,
+    "object_entropy": 8.137122482560834,
+    "predicate_entropy": 2.7429909076208254,
+    "triples": 15754415.0
+  },
+  "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#TimeInterval": {
+    "distinct_objects": 570702.0,
+    "distinct_predicates": 146.0,
+    "object_entropy": 8.137122420905579,
+    "predicate_entropy": 2.74299091070343,
+    "triples": 15754425.0
+  },
+  "http://www.w3.org/2002/07/owl#Thing": {
+    "distinct_objects": 31017892.0,
+    "distinct_predicates": 43107.0,
+    "object_entropy": 15.873266456842789,
+    "predicate_entropy": 6.992947032742045,
+    "triples": 244512561.0
+  },
+  "http://www.w3.org/2004/02/skos/core#Concept": {
+    "distinct_objects": 2625159.0,
+    "distinct_predicates": 4.0,
+    "object_entropy": 10.743133097508467,
+    "predicate_entropy": 1.5806209842360843,
+    "triples": 8199109.0
+  },
+  "http://www.wikidata.org/entity/Q19088": {
+    "distinct_objects": 10807606.0,
+    "distinct_predicates": 9191.0,
+    "object_entropy": 13.38742338522211,
+    "predicate_entropy": 5.241807171024899,
+    "triples": 93951799.0
+  },
+  "http://xmlns.com/foaf/0.1/Document": {
+    "distinct_objects": 40827.0,
+    "distinct_predicates": 4.0,
+    "object_entropy": 0.26286776482453433,
+    "predicate_entropy": 0.063918570039867,
+    "triples": 7585884.0
+  }
+}

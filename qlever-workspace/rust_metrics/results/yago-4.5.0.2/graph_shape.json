@@ -1,0 +1,11 @@
+{
+  "avg_in_degree": 2.0227871312077226,
+  "avg_out_degree": 26.27247696806085,
+  "classes": 118303.0,
+  "density_triples_per_entity": 26.27262660433706,
+  "distinct_objects": 645362721.0,
+  "distinct_subjects": 49688174.0,
+  "predicates": 123.0,
+  "triples": 1305431407.0,
+  "typed_entities": 49687891.0
+}

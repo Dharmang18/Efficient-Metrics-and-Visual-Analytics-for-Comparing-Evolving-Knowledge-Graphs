@@ -1,0 +1,20 @@
+{
+  "added": 101458,
+  "benchmark": {
+    "encoded_bytes": 17273676,
+    "encoded_ms": 151.291083,
+    "naive_bytes": 334236434,
+    "naive_ms": 762.4735000000001,
+    "speedup": 5.039778187059445
+  },
+  "churn": 0.2280577312733036,
+  "deleted": 57693,
+  "scope": "Person",
+  "subject_window": 50000,
+  "subjects_compared": 53342,
+  "triples_v1": 697854,
+  "triples_v2": 741619,
+  "unchanged": 640161,
+  "version_1": "http://100.113.106.12:9008",
+  "version_2": "http://100.113.106.12:9009"
+}

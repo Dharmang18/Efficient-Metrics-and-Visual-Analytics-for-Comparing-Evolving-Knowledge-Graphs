@@ -1,0 +1,98 @@
+{
+  "http://dbpedia.org/ontology/Animal": {
+    "http://dbpedia.org/ontology/birthPlace": 12.986596576870912,
+    "http://dbpedia.org/ontology/careerStation": 20.710971186134106,
+    "http://dbpedia.org/ontology/wikiPageExternalLink": 20.637511000691813,
+    "http://dbpedia.org/property/birthPlace": 14.170129213293649,
+    "http://dbpedia.org/property/name": 20.14590652870292,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 8.400143890690535,
+    "http://purl.org/dc/terms/subject": 15.082650888690035,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.441133409586918,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.005457441649266,
+    "http://xmlns.com/foaf/0.1/name": 20.018147052474454
+  },
+  "http://dbpedia.org/ontology/CareerStation": {
+    "http://dbpedia.org/ontology/activeYearsEndYear": 6.026868060588573,
+    "http://dbpedia.org/ontology/activeYearsStartYear": 6.119234757469236,
+    "http://dbpedia.org/ontology/battle": 9.595224095774945,
+    "http://dbpedia.org/ontology/country": 6.35113872594434,
+    "http://dbpedia.org/ontology/numberOfGoals": 3.2305015521642595,
+    "http://dbpedia.org/ontology/numberOfMatches": 6.265262692272154,
+    "http://dbpedia.org/ontology/occupation": 0.7353146368781971,
+    "http://dbpedia.org/ontology/team": 13.568616173574341,
+    "http://dbpedia.org/ontology/years": 5.757898574399846,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1.5722970280665969
+  },
+  "http://dbpedia.org/ontology/Eukaryote": {
+    "http://dbpedia.org/ontology/birthPlace": 12.986596576870912,
+    "http://dbpedia.org/ontology/careerStation": 20.710971186134106,
+    "http://dbpedia.org/ontology/wikiPageExternalLink": 20.639165823971915,
+    "http://dbpedia.org/property/birthPlace": 14.170129213293649,
+    "http://dbpedia.org/property/name": 20.150503968255784,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 8.401917043898843,
+    "http://purl.org/dc/terms/subject": 15.093275317979232,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.4487969430596515,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.016475898595637,
+    "http://xmlns.com/foaf/0.1/name": 20.02236833318011
+  },
+  "http://dbpedia.org/ontology/Species": {
+    "http://dbpedia.org/ontology/birthPlace": 12.986596576870912,
+    "http://dbpedia.org/ontology/careerStation": 20.710971186134106,
+    "http://dbpedia.org/ontology/wikiPageExternalLink": 20.641918676062033,
+    "http://dbpedia.org/property/birthPlace": 14.170129213293649,
+    "http://dbpedia.org/property/name": 20.155549559201784,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 8.401142125082238,
+    "http://purl.org/dc/terms/subject": 15.096476184427486,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.450775531530802,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.019843731722716,
+    "http://xmlns.com/foaf/0.1/name": 20.027273592320046
+  },
+  "http://dbpedia.org/ontology/TimePeriod": {
+    "http://dbpedia.org/ontology/end": 14.025766055489086,
+    "http://dbpedia.org/ontology/numberOfGoals": 3.2303274926119734,
+    "http://dbpedia.org/ontology/numberOfMatches": 6.265262692272154,
+    "http://dbpedia.org/ontology/office": 14.673701326833774,
+    "http://dbpedia.org/ontology/predecessor": 16.87767948659609,
+    "http://dbpedia.org/ontology/start": 13.940045372686097,
+    "http://dbpedia.org/ontology/successor": 16.830281830061022,
+    "http://dbpedia.org/ontology/team": 13.56859049413024,
+    "http://dbpedia.org/ontology/years": 5.757898574399846,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1.8840027290279657
+  },
+  "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#TimeInterval": {
+    "http://dbpedia.org/ontology/end": 14.025766055489086,
+    "http://dbpedia.org/ontology/numberOfGoals": 3.2303274926119734,
+    "http://dbpedia.org/ontology/numberOfMatches": 6.265262692272154,
+    "http://dbpedia.org/ontology/office": 14.671331724582993,
+    "http://dbpedia.org/ontology/predecessor": 16.87767948659609,
+    "http://dbpedia.org/ontology/start": 13.940045372686097,
+    "http://dbpedia.org/ontology/successor": 16.827810714168095,
+    "http://dbpedia.org/ontology/team": 13.56859049413024,
+    "http://dbpedia.org/ontology/years": 5.757898574399846,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1.8322916859310965
+  },
+  "http://www.w3.org/2004/02/skos/core#Concept": {
+    "http://dbpedia.org/ontology/wikiPageID": 21.079007481952683,
+    "http://dbpedia.org/ontology/wikiPageInterLanguageLink": 11.62565027833363,
+    "http://dbpedia.org/ontology/wikiPageRevisionID": 21.079007481952683,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 6.251344069859506,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0,
+    "http://www.w3.org/2000/01/rdf-schema#label": 21.079007481952683,
+    "http://www.w3.org/2004/02/skos/core#broader": 18.07836963983373,
+    "http://www.w3.org/2004/02/skos/core#prefLabel": 21.079007481952683,
+    "http://www.w3.org/2004/02/skos/core#related": 14.135911629826541,
+    "http://www.w3.org/ns/prov#wasDerivedFrom": 21.079004225599498
+  },
+  "http://www.wikidata.org/entity/Q19088": {
+    "http://dbpedia.org/ontology/birthPlace": 12.986596576870912,
+    "http://dbpedia.org/ontology/careerStation": 20.710971186134106,
+    "http://dbpedia.org/ontology/wikiPageExternalLink": 20.639158849640406,
+    "http://dbpedia.org/property/birthPlace": 14.170129213293649,
+    "http://dbpedia.org/property/name": 20.150503968255784,
+    "http://dbpedia.org/property/wikiPageUsesTemplate": 8.401909817184881,
+    "http://purl.org/dc/terms/subject": 15.093273857385261,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.448796992981389,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.016474538357272,
+    "http://xmlns.com/foaf/0.1/name": 20.02236833318011
+  }
+}

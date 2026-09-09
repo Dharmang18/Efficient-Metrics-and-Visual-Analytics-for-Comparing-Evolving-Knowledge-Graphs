@@ -1,0 +1,85 @@
+{
+  "classes": {
+    "http://yago-knowledge.org/resource/wikicat_American_people": {
+      "population": 47720,
+      "share": 0.009301944792606787
+    },
+    "http://yago-knowledge.org/resource/wikicat_Ethnic_German_people": {
+      "population": 137451,
+      "share": 0.02679299274284567
+    },
+    "http://yago-knowledge.org/resource/wikicat_Living_people": {
+      "population": 667909,
+      "share": 0.1301938944778962
+    },
+    "http://yago-knowledge.org/resource/wikicat_Women": {
+      "population": 70438,
+      "share": 0.013730309876396413
+    },
+    "http://yago-knowledge.org/resource/wikicat_Writers": {
+      "population": 41089,
+      "share": 0.008009379915830265
+    },
+    "http://yago-knowledge.org/resource/wordnet_administrative_district_108491826": {
+      "population": 350774,
+      "share": 0.06837553190867253
+    },
+    "http://yago-knowledge.org/resource/wordnet_album_106591815": {
+      "population": 116683,
+      "share": 0.022744736467639096
+    },
+    "http://yago-knowledge.org/resource/wordnet_artist_109812338": {
+      "population": 85034,
+      "share": 0.016575473040539093
+    },
+    "http://yago-knowledge.org/resource/wordnet_commune_108541609": {
+      "population": 37065,
+      "share": 0.007224991276990162
+    },
+    "http://yago-knowledge.org/resource/wordnet_company_108058098": {
+      "population": 64077,
+      "share": 0.012490375450039082
+    },
+    "http://yago-knowledge.org/resource/wordnet_event_100029378": {
+      "population": 34211,
+      "share": 0.00666866792329989
+    },
+    "http://yago-knowledge.org/resource/wordnet_medium_106254669": {
+      "population": 58983,
+      "share": 0.011497414285463664
+    },
+    "http://yago-knowledge.org/resource/wordnet_movie_106613686": {
+      "population": 93885,
+      "share": 0.018300777176317857
+    },
+    "http://yago-knowledge.org/resource/wordnet_officeholder_110371450": {
+      "population": 47974,
+      "share": 0.009351456401519655
+    },
+    "http://yago-knowledge.org/resource/wordnet_person_100007846": {
+      "population": 180599,
+      "share": 0.035203728575020805
+    },
+    "http://yago-knowledge.org/resource/wordnet_player_110439851": {
+      "population": 39991,
+      "share": 0.007795349417458885
+    },
+    "http://yago-knowledge.org/resource/wordnet_school_108276720": {
+      "population": 29247,
+      "share": 0.005701047345963342
+    },
+    "http://yago-knowledge.org/resource/wordnet_season_115239579": {
+      "population": 33705,
+      "share": 0.006570034560662442
+    },
+    "http://yago-knowledge.org/resource/wordnet_site_108651247": {
+      "population": 34000,
+      "share": 0.006627538200935263
+    },
+    "http://yago-knowledge.org/resource/wordnet_station_104306080": {
+      "population": 34104,
+      "share": 0.006647810670726359
+    }
+  },
+  "total_entities": 5130110.0
+}

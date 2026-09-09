@@ -1,0 +1,91 @@
+{
+  "http://bioschemas.org/BioChemEntity": {
+    "http://bioschemas.org/encodesBioChemEntity": 19.82508067636727,
+    "http://bioschemas.org/hasMolecularFunction": 8.286435187416846,
+    "http://bioschemas.org/isEncodedByBioChemEntity": 19.800384464800597,
+    "http://bioschemas.org/isInvolvedInBiologicalProcess": 10.539912633117368,
+    "http://bioschemas.org/isLocatedInSubcellularLocation": 5.8515861066124835,
+    "http://schema.org/alternateName": 18.94494858238241,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 2.60724370884623,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 8.190918231580607,
+    "http://www.w3.org/2000/01/rdf-schema#label": 22.450422181081795,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.649442952423918
+  },
+  "http://bioschemas.org/Taxon": {
+    "http://bioschemas.org/parentTaxon": 15.778646608095954,
+    "http://bioschemas.org/taxonRank": 1.025027167621694,
+    "http://schema.org/alternateName": 19.64485351506445,
+    "http://schema.org/award": 2.127387765191275,
+    "http://schema.org/image": 17.46212941758381,
+    "http://schema.org/sameAs": 22.845376531946776,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1.060772981999488,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 8.470386151284238,
+    "http://www.w3.org/2000/01/rdf-schema#label": 25.26670474352489,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.630865345302894
+  },
+  "http://schema.org/AdministrativeArea": {
+    "http://schema.org/alternateName": 20.354208155178366,
+    "http://schema.org/containedInPlace": 15.803537584553311,
+    "http://schema.org/containsPlace": 19.892125907051977,
+    "http://schema.org/geo": 19.380936787798216,
+    "http://schema.org/location": 13.065404379636643,
+    "http://schema.org/sameAs": 22.71433118304598,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3.140451003858324,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 8.307885201691967,
+    "http://www.w3.org/2000/01/rdf-schema#label": 23.28054131605997,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.302780422811644
+  },
+  "http://schema.org/GeoCoordinates": {
+    "http://schema.org/latitude": 20.7088625063454,
+    "http://schema.org/longitude": 21.346251759788917,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 0.0
+  },
+  "http://schema.org/Landform": {
+    "http://schema.org/alternateName": 18.351979296550866,
+    "http://schema.org/containedInPlace": 11.665742927056343,
+    "http://schema.org/elevation": 11.42107674664256,
+    "http://schema.org/geo": 21.415609268579512,
+    "http://schema.org/image": 16.876444211906712,
+    "http://schema.org/sameAs": 22.17688216900358,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 3.349300348012779,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 12.056655208152305,
+    "http://www.w3.org/2000/01/rdf-schema#label": 22.517871631621013,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.61343046663673
+  },
+  "http://schema.org/Organization": {
+    "http://schema.org/alternateName": 20.82623909960997,
+    "http://schema.org/containedInPlace": 13.657457469789147,
+    "http://schema.org/foundingDate": 9.704262138990883,
+    "http://schema.org/location": 13.87675517314129,
+    "http://schema.org/sameAs": 22.501292139493213,
+    "http://schema.org/url": 19.125007573568972,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 4.576480435229207,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 14.034458082145076,
+    "http://www.w3.org/2000/01/rdf-schema#label": 23.454245024671586,
+    "http://www.w3.org/2002/07/owl#sameAs": 21.500690899908818
+  },
+  "http://schema.org/Person": {
+    "http://schema.org/alternateName": 22.441476094494934,
+    "http://schema.org/birthDate": 14.90799518483316,
+    "http://schema.org/gender": 0.7658129101667264,
+    "http://schema.org/givenName": 10.91746213837245,
+    "http://schema.org/hasOccupation": 7.03242291879276,
+    "http://schema.org/sameAs": 23.1973706723453,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1.589150544885733,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 15.99327800629435,
+    "http://www.w3.org/2000/01/rdf-schema#label": 25.66737405298553,
+    "http://www.w3.org/2002/07/owl#sameAs": 23.01958947147676
+  },
+  "http://yago-knowledge.org/resource/Human": {
+    "http://schema.org/alternateName": 22.438215938983824,
+    "http://schema.org/birthDate": 14.908000390628262,
+    "http://schema.org/gender": 0.7658289006947037,
+    "http://schema.org/givenName": 10.917271760470312,
+    "http://schema.org/hasOccupation": 7.0321768165620355,
+    "http://schema.org/sameAs": 23.194536535966346,
+    "http://www.w3.org/1999/02/22-rdf-syntax-ns#type": 1.5873420978911348,
+    "http://www.w3.org/2000/01/rdf-schema#comment": 15.990687443728067,
+    "http://www.w3.org/2000/01/rdf-schema#label": 25.66623013513057,
+    "http://www.w3.org/2002/07/owl#sameAs": 23.017273747401106
+  }
+}

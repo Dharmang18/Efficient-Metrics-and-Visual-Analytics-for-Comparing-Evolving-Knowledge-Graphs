@@ -1,0 +1,20 @@
+{
+  "added": 72618,
+  "benchmark": {
+    "encoded_bytes": 872400,
+    "encoded_ms": 12.268417,
+    "naive_bytes": 16835508,
+    "naive_ms": 13.706375,
+    "speedup": 1.1172081125054683
+  },
+  "churn": 0.0,
+  "deleted": 0,
+  "scope": "Person",
+  "subject_window": 4000,
+  "subjects_compared": 3999,
+  "triples_v1": 0,
+  "triples_v2": 72700,
+  "unchanged": 0,
+  "version_1": "https://qlever.dev/api/yago-4",
+  "version_2": "https://qlever.dev/api/dbpedia"
+}

@@ -1,0 +1,58 @@
+{
+  "http://dbpedia.org/ontology/Animal": {
+    "distinct_objects": 9078777.0,
+    "distinct_predicates": 9143.0,
+    "object_entropy": 13.8278205761158,
+    "predicate_entropy": 5.609653486072212,
+    "triples": 70365385.0
+  },
+  "http://dbpedia.org/ontology/Eukaryote": {
+    "distinct_objects": 9130474.0,
+    "distinct_predicates": 9260.0,
+    "object_entropy": 13.844444046786382,
+    "predicate_entropy": 5.6218399959035565,
+    "triples": 70630593.0
+  },
+  "http://dbpedia.org/ontology/Species": {
+    "distinct_objects": 9157134.0,
+    "distinct_predicates": 9271.0,
+    "object_entropy": 13.856052761477448,
+    "predicate_entropy": 5.628720077451451,
+    "triples": 70775502.0
+  },
+  "http://dbpedia.org/ontology/TimePeriod": {
+    "distinct_objects": 493210.0,
+    "distinct_predicates": 145.0,
+    "object_entropy": 7.997986999567157,
+    "predicate_entropy": 2.68616621772809,
+    "triples": 13235000.0
+  },
+  "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#TimeInterval": {
+    "distinct_objects": 493210.0,
+    "distinct_predicates": 145.0,
+    "object_entropy": 7.997986999567157,
+    "predicate_entropy": 2.68616621772809,
+    "triples": 13235000.0
+  },
+  "http://www.w3.org/2002/07/owl#Thing": {
+    "distinct_objects": 25487110.0,
+    "distinct_predicates": 43817.0,
+    "object_entropy": 16.51979861164081,
+    "predicate_entropy": 7.771315377486609,
+    "triples": 178407344.0
+  },
+  "http://www.wikidata.org/entity/Q19088": {
+    "distinct_objects": 9130474.0,
+    "distinct_predicates": 9260.0,
+    "object_entropy": 13.844444046786382,
+    "predicate_entropy": 5.6218399959035565,
+    "triples": 70630593.0
+  },
+  "http://www.wikidata.org/entity/Q729": {
+    "distinct_objects": 9078777.0,
+    "distinct_predicates": 9143.0,
+    "object_entropy": 13.8278205761158,
+    "predicate_entropy": 5.609653486072212,
+    "triples": 70365385.0
+  }
+}
