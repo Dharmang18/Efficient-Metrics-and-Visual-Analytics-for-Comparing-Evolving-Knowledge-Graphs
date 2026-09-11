@@ -23,13 +23,16 @@ see `qlever-workspace/dbpedia-matched/MATCHED_SUBSET.md`. Note the snapshots are
 date-aligned (YAGO 4.5 = 2024, DBpedia core = 2022), which the cross-KG chapter states.
 
 **Status: all 13 metrics are implemented in Rust** (2026-08-19) and verified against live
-endpoints. The dashboard is rebuilt metric-first for phase-1 results across snapshots
-(2026-08-26). **Phases 1–3 are now complete across all five snapshots** (2026-09-11): DBpedia
+endpoints. **Phases 1–3 are now complete across all five snapshots** (2026-09-11): DBpedia
 2015 + 2025 are indexed and serving on the home server, the DBpedia trajectory series covers
 the full 2015→2022→2025 decade (metric 11 originally skipped the 2022 point — fixed), and
 metric 13 (crosskg) auto-matched 8 shared classes between YAGO 4.5.0.2 and DBpedia 2025, not
-just Person. What's left is the Chapter 4 write-up (`writing/include/experiment.tex` is still
-an outline with the numbers to cite, not finished prose). See "The metrics" below.
+just Person. **The dashboard now covers all 13 metrics** (2026-09-11, was phase-1-only since
+2026-08-26): three phase tabs, each metric opening with name + one-line explanation + formula,
+then a chart (type chosen per data shape — grouped/stacked/small-multiple bars, donuts, line
+charts) and a table. What's left is the Chapter 4 write-up
+(`writing/include/experiment.tex` is still an outline with the numbers to cite, not finished
+prose). See "The metrics" below.
 
 - Final metric list (13 metrics, 3 proposal levels): `docs/metrics_final.pdf` —
   **source of truth is the generator** `docs/make_metrics_visual_pdf.py` (rerun to
@@ -267,6 +270,16 @@ metric 11 reads back). Every metric writes `<dir>/<metric>.{json,csv}`.
     `https://x-access-token:<PAT>@github.com` — never put the token directly in the push URL or
     command line (the auto-mode classifier blocks that, correctly). Delete the tmp file right
     after. The push itself still succeeds despite the wincredman warning printing first.
+21. **Python's `Path.read_text()` defaults to cp1252 on Windows**, not UTF-8 — it silently
+    works until a result JSON has a non-ASCII byte (e.g. `Attilâ_İlhan`, `İlhan` in YAGO/DBpedia
+    labels) and then throws `UnicodeDecodeError` deep in dashboard startup. Always pass
+    `encoding="utf-8"` explicitly to every `read_text()`/`open()` touching `results/*.json` —
+    this never bit anyone on the Mac (UTF-8 is the platform default there).
+22. Port **8080** is not free on the Windows laptop — an unrelated local Apache/EDB Postgres
+    Enterprise Manager service (`httpd.exe`) already listens there. `dashboard.py` still
+    defaults to `ui.run(port=8080, ...)` (correct for the Mac and for anyone else running it),
+    but testing it **on this machine** needs a different port, e.g. override with a one-off
+    `ui.run(port=8081, ...)` rather than editing the file.
 
 ## Writing the thesis
 

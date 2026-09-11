@@ -156,8 +156,13 @@ cd qlever-workspace && python dashboard.py      # http://localhost:8080
 ```
 
 The JSON is loaded once at startup — re-run a metric and **restart the dashboard** to see new
-data. It has been rebuilt metric-first and reads the `results/<label>/` layout across snapshots,
-but currently covers **phase 1 (class-level) metrics only** — population, entf, entetimp,
-classentropy. Phases 2–3 (entity-level and global metrics: inforank, diversity,
-entropy-pagerank, shape, churn, diff, trajectories, vocab, crosskg) are fully computed
-(2026-09-11, all five snapshots) but not yet wired into the dashboard — that's the next task.
+data. All **13 metrics** are wired in (2026-09-11), grouped into three phase tabs mirroring
+`run_phase.sh`: Phase 1 class-level (population, entf, entetimp, classentropy) reads
+`results/<label>/`; Phase 2 entity-level (inforank, diversity) does the same; Phase 3 global
+metrics mix single-snapshot (entropy-pagerank, shape) and two-endpoint comparisons (churn,
+diff, vocab, crosskg) read from `results/<pair>/`, plus trajectories (metric 11) read from
+`results/<evolution>/`. Each tab opens with the metric's name, a one-line explanation and its
+formula, then charts and a table. Chart type follows the data shape rather than forcing every
+metric into the same mold — grouped bars for class/predicate comparisons, small-multiple bars
+for per-snapshot rankings (inforank, pagerank, shape), stacked bars for churn, donuts for
+diff/vocab proportions, and line charts for trajectories.
