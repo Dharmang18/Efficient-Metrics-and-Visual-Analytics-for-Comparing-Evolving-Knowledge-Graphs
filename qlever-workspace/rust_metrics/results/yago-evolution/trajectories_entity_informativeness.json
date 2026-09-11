@@ -1,0 +1,479 @@
+{
+  "metric": "entity_informativeness",
+  "series": {
+    "entities/http://yago-knowledge.org/resource/Arthur_Dale_Trendall/inforank": {
+      "deltas": [
+        3.992429428679043e-7
+      ],
+      "relative_change": 0.6953969936606095,
+      "values": [
+        5.741223308520025e-7,
+        9.733652737199068e-7
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Arthur_Dale_Trendall/literal_properties": {
+      "deltas": [
+        8.0
+      ],
+      "relative_change": 0.007332722273143905,
+      "values": [
+        1091.0,
+        1099.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Attilâ_İlhan/inforank": {
+      "deltas": [
+        -3.80622927613653e-7
+      ],
+      "relative_change": -0.27712438942617434,
+      "values": [
+        1.373473220461711e-6,
+        9.92850292848058e-7
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Attilâ_İlhan/literal_properties": {
+      "deltas": [
+        -1489.0
+      ],
+      "relative_change": -0.5704980842911878,
+      "values": [
+        2610.0,
+        1121.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Basshunter/inforank": {
+      "deltas": [
+        4.537209804491956e-7
+      ],
+      "relative_change": 0.7536733323522022,
+      "values": [
+        6.020127832215315e-7,
+        1.0557337636707272e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Basshunter/literal_properties": {
+      "deltas": [
+        48.0
+      ],
+      "relative_change": 0.04195804195804196,
+      "values": [
+        1144.0,
+        1192.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Desireé_Cousteau/inforank": {
+      "deltas": [
+        1.164354714277283e-6
+      ],
+      "relative_change": 0.6789241491238762,
+      "values": [
+        1.7149997032508492e-6,
+        2.8793544175281323e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Desireé_Cousteau/literal_properties": {
+      "deltas": [
+        -8.0
+      ],
+      "relative_change": -0.00245474071801166,
+      "values": [
+        3259.0,
+        3251.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Ecuador/inforank": {
+      "deltas": [
+        5.977906718917325e-7
+      ],
+      "relative_change": 0.7949452457304825,
+      "values": [
+        7.51989744076546e-7,
+        1.3497804159682785e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Ecuador/literal_properties": {
+      "deltas": [
+        95.0
+      ],
+      "relative_change": 0.06648005598320504,
+      "values": [
+        1429.0,
+        1524.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Eleni-Alexandra_Amburger_Q20800727/inforank": {
+      "deltas": [
+        9.190186969317189e-7
+      ],
+      "relative_change": 0.6784785399508214,
+      "values": [
+        1.354528762248446e-6,
+        2.273547459180165e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Eleni-Alexandra_Amburger_Q20800727/literal_properties": {
+      "deltas": [
+        -7.0
+      ],
+      "relative_change": -0.0027195027195027195,
+      "values": [
+        2574.0,
+        2567.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Elfriede_Knauer/inforank": {
+      "deltas": [
+        4.6758975957228266e-7
+      ],
+      "relative_change": 0.6882703489394442,
+      "values": [
+        6.793693209256969e-7,
+        1.1469590804979796e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Elfriede_Knauer/literal_properties": {
+      "deltas": [
+        4.0
+      ],
+      "relative_change": 0.003098373353989156,
+      "values": [
+        1291.0,
+        1295.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Evelyn_Hartnick-Geismeier_Q1381751/inforank": {
+      "deltas": [
+        4.692202110455626e-7
+      ],
+      "relative_change": 0.6869455733177563,
+      "values": [
+        6.830529655782762e-7,
+        1.1522731766238388e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Evelyn_Hartnick-Geismeier_Q1381751/literal_properties": {
+      "deltas": [
+        3.0
+      ],
+      "relative_change": 0.0023112480739599386,
+      "values": [
+        1298.0,
+        1301.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Friederike_Sinn_Q20871698/inforank": {
+      "deltas": [
+        4.1317223734178807e-7
+      ],
+      "relative_change": 0.6845229687733211,
+      "values": [
+        6.03591488072637e-7,
+        1.016763725414425e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Friederike_Sinn_Q20871698/literal_properties": {
+      "deltas": [
+        1.0
+      ],
+      "relative_change": 0.0008718395815170009,
+      "values": [
+        1147.0,
+        1148.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Gisela_Richter/inforank": {
+      "deltas": [
+        3.9340261179167655e-7
+      ],
+      "relative_change": 0.6845968739909336,
+      "values": [
+        5.746485658023711e-7,
+        9.680511775940476e-7
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Gisela_Richter/literal_properties": {
+      "deltas": [
+        1.0
+      ],
+      "relative_change": 0.0009157509157509158,
+      "values": [
+        1092.0,
+        1093.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Jess_Wade/inforank": {
+      "deltas": [
+        4.33632106437414e-7
+      ],
+      "relative_change": 0.7292279364323194,
+      "values": [
+        5.94645493916373e-7,
+        1.028277600353787e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Jess_Wade/literal_properties": {
+      "deltas": [
+        31.0
+      ],
+      "relative_change": 0.02743362831858407,
+      "values": [
+        1130.0,
+        1161.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/John_Manuel_Cook/inforank": {
+      "deltas": [
+        3.9421067454605773e-7
+      ],
+      "relative_change": 0.6955574201336417,
+      "values": [
+        5.667550415468439e-7,
+        9.609657160929017e-7
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/John_Manuel_Cook/literal_properties": {
+      "deltas": [
+        8.0
+      ],
+      "relative_change": 0.007428040854224698,
+      "values": [
+        1077.0,
+        1085.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Karl_Jakob_Weber/inforank": {
+      "deltas": [
+        4.7367449779486613e-7
+      ],
+      "relative_change": 0.690805678496251,
+      "values": [
+        6.856841403301186e-7,
+        1.1593586381249847e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Karl_Jakob_Weber/literal_properties": {
+      "deltas": [
+        6.0
+      ],
+      "relative_change": 0.004604758250191865,
+      "values": [
+        1303.0,
+        1309.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Liselotte_Welskopf-Henrich/inforank": {
+      "deltas": [
+        4.7489375490869673e-7
+      ],
+      "relative_change": 0.6947165076723203,
+      "values": [
+        6.835792005286446e-7,
+        1.1584729554373414e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Liselotte_Welskopf-Henrich/literal_properties": {
+      "deltas": [
+        9.0
+      ],
+      "relative_change": 0.006928406466512702,
+      "values": [
+        1299.0,
+        1308.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Mandy_Mystery_Q1889104/inforank": {
+      "deltas": [
+        4.732633034354168e-7
+      ],
+      "relative_change": 0.6960823605113924,
+      "values": [
+        6.798955558760653e-7,
+        1.1531588593114822e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Mandy_Mystery_Q1889104/literal_properties": {
+      "deltas": [
+        10.0
+      ],
+      "relative_change": 0.007739938080495356,
+      "values": [
+        1292.0,
+        1302.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Myles_Burnyeat/inforank": {
+      "deltas": [
+        4.004880732928223e-7
+      ],
+      "relative_change": 0.6969269517511599,
+      "values": [
+        5.746485658023711e-7,
+        9.751366390951934e-7
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Myles_Burnyeat/literal_properties": {
+      "deltas": [
+        9.0
+      ],
+      "relative_change": 0.008241758241758242,
+      "values": [
+        1092.0,
+        1101.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Olwen_Brogan/inforank": {
+      "deltas": [
+        9.293133147572497e-7
+      ],
+      "relative_change": 0.685014173946162,
+      "values": [
+        1.35663370204992e-6,
+        2.2859470168071698e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Olwen_Brogan/literal_properties": {
+      "deltas": [
+        3.0
+      ],
+      "relative_change": 0.0011636927851047323,
+      "values": [
+        2578.0,
+        2581.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Poland/inforank": {
+      "deltas": [
+        7.183470106555608e-7
+      ],
+      "relative_change": 0.9420765956252267,
+      "values": [
+        7.625144430839154e-7,
+        1.4808614537394762e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Poland/literal_properties": {
+      "deltas": [
+        223.0
+      ],
+      "relative_change": 0.1538992408557626,
+      "values": [
+        1449.0,
+        1672.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Sofía_Ugarriza_Q62752201/inforank": {
+      "deltas": [
+        5.343670730289557e-7
+      ],
+      "relative_change": 0.9359017572443218,
+      "values": [
+        5.709649211497918e-7,
+        1.1053319941787475e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Sofía_Ugarriza_Q62752201/literal_properties": {
+      "deltas": [
+        163.0
+      ],
+      "relative_change": 0.15023041474654378,
+      "values": [
+        1085.0,
+        1248.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Switzerland/inforank": {
+      "deltas": [
+        6.329652363972627e-7
+      ],
+      "relative_change": 0.9948872582714701,
+      "values": [
+        6.362180549954822e-7,
+        1.269183291392745e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Switzerland/literal_properties": {
+      "deltas": [
+        224.0
+      ],
+      "relative_change": 0.18527708850289495,
+      "values": [
+        1209.0,
+        1433.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Thomas_Dempster/inforank": {
+      "deltas": [
+        5.557177491733422e-7
+      ],
+      "relative_change": 0.6975072146576435,
+      "values": [
+        7.96719714857866e-7,
+        1.3524374640312082e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Thomas_Dempster/literal_properties": {
+      "deltas": [
+        13.0
+      ],
+      "relative_change": 0.008586525759577279,
+      "values": [
+        1514.0,
+        1527.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/United_States/inforank": {
+      "deltas": [
+        9.743268448416976e-7
+      ],
+      "relative_change": 1.4847677513013124,
+      "values": [
+        6.562149831094842e-7,
+        1.6305418279511817e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/United_States/literal_properties": {
+      "deltas": [
+        594.0
+      ],
+      "relative_change": 0.47634322373696875,
+      "values": [
+        1247.0,
+        1841.0
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Walter-Herwig_Schuchhardt/inforank": {
+      "deltas": [
+        4.741748594341473e-7
+      ],
+      "relative_change": 0.6947344890037026,
+      "values": [
+        6.825267306279078e-7,
+        1.156701590062055e-6
+      ]
+    },
+    "entities/http://yago-knowledge.org/resource/Walter-Herwig_Schuchhardt/literal_properties": {
+      "deltas": [
+        9.0
+      ],
+      "relative_change": 0.006939090208172706,
+      "values": [
+        1297.0,
+        1306.0
+      ]
+    },
+    "total_literal_properties": {
+      "deltas": [
+        -771219336.0
+      ],
+      "relative_change": -0.4058425690031657,
+      "values": [
+        1900291874.0,
+        1129072538.0
+      ]
+    }
+  },
+  "snapshots": [
+    "yago-4",
+    "yago-4.5.0.2"
+  ]
+}

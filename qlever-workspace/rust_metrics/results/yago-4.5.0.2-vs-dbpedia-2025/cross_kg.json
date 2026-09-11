@@ -1,0 +1,150 @@
+{
+  "classes": {
+    "administrativearea": {
+      "a": {
+        "class_entropy": 17.15202486540842,
+        "iri": "http://schema.org/AdministrativeArea",
+        "population": 518290.0,
+        "predicates": 34.0
+      },
+      "b": {
+        "class_entropy": 13.095728626479483,
+        "iri": "http://schema.org/AdministrativeArea",
+        "population": 57382.0,
+        "predicates": 2888.0
+      },
+      "delta_class_entropy": 4.0562962389289385,
+      "delta_population": 460908.0,
+      "delta_predicates": -2854.0,
+      "delta_share": 0.8006434219486096
+    },
+    "album": {
+      "a": {
+        "class_entropy": 19.219888083812478,
+        "iri": "http://yago-knowledge.org/resource/Album",
+        "population": 283101.0,
+        "predicates": 29.0
+      },
+      "b": {
+        "class_entropy": 14.389668129844518,
+        "iri": "http://dbpedia.org/ontology/Album",
+        "population": 165698.0,
+        "predicates": 869.0
+      },
+      "delta_class_entropy": 4.83021995396796,
+      "delta_population": 117403.0,
+      "delta_predicates": -840.0,
+      "delta_share": 0.26159372012860993
+    },
+    "building": {
+      "a": {
+        "class_entropy": 16.168628559552573,
+        "iri": "http://yago-knowledge.org/resource/Building",
+        "population": 235529.0,
+        "predicates": 31.0
+      },
+      "b": {
+        "class_entropy": 13.303933643038485,
+        "iri": "http://dbpedia.org/ontology/Building",
+        "population": 140342.0,
+        "predicates": 3025.0
+      },
+      "delta_class_entropy": 2.864694916514088,
+      "delta_population": 95187.0,
+      "delta_predicates": -2994.0,
+      "delta_share": 0.25324379906936156
+    },
+    "movie": {
+      "a": {
+        "class_entropy": 20.015728797837724,
+        "iri": "http://schema.org/Movie",
+        "population": 277804.0,
+        "predicates": 29.0
+      },
+      "b": {
+        "class_entropy": 14.080873105312357,
+        "iri": "http://schema.org/Movie",
+        "population": 162184.0,
+        "predicates": 936.0
+      },
+      "delta_class_entropy": 5.9348556925253675,
+      "delta_population": 115620.0,
+      "delta_predicates": -907.0,
+      "delta_share": 0.262779893997109
+    },
+    "organization": {
+      "a": {
+        "class_entropy": 14.27524394455645,
+        "iri": "http://schema.org/Organization",
+        "population": 103600.0,
+        "predicates": 34.0
+      },
+      "b": {
+        "class_entropy": 14.275367482839812,
+        "iri": "http://schema.org/Organization",
+        "population": 383356.0,
+        "predicates": 10798.0
+      },
+      "delta_class_entropy": -0.000123538283361313,
+      "delta_population": -279756.0,
+      "delta_predicates": -10764.0,
+      "delta_share": -0.5744995441066544
+    },
+    "person": {
+      "a": {
+        "class_entropy": 19.83870022925335,
+        "iri": "http://schema.org/Person",
+        "population": 2982308.0,
+        "predicates": 28.0
+      },
+      "b": {
+        "class_entropy": 13.344492545673083,
+        "iri": "http://xmlns.com/foaf/0.1/Person",
+        "population": 2125569.0,
+        "predicates": 8898.0
+      },
+      "delta_class_entropy": 6.494207683580269,
+      "delta_population": 856739.0,
+      "delta_predicates": -8870.0,
+      "delta_share": 0.16772898016142518
+    },
+    "politician": {
+      "a": {
+        "class_entropy": 18.815848544300337,
+        "iri": "http://yago-knowledge.org/resource/Politician",
+        "population": 750961.0,
+        "predicates": 37.0
+      },
+      "b": {
+        "class_entropy": 13.880262598976865,
+        "iri": "http://dbpedia.org/ontology/Politician",
+        "population": 253104.0,
+        "predicates": 2666.0
+      },
+      "delta_class_entropy": 4.9355859453234725,
+      "delta_population": 497857.0,
+      "delta_predicates": -2629.0,
+      "delta_share": 0.4958414046899354
+    },
+    "village": {
+      "a": {
+        "class_entropy": 17.55351966010928,
+        "iri": "http://yago-knowledge.org/resource/Village",
+        "population": 233623.0,
+        "predicates": 31.0
+      },
+      "b": {
+        "class_entropy": 11.01294417713178,
+        "iri": "http://dbpedia.org/ontology/Village",
+        "population": 211672.0,
+        "predicates": 1703.0
+      },
+      "delta_class_entropy": 6.5405754829775,
+      "delta_population": 21951.0,
+      "delta_predicates": -1672.0,
+      "delta_share": 0.04929541090737601
+    }
+  },
+  "kg_a": "http://localhost:9006",
+  "kg_b": "http://localhost:9010"
+}

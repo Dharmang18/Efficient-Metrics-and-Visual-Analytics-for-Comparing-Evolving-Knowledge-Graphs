@@ -1,0 +1,70 @@
+{
+  "metric": "property_entropy",
+  "series": {
+    "http://www.w3.org/2002/07/owl#Thing/http://dbpedia.org/property/name": {
+      "deltas": [
+        -0.2277023552805204,
+        0.09734266382944767
+      ],
+      "relative_change": -0.006094535496554594,
+      "values": [
+        21.38960246023156,
+        21.16190010495104,
+        21.25924276878049
+      ]
+    },
+    "http://www.w3.org/2002/07/owl#Thing/http://dbpedia.org/property/subdivisionType": {
+      "deltas": [
+        0.77003335531486,
+        -0.21881199890099623
+      ],
+      "relative_change": 0.09503211642765153,
+      "values": [
+        5.800369150291539,
+        6.570402505606399,
+        6.351590506705403
+      ]
+    },
+    "http://www.w3.org/2002/07/owl#Thing/http://dbpedia.org/property/title": {
+      "deltas": [
+        0.43294677167166284,
+        0.056475048501880565
+      ],
+      "relative_change": 0.026595451247501567,
+      "values": [
+        18.402463474633496,
+        18.83541024630516,
+        18.89188529480704
+      ]
+    },
+    "http://www.w3.org/2002/07/owl#Thing/http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+      "deltas": [
+        0.12161794893335198,
+        -0.0003926970171974631
+      ],
+      "relative_change": 0.020555901134278107,
+      "values": [
+        5.897345542006168,
+        6.0189634909395195,
+        6.018570793922322
+      ]
+    },
+    "http://www.w3.org/2002/07/owl#Thing/http://www.w3.org/2000/01/rdf-schema#label": {
+      "deltas": [
+        0.38884311830512175,
+        0.10725655928642297
+      ],
+      "relative_change": 0.022868129312182683,
+      "values": [
+        21.693933544763297,
+        22.08277666306842,
+        22.19003322235484
+      ]
+    }
+  },
+  "snapshots": [
+    "dbpedia-2015",
+    "dbpedia-2022-matched",
+    "dbpedia-2025"
+  ]
+}

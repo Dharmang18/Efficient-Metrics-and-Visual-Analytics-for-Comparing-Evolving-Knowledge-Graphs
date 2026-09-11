@@ -1,0 +1,70 @@
+{
+  "metric": "class_entropy",
+  "series": {
+    "http://www.w3.org/2002/07/owl#Thing/distinct_objects": {
+      "deltas": [
+        6492631.0,
+        5530782.0
+      ],
+      "relative_change": 0.6329951455894105,
+      "values": [
+        18994479.0,
+        25487110.0,
+        31017892.0
+      ]
+    },
+    "http://www.w3.org/2002/07/owl#Thing/distinct_predicates": {
+      "deltas": [
+        -6772.0,
+        -710.0
+      ],
+      "relative_change": -0.1478977643361205,
+      "values": [
+        50589.0,
+        43817.0,
+        43107.0
+      ]
+    },
+    "http://www.w3.org/2002/07/owl#Thing/object_entropy": {
+      "deltas": [
+        0.4569401830867612,
+        -0.6465321547980203
+      ],
+      "relative_change": -0.011803127852651182,
+      "values": [
+        16.062858428554048,
+        16.51979861164081,
+        15.873266456842789
+      ]
+    },
+    "http://www.w3.org/2002/07/owl#Thing/predicate_entropy": {
+      "deltas": [
+        0.11161023046885532,
+        -0.778368344744564
+      ],
+      "relative_change": -0.08704749092532703,
+      "values": [
+        7.659705147017753,
+        7.771315377486609,
+        6.992947032742045
+      ]
+    },
+    "http://www.w3.org/2002/07/owl#Thing/triples": {
+      "deltas": [
+        36399600.0,
+        66105217.0
+      ],
+      "relative_change": 0.7218255435421888,
+      "values": [
+        142007744.0,
+        178407344.0,
+        244512561.0
+      ]
+    }
+  },
+  "snapshots": [
+    "dbpedia-2015",
+    "dbpedia-2022-matched",
+    "dbpedia-2025"
+  ]
+}

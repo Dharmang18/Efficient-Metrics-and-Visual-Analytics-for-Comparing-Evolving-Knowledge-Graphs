@@ -1,0 +1,12 @@
+value,yago-4,yago-4.5.0.2,relative_change
+classes/http://yago-knowledge.org/resource/Star/share,0.023312,0.065983,1.830428
+classes/http://yago-knowledge.org/resource/Galaxy/share,0.018244,0.042155,1.310590
+classes/http://yago-knowledge.org/resource/Star/population,1707848.000000,3278545.000000,0.919694
+classes/http://schema.org/AdministrativeArea/population,1942524.000000,518290.000000,-0.733187
+classes/http://yago-knowledge.org/resource/Chemical_compound/share,0.013866,0.022437,0.618197
+classes/http://schema.org/AdministrativeArea/share,0.026515,0.010431,-0.606607
+classes/http://yago-knowledge.org/resource/Galaxy/population,1336587.000000,2094595.000000,0.567122
+classes/http://schema.org/Person/population,6433965.000000,2982308.000000,-0.536474
+total_entities,73260634.000000,49687891.000000,-0.321765
+classes/http://schema.org/Person/share,0.087823,0.060021,-0.316570
+classes/http://yago-knowledge.org/resource/Chemical_compound/population,1015809.000000,1114868.000000,0.097517

@@ -1,0 +1,119 @@
+{
+  "metric": "class_population",
+  "series": {
+    "classes/http://schema.org/AdministrativeArea/population": {
+      "deltas": [
+        -1424234.0
+      ],
+      "relative_change": -0.7331873377111429,
+      "values": [
+        1942524.0,
+        518290.0
+      ]
+    },
+    "classes/http://schema.org/AdministrativeArea/share": {
+      "deltas": [
+        -0.01608433802168193
+      ],
+      "relative_change": -0.6066070745786019,
+      "values": [
+        0.02651524964962766,
+        0.01043091162794573
+      ]
+    },
+    "classes/http://schema.org/Person/population": {
+      "deltas": [
+        -3451657.0
+      ],
+      "relative_change": -0.5364743202675177,
+      "values": [
+        6433965.0,
+        2982308.0
+      ]
+    },
+    "classes/http://schema.org/Person/share": {
+      "deltas": [
+        -0.027802129277382875
+      ],
+      "relative_change": -0.316570204751041,
+      "values": [
+        0.08782295004435807,
+        0.060020820766975194
+      ]
+    },
+    "classes/http://yago-knowledge.org/resource/Chemical_compound/population": {
+      "deltas": [
+        99059.0
+      ],
+      "relative_change": 0.09751734824164779,
+      "values": [
+        1015809.0,
+        1114868.0
+      ]
+    },
+    "classes/http://yago-knowledge.org/resource/Chemical_compound/share": {
+      "deltas": [
+        0.008571731683768404
+      ],
+      "relative_change": 0.6181974147017409,
+      "values": [
+        0.013865686720647271,
+        0.022437418404415675
+      ]
+    },
+    "classes/http://yago-knowledge.org/resource/Galaxy/population": {
+      "deltas": [
+        758008.0
+      ],
+      "relative_change": 0.5671220803434419,
+      "values": [
+        1336587.0,
+        2094595.0
+      ]
+    },
+    "classes/http://yago-knowledge.org/resource/Galaxy/share": {
+      "deltas": [
+        0.02391076643697839
+      ],
+      "relative_change": 1.3105902635585696,
+      "values": [
+        0.018244272906510747,
+        0.04215503934348914
+      ]
+    },
+    "classes/http://yago-knowledge.org/resource/Star/population": {
+      "deltas": [
+        1570697.0
+      ],
+      "relative_change": 0.9196936729732388,
+      "values": [
+        1707848.0,
+        3278545.0
+      ]
+    },
+    "classes/http://yago-knowledge.org/resource/Star/share": {
+      "deltas": [
+        0.04267082959895421
+      ],
+      "relative_change": 1.8304275495977114,
+      "values": [
+        0.02331194676802824,
+        0.06598277636698245
+      ]
+    },
+    "total_entities": {
+      "deltas": [
+        -23572743.0
+      ],
+      "relative_change": -0.3217654791248462,
+      "values": [
+        73260634.0,
+        49687891.0
+      ]
+    }
+  },
+  "snapshots": [
+    "yago-4",
+    "yago-4.5.0.2"
+  ]
+}

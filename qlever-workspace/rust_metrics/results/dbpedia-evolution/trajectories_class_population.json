@@ -1,0 +1,262 @@
+{
+  "metric": "class_population",
+  "series": {
+    "classes/http://dbpedia.org/ontology/CareerStation/population": {
+      "deltas": [
+        841334.0,
+        274428.0
+      ],
+      "relative_change": 1.253403221349246,
+      "values": [
+        890186.0,
+        1731520.0,
+        2005948.0
+      ]
+    },
+    "classes/http://dbpedia.org/ontology/CareerStation/share": {
+      "deltas": [
+        0.05072592446018198,
+        -0.16785006600816046
+      ],
+      "relative_change": -0.65733136090167,
+      "values": [
+        0.17818127738089018,
+        0.22890720184107216,
+        0.06105713583291169
+      ]
+    },
+    "classes/http://dbpedia.org/ontology/Person/population": {
+      "deltas": [
+        272264.0,
+        265367.0
+      ],
+      "relative_change": 0.338570503745724,
+      "values": [
+        1587944.0,
+        1860208.0,
+        2125575.0
+      ]
+    },
+    "classes/http://dbpedia.org/ontology/Person/share": {
+      "deltas": [
+        -0.07192603551803059,
+        -0.1812214267415565
+      ],
+      "relative_change": -0.7964473785649997,
+      "values": [
+        0.3178458101220647,
+        0.2459197746040341,
+        0.06469834786247762
+      ]
+    },
+    "classes/http://dbpedia.org/ontology/TimePeriod/population": {
+      "deltas": [
+        1070389.0,
+        384668.0
+      ],
+      "relative_change": 1.4248822682061975,
+      "values": [
+        1021177.0,
+        2091566.0,
+        2476234.0
+      ]
+    },
+    "classes/http://dbpedia.org/ontology/TimePeriod/share": {
+      "deltas": [
+        0.07210465826706627,
+        -0.20113361431182453
+      ],
+      "relative_change": -0.6312550284177008,
+      "values": [
+        0.20440067838854495,
+        0.2765053366556112,
+        0.0753717223437867
+      ]
+    },
+    "classes/http://schema.org/Person/population": {
+      "deltas": [
+        272264.0,
+        265363.0
+      ],
+      "relative_change": 0.33856798476520583,
+      "values": [
+        1587944.0,
+        1860208.0,
+        2125571.0
+      ]
+    },
+    "classes/http://schema.org/Person/share": {
+      "deltas": [
+        -0.07192603551803059,
+        -0.18122154849373717
+      ],
+      "relative_change": -0.7964477616192253,
+      "values": [
+        0.3178458101220647,
+        0.2459197746040341,
+        0.06469822611029695
+      ]
+    },
+    "classes/http://schema.org/Place/population": {
+      "deltas": [
+        -41410.0,
+        11629.0
+      ],
+      "relative_change": -0.037164278565492044,
+      "values": [
+        801334.0,
+        759924.0,
+        771553.0
+      ]
+    },
+    "classes/http://schema.org/Place/share": {
+      "deltas": [
+        -0.05993443064668545,
+        -0.07697750089532956
+      ],
+      "relative_change": -0.8535843016405779,
+      "values": [
+        0.16039649660715655,
+        0.1004620659604711,
+        0.023484565065141527
+      ]
+    },
+    "classes/http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#NaturalPerson/population": {
+      "deltas": [
+        272264.0,
+        265364.0
+      ],
+      "relative_change": 0.3385686145103354,
+      "values": [
+        1587944.0,
+        1860208.0,
+        2125572.0
+      ]
+    },
+    "classes/http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#NaturalPerson/share": {
+      "deltas": [
+        -0.07192603551803059,
+        -0.18122151805569198
+      ],
+      "relative_change": -0.796447665855669,
+      "values": [
+        0.3178458101220647,
+        0.2459197746040341,
+        0.06469825654834212
+      ]
+    },
+    "classes/http://www.w3.org/2002/07/owl#Thing/population": {
+      "deltas": [
+        469195.0,
+        433906.0
+      ],
+      "relative_change": 0.18076636768491003,
+      "values": [
+        4995957.0,
+        5465152.0,
+        5899058.0
+      ]
+    },
+    "classes/http://www.w3.org/2002/07/owl#Thing/share": {
+      "deltas": [
+        -0.2775060917828618,
+        -0.542938114351981
+      ],
+      "relative_change": -0.8204442061348428,
+      "values": [
+        1.0,
+        0.7224939082171382,
+        0.1795557938651572
+      ]
+    },
+    "classes/http://www.wikidata.org/entity/Q215627/population": {
+      "deltas": [
+        272264.0,
+        265364.0
+      ],
+      "relative_change": 0.3385686145103354,
+      "values": [
+        1587944.0,
+        1860208.0,
+        2125572.0
+      ]
+    },
+    "classes/http://www.wikidata.org/entity/Q215627/share": {
+      "deltas": [
+        -0.07192603551803059,
+        -0.18122151805569198
+      ],
+      "relative_change": -0.796447665855669,
+      "values": [
+        0.3178458101220647,
+        0.2459197746040341,
+        0.06469825654834212
+      ]
+    },
+    "classes/http://www.wikidata.org/entity/Q5/population": {
+      "deltas": [
+        272264.0,
+        265365.0
+      ],
+      "relative_change": 0.3385692442554649,
+      "values": [
+        1587944.0,
+        1860208.0,
+        2125573.0
+      ]
+    },
+    "classes/http://www.wikidata.org/entity/Q5/share": {
+      "deltas": [
+        -0.07192603551803059,
+        -0.18122148761764684
+      ],
+      "relative_change": -0.7964475700921125,
+      "values": [
+        0.3178458101220647,
+        0.2459197746040341,
+        0.06469828698638729
+      ]
+    },
+    "classes/http://xmlns.com/foaf/0.1/Person/population": {
+      "deltas": [
+        272264.0,
+        265361.0
+      ],
+      "relative_change": 0.33856672527494674,
+      "values": [
+        1587944.0,
+        1860208.0,
+        2125569.0
+      ]
+    },
+    "classes/http://xmlns.com/foaf/0.1/Person/share": {
+      "deltas": [
+        -0.07192603551803059,
+        -0.1812216093698275
+      ],
+      "relative_change": -0.7964479531463383,
+      "values": [
+        0.3178458101220647,
+        0.2459197746040341,
+        0.0646981652342066
+      ]
+    },
+    "total_entities": {
+      "deltas": [
+        2568331.0,
+        25289333.0
+      ],
+      "relative_change": 5.576041587227432,
+      "values": [
+        4995957.0,
+        7564288.0,
+        32853621.0
+      ]
+    }
+  },
+  "snapshots": [
+    "dbpedia-2015",
+    "dbpedia-2022-matched",
+    "dbpedia-2025"
+  ]
+}
