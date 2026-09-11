@@ -24,8 +24,12 @@ date-aligned (YAGO 4.5 = 2024, DBpedia core = 2022), which the cross-KG chapter 
 
 **Status: all 13 metrics are implemented in Rust** (2026-08-19) and verified against live
 endpoints. The dashboard is rebuilt metric-first for phase-1 results across snapshots
-(2026-08-26). What is left is running phases 2–3, and indexing DBpedia 2015 + 2025 on the
-home server. See "The metrics" below.
+(2026-08-26). **Phases 1–3 are now complete across all five snapshots** (2026-09-11): DBpedia
+2015 + 2025 are indexed and serving on the home server, the DBpedia trajectory series covers
+the full 2015→2022→2025 decade (metric 11 originally skipped the 2022 point — fixed), and
+metric 13 (crosskg) auto-matched 8 shared classes between YAGO 4.5.0.2 and DBpedia 2025, not
+just Person. What's left is the Chapter 4 write-up (`writing/include/experiment.tex` is still
+an outline with the numbers to cite, not finished prose). See "The metrics" below.
 
 - Final metric list (13 metrics, 3 proposal levels): `docs/metrics_final.pdf` —
   **source of truth is the generator** `docs/make_metrics_visual_pdf.py` (rerun to
@@ -51,8 +55,8 @@ home server. See "The metrics" below.
 | YAGO 4.5.0.2 | home server (+ 39 GB backup on the Mac) | 9006 | 1,305,431,407 |
 | DBpedia 2022 — full `latest-core` (86 files) | TUM VM | 7013 | 526,462,483 |
 | DBpedia 2022 — **matched** subset | TUM VM | 7014 | 237,155,678 |
-| DBpedia 2015-10 — matched | home server (planned) | 9008 | — |
-| DBpedia 2025-12-01 — matched | home server (planned) | 9010 | — |
+| DBpedia 2015-10 — matched | home server | 9008 | 169,621,442 |
+| DBpedia 2025-12-01 — matched | home server | 9010 | 347,497,387 |
 
 The full 2022 index (`:7013`) is a cross-check, NOT one of the five compared snapshots.
 16 GB RAM means the home server serves at most two endpoints at once — fine, since every
@@ -76,6 +80,16 @@ cross-version/cross-KG metric needs exactly two.
 - Server paths: indexes in `~/qlever/<name>/` (ext4 only, NEVER `/mnt/c|d`),
   qlever CLI venv at `~/qlever/.venv`. Docker auto-starts via `/etc/wsl.conf`.
 - The Windows laptop sleeps → if Tailscale shows it offline, Dharmang must wake it.
+- **The Windows laptop can now also act as a client** (2026-09-11), not just a QLever server:
+  OpenVPN (`OpenVPNTechnologies.OpenVPN` via winget) is installed with the TUM CDE profile in
+  `C:\Program Files\OpenVPN\config\vpn-cde-windows.ovpn`, giving it direct access to the TUM VM
+  (`131.159.130.53`) — login is the CIT account `pamd`, same as the Mac. A Rust toolchain is also
+  installed here (`rustup`, host default set to **`stable-x86_64-pc-windows-gnu`** — the MSVC
+  host toolchain fails to link because Git Bash's `/usr/bin/link` shadows MSVC's `link.exe`, and
+  no Visual Studio Build Tools are installed; MinGW-w64 GCC came from winget package
+  `BrechtSanders.WinLibs.POSIX.UCRT`). This means `rust_metrics` can now be built and run
+  directly on the home server, which is how phases 1-3 were completed and how the DBpedia
+  trajectory gap got fixed — no dependency on the Mac or working SSH into this laptop.
 
 ### TUM VM (university server, from Samuel, set up 2026-07-10)
 
@@ -236,6 +250,23 @@ metric 11 reads back). Every metric writes `<dir>/<metric>.{json,csv}`.
 17. `vpn/` (TUM CIT profile) is git-ignored: **the GitHub repo is public.** The Knowgly clone
     now lives at `~/reference/Knowgly/`, outside the thesis folder (moved 2026-09-09) —
     understand it, don't copy from it.
+18. **On Windows, `cargo build` with the default MSVC toolchain fails to link** inside Git Bash:
+    `link` resolves to `/usr/bin/link` (coreutils hardlink tool, "extra operand" error), and
+    separately there's no Visual Studio Build Tools installed anyway. Fix: install MinGW-w64
+    (winget `BrechtSanders.WinLibs.POSIX.UCRT`), `rustup target add x86_64-pc-windows-gnu`, then
+    `rustup default stable-x86_64-pc-windows-gnu` — the default must be the GNU *host* toolchain,
+    not just the target, or build-script/proc-macro compilation still reaches for MSVC's linker.
+19. `trajectories`/`out::write_json` needs **`QLEVER_SUFFIX=_<metric>`** set explicitly per call,
+    or every metric's output silently overwrites the same generic `trajectories.json` instead of
+    `trajectories_<metric>.json`. Cost a wasted run on 2026-09-11 — always check
+    `results/<label>/` after a trajectories batch for the expected per-metric filenames.
+20. GitHub push over HTTPS from this Windows account fails with `Unable to persist credentials
+    with the 'wincredman' credential store` — Git Credential Manager can't reach Windows
+    Credential Manager in this (headless/sandboxed) session. Workaround: a one-time
+    `git -c credential.helper="store --file=<tmp file>" push`, where the tmp file holds
+    `https://x-access-token:<PAT>@github.com` — never put the token directly in the push URL or
+    command line (the auto-mode classifier blocks that, correctly). Delete the tmp file right
+    after. The push itself still succeeds despite the wincredman warning printing first.
 
 ## Writing the thesis
 

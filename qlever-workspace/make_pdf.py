@@ -12,7 +12,7 @@ from reportlab.platypus import (
     Preformatted, PageBreak, HRFlowable,
 )
 
-OUT = "/Users/dharmangpambhar/thesis/Thesis_Setup_Explained.pdf"
+OUT = "../Thesis_Setup_Explained.pdf"  # run from qlever-workspace/, on any machine
 
 # ---- styles ----
 ss = getSampleStyleSheet()
@@ -84,7 +84,7 @@ def cells(rows):  # wrap each cell string in a Paragraph for wrapping
 P("Thesis Setup — Full Explanation", TITLE)
 P("Deploying knowledge graphs with QLever, computing all 13 thesis metrics in Rust + SPARQL, and a niceGUI dashboard", SUB)
 gap(6)
-P("Author: Dharmang Pambhar &nbsp;|&nbsp; Updated: 19 August 2026 &nbsp;|&nbsp; "
+P("Author: Dharmang Pambhar &nbsp;|&nbsp; Updated: 11 September 2026 &nbsp;|&nbsp; "
   "Advisor: Samuel García (TUM)", SUB)
 hr()
 P("This document explains, from the ground up, what the thesis task is, the tools involved, "
@@ -415,9 +415,9 @@ table(cells([
     ["Snapshot", "Served on", "Port", "Triples"],
     ["YAGO 4 (2020)", "home server", "9005", "2,489,858,800"],
     ["YAGO 4.5.0.2 (2024)", "home server (+ Mac backup)", "9006", "1,305,431,407"],
-    ["DBpedia 2015-10 (matched)", "home server (planned)", "9008", "-"],
-    ["DBpedia 2022.12.01 (matched)", "TUM VM", "7014", "~530 M"],
-    ["DBpedia 2025-12-01 (matched)", "home server (planned)", "9010", "-"],
+    ["DBpedia 2015-10 (matched)", "home server", "9008", "169,621,442"],
+    ["DBpedia 2022.12.01 (matched)", "TUM VM", "7014", "237,155,678"],
+    ["DBpedia 2025-12-01 (matched)", "home server", "9010", "347,497,387"],
 ]), [200, 150, 55, 105])
 P("Every DBpedia release ships a <b>different set of files</b> from a different extraction "
   "pipeline (2015: the classic core-i18n dump; 2022: the Databus latest-core collection, the "
@@ -471,16 +471,22 @@ table(cells([
     ["Second YAGO version indexed + cross-version metrics run", "DONE (YAGO 4 vs 4.5)"],
     ["niceGUI dashboard rebuilt metric-first across snapshots (phase 1)", "DONE"],
     ["DBpedia 2022 indexed (full + matched subset) on the TUM VM", "DONE"],
-    ["DBpedia 2015 + 2025 indexed on the home server", "TODO (blocked on server SSH)"],
-    ["Run phases 2-3 across all five snapshots", "TODO"],
+    ["DBpedia 2015 + 2025 indexed on the home server", "DONE (ports 9008, 9010)"],
+    ["Run phases 1-3 (class/entity/global metrics) across all five snapshots", "DONE"],
+    ["Metric 11 (trajectories): full 3-point DBpedia series, 2015-2022-2025", "DONE"],
+    ["Metric 13 (crosskg): YAGO 4.5.0.2 vs DBpedia 2025, all shared classes", "DONE (8 classes)"],
 ]), [320, 170])
-P("The computation side of the thesis is complete: every metric is implemented, runs against a "
-  "real endpoint, and writes its results, and the cross-version metrics have produced real "
-  "YAGO 4 vs 4.5 numbers. The dashboard has been rebuilt metric-first and shows phase-1 results "
-  "for YAGO 4, YAGO 4.5 and DBpedia 2022 side by side. Two things remain. First, DBpedia 2015 and "
-  "2025 still need indexing on the home server (currently blocked — the server's SSH is answered "
-  "by Windows OpenSSH instead of WSL, see CLAUDE.md). Second, phases 2-3 (the entity-level and "
-  "global metrics) must be run across all five snapshots and surfaced in the dashboard.")
+P("The computation side of the thesis is now complete end to end: every metric is implemented, "
+  "runs against a real endpoint, and writes its results; all five snapshots are indexed and "
+  "served (YAGO 4 and 4.5.0.2 on the home server, DBpedia 2015/2025 on the home server, DBpedia "
+  "2022 matched on the TUM VM); and phases 1-3 have all been run, including the cross-version "
+  "and cross-KG metrics. The DBpedia trajectory series originally skipped the 2022 snapshot "
+  "(only 2015 and 2025 were passed to metric 11) — that has been corrected, so it now reports the "
+  "full three-point decade. Metric 13 originally covered only the Person class; re-run with "
+  "automatic class matching it found 8 classes shared between YAGO 4.5.0.2 and DBpedia 2025 "
+  "(administrativearea, album, building, movie, organization, person, politician, village). "
+  "What remains is the write-up: Chapter 4 (Experiments and Results) is still an outline with the "
+  "numbers to cite, not finished prose.")
 
 SimpleDocTemplate(OUT, pagesize=A4, topMargin=18*mm, bottomMargin=16*mm,
                   leftMargin=18*mm, rightMargin=16*mm,
