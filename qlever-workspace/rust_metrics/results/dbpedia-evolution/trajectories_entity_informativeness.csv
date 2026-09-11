@@ -1,0 +1,4 @@
+value,dbpedia-2015,dbpedia-2022-matched,dbpedia-2025,relative_change
+total_literal_properties,89029132.000000,123755831.000000,131395306.000000,0.475869
+entities/http://dbpedia.org/resource/List_of_Advanced_Dungeons_&_Dragons_2nd_edition_monsters/inforank,0.000036,0.000028,0.000023,-0.370831
+entities/http://dbpedia.org/resource/List_of_Advanced_Dungeons_&_Dragons_2nd_edition_monsters/literal_properties,3234.000000,3433.000000,3003.000000,-0.071429

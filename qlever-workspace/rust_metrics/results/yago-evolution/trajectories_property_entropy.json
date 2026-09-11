@@ -1,0 +1,79 @@
+{
+  "metric": "property_entropy",
+  "series": {
+    "http://schema.org/Person/http://schema.org/alternateName": {
+      "deltas": [
+        -2.6491347616615037
+      ],
+      "relative_change": -0.11804636871954055,
+      "values": [
+        22.441476094494934,
+        19.79234133283343
+      ]
+    },
+    "http://schema.org/Person/http://schema.org/birthDate": {
+      "deltas": [
+        -0.9334771841573968
+      ],
+      "relative_change": -0.06261587641959274,
+      "values": [
+        14.90799518483316,
+        13.974518000675763
+      ]
+    },
+    "http://schema.org/Person/http://schema.org/gender": {
+      "deltas": [
+        0.1270005323402188
+      ],
+      "relative_change": 0.16583754420197658,
+      "values": [
+        0.7658129101667264,
+        0.8928134425069452
+      ]
+    },
+    "http://schema.org/Person/http://www.w3.org/1999/02/22-rdf-syntax-ns#type": {
+      "deltas": [
+        -1.5883302942761475
+      ],
+      "relative_change": -0.9994838433575565,
+      "values": [
+        1.589150544885733,
+        0.0008202506095855711
+      ]
+    },
+    "http://schema.org/Person/http://www.w3.org/2000/01/rdf-schema#comment": {
+      "deltas": [
+        2.1112093188325396
+      ],
+      "relative_change": 0.1320060414132517,
+      "values": [
+        15.99327800629435,
+        18.10448732512689
+      ]
+    },
+    "http://schema.org/Person/http://www.w3.org/2000/01/rdf-schema#label": {
+      "deltas": [
+        -2.640779188151665
+      ],
+      "relative_change": -0.10288466528365023,
+      "values": [
+        25.66737405298553,
+        23.026594864833864
+      ]
+    },
+    "http://schema.org/Person/http://www.w3.org/2002/07/owl#sameAs": {
+      "deltas": [
+        -1.5115916414706945
+      ],
+      "relative_change": -0.06566544739399831,
+      "values": [
+        23.01958947147676,
+        21.507997830006065
+      ]
+    }
+  },
+  "snapshots": [
+    "yago-4",
+    "yago-4.5.0.2"
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "metric": "graph_shape",
+  "series": {
+    "avg_in_degree": {
+      "deltas": [
+        -2.7283624135527185
+      ],
+      "relative_change": -0.5742531123991985,
+      "values": [
+        4.751149544760441,
+        2.0227871312077226
+      ]
+    },
+    "avg_out_degree": {
+      "deltas": [
+        -7.713778920426023
+      ],
+      "relative_change": -0.2269675996595768,
+      "values": [
+        33.98625588848687,
+        26.27247696806085
+      ]
+    },
+    "classes": {
+      "deltas": [
+        108200.0
+      ],
+      "relative_change": 10.709690191032367,
+      "values": [
+        10103.0,
+        118303.0
+      ]
+    },
+    "density_triples_per_entity": {
+      "deltas": [
+        -7.71368588102855
+      ],
+      "relative_change": -0.2269644841390203,
+      "values": [
+        33.98631248536561,
+        26.27262660433706
+      ]
+    },
+    "distinct_objects": {
+      "deltas": [
+        121308747.0
+      ],
+      "relative_change": 0.23148139889880884,
+      "values": [
+        524053974.0,
+        645362721.0
+      ]
+    },
+    "distinct_subjects": {
+      "deltas": [
+        -23572582.0
+      ],
+      "relative_change": -0.32176274566426805,
+      "values": [
+        73260756.0,
+        49688174.0
+      ]
+    },
+    "predicates": {
+      "deltas": [
+        -34.0
+      ],
+      "relative_change": -0.21656050955414013,
+      "values": [
+        157.0,
+        123.0
+      ]
+    },
+    "triples": {
+      "deltas": [
+        -1184427393.0
+      ],
+      "relative_change": -0.475700627280551,
+      "values": [
+        2489858800.0,
+        1305431407.0
+      ]
+    },
+    "typed_entities": {
+      "deltas": [
+        -23572743.0
+      ],
+      "relative_change": -0.3217654791248462,
+      "values": [
+        73260634.0,
+        49687891.0
+      ]
+    }
+  },
+  "snapshots": [
+    "yago-4",
+    "yago-4.5.0.2"
+  ]
+}

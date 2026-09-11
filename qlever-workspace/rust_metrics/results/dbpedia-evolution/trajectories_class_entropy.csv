@@ -1,0 +1,6 @@
+value,dbpedia-2015,dbpedia-2022-matched,dbpedia-2025,relative_change
+http://www.w3.org/2002/07/owl#Thing/triples,142007744.000000,178407344.000000,244512561.000000,0.721826
+http://www.w3.org/2002/07/owl#Thing/distinct_objects,18994479.000000,25487110.000000,31017892.000000,0.632995
+http://www.w3.org/2002/07/owl#Thing/distinct_predicates,50589.000000,43817.000000,43107.000000,-0.147898
+http://www.w3.org/2002/07/owl#Thing/predicate_entropy,7.659705,7.771315,6.992947,-0.087047
+http://www.w3.org/2002/07/owl#Thing/object_entropy,16.062858,16.519799,15.873266,-0.011803

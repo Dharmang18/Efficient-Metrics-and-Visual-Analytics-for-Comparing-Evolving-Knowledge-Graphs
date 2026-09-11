@@ -1,0 +1,46 @@
+{
+  "metric": "entity_informativeness",
+  "series": {
+    "entities/http://dbpedia.org/resource/List_of_Advanced_Dungeons_&_Dragons_2nd_edition_monsters/inforank": {
+      "deltas": [
+        -8.585081428769282e-6,
+        -4.885409333463502e-6
+      ],
+      "relative_change": -0.3708305813777375,
+      "values": [
+        0.00003632518847875547,
+        0.00002774010704998619,
+        0.00002285469771652269
+      ]
+    },
+    "entities/http://dbpedia.org/resource/List_of_Advanced_Dungeons_&_Dragons_2nd_edition_monsters/literal_properties": {
+      "deltas": [
+        199.0,
+        -430.0
+      ],
+      "relative_change": -0.07142857142857142,
+      "values": [
+        3234.0,
+        3433.0,
+        3003.0
+      ]
+    },
+    "total_literal_properties": {
+      "deltas": [
+        34726699.0,
+        7639475.0
+      ],
+      "relative_change": 0.4758686628552101,
+      "values": [
+        89029132.0,
+        123755831.0,
+        131395306.0
+      ]
+    }
+  },
+  "snapshots": [
+    "dbpedia-2015",
+    "dbpedia-2022-matched",
+    "dbpedia-2025"
+  ]
+}

@@ -1,0 +1,6 @@
+value,yago-4,yago-4.5.0.2,relative_change
+http://schema.org/Person/triples,180983829.000000,33211484.000000,-0.816495
+http://schema.org/Person/distinct_objects,88928916.000000,19222972.000000,-0.783839
+http://schema.org/Person/distinct_predicates,38.000000,28.000000,-0.263158
+http://schema.org/Person/object_entropy,20.644811,19.838700,-0.039047
+http://schema.org/Person/predicate_entropy,3.210535,3.185070,-0.007932

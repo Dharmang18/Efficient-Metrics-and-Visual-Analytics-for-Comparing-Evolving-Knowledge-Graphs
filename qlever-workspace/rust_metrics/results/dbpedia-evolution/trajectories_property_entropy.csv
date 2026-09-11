@@ -1,0 +1,6 @@
+value,dbpedia-2015,dbpedia-2022-matched,dbpedia-2025,relative_change
+http://www.w3.org/2002/07/owl#Thing/http://dbpedia.org/property/subdivisionType,5.800369,6.570403,6.351591,0.095032
+http://www.w3.org/2002/07/owl#Thing/http://dbpedia.org/property/title,18.402463,18.835410,18.891885,0.026595
+http://www.w3.org/2002/07/owl#Thing/http://www.w3.org/2000/01/rdf-schema#label,21.693934,22.082777,22.190033,0.022868
+http://www.w3.org/2002/07/owl#Thing/http://www.w3.org/1999/02/22-rdf-syntax-ns#type,5.897346,6.018963,6.018571,0.020556
+http://www.w3.org/2002/07/owl#Thing/http://dbpedia.org/property/name,21.389602,21.161900,21.259243,-0.006095

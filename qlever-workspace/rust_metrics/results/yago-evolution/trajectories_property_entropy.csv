@@ -1,0 +1,8 @@
+value,yago-4,yago-4.5.0.2,relative_change
+http://schema.org/Person/http://www.w3.org/1999/02/22-rdf-syntax-ns#type,1.589151,0.000820,-0.999484
+http://schema.org/Person/http://schema.org/gender,0.765813,0.892813,0.165838
+http://schema.org/Person/http://www.w3.org/2000/01/rdf-schema#comment,15.993278,18.104487,0.132006
+http://schema.org/Person/http://schema.org/alternateName,22.441476,19.792341,-0.118046
+http://schema.org/Person/http://www.w3.org/2000/01/rdf-schema#label,25.667374,23.026595,-0.102885
+http://schema.org/Person/http://www.w3.org/2002/07/owl#sameAs,23.019589,21.507998,-0.065665
+http://schema.org/Person/http://schema.org/birthDate,14.907995,13.974518,-0.062616
