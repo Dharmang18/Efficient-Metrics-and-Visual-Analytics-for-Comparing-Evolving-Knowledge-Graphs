@@ -19,7 +19,8 @@ shipped. See `qlever-workspace/dbpedia-matched/MATCHED_SUBSET.md`.
 YAGO / DBpedia index (local, not in repo)
       │  SPARQL
       ▼
-QLever  ──►  :9005 YAGO 4 · :9006 YAGO 4.5 (home server) · :7014 DBpedia (TUM VM)
+QLever  ──►  :9005 YAGO 4 · :9006 YAGO 4.5 · :9008 DBpedia 2015 · :9010 DBpedia 2025
+             (all four on the home server) · :7014 DBpedia 2022-matched (TUM VM)
       │  counting queries (GROUP BY / COUNT) + formula in Rust
       ▼
 rust_metrics/  (Rust + SPARQL)      # 13 metrics, dictionaries + formulas
@@ -155,5 +156,8 @@ cd qlever-workspace && python dashboard.py      # http://localhost:8080
 ```
 
 The JSON is loaded once at startup — re-run a metric and **restart the dashboard** to see new
-data. It currently reads the ETImp and PageRank results only; wiring the other 11 metrics and
-the `results/<label>/` layout into it is the next task.
+data. It has been rebuilt metric-first and reads the `results/<label>/` layout across snapshots,
+but currently covers **phase 1 (class-level) metrics only** — population, entf, entetimp,
+classentropy. Phases 2–3 (entity-level and global metrics: inforank, diversity,
+entropy-pagerank, shape, churn, diff, trajectories, vocab, crosskg) are fully computed
+(2026-09-11, all five snapshots) but not yet wired into the dashboard — that's the next task.
