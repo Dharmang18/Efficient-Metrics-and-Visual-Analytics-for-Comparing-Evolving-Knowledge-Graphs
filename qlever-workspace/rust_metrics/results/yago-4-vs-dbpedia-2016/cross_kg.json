@@ -1,0 +1,424 @@
+{
+  "classes": {
+    "administrativearea": {
+      "a": {
+        "class_entropy": 16.3967961197773,
+        "iri": "http://schema.org/AdministrativeArea",
+        "population": 1942524.0,
+        "predicates": 30.0
+      },
+      "b": {
+        "class_entropy": 12.28942778730184,
+        "iri": "http://schema.org/AdministrativeArea",
+        "population": 25017.0,
+        "predicates": 2373.0
+      },
+      "delta_class_entropy": 4.10736833247546,
+      "delta_population": 1917507.0,
+      "delta_predicates": -2343.0,
+      "delta_share": 0.9745702884971648
+    },
+    "bodyofwater": {
+      "a": {
+        "class_entropy": 14.827565572255608,
+        "iri": "http://schema.org/BodyOfWater",
+        "population": 1377500.0,
+        "predicates": 21.0
+      },
+      "b": {
+        "class_entropy": 10.22750370527587,
+        "iri": "http://dbpedia.org/ontology/BodyOfWater",
+        "population": 43453.0,
+        "predicates": 1572.0
+      },
+      "delta_class_entropy": 4.600061866979738,
+      "delta_population": 1334047.0,
+      "delta_predicates": -1551.0,
+      "delta_share": 0.9388396379049835
+    },
+    "building": {
+      "a": {
+        "class_entropy": 14.037086664475984,
+        "iri": "http://yago-knowledge.org/resource/Building",
+        "population": 214414.0,
+        "predicates": 31.0
+      },
+      "b": {
+        "class_entropy": 11.767987424891103,
+        "iri": "http://dbpedia.org/ontology/Building",
+        "population": 82203.0,
+        "predicates": 3056.0
+      },
+      "delta_class_entropy": 2.2690992395848806,
+      "delta_population": 132211.0,
+      "delta_predicates": -3025.0,
+      "delta_share": 0.4457296783394074
+    },
+    "city": {
+      "a": {
+        "class_entropy": 19.5428233483619,
+        "iri": "http://schema.org/City",
+        "population": 43513.0,
+        "predicates": 25.0
+      },
+      "b": {
+        "class_entropy": 12.125606959067,
+        "iri": "http://dbpedia.org/ontology/City",
+        "population": 20839.0,
+        "predicates": 2373.0
+      },
+      "delta_class_entropy": 7.4172163892949,
+      "delta_population": 22674.0,
+      "delta_predicates": -2348.0,
+      "delta_share": 0.3523433615116857
+    },
+    "collegeoruniversity": {
+      "a": {
+        "class_entropy": 14.90738297609682,
+        "iri": "http://schema.org/CollegeOrUniversity",
+        "population": 34174.0,
+        "predicates": 30.0
+      },
+      "b": {
+        "class_entropy": 10.950301556353653,
+        "iri": "http://schema.org/CollegeOrUniversity",
+        "population": 20438.0,
+        "predicates": 2844.0
+      },
+      "delta_class_entropy": 3.957081419743167,
+      "delta_population": 13736.0,
+      "delta_predicates": -2814.0,
+      "delta_share": 0.25151981249542227
+    },
+    "educationalorganization": {
+      "a": {
+        "class_entropy": 14.214527086956956,
+        "iri": "http://schema.org/EducationalOrganization",
+        "population": 475270.0,
+        "predicates": 31.0
+      },
+      "b": {
+        "class_entropy": 12.004230105958595,
+        "iri": "http://schema.org/EducationalOrganization",
+        "population": 55302.0,
+        "predicates": 5318.0
+      },
+      "delta_class_entropy": 2.2102969809983612,
+      "delta_population": 419968.0,
+      "delta_predicates": -5287.0,
+      "delta_share": 0.7915381889734099
+    },
+    "event": {
+      "a": {
+        "class_entropy": 16.821813086580836,
+        "iri": "http://schema.org/Event",
+        "population": 539407.0,
+        "predicates": 23.0
+      },
+      "b": {
+        "class_entropy": 15.332392318134412,
+        "iri": "http://schema.org/Event",
+        "population": 76029.0,
+        "predicates": 4344.0
+      },
+      "delta_class_entropy": 1.4894207684464238,
+      "delta_population": 463378.0,
+      "delta_predicates": -4321.0,
+      "delta_share": 0.752926380647216
+    },
+    "movie": {
+      "a": {
+        "class_entropy": 18.604695235932603,
+        "iri": "http://schema.org/Movie",
+        "population": 294545.0,
+        "predicates": 51.0
+      },
+      "b": {
+        "class_entropy": 13.631347866627392,
+        "iri": "http://schema.org/Movie",
+        "population": 111938.0,
+        "predicates": 1775.0
+      },
+      "delta_class_entropy": 4.973347369305211,
+      "delta_population": 182607.0,
+      "delta_predicates": -1724.0,
+      "delta_share": 0.4492364994354007
+    },
+    "musicalbum": {
+      "a": {
+        "class_entropy": 16.45417063298453,
+        "iri": "http://schema.org/MusicAlbum",
+        "population": 258162.0,
+        "predicates": 46.0
+      },
+      "b": {
+        "class_entropy": 14.40808551080192,
+        "iri": "http://schema.org/MusicAlbum",
+        "population": 139078.0,
+        "predicates": 1210.0
+      },
+      "delta_class_entropy": 2.0460851221826086,
+      "delta_population": 119084.0,
+      "delta_predicates": -1164.0,
+      "delta_share": 0.2997784714530259
+    },
+    "musicgroup": {
+      "a": {
+        "class_entropy": 16.25119105792528,
+        "iri": "http://schema.org/MusicGroup",
+        "population": 85716.0,
+        "predicates": 25.0
+      },
+      "b": {
+        "class_entropy": 11.838221216836933,
+        "iri": "http://schema.org/MusicGroup",
+        "population": 87476.0,
+        "predicates": 2172.0
+      },
+      "delta_class_entropy": 4.412969841088346,
+      "delta_population": -1760.0,
+      "delta_predicates": -2147.0,
+      "delta_share": -0.010162132200101622
+    },
+    "organization": {
+      "a": {
+        "class_entropy": 19.465755113564473,
+        "iri": "http://schema.org/Organization",
+        "population": 2144509.0,
+        "predicates": 39.0
+      },
+      "b": {
+        "class_entropy": 13.560087488404577,
+        "iri": "http://schema.org/Organization",
+        "population": 286482.0,
+        "predicates": 13160.0
+      },
+      "delta_class_entropy": 5.9056676251598965,
+      "delta_population": 1858027.0,
+      "delta_predicates": -13121.0,
+      "delta_share": 0.7643084651485752
+    },
+    "person": {
+      "a": {
+        "class_entropy": 20.644811431083284,
+        "iri": "http://schema.org/Person",
+        "population": 6433965.0,
+        "predicates": 38.0
+      },
+      "b": {
+        "class_entropy": 12.839731501206046,
+        "iri": "http://xmlns.com/foaf/0.1/Person",
+        "population": 1243400.0,
+        "predicates": 11257.0
+      },
+      "delta_class_entropy": 7.8050799298772375,
+      "delta_population": 5190565.0,
+      "delta_predicates": -11219.0,
+      "delta_share": 0.6760867823791106
+    },
+    "place": {
+      "a": {
+        "class_entropy": 17.733091993337368,
+        "iri": "http://schema.org/Place",
+        "population": 14252116.0,
+        "predicates": 43.0
+      },
+      "b": {
+        "class_entropy": 13.326737352878249,
+        "iri": "http://dbpedia.org/ontology/Place",
+        "population": 839987.0,
+        "predicates": 13076.0
+      },
+      "delta_class_entropy": 4.406354640459119,
+      "delta_population": 13412129.0,
+      "delta_predicates": -13033.0,
+      "delta_share": 0.8886852282945591
+    },
+    "product": {
+      "a": {
+        "class_entropy": 16.416383794796644,
+        "iri": "http://schema.org/Product",
+        "population": 718506.0,
+        "predicates": 110.0
+      },
+      "b": {
+        "class_entropy": 13.627130294921843,
+        "iri": "http://schema.org/Product",
+        "population": 59571.0,
+        "predicates": 2545.0
+      },
+      "delta_class_entropy": 2.7892534998748015,
+      "delta_population": 658935.0,
+      "delta_predicates": -2435.0,
+      "delta_share": 0.8468763374318994
+    },
+    "riverbodyofwater": {
+      "a": {
+        "class_entropy": 13.64251630803087,
+        "iri": "http://schema.org/RiverBodyOfWater",
+        "population": 400896.0,
+        "predicates": 14.0
+      },
+      "b": {
+        "class_entropy": 9.728259677553542,
+        "iri": "http://schema.org/RiverBodyOfWater",
+        "population": 28445.0,
+        "predicates": 873.0
+      },
+      "delta_class_entropy": 3.914256630477329,
+      "delta_population": 372451.0,
+      "delta_predicates": -859.0,
+      "delta_share": 0.8674946021926627
+    },
+    "road": {
+      "a": {
+        "class_entropy": 14.182123842383223,
+        "iri": "http://yago-knowledge.org/resource/Road",
+        "population": 61879.0,
+        "predicates": 12.0
+      },
+      "b": {
+        "class_entropy": 13.300538453273667,
+        "iri": "http://dbpedia.org/ontology/Road",
+        "population": 21544.0,
+        "predicates": 759.0
+      },
+      "delta_class_entropy": 0.8815853891095564,
+      "delta_population": 40335.0,
+      "delta_predicates": -747.0,
+      "delta_share": 0.4834997542644115
+    },
+    "school": {
+      "a": {
+        "class_entropy": 13.210313216182554,
+        "iri": "http://schema.org/School",
+        "population": 368027.0,
+        "predicates": 29.0
+      },
+      "b": {
+        "class_entropy": 11.835860013281376,
+        "iri": "http://schema.org/School",
+        "population": 33291.0,
+        "predicates": 3295.0
+      },
+      "delta_class_entropy": 1.3744532029011776,
+      "delta_population": 334736.0,
+      "delta_predicates": -3266.0,
+      "delta_share": 0.8340916679540913
+    },
+    "ship": {
+      "a": {
+        "class_entropy": 12.078184245525367,
+        "iri": "http://yago-knowledge.org/resource/Ship",
+        "population": 47562.0,
+        "predicates": 25.0
+      },
+      "b": {
+        "class_entropy": 12.819542715539491,
+        "iri": "http://dbpedia.org/ontology/Ship",
+        "population": 30283.0,
+        "predicates": 944.0
+      },
+      "delta_class_entropy": -0.7413584700141236,
+      "delta_population": 17279.0,
+      "delta_predicates": -919.0,
+      "delta_share": 0.22196672875586101
+    },
+    "sportsevent": {
+      "a": {
+        "class_entropy": 14.708194412401518,
+        "iri": "http://schema.org/SportsEvent",
+        "population": 185745.0,
+        "predicates": 18.0
+      },
+      "b": {
+        "class_entropy": 14.253241773975844,
+        "iri": "http://dbpedia.org/ontology/SportsEvent",
+        "population": 27073.0,
+        "predicates": 2179.0
+      },
+      "delta_class_entropy": 0.4549526384256737,
+      "delta_population": 158672.0,
+      "delta_predicates": -2161.0,
+      "delta_share": 0.7455760321025477
+    },
+    "sportsteam": {
+      "a": {
+        "class_entropy": 16.071322380487278,
+        "iri": "http://schema.org/SportsTeam",
+        "population": 38470.0,
+        "predicates": 26.0
+      },
+      "b": {
+        "class_entropy": 12.238510665921217,
+        "iri": "http://dbpedia.org/ontology/SportsTeam",
+        "population": 33614.0,
+        "predicates": 2704.0
+      },
+      "delta_class_entropy": 3.832811714566061,
+      "delta_population": 4856.0,
+      "delta_predicates": -2678.0,
+      "delta_share": 0.0673658509516675
+    },
+    "stream": {
+      "a": {
+        "class_entropy": 12.293245438950523,
+        "iri": "http://yago-knowledge.org/resource/Stream",
+        "population": 124845.0,
+        "predicates": 13.0
+      },
+      "b": {
+        "class_entropy": 9.769780661027069,
+        "iri": "http://dbpedia.org/ontology/Stream",
+        "population": 28914.0,
+        "predicates": 1013.0
+      },
+      "delta_class_entropy": 2.5234647779234542,
+      "delta_population": 95931.0,
+      "delta_predicates": -1000.0,
+      "delta_share": 0.6239049421497278
+    },
+    "videogame": {
+      "a": {
+        "class_entropy": 13.230184552885499,
+        "iri": "http://schema.org/VideoGame",
+        "population": 40780.0,
+        "predicates": 47.0
+      },
+      "b": {
+        "class_entropy": 10.949057645224054,
+        "iri": "http://dbpedia.org/ontology/VideoGame",
+        "population": 20750.0,
+        "predicates": 1342.0
+      },
+      "delta_class_entropy": 2.281126907661445,
+      "delta_population": 20030.0,
+      "delta_predicates": -1295.0,
+      "delta_share": 0.3255322606858443
+    },
+    "village": {
+      "a": {
+        "class_entropy": 15.452458451392936,
+        "iri": "http://yago-knowledge.org/resource/Village",
+        "population": 275627.0,
+        "predicates": 21.0
+      },
+      "b": {
+        "class_entropy": 9.429010397925998,
+        "iri": "http://dbpedia.org/ontology/Village",
+        "population": 169128.0,
+        "predicates": 1537.0
+      },
+      "delta_class_entropy": 6.023448053466938,
+      "delta_population": 106499.0,
+      "delta_predicates": -1516.0,
+      "delta_share": 0.2394554305179256
+    }
+  },
+  "kg_a": "http://100.113.106.12:9005",
+  "kg_b": "http://100.113.106.12:9009",
+  "skipped": [
+    "creativework",
+    "thing"
+  ]
+}

@@ -1,27 +1,177 @@
 \chapter{Conclusion and Future Work}
 \label{chap:conclusion}
 
-% ~800-900 words (reference thesis: 837).
-
 \section{Summary}
 \label{sec:summary}
-% Answer each research question from Section~\ref{sec:research_objectives}
-% explicitly, in order, with the number that answers it.
-% TODO
+
+This thesis set out to measure how knowledge graphs change between releases, at
+a scale where the graphs do not fit in memory. It answers its four questions as
+follows.
+
+\textbf{RQ1, can a metric catalogue be computed exactly through a SPARQL
+endpoint?} Yes. Thirteen metrics across the class, entity and global level were
+implemented in Rust and run against seven snapshots, the largest holding
+2{,}489{,}858{,}800 triples. No metric loads the graph. Entropy is the case that
+looks impossible at first, because the definition ranges over every object value
+of a class, and Section~\ref{subsec:count_of_counts} shows it is not: entropy
+depends only on the multiset of value counts, so a nested \texttt{GROUP BY}
+folds hundreds of millions of values into a few hundred histogram rows and the
+result is exact rather than sampled. The profile the catalogue produces behaves
+as the construction of each graph predicts. Labels and \texttt{sameAs} carry the
+most information for \texttt{Person}, gender carries almost none, and DBpedia's
+predicate entropy exceeds YAGO's on every shared class because DBpedia draws
+from 54{,}933 predicates where YAGO draws from 123.
+
+\textbf{RQ2, how do the metrics change between versions, and where does the
+change concentrate?} The change concentrates sharply, and the two graphs
+concentrate it in opposite places. YAGO replaced 94\% of its class vocabulary
+between 4 and 4.5.0.2, adding 111{,}122 classes while keeping 7{,}181, and held
+its predicates nearly still at 72 kept. DBpedia did the reverse over a decade,
+keeping 700 of 740 classes while 30{,}788 predicates disappeared and 23{,}897
+arrived. At class level, metric~9 localises YAGO's change to the content that
+left: \texttt{GeoCoordinates} reached churn 1.0 as pure deletion, and
+\texttt{Article} recorded 758{,}368 deletions against 17 additions, which
+accounts for most of the 1.18 billion triple drop. \texttt{Person} behaved
+differently, 223{,}227 added against 245{,}398 deleted, which is revision rather
+than retirement. Separating those two cases is what the added and deleted split
+provides and a single churn number cannot.
+
+\textbf{RQ3, can version comparison run on commodity hardware?} Yes, and the
+integer encoding is what makes it so. Against a string-based baseline on
+identical inputs, the encoded path ran 2.34 to 6.17 times faster and held its
+working set in 16 to 19 times less memory. The memory result is the one that
+decides feasibility: extrapolating the baseline's 575\,MB for three million
+triples to a hundred-million-triple comparison gives roughly 19\,GB, which does
+not fit on the 16\,GB client, while the encoded path's 35\,MB extrapolates to
+about 1.2\,GB, which does. Both paths run inside the same invocation and the
+implementation asserts they return identical sets, so the speedup cannot drift
+away from being correct.
+
+\textbf{RQ4, what do the metrics say across two different graphs?} They work, and
+they report a consistent structural difference. Metric~13 matched sixteen
+classes automatically between YAGO~4.5.0.2 and DBpedia 2025 and found DBpedia
+using at least an order of magnitude more predicates on every one, with ratios
+from 24 to 92: 3{,}025 against 31 on \texttt{building}, 2{,}888 against 34 on
+\texttt{administrativearea}, 1{,}315 against 24 on \texttt{mountain}. Sixteen
+classes without an exception makes that structural.
+
+The exception is worth more than the rule. \texttt{Organization} is the only
+class of the sixteen where the two graphs report the same entropy, 14.2752 bits
+against 14.2754. Repeating the comparison against DBpedia 2015, 2016 and 2022
+shows the agreement is recent: across those three releases the two graphs sat
+between 0.63 and 0.72 bits apart, and the distance vanished only between 2022
+and 2025, while YAGO's value never moved. Over the same decade the graphs ended
+further apart on nine of the fifteen classes measured in all four releases, so
+this is an exception against a trend. Repeating the series with YAGO~4 on the
+YAGO side shows the agreement needed both graphs to move: against YAGO~4,
+\texttt{organization} stays 4.5 to 5.9 bits from DBpedia in every release,
+and YAGO's own value fell by 5.19 bits between its two releases. It is the
+single result in this thesis I did not expect, and four time points are not
+enough to explain it.
+
+The entropy-weighted PageRank variant of
+Section~\ref{sec:entropy_weighted_pagerank} moved 5{,}327 of 5{,}372 sampled
+nodes, which makes it a different ranking rather than a reordering of ties. On
+the sampled YAGO~4 subgraph it converged in 43 iterations where the unweighted
+baseline did not converge in 100.
 
 \section{Limitations}
 \label{sec:limitations}
-% Be candid -- examiners reward this, and every item here is already known:
-%   - the triple diff is exact inside a subject window, not over the whole graph;
-%   - whole-graph windows are infeasible on billion-triple graphs via SPARQL;
-%   - cross-KG class matching is by name, so homonyms and modelling differences
-%     are not resolved;
-%   - per-class metrics are computed for the top-N most populated classes;
-%   - entropy-weighted PageRank normalises by out-degree, not by weight mass.
-% TODO
+
+Five limitations constrain these results, and each is a consequence of a design
+decision made deliberately rather than an oversight.
+
+\textbf{The triple diff is exact inside a subject window, not over the whole
+graph.} Metric~10 takes the lexicographically first $n$ subjects from each side
+and cuts both at the smaller bound. Inside that window the result is exact. It
+says nothing about subjects outside it. The alternative, sorting both graphs
+globally, is what the subject window exists to avoid: QLever asked for 12.7\,GB
+to sort a graph far smaller than YAGO and refused the query. Whole-graph windows
+on billion-triple graphs are not feasible through SPARQL, and the implementation
+says so rather than returning a number that looks complete.
+
+\textbf{The YAGO~4 cross-graph runs leave out two root classes.} YAGO~4's class
+distribution is far more top-heavy than YAGO~4.5's: its largest classes are
+\texttt{Thing} at 66.9 million entities and \texttt{CreativeWork} at 35.9
+million, where YAGO~4.5's largest is \texttt{Taxon} at 3.5 million. Both match
+a DBpedia class by name. Counting their predicates became feasible once the
+query grouped by predicate instead of asking for \texttt{COUNT(DISTINCT)}, which
+had requested 11.1\,GB, but the entropy histogram still pushed the QLever server
+past the 12\,GB of the machine hosting it, and the operating system killed it.
+Both classes are therefore excluded from every YAGO~4 run, which the result files
+record. The loss is small, because a root class measures the whole graph rather
+than a concept, but it is a gap that more memory would close. The
+\texttt{organization} result also still rests on one class and four time points,
+now measured against two YAGO releases.
+
+\textbf{Cross-graph class matching is by local name.} Metric~13 treats
+\texttt{schema:Person} and \texttt{dbo:Person} as the same class because the
+local names agree. It does not check that they contain the same entities, and where a graph
+carries several aliases of one class the choice among them is arbitrary: DBpedia
+2025 holds four \texttt{Person} classes within six entities of one another, and
+the metric matched one of them without preferring it. The method also yields only
+fifteen or sixteen matched classes from 150 candidates per side for YAGO~4.5,
+and twenty-three to twenty-five for YAGO~4, because two differently built
+vocabularies rarely agree on a local name. Ringler
+and Paulheim~\cite{ringler2017one} show these graphs are not interchangeable, so
+the assumption is known to be imperfect, and a $\Delta H$ of 6.49 bits on
+\texttt{person} compares two class extents that share a name rather than two
+descriptions of the same entities.
+
+\textbf{Per-class metrics cover the top classes, not all of them.} A snapshot
+with 118{,}303 classes cannot have every class measured at reasonable cost, so
+the runs cover the most populated ones. The pinned pass mitigates this for
+comparison by fixing the class list, but a change confined to rare classes would
+not appear in these results.
+
+\textbf{YAGO~3 cannot be compared per class to YAGO~4 at all.} The two releases
+share no class names, because YAGO~3 types entities against WordNet synsets and
+Wikipedia categories under a four-layer taxonomy while YAGO~4 uses schema.org. A
+per-class comparison would need a hand-built synset mapping and a transitive
+\texttt{rdf:type/\allowbreak rdfs:subClassOf*} closure, and without them metric~10 over that
+pair reports 56{,}021 additions and zero deletions: correct arithmetic, no
+meaning. The aggregate metrics still capture the overhaul, with the class count
+falling from 475{,}673 to 10{,}103.
+
+\textbf{Entropy-weighted PageRank normalises by out-degree, not by weight mass.}
+Each edge contributes $w(p) \cdot \mathrm{PR}(u) / \mathrm{outdeg}(u)$, so a node
+whose edges all carry low weights leaks score rather than redistributing it. The
+ranking is still a valid ordering, but it is not a probability distribution in
+the way classic PageRank is. The results of Section~\ref{sec:exp4} also come from
+a sampled subgraph of 5{,}372 nodes, not the full graph, so the convergence
+observation is a single data point and should not be read as a general claim.
 
 \section{Future Work}
 \label{sec:future_work}
-% More versions and more KGs (Wikidata); pushing the diff to full dumps; a proper
-% instance-level alignment for cross-KG comparison; streaming metric updates.
-% TODO
+
+Four directions follow.
+
+\textbf{More graphs, starting with Wikidata.} Wikidata~\cite{vrandecic2014wikidata}
+is the obvious third graph, and since YAGO~4 already uses Wikidata identifiers
+the class matching of metric~13 would have something better than name equality
+to work with. That alone would address the largest limitation above.
+
+\textbf{Instance-level alignment for cross-graph comparison.} Replacing name
+matching with \texttt{owl:sameAs} linkage would turn metric~13 from a comparison
+of similarly named classes into a comparison of the same entities, and would let
+the \texttt{organization} result be tested rather than only observed. The
+links would need checking first: Halpin et al.~\cite{halpin2010sameas} show that
+\texttt{owl:sameAs} is often used for similarity rather than strict identity,
+which would reintroduce the imprecision the alignment is meant to remove.
+
+\textbf{Pushing the diff beyond the window.} The integer encoding is not what
+limits metric~10; the need to avoid a global sort is. A sorted index over
+subjects, or a partitioned comparison that sweeps the subject space in windows
+and accumulates, would extend exactness to the whole graph at a cost that the
+memory figures in Section~\ref{sec:exp3} suggest is affordable.
+
+\textbf{Streaming metric updates.} Every metric here recomputes from scratch. For
+graphs published as incremental changesets, updating a metric from the changeset
+rather than the full graph would make continuous monitoring practical, which is
+what a consumer tracking a graph across releases actually wants.
+
+Finally, the YAGO~3 synset mapping would close the one comparison this thesis
+cannot make. It is a bounded piece of work, a mapping table plus a transitive
+closure at index time, and it would extend the YAGO evolution series back one
+full generation to cover the ontology replacement at class level rather than only
+in aggregate.

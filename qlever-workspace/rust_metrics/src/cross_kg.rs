@@ -41,7 +41,11 @@ fn measure(ep: &SparqlEndpoint, class: &str) -> Side {
     let population = ep.scalar(
         &format!("SELECT (COUNT(DISTINCT ?s) AS ?n) WHERE {{ ?s a <{class}> }}"), "n");
     let predicates = ep.scalar(
-        &format!("SELECT (COUNT(DISTINCT ?p) AS ?n) WHERE {{ ?s a <{class}> . ?s ?p ?o }}"), "n");
+        // GROUP BY ?p, not COUNT(DISTINCT ?p): same number (checked on four classes
+        // across three KGs), but QLever groups instead of materialising every triple
+        // of the class. COUNT(DISTINCT) asked for 11.1 GB on YAGO 4's CreativeWork
+        // (35.9M entities) and failed; this form answers it in about 2 s.
+        &format!("SELECT (COUNT(*) AS ?n) WHERE {{ {{ SELECT ?p WHERE {{ ?s a <{class}> . ?s ?p ?o }} GROUP BY ?p }} }}"), "n");
     let (entropy, _, _) =
         entropy_from_histogram(&value_histogram(ep, &format!("?s a <{class}> . ?s ?p ?v")));
     Side { iri: class.to_string(), population, entropy, predicates }
@@ -84,7 +88,20 @@ pub fn run(a: &SparqlEndpoint, b: &SparqlEndpoint, class_name: Option<&str>, sca
             return;
         }
     }
-    println!("  matched {} class name(s) present in both graphs\n", pairs.len());
+    // QLEVER_CROSSKG_SKIP drops matched classes by local name. YAGO 4's root
+    // classes (Thing 66.9M, CreativeWork 35.9M entities) push the entropy
+    // histogram past the 12 GB the home server has, and QLever is OOM-killed.
+    // Skipped names are recorded in the output, so the gap is visible.
+    let skip: Vec<String> = std::env::var("QLEVER_CROSSKG_SKIP").unwrap_or_default()
+        .split(',').map(|x| x.trim().to_lowercase()).filter(|x| !x.is_empty()).collect();
+    let skipped: Vec<String> = pairs.iter().map(|(n, _, _)| n.clone())
+        .filter(|n| skip.contains(n)).collect();
+    pairs.retain(|(n, _, _)| !skip.contains(n));
+    println!("  matched {} class name(s) present in both graphs", pairs.len() + skipped.len());
+    if !skipped.is_empty() {
+        println!("  skipped {} by QLEVER_CROSSKG_SKIP: {}", skipped.len(), skipped.join(", "));
+    }
+    println!();
 
     let comparisons: Vec<Comparison> = pairs
         .iter()
@@ -117,7 +134,8 @@ pub fn run(a: &SparqlEndpoint, b: &SparqlEndpoint, class_name: Option<&str>, sca
         .collect();
 
     println!("\nResults saved to:");
-    out::write_json("cross_kg", &json!({"kg_a": a.url(), "kg_b": b.url(), "classes": dict}));
+    out::write_json("cross_kg", &json!({"kg_a": a.url(), "kg_b": b.url(),
+                                          "skipped": skipped, "classes": dict}));
     out::write_csv("cross_kg",
                    "class,population_a,population_b,delta_share,entropy_a,entropy_b,predicates_a,predicates_b",
                    &comparisons.iter()

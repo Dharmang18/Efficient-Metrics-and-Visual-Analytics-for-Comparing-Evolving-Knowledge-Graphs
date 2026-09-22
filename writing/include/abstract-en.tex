@@ -1,7 +1,32 @@
-% ~250-350 words. Write this LAST, once the results exist.
-% Structure that works: (1) knowledge graphs evolve and nobody can see how;
-% (2) what this thesis builds; (3) how it is evaluated; (4) the headline numbers.
-% Headline numbers already available: the integer-encoded diff is 6.0x faster and
-% uses 16.5x less memory than the naive string baseline.
+Knowledge graphs are republished on a schedule, and every release adds, removes
+and rewrites facts. Between YAGO~4 and YAGO~4.5.0.2 the class
+\texttt{schema:Person} lost 245{,}398 triples and gained 223{,}227 inside a
+window of 65{,}182 subjects, while keeping its name and its identifier.
+Consumers inherit that change without being told. Plenty of metrics describe one
+release; almost nothing describes the difference between two at the scale the
+releases actually have.
 
-% TODO: write the abstract.
+This thesis builds a catalogue of thirteen metrics spanning the class, entity
+and global level, implemented in Rust against any QLever SPARQL endpoint, and a
+dashboard that places the results of several releases side by side. Two
+components are contributions rather than adoptions. Entropy-weighted PageRank
+weights every edge by the normalised property entropy of its predicate, so score
+flows through informative relations rather than high-volume bookkeeping ones. An
+integer-encoded triple diff with subject-window scoping makes an exact version
+comparison possible without a global sort, which SPARQL engines refuse on graphs
+of this size.
+
+The evaluation covers seven snapshots: two generations of YAGO, a decade of
+DBpedia, and the pre-schema.org YAGO~3 release. The integer encoding runs 2.34 to
+6.17 times faster than a string-based baseline and holds its working set in 16 to
+19 times less memory, with both paths asserted to return identical results. The
+memory figure is what decides feasibility on a 16\,GB client. The metrics show
+the two graphs evolving in opposite directions: YAGO replaced 94\% of its class
+vocabulary while keeping 72 predicates, whereas DBpedia kept 700 of 740 classes
+while 30{,}788 predicates disappeared. Across graphs, DBpedia uses 24 to 92
+times more predicates per class than YAGO on all sixteen classes matched
+automatically between the latest releases. \texttt{Organization} is the only
+class where YAGO~4.5.0.2 and DBpedia 2025 report the same entropy, 14.275 bits
+on each side, despite differing in size by a factor of 3.7. Repeating the
+comparison against four DBpedia releases and against YAGO~4 shows the agreement
+is recent and needed both graphs to change.

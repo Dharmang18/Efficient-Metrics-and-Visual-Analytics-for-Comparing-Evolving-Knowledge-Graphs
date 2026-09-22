@@ -79,6 +79,7 @@ Environment
                                           snapshot, so per-class metrics compare)
   QLEVER_MAX_CLASS_SIZE  skip classes bigger than this when NOT pinned (default 10M)
   QLEVER_SUFFIX      output suffix       (e.g. _pinned -> results/<label>/entf_pinned.json)
+  QLEVER_CROSSKG_SKIP  crosskg: matched class names to leave out (e.g. thing,creativework)
 "#;
 
 fn arg(n: usize) -> Option<String> {

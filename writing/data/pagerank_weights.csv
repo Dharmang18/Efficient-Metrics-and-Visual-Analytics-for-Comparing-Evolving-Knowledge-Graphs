@@ -1,0 +1,13 @@
+predicate,weight
+geo,1.0
+image,0.948
+containsPlace,0.8814
+children,0.8634
+parent,0.8321
+spouse,0.7681
+subOrganization,0.7089
+logo,0.6921
+nationality,0.261
+knowsLanguage,0.1912
+sport,0.1742
+gender,0.0339

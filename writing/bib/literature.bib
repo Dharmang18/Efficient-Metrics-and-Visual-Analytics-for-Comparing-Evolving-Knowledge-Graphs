@@ -1,6 +1,6 @@
 % Seeded from the PDFs in ~/Downloads/thesis paper/.
-% Titles and authors were read off the PDFs themselves; fields marked TODO were
-% NOT verified and must be checked against the publisher page before submission.
+% Titles and authors were read off the PDFs themselves; page ranges were checked
+% against the proceedings tables of contents (2026-09-22).
 
 @inproceedings{garcia2025information,
   author    = {Garc{\'i}a, Samuel and Bobed, Carlos},
@@ -10,7 +10,7 @@
                Proceedings, Part I},
   series    = {Lecture Notes in Computer Science},
   volume    = {15718},
-  pages     = {208--227},   % TODO verify end page
+  pages     = {208--226},
   year      = {2025},
   publisher = {Springer},
   note      = {The Knowgly work this thesis builds on: ETImp and property entropy}
@@ -23,7 +23,7 @@
   booktitle = {KI 2017: Advances in Artificial Intelligence},
   series    = {Lecture Notes in Artificial Intelligence},
   volume    = {10505},
-  pages     = {366--372},   % TODO verify end page
+  pages     = {366--372},
   year      = {2017},
   publisher = {Springer}
 }
@@ -40,21 +40,25 @@
 
 @article{polleres2023knowledge,
   author  = {Polleres, Axel and Pernisch, Romana and Bonifati, Angela and
-             Dell'Aglio, Daniele},   % TODO complete the author list, there are more
+             Dell'Aglio, Daniele and Dobriy, Daniil and Dumbrava, Stefania and
+             Etcheverry, Lorena and Ferranti, Nicolas and Hose, Katja and
+             Jim{\'e}nez-Ruiz, Ernesto and Lissandrini, Matteo and Scherp, Ansgar
+             and Tommasini, Riccardo and Wachs, Johannes},
   title   = {How Does Knowledge Evolve in Open Knowledge Graphs?},
   journal = {Transactions on Graph Data and Knowledge (TGDK)},
   volume  = {1},
   number  = {1},
-  pages   = {11:1--11:59},   % TODO verify
-  year    = {2023}
+  pages   = {11:1--11:59},
+  year    = {2023},
+  doi     = {10.4230/TGDK.1.1.11}
 }
 
 @article{seo2024structural,
   author  = {Seo, Sumin and Cheon, Heeseon and Kim, Hyunho and Hyun, Dongseok},
   title   = {Structural Quality Metrics to Evaluate Knowledge Graph Quality},
-  journal = {Semantic Web Journal},
-  year    = {2024},   % TODO verify year / volume / pages
-  note    = {NAVER Corporation}
+  journal = {arXiv preprint arXiv:2211.10011},
+  year    = {2022},
+  note    = {Submitted to the Semantic Web Journal}
 }
 
 @article{menendez2018ranking,
@@ -72,14 +76,6 @@
   year        = {2020},
   note        = {arXiv:2012.11936}
 }
-
-% ---------------------------------------------------------------- to be added
-% TODO: the systems this thesis actually runs on -- add proper entries once read:
-%   - QLever (Bast and Buchhold), the SPARQL engine
-%   - YAGO 4 / YAGO 4.5, the dataset
-%   - DBpedia, the dataset
-%   - PageRank (Page et al.), for the baseline in Section~\ref{sec:entropy_weighted_pagerank}
-%   - Shannon (1948), for entropy
 
 % ---------------------------------------------------------------------------
 % Foundational references cited in Chapter 3. These are standard, widely-cited
@@ -132,4 +128,395 @@
   number  = {2},
   pages   = {167--195},
   year    = {2015}
+}
+
+@inproceedings{suchanek2007yago,
+  title     = {{YAGO}: A Core of Semantic Knowledge},
+  author    = {Suchanek, Fabian M. and Kasneci, Gjergji and Weikum, Gerhard},
+  booktitle = {Proceedings of the 16th International Conference on World Wide Web (WWW)},
+  pages     = {697--706},
+  year      = {2007},
+}
+
+@inproceedings{mahdisoltani2015yago3,
+  title     = {{YAGO3}: A Knowledge Base from Multilingual Wikipedias},
+  author    = {Mahdisoltani, Farzaneh and Biega, Joanna and Suchanek, Fabian M.},
+  booktitle = {Proceedings of the 7th Biennial Conference on Innovative Data Systems Research (CIDR)},
+  year      = {2015},
+}
+
+@article{hoffart2013yago2,
+  title   = {{YAGO2}: A Spatially and Temporally Enhanced Knowledge Base from {Wikipedia}},
+  author  = {Hoffart, Johannes and Suchanek, Fabian M. and Berberich, Klaus and Weikum, Gerhard},
+  journal = {Artificial Intelligence},
+  volume  = {194},
+  pages   = {28--61},
+  year    = {2013},
+}
+
+@article{vrandecic2014wikidata,
+  title   = {{Wikidata}: A Free Collaborative Knowledgebase},
+  author  = {Vrande{\v{c}}i{\'c}, Denny and Kr{\"o}tzsch, Markus},
+  journal = {Communications of the ACM},
+  volume  = {57},
+  number  = {10},
+  pages   = {78--85},
+  year    = {2014},
+}
+
+@article{hogan2021knowledge,
+  title   = {Knowledge Graphs},
+  author  = {Hogan, Aidan and Blomqvist, Eva and Cochez, Michael and d'Amato, Claudia
+             and de Melo, Gerard and Gutierrez, Claudio and Kirrane, Sabrina
+             and Gayo, Jos{\'e} Emilio Labra and Navigli, Roberto and Neumaier, Sebastian
+             and Ngomo, Axel-Cyrille Ngonga and Polleres, Axel and Rashid, Sabbir M.
+             and Rula, Anisa and Schmelzeisen, Lukas and Sequeda, Juan
+             and Staab, Steffen and Zimmermann, Antoine},
+  journal = {ACM Computing Surveys},
+  volume  = {54},
+  number  = {4},
+  pages   = {1--37},
+  year    = {2021},
+}
+
+@article{zaveri2016quality,
+  title   = {Quality Assessment for Linked Data: A Survey},
+  author  = {Zaveri, Amrapali and Rula, Anisa and Maurino, Andrea and Pietrobon, Ricardo
+             and Lehmann, Jens and Auer, S{\"o}ren},
+  journal = {Semantic Web},
+  volume  = {7},
+  number  = {1},
+  pages   = {63--93},
+  year    = {2016},
+}
+
+@article{farber2018linked,
+  title   = {Linked Data Quality of {DBpedia}, {Freebase}, {OpenCyc}, {Wikidata}, and {YAGO}},
+  author  = {F{\"a}rber, Michael and Bartscherer, Frederic and Menne, Carsten
+             and Rettinger, Achim},
+  journal = {Semantic Web},
+  volume  = {9},
+  number  = {1},
+  pages   = {77--129},
+  year    = {2018},
+}
+
+@article{bizer2009dbpedia,
+  title   = {{DBpedia}: A Crystallization Point for the Web of Data},
+  author  = {Bizer, Christian and Lehmann, Jens and Kobilarov, Georgi and Auer, S{\"o}ren
+             and Becker, Christian and Cyganiak, Richard and Hellmann, Sebastian},
+  journal = {Journal of Web Semantics},
+  volume  = {7},
+  number  = {3},
+  pages   = {154--165},
+  year    = {2009},
+}
+
+@inproceedings{auer2007dbpedia,
+  title     = {{DBpedia}: A Nucleus for a Web of Open Data},
+  author    = {Auer, S{\"o}ren and Bizer, Christian and Kobilarov, Georgi and Lehmann, Jens
+               and Cyganiak, Richard and Ives, Zachary},
+  booktitle = {Proceedings of the 6th International Semantic Web Conference (ISWC)},
+  pages     = {722--735},
+  year      = {2007},
+}
+
+@inproceedings{kafer2013observing,
+  title     = {Observing Linked Data Dynamics},
+  author    = {K{\"a}fer, Tobias and Abdelrahman, Ahmed and Umbrich, J{\"u}rgen
+               and O'Byrne, Patrick and Hogan, Aidan},
+  booktitle = {Proceedings of the 10th Extended Semantic Web Conference (ESWC)},
+  pages     = {213--227},
+  year      = {2013},
+}
+
+@inproceedings{roussakis2015flexible,
+  title     = {A Flexible Framework for Understanding the Dynamics of Evolving {RDF} Datasets},
+  author    = {Roussakis, Yannis and Chrysakis, Ioannis and Stefanidis, Kostas
+               and Flouris, Giorgos and Stavrakas, Yannis},
+  booktitle = {Proceedings of the 14th International Semantic Web Conference (ISWC)},
+  pages     = {495--512},
+  year      = {2015},
+}
+
+@article{papavasileiou2013high,
+  title   = {High-Level Change Detection in {RDF(S)} {KBs}},
+  author  = {Papavasileiou, Vicky and Flouris, Giorgos and Fundulaki, Irini
+             and Kotzinos, Dimitris and Christophides, Vassilis},
+  journal = {ACM Transactions on Database Systems},
+  volume  = {38},
+  number  = {1},
+  pages   = {1--42},
+  year    = {2013},
+}
+
+@article{flouris2008ontology,
+  title   = {Ontology Change: Classification and Survey},
+  author  = {Flouris, Giorgos and Manakanatas, Dimitris and Kondylakis, Haridimos
+             and Plexousakis, Dimitris and Antoniou, Grigoris},
+  journal = {The Knowledge Engineering Review},
+  volume  = {23},
+  number  = {2},
+  pages   = {117--152},
+  year    = {2008},
+}
+
+@article{noy2004ontology,
+  title   = {Ontology Versioning in an Ontology Management Framework},
+  author  = {Noy, Natalya F. and Musen, Mark A.},
+  journal = {IEEE Intelligent Systems},
+  volume  = {19},
+  number  = {4},
+  pages   = {6--13},
+  year    = {2004},
+}
+
+@techreport{harris2013sparql,
+  title       = {{SPARQL} 1.1 Query Language},
+  author      = {Harris, Steve and Seaborne, Andy},
+  institution = {W3C},
+  type        = {W3C Recommendation},
+  year        = {2013},
+}
+
+@techreport{cyganiak2014rdf,
+  title       = {{RDF} 1.1 Concepts and Abstract Syntax},
+  author      = {Cyganiak, Richard and Wood, David and Lanthaler, Markus},
+  institution = {W3C},
+  type        = {W3C Recommendation},
+  year        = {2014},
+}
+
+@inproceedings{erxleben2014introducing,
+  title     = {Introducing {Wikidata} to the Linked Data Web},
+  author    = {Erxleben, Fredo and G{\"u}nther, Michael and Kr{\"o}tzsch, Markus
+               and Mendez, Julian and Vrande{\v{c}}i{\'c}, Denny},
+  booktitle = {Proceedings of the 13th International Semantic Web Conference (ISWC)},
+  pages     = {50--65},
+  year      = {2014},
+}
+
+@inproceedings{suchanek2024yago45,
+  author    = {Suchanek, Fabian M. and Alam, Mehwish and Bonald, Thomas and
+               Chen, Lihu and Paris, Pierre-Henri and Soria, Jules},
+  title     = {{YAGO} 4.5: A Large and Clean Knowledge Base with a Rich Taxonomy},
+  booktitle = {Proceedings of the 47th International ACM SIGIR Conference on
+               Research and Development in Information Retrieval (SIGIR)},
+  pages     = {131--140},
+  year      = {2024},
+  doi       = {10.1145/3626772.3657876},
+}
+
+@inproceedings{hofer2020dbpedia,
+  author    = {Hofer, Marvin and Hellmann, Sebastian and Dojchinovski, Milan and
+               Frey, Johannes},
+  title     = {The New {DBpedia} Release Cycle: Increasing Agility and Efficiency
+               in Knowledge Extraction Workflows},
+  booktitle = {Semantic Systems. In the Era of Knowledge Graphs (SEMANTiCS 2020)},
+  series    = {LNCS},
+  volume    = {12378},
+  pages     = {1--18},
+  publisher = {Springer},
+  year      = {2020},
+}
+
+@inproceedings{makelburg2025shacl,
+  author    = {M{\"a}kelburg, Johannes and Zacouris, Zenon and Ke, Jin and
+               Acosta, Maribel},
+  title     = {{SHACL} Dashboard: Analyzing Data Quality Reports Over Large-Scale
+               Knowledge Graphs},
+  booktitle = {The Semantic Web -- ISWC 2025, 24th International Semantic Web
+               Conference, Proceedings, Part II},
+  series    = {LNCS},
+  volume    = {16141},
+  pages     = {96--112},
+  publisher = {Springer},
+  year      = {2026},
+  doi       = {10.1007/978-3-032-09530-5_6},
+}
+
+@article{neumann2010rdf3x,
+  author  = {Neumann, Thomas and Weikum, Gerhard},
+  title   = {The {RDF-3X} Engine for Scalable Management of {RDF} Data},
+  journal = {The VLDB Journal},
+  volume  = {19},
+  number  = {1},
+  pages   = {91--113},
+  year    = {2010},
+}
+
+@article{fernandez2013hdt,
+  author  = {Fern{\'a}ndez, Javier D. and Mart{\'i}nez-Prieto, Miguel A. and
+             Guti{\'e}rrez, Claudio and Polleres, Axel and Arias, Mario},
+  title   = {Binary {RDF} Representation for Publication and Exchange ({HDT})},
+  journal = {Journal of Web Semantics},
+  volume  = {19},
+  pages   = {22--41},
+  year    = {2013},
+}
+
+@article{zeginis2011deltas,
+  author  = {Zeginis, Dimitris and Tzitzikas, Yannis and Christophides, Vassilis},
+  title   = {On Computing Deltas of {RDF/S} Knowledge Bases},
+  journal = {ACM Transactions on the Web},
+  volume  = {5},
+  number  = {3},
+  pages   = {14:1--14:36},
+  year    = {2011},
+}
+
+@inproceedings{duan2011apples,
+  author    = {Duan, Songyun and Kementsietsidis, Anastasios and Srinivas, Kavitha
+               and Udrea, Octavian},
+  title     = {Apples and Oranges: A Comparison of {RDF} Benchmarks and Real {RDF}
+               Datasets},
+  booktitle = {Proceedings of the ACM SIGMOD International Conference on
+               Management of Data},
+  pages     = {145--156},
+  year      = {2011},
+}
+
+@inproceedings{auer2012lodstats,
+  author    = {Auer, S{\"o}ren and Demter, Jan and Martin, Michael and
+               Lehmann, Jens},
+  title     = {{LODStats} -- An Extensible Framework for High-Performance Dataset
+               Analytics},
+  booktitle = {Knowledge Engineering and Knowledge Management (EKAW 2012)},
+  series    = {LNCS},
+  volume    = {7603},
+  pages     = {353--362},
+  publisher = {Springer},
+  year      = {2012},
+}
+
+@inproceedings{xing2004weighted,
+  author    = {Xing, Wenpu and Ghorbani, Ali A.},
+  title     = {Weighted {PageRank} Algorithm},
+  booktitle = {Proceedings of the 2nd Annual Conference on Communication Networks
+               and Services Research (CNSR)},
+  pages     = {305--314},
+  publisher = {IEEE},
+  year      = {2004},
+}
+
+@article{langville2004deeper,
+  author  = {Langville, Amy N. and Meyer, Carl D.},
+  title   = {Deeper Inside {PageRank}},
+  journal = {Internet Mathematics},
+  volume  = {1},
+  number  = {3},
+  pages   = {335--380},
+  year    = {2004},
+}
+
+@inproceedings{halpin2010sameas,
+  author    = {Halpin, Harry and Hayes, Patrick J. and McCusker, James P. and
+               McGuinness, Deborah L. and Thompson, Henry S.},
+  title     = {When owl:sameAs Isn't the Same: An Analysis of Identity in Linked
+               Data},
+  booktitle = {The Semantic Web -- ISWC 2010},
+  series    = {LNCS},
+  volume    = {6496},
+  pages     = {305--320},
+  publisher = {Springer},
+  year      = {2010},
+}
+
+@article{guha2016schema,
+  author  = {Guha, R. V. and Brickley, Dan and Macbeth, Steve},
+  title   = {Schema.org: Evolution of Structured Data on the Web},
+  journal = {Communications of the ACM},
+  volume  = {59},
+  number  = {2},
+  pages   = {44--51},
+  year    = {2016},
+}
+
+@article{miller1995wordnet,
+  author  = {Miller, George A.},
+  title   = {{WordNet}: A Lexical Database for {English}},
+  journal = {Communications of the ACM},
+  volume  = {38},
+  number  = {11},
+  pages   = {39--41},
+  year    = {1995},
+}
+
+@article{li2018echarts,
+  author  = {Li, Deqing and Mei, Honghui and Shen, Yi and Su, Shuang and
+             Zhang, Wenli and Wang, Junting and Zu, Ming and Chen, Wei},
+  title   = {{ECharts}: A Declarative Framework for Rapid Construction of
+             Web-Based Visualization},
+  journal = {Visual Informatics},
+  volume  = {2},
+  number  = {2},
+  pages   = {136--146},
+  year    = {2018},
+  doi     = {10.1016/j.visinf.2018.04.011},
+}
+
+@article{cleveland1984graphical,
+  author  = {Cleveland, William S. and McGill, Robert},
+  title   = {Graphical Perception: Theory, Experimentation, and Application to the
+             Development of Graphical Methods},
+  journal = {Journal of the American Statistical Association},
+  volume  = {79},
+  number  = {387},
+  pages   = {531--554},
+  year    = {1984},
+}
+
+@incollection{keim2008visual,
+  author    = {Keim, Daniel and Andrienko, Gennady and Fekete, Jean-Daniel and
+               G{\"o}rg, Carsten and Kohlhammer, J{\"o}rn and Melan{\c{c}}on, Guy},
+  title     = {Visual Analytics: Definition, Process, and Challenges},
+  booktitle = {Information Visualization: Human-Centered Issues and Perspectives},
+  series    = {LNCS},
+  volume    = {4950},
+  pages     = {154--175},
+  publisher = {Springer},
+  year      = {2008},
+}
+
+@book{munzner2014visualization,
+  author    = {Munzner, Tamara},
+  title     = {Visualization Analysis and Design},
+  publisher = {CRC Press},
+  year      = {2014},
+}
+
+@book{tufte1990envisioning,
+  author    = {Tufte, Edward R.},
+  title     = {Envisioning Information},
+  publisher = {Graphics Press},
+  year      = {1990},
+}
+
+@misc{okabe2008cud,
+  author       = {Okabe, Masataka and Ito, Kei},
+  title        = {Color Universal Design ({CUD}): How to Make Figures and
+                  Presentations that Are Friendly to Colorblind People},
+  year         = {2008},
+  howpublished = {\url{https://jfly.uni-koeln.de/color/}},
+}
+
+@article{good1953population,
+  author  = {Good, I. J.},
+  title   = {The Population Frequencies of Species and the Estimation of
+             Population Parameters},
+  journal = {Biometrika},
+  volume  = {40},
+  number  = {3--4},
+  pages   = {237--264},
+  year    = {1953},
+}
+
+@article{matsakis2014rust,
+  author  = {Matsakis, Nicholas D. and Klock, Felix S.},
+  title   = {The {Rust} Language},
+  journal = {ACM SIGAda Ada Letters},
+  volume  = {34},
+  number  = {3},
+  pages   = {103--104},
+  year    = {2014},
 }

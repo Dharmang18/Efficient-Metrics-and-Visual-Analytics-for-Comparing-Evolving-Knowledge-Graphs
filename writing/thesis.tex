@@ -16,8 +16,14 @@
 \usepackage{amsmath}
 \usepackage{amsthm}   % proof environment, used in Chapter 3
 \usepackage{listings}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\input{include/figures}
 
 \setlength\footnotemargin{5pt}
+% \texttt identifiers cannot hyphenate; give TeX room to reflow the line
+% instead of pushing it into the margin.
+\setlength{\emergencystretch}{3em}
 
 % Theorem environments
 \newtheorem{definition}{Definition}
@@ -33,11 +39,9 @@
 \assistants{Samuel~García\tlc{}~M.\,Sc.}
 \advisor{Samuel~García, M.Sc.}
 
-% TODO: confirm your exact degree programme as printed in TUMonline
 \courseofstudy{Information Engineering}
 
-% TODO: set the real hand-in date before submitting
-\date{September 2026}
+\date{21 September 2026}
 \location{Heilbronn}
 
 \setcounter{tocdepth}{2}

@@ -56,10 +56,23 @@ result}. Concretely it has four stages:
         endpoint over HTTP;
   \item a set of counting queries, one or a few per metric, evaluated on the
         server so that no triple ever crosses the network unnecessarily;
-  \item a Rust program that collects the counts into hash maps, applies the
+  \item a Rust~\cite{matsakis2014rust} program that collects the counts into hash maps, applies the
         metric formula, and writes the result as JSON and CSV;
   \item a niceGUI dashboard that reads those files and renders them.
 \end{enumerate}
+
+Figure~\ref{fig:pipeline} shows the four stages and where the data volume drops.
+
+\begin{figure}[htbp]
+  \centering
+  \figpipeline
+  \caption[The measurement pipeline]{The measurement pipeline. Hundreds of
+    millions of triples are aggregated inside the engine; only a few hundred
+    counts cross the network to the client, which applies the formula and writes
+    the result. The dashboard and the figures in
+    Chapter~\ref{chap:experiments} both read the same files.}
+  \label{fig:pipeline}
+\end{figure}
 
 Splitting the work this way is what keeps the approach applicable to graphs of
 this size. The expensive part of every metric is an aggregation over hundreds of
@@ -229,6 +242,7 @@ Global metrics describe the graph as a whole and, in most cases, the difference
 between two graphs.
 
 \subsection{Graph Size and Shape}
+\label{subsec:shape_metric}
 
 The foundation table of every snapshot: the counts $|T|$, $|S|$, $|O|$, $|P|$,
 $|C|$ and $|E|$, together with
@@ -271,6 +285,7 @@ namespaces, and Equation~\ref{eq:diff} evaluated across them reports every tripl
 of one side as added --- arithmetically correct and entirely without meaning.
 
 \subsection{Class-Level Change Rate}
+\label{subsec:churn_metric}
 
 The diff says how much changed; it does not say where. For each class $t$, let
 $A_t$ and $D_t$ be the added and deleted triples whose subject belongs to $t$,
@@ -350,7 +365,9 @@ enormously in what they tell us. An edge labelled with a near-constant predicate
 connects two nodes without saying much about either; an edge labelled with a
 highly varied predicate is far more specific. Knowgly~\cite{garcia2025information}
 makes a related observation and weights its links using an InfoRank-derived
-factor.
+factor, and weighted PageRank in general goes back at least to Xing and
+Ghorbani~\cite{xing2004weighted}, who weight links by the popularity of the
+pages they join.
 
 This thesis proposes a simpler variant: weight each edge by the property entropy
 of its predicate, the quantity already defined in Equation~\ref{eq:entf}. Let
@@ -410,7 +427,9 @@ The observation that removes this cost is that entropy depends only on the
 \emph{multiset} of counts, never on the values that carry them. Two predicates
 whose value distributions are permutations of one another have identical entropy.
 It is therefore sufficient to know, for each multiplicity $c$, how many distinct
-values occur exactly $c$ times. Writing $m_c$ for that number, and
+values occur exactly $c$ times. Statisticians call this the frequency of
+frequencies, and it is the same summary Good~\cite{good1953population} used to
+estimate the population of unseen species. Writing $m_c$ for that number, and
 $N = \sum_c m_c \, c$ for the total number of value occurrences, the entropy of
 Equation~\ref{eq:entf} can be rewritten as
 
@@ -428,6 +447,19 @@ With $P(o) = c_o / N$ for a value occurring $c_o$ times,
 and grouping the values by their multiplicity $c$ replaces the sum over values
 by a sum over multiplicities weighted by $m_c$.
 \end{proof}
+
+Figure~\ref{fig:histogram} contrasts the two formulations.
+
+\begin{figure}[htbp]
+  \centering
+  \fighistogram
+  \caption[Count-of-counts histogram]{Computing entropy from a count-of-counts
+    histogram. Streaming every object value transfers millions of rows per
+    predicate and class; a nested \texttt{GROUP BY} returns one row per distinct
+    multiplicity, typically a few hundred. The result is exact, not sampled,
+    because entropy depends only on the multiset of counts.}
+  \label{fig:histogram}
+\end{figure}
 
 The histogram $(c, m_c)$ is obtained from a nested grouped query: the inner query
 counts occurrences per value, the outer counts values per occurrence count. Both
@@ -478,7 +510,21 @@ sort the entire graph before it can return the first row. Measured on a graph of
 roughly 1.5 billion triples, QLever attempted to allocate 12.7\,GB for such a
 query and aborted.
 
-The scheme adopted instead is a \emph{subject window}. Ordering a list of
+Figure~\ref{fig:window} shows the scheme adopted instead, a
+\emph{subject window}.
+
+\begin{figure}[htbp]
+  \centering
+  \figwindow
+  \caption[Subject-window scoping]{Subject-window scoping for metric~10. Each
+    version returns its lexicographically first $n$ subjects, which is far
+    cheaper than ordering every triple. Both prefixes are then cut at the
+    smaller bound, so the two versions cover exactly the same subjects and the
+    difference between them is the data rather than the sampling.}
+  \label{fig:window}
+\end{figure}
+
+Ordering a list of
 distinct subjects is far cheaper than ordering every triple, so from each version
 the lexicographically first $n$ subjects are retrieved. The two prefixes are then
 truncated at whichever ends earlier, and their union forms the window. Every
@@ -518,15 +564,263 @@ implementation preserves it.
 \section{The Dashboard}
 \label{sec:dashboard}
 
-The visual-analytics component reads the stored metric results and renders them.
-No SPARQL query is issued when a page is viewed: the metrics are precomputed and
-the dashboard reads their JSON output, so interaction is immediate and
-independent of the availability or load of the endpoint. The cost of this
-decision is that the dashboard shows the state of the last computation rather
-than of the live graph, which is the right trade for metrics that describe
-published snapshots and change only when a new version is released.
+The metrics of this chapter produce numbers; the dashboard is what makes a
+series of them readable. Thirteen metrics over seven snapshots is more values
+than anyone reads in a table, and the behaviour worth seeing lives in how a value
+moves between releases rather than in any single value. This section describes
+the design, and in particular one problem that turned out to matter more than
+expected: what a missing value means.
 
-Because results are stored per labelled snapshot, the same view can be populated
-from several versions at once, which is what turns the per-snapshot metrics of
-this chapter into the evolution views that
-Chapter~\ref{chap:experiments} evaluates.
+\subsection{Architecture and Navigation}
+\label{subsec:dash_architecture}
+
+The dashboard is a single niceGUI application of roughly 2{,}300 lines that reads
+the JSON files written by the metric runs. It issues no SPARQL query when a page
+is viewed. Every result it shows was computed ahead of time and stored under
+\texttt{results/<label>/}, so interaction is immediate and does not depend on an
+endpoint being reachable. This matters in practice, because the servers hosting
+the billion-triple indexes are not always running, and a reader of the results
+should not need them to be.
+
+The cost of that decision is that the dashboard shows the state of the last
+computation rather than of the live graph. For metrics that describe published
+snapshots, and therefore change only when a new version is released, this is the
+right trade. Restarting the application is what refreshes the data.
+
+At startup the application scans the results directory, collects every snapshot
+that has class-population output, and builds its snapshot list from what it
+finds. Three directories are excluded by name: two early scratch runs, and a
+partial run against a public endpoint whose query-memory limit left the largest
+classes unanswered. Excluding them by name rather than deleting the files keeps
+the runs available without letting them reach the snapshot picker.
+
+Navigation is a fixed sidebar listing an overview page and then all thirteen
+metrics under their phase headings, so any metric is one click away. The sidebar is generated from the
+metric registry, so a fourteenth metric would appear in it without touching the
+navigation code. Figure~\ref{fig:dash_overview} shows the layout.
+
+\begin{figure}[htbp]
+  \centering
+  \dashshot{dash-overview.png}{metric 1, sidebar, formula and separate panels}
+  \caption[Dashboard, metric 1]{The dashboard showing metric~1. The sidebar
+    lists all thirteen metrics grouped by analysis level. The panel opens with
+    the metric name, its level, a one-line explanation and the typeset formula,
+    followed by the controls, then the chart and the table. The formula is
+    rendered from the same \LaTeX{} source as
+    Equation~\ref{eq:share}, so the dashboard and this chapter cannot disagree.}
+  \label{fig:dash_overview}
+\end{figure}
+
+The dashboard opens on the overview page rather than on a metric, shown in
+Figure~\ref{fig:dash_home}. It places the seven releases on a timeline, gives each
+snapshot a card with its size in triples, typed entities, classes and predicates,
+and presents four headline findings as tiles that open the metric behind each.
+Every figure on the page is read from the result files at start-up, the findings
+included, so the front page cannot drift from the measurements: re-running a
+metric changes the tile the next time the dashboard starts.
+
+\begin{figure}[htbp]
+  \centering
+  \dashshot{dash-home.png}{overview page: release timeline, snapshot cards, findings}
+  \caption[Dashboard, overview page]{The overview page the dashboard opens on. The
+    timeline places each release by date, one card per snapshot gives its vital
+    statistics from metric~8, and each finding tile is computed from the result
+    file of the metric it links to.}
+  \label{fig:dash_home}
+\end{figure}
+
+Every metric panel has the same anatomy: the metric number and name, a badge
+giving its analysis level, one sentence of explanation, the formula, a control
+strip, a chart and a table beneath it. Opening with the definition rather than
+the data is deliberate. A reader who arrives at entropy-weighted type importance
+without knowing what it measures cannot interpret the bars, and a caption is too
+small a place to put a formula.
+
+\subsection{Choosing a Chart for the Data Shape}
+\label{subsec:dash_charts}
+
+All charts are drawn with ECharts~\cite{li2018echarts}, a declarative charting
+library in which a chart is a configuration object rather than drawing code, so
+the Python side only assembles data and options. The chart type follows the
+shape of the data rather than a house style, following the task-first approach of
+Munzner~\cite{munzner2014visualization}. Table~\ref{tab:dash_charts} records the
+mapping.
+
+\begin{table}[htbp]
+  \centering
+  \caption[Chart type per metric]{The chart used for each metric, and the
+    property of the data that selects it.}
+  \label{tab:dash_charts}
+  \footnotesize
+  \begin{tabular}{llp{6.2cm}}
+    \toprule
+    Metric & Chart & Why \\
+    \midrule
+    1, 2, 3, 4 & small multiples & one panel per snapshot, shared value axis \\
+    1, 2, 3, 4 & heatmap & the combined view: seven series over four orders of magnitude \\
+    5, 7       & small multiples & a ranked list per snapshot \\
+    8          & small multiples & one panel per statistic, unrelated units \\
+    9, 10, 12  & stacked and grouped bars & added against deleted against unchanged \\
+    11         & line chart & a value moving across three or more releases \\
+    13         & dumbbell, parity scatter & the gap between two graphs, and agreement as a position \\
+    13         & line chart & the gap per class across the releases of the other graph \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+Two of these choices are worth justifying, because the obvious alternative fails.
+
+For metrics 1 to 4 the dashboard offers a \emph{separate} and a \emph{combined}
+view. Separate draws one small chart per snapshot, the small-multiples
+arrangement of Tufte~\cite{tufte1990envisioning}. On metric~1 each panel can
+either fit its own largest bar or share one value axis with the others: the
+shared axis keeps bar lengths comparable, but it reduces YAGO~3, whose largest
+class holds 667{,}909 entities, to a row of slivers beside YAGO~4's 66.9
+million, so the dashboard opens on the per-panel scale and offers the shared one
+as a toggle. Combined was originally a
+grouped bar chart with one series per snapshot, and it did not work. Seven series
+against values spanning from roughly $10^3$ to $6.7 \times 10^7$ entities leaves
+six of them as hairlines against the axis. A logarithmic axis makes them visible
+but stops bar length being proportional to the value, which is worse in a figure
+an examiner reads quickly. The combined view is therefore a heatmap: class down
+the side, snapshot across the top, colour scaled by $\log_{10}$ of the value, and
+the exact figure printed in every cell. Magnitude is read from colour, the number
+is read from the text, and neither has to mislead. A class absent from a snapshot
+has no cell at all, which is how the YAGO~3 vocabulary break of
+Section~\ref{sec:exp2} becomes visible as an empty column rather than as a row of
+zeros.
+
+Colour is assigned by role. Snapshot identity uses the fixed-order categorical
+palette of Okabe and Ito~\cite{okabe2008cud}, chosen because its colours stay
+distinguishable under the common forms of colour-vision deficiency, and never
+cycled, so a given snapshot keeps its colour when the selection
+changes; an earlier version assigned colours modulo the palette length, which
+silently gave two of the seven snapshots the same colour. Magnitude in the
+heatmaps uses a single hue from light to dark, since colour there encodes a
+quantity rather than a category.
+
+\subsection{Making Missing Data Legible}
+\label{subsec:dash_missing}
+
+This is the part of the dashboard that took the most iteration, and it is the
+part with a real finding behind it.
+
+Each snapshot's class-population run stores only that snapshot's own most
+populated classes. A view that pools those lists across snapshots and ranks them
+produces a ranking dominated by whichever snapshot has the largest counts. With
+all seven selected, twelve of the top fifteen classes come from YAGO~4 alone, and
+every other snapshot shows gaps. The gaps are the problem, because a blank cell
+in that table can mean three different things:
+
+\begin{enumerate}
+  \item the class exists in the graph and has zero entities;
+  \item the class exists and has many entities, but did not reach that
+        snapshot's stored top-$N$ list;
+  \item the class does not exist in that release at all, because the vocabulary
+        changed.
+\end{enumerate}
+
+Only the third is a finding. The second is an artefact of how the results were
+stored, and reading it as absence is simply wrong. DBpedia 2025 shows a blank for
+\texttt{Taxon} while its own stored list contains \texttt{Species} with
+2{,}151{,}923 entities: the concept is present, under another name, below the
+cut.
+
+The dashboard resolves this with two selectable scopes rather than one ranking.
+\emph{Each snapshot's own top~$N$} ranks every snapshot independently, so every
+panel is full and carries its own class labels. Nothing is comparable across
+panels, and nothing is missing either; this is the view that answers what a graph
+contains, and it is the right one for the dataset description of
+Section~\ref{sec:datasets}. \emph{Shared classes} keeps one class axis across all
+snapshots and orders it by how many snapshots carry each class, annotating any
+row that is not universal with its coverage, so \texttt{Person} appears plain
+while \texttt{TimePeriod (4/7)} announces that three snapshots lack it. A note
+above the chart states how many of the displayed classes are present everywhere.
+Figure~\ref{fig:dash_combined} shows the combined heatmap of that view.
+
+\begin{figure}[htbp]
+  \centering
+  \dashshot{dash-combined.png}{metric 1, combined heatmap across snapshots}
+  \caption[Dashboard, combined heatmap]{The combined view of metric~1. Colour is
+    scaled by $\log_{10}$ of the entity count and each cell prints its exact
+    value, so four orders of magnitude stay readable. A snapshot that does not
+    carry a class has no cell, which distinguishes a vocabulary change from a
+    zero.}
+  \label{fig:dash_combined}
+\end{figure}
+
+An earlier iteration defined the shared scope as a strict intersection, keeping
+only classes present in every selected snapshot. Across all seven that
+intersection is empty, and across six it contains exactly one class,
+\texttt{Person}. A view that is correct and empty is not useful, which is why the
+coverage ordering replaced it.
+
+The same concern drives the treatment of the two measurement passes. Metrics 2,
+3, 4 and 6 exist in a descriptive and a pinned form, and the dashboard shows a
+warning whenever the descriptive pass is selected, because those numbers are not
+comparable across snapshots. Metric~1 has no pinned form, since population
+selects the classes rather than being given them, and the scope control described
+above is what stands in for it.
+
+Where a panel would be empty, the dashboard says why instead of drawing an empty
+axis. Selecting YAGO~3 alongside the schema.org snapshots produces a panel
+reading that the snapshot shares no class with the current ranking because it
+uses a different class vocabulary. That message is a one-line summary of the
+YAGO~3 result in Section~\ref{sec:exp2}.
+
+\subsection{Comparison and Cross-Graph Views}
+\label{subsec:dash_pairs}
+
+The metrics that need two endpoints are driven differently. Rather than selecting
+snapshots, the user selects a stored comparison, and the dashboard discovers the
+available pairs by scanning for the relevant result file. Comparisons measured
+against the shared public QLever host are hidden automatically, because its
+query-memory cap truncates the class list and a partial result shown beside a
+complete one invites misreading.
+
+Grouped bars were the first choice for metric~13 and the wrong one, for the same
+reason as in Section~\ref{subsec:dash_charts}: they show two lengths and leave
+the reader to subtract, and Cleveland and McGill~\cite{cleveland1984graphical}
+found judgements of position along a common scale to be the most accurate of
+the elementary perceptual tasks. The view therefore uses two forms that show the
+comparison directly, reproduced in Figure~\ref{fig:dash_crosskg}. A dumbbell
+joins each class's two values, so the line length is the gap. A parity scatter
+plots one graph's entropy against the other's with the line of equality drawn,
+so agreement becomes a position rather than something to compute. When several
+comparisons share a fixed side, a third chart traces the entropy gap per class
+across the releases of the other graph, which is how the \texttt{organization}
+discontinuity of Section~\ref{sec:exp5} first became visible. When a run left
+matched classes out, as the YAGO~4 runs leave out \texttt{Thing} and
+\texttt{CreativeWork}, a note above the charts names them, so a missing class
+is never mistaken for an unmatched one.
+
+\begin{figure}[htbp]
+  \centering
+  \dashshot{dash-crosskg.png}{metric 13, cross-graph comparison}
+  \caption[Dashboard, cross-graph comparison]{Metric~13 comparing YAGO~4.5.0.2
+    with DBpedia 2025-12-01 over the sixteen automatically matched classes. Top:
+    a dumbbell per class, where the connecting line is the population gap on a
+    logarithmic axis. Bottom: class entropy of one graph against the other, with
+    the line of equality dashed. \texttt{organization} is ringed because it sits
+    on that line, the result discussed in Section~\ref{sec:exp5}; every other
+    class falls below it, meaning YAGO carries more information per entity.}
+  \label{fig:dash_crosskg}
+\end{figure}
+
+Metric~10 is deliberately unavailable for a cross-graph pair. Two different
+knowledge graphs have disjoint subject IRIs, so a subject window lands inside one
+of them and reports every triple as added. The dashboard states this rather than
+rendering the number, and points the reader at metric~13 instead.
+
+\subsection{Limitations of the Dashboard}
+\label{subsec:dash_limitations}
+
+Three limitations are worth recording. The dashboard reads stored results, so it
+cannot answer a question the metric runs did not anticipate; adding a class to a
+comparison means re-running a metric, not clicking a control. It loads every
+result file at startup, which is acceptable at the current scale but would need
+paging if the number of snapshots grew substantially. And the palette used for
+snapshot identity is chosen for screen legibility rather than for print, so a
+grouped figure taken from the dashboard and printed in greyscale would lose some
+separation; the figures in Chapter~\ref{chap:experiments} are generated
+independently for that reason.

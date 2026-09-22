@@ -1,0 +1,98 @@
+{
+  "http://dbpedia.org/ontology/Animal": {
+    "added": 223829,
+    "churn": 0.5398930178553892,
+    "deleted": 150021,
+    "triples_v1": 692452,
+    "triples_v2": 766260,
+    "unchanged": 542431
+  },
+  "http://dbpedia.org/ontology/Eukaryote": {
+    "added": 224365,
+    "churn": 0.5386951471143587,
+    "deleted": 150799,
+    "triples_v1": 696431,
+    "triples_v2": 769997,
+    "unchanged": 545632
+  },
+  "http://dbpedia.org/ontology/Person": {
+    "added": 223721,
+    "churn": 0.5402187851022583,
+    "deleted": 149964,
+    "triples_v1": 691729,
+    "triples_v2": 765486,
+    "unchanged": 541765
+  },
+  "http://dbpedia.org/ontology/Species": {
+    "added": 224394,
+    "churn": 0.5387477294429327,
+    "deleted": 150798,
+    "triples_v1": 696415,
+    "triples_v2": 770011,
+    "unchanged": 545617
+  },
+  "http://dbpedia.org/ontology/TimePeriod": {
+    "added": 117497,
+    "churn": 0.568362375607258,
+    "deleted": 46762,
+    "triples_v1": 289004,
+    "triples_v2": 359739,
+    "unchanged": 242242
+  },
+  "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#TimeInterval": {
+    "added": 117497,
+    "churn": 0.568362375607258,
+    "deleted": 46762,
+    "triples_v1": 289004,
+    "triples_v2": 359739,
+    "unchanged": 242242
+  },
+  "http://www.w3.org/2002/07/owl#Thing": {
+    "added": 1038719,
+    "churn": 0.7461773509568034,
+    "deleted": 277264,
+    "triples_v1": 1763633,
+    "triples_v2": 2527363,
+    "unchanged": 1484918
+  },
+  "http://www.wikidata.org/entity/Q19088": {
+    "added": 224365,
+    "churn": 0.5386951471143587,
+    "deleted": 150799,
+    "triples_v1": 696431,
+    "triples_v2": 769997,
+    "unchanged": 545632
+  },
+  "http://www.wikidata.org/entity/Q215627": {
+    "added": 223721,
+    "churn": 0.5402187851022583,
+    "deleted": 149964,
+    "triples_v1": 691729,
+    "triples_v2": 765486,
+    "unchanged": 541765
+  },
+  "http://www.wikidata.org/entity/Q5": {
+    "added": 223721,
+    "churn": 0.5402187851022583,
+    "deleted": 149964,
+    "triples_v1": 691729,
+    "triples_v2": 765486,
+    "unchanged": 541765
+  },
+  "http://www.wikidata.org/entity/Q729": {
+    "added": 223829,
+    "churn": 0.5398930178553892,
+    "deleted": 150021,
+    "triples_v1": 692452,
+    "triples_v2": 766260,
+    "unchanged": 542431
+  },
+  "http://xmlns.com/foaf/0.1/Person": {
+    "added": 223721,
+    "churn": 0.5402187851022583,
+    "deleted": 149964,
+    "triples_v1": 691729,
+    "triples_v2": 765486,
+    "unchanged": 541765
+  }
+}

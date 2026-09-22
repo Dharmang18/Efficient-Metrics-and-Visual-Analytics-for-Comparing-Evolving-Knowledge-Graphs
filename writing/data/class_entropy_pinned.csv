@@ -1,0 +1,25 @@
+snapshot,class,object_entropy,predicate_entropy,triples
+dbpedia-2015,AdministrativeArea,12.590,6.839,945\,389
+dbpedia-2015,Chemical compound,10.213,3.512,136\,727
+dbpedia-2015,Galaxy,9.265,3.687,14\,091
+dbpedia-2015,Person,14.492,5.670,52\,022\,691
+dbpedia-2015,Star,11.252,5.006,69\,417
+dbpedia-2015,Taxon,11.835,4.847,8\,341\,372
+dbpedia-2025,AdministrativeArea,13.096,6.658,3\,449\,329
+dbpedia-2025,Chemical compound,10.052,3.138,393\,821
+dbpedia-2025,Galaxy,9.493,3.483,88\,883
+dbpedia-2025,Person,13.344,5.194,93\,035\,841
+dbpedia-2025,Star,10.284,4.030,255\,099
+dbpedia-2025,Taxon,13.393,5.246,94\,056\,059
+yago-4,AdministrativeArea,16.397,2.308,78\,198\,513
+yago-4,Chemical compound,8.137,1.358,22\,842\,765
+yago-4,Galaxy,10.687,1.906,14\,341\,644
+yago-4,Person,20.645,3.211,180\,983\,829
+yago-4,Star,11.860,1.658,9\,702\,940
+yago-4,Taxon,18.073,2.050,106\,300\,022
+yago-4.5.0.2,AdministrativeArea,17.152,2.714,9\,544\,071
+yago-4.5.0.2,Chemical compound,7.259,0.610,42\,245\,341
+yago-4.5.0.2,Galaxy,19.243,1.415,66\,913\,874
+yago-4.5.0.2,Person,19.839,3.185,33\,211\,484
+yago-4.5.0.2,Star,22.107,1.588,107\,348\,052
+yago-4.5.0.2,Taxon,22.548,1.599,182\,756\,273

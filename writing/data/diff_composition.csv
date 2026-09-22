@@ -1,0 +1,6 @@
+pair,added,deleted,unchanged,churn
+DBpedia 2015$\rightarrow$2016,101\,458,57\,693,640\,161,0.228
+DBpedia 2015$\rightarrow$2022,557\,407,134\,026,279\,946,1.670
+DBpedia 2022$\rightarrow$2025,223\,721,149\,964,541\,765,0.540
+DBpedia 2015$\rightarrow$2025,595\,618,150\,457,189\,271,2.196
+YAGO 4$\rightarrow$4.5.0.2,572\,876,612\,106,445\,462,0.773

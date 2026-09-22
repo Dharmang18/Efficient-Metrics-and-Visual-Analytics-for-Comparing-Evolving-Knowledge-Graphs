@@ -1,0 +1,66 @@
+{
+  "http://dbpedia.org/ontology/Agent": {
+    "added": 341210,
+    "churn": 0.7688361733627874,
+    "deleted": 249759,
+    "triples_v1": 768654,
+    "triples_v2": 860105,
+    "unchanged": 518895
+  },
+  "http://dbpedia.org/ontology/Person": {
+    "added": 557407,
+    "churn": 1.6702409824819069,
+    "deleted": 134026,
+    "triples_v1": 413972,
+    "triples_v2": 837353,
+    "unchanged": 279946
+  },
+  "http://schema.org/Person": {
+    "added": 557407,
+    "churn": 1.6702409824819069,
+    "deleted": 134026,
+    "triples_v1": 413972,
+    "triples_v2": 837353,
+    "unchanged": 279946
+  },
+  "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Agent": {
+    "added": 341210,
+    "churn": 0.7688361733627874,
+    "deleted": 249759,
+    "triples_v1": 768654,
+    "triples_v2": 860105,
+    "unchanged": 518895
+  },
+  "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#NaturalPerson": {
+    "added": 557407,
+    "churn": 1.6702409824819069,
+    "deleted": 134026,
+    "triples_v1": 413972,
+    "triples_v2": 837353,
+    "unchanged": 279946
+  },
+  "http://www.w3.org/2002/07/owl#Thing": {
+    "added": 1346658,
+    "churn": 2.289982755101901,
+    "deleted": 325192,
+    "triples_v1": 730071,
+    "triples_v2": 1752987,
+    "unchanged": 404878
+  },
+  "http://www.wikidata.org/entity/Q215627": {
+    "added": 557407,
+    "churn": 1.6702409824819069,
+    "deleted": 134026,
+    "triples_v1": 413972,
+    "triples_v2": 837353,
+    "unchanged": 279946
+  },
+  "http://xmlns.com/foaf/0.1/Person": {
+    "added": 557407,
+    "churn": 1.6702409824819069,
+    "deleted": 134026,
+    "triples_v1": 413972,
+    "triples_v2": 837353,
+    "unchanged": 279946
+  }
+}

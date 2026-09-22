@@ -1,0 +1,276 @@
+{
+  "classes": {
+    "administrativearea": {
+      "a": {
+        "class_entropy": 17.15202486540842,
+        "iri": "http://schema.org/AdministrativeArea",
+        "population": 518290.0,
+        "predicates": 34.0
+      },
+      "b": {
+        "class_entropy": 12.28942778730184,
+        "iri": "http://schema.org/AdministrativeArea",
+        "population": 25017.0,
+        "predicates": 2373.0
+      },
+      "delta_class_entropy": 4.862597078106582,
+      "delta_population": 493273.0,
+      "delta_predicates": -2339.0,
+      "delta_share": 0.9079084201013423
+    },
+    "album": {
+      "a": {
+        "class_entropy": 19.219888083812478,
+        "iri": "http://yago-knowledge.org/resource/Album",
+        "population": 283101.0,
+        "predicates": 29.0
+      },
+      "b": {
+        "class_entropy": 14.40808551080192,
+        "iri": "http://dbpedia.org/ontology/Album",
+        "population": 139078.0,
+        "predicates": 1210.0
+      },
+      "delta_class_entropy": 4.811802573010558,
+      "delta_population": 144023.0,
+      "delta_predicates": -1181.0,
+      "delta_share": 0.341142027433861
+    },
+    "artist": {
+      "a": {
+        "class_entropy": 15.683268121010244,
+        "iri": "http://yago-knowledge.org/resource/Artist",
+        "population": 49271.0,
+        "predicates": 35.0
+      },
+      "b": {
+        "class_entropy": 11.13885456211816,
+        "iri": "http://dbpedia.org/ontology/Artist",
+        "population": 82484.0,
+        "predicates": 2038.0
+      },
+      "delta_class_entropy": 4.544413558892083,
+      "delta_population": -33213.0,
+      "delta_predicates": -2003.0,
+      "delta_share": -0.2520815149330196
+    },
+    "building": {
+      "a": {
+        "class_entropy": 16.168628559552573,
+        "iri": "http://yago-knowledge.org/resource/Building",
+        "population": 235529.0,
+        "predicates": 31.0
+      },
+      "b": {
+        "class_entropy": 11.767987424891103,
+        "iri": "http://dbpedia.org/ontology/Building",
+        "population": 82203.0,
+        "predicates": 3056.0
+      },
+      "delta_class_entropy": 4.40064113466147,
+      "delta_population": 153326.0,
+      "delta_predicates": -3025.0,
+      "delta_share": 0.4825639217957272
+    },
+    "movie": {
+      "a": {
+        "class_entropy": 20.015728797837724,
+        "iri": "http://schema.org/Movie",
+        "population": 277804.0,
+        "predicates": 29.0
+      },
+      "b": {
+        "class_entropy": 13.631347866627392,
+        "iri": "http://schema.org/Movie",
+        "population": 111938.0,
+        "predicates": 1775.0
+      },
+      "delta_class_entropy": 6.384380931210332,
+      "delta_population": 165866.0,
+      "delta_predicates": -1746.0,
+      "delta_share": 0.4255789727563362
+    },
+    "organization": {
+      "a": {
+        "class_entropy": 14.27524394455645,
+        "iri": "http://schema.org/Organization",
+        "population": 103600.0,
+        "predicates": 34.0
+      },
+      "b": {
+        "class_entropy": 13.560087488404577,
+        "iri": "http://schema.org/Organization",
+        "population": 286482.0,
+        "predicates": 13160.0
+      },
+      "delta_class_entropy": 0.715156456151874,
+      "delta_population": -182882.0,
+      "delta_predicates": -13126.0,
+      "delta_share": -0.4688296306930338
+    },
+    "person": {
+      "a": {
+        "class_entropy": 19.83870022925335,
+        "iri": "http://schema.org/Person",
+        "population": 2982308.0,
+        "predicates": 28.0
+      },
+      "b": {
+        "class_entropy": 12.839731501206046,
+        "iri": "http://xmlns.com/foaf/0.1/Person",
+        "population": 1243400.0,
+        "predicates": 11257.0
+      },
+      "delta_class_entropy": 6.998968728047306,
+      "delta_population": 1738908.0,
+      "delta_predicates": -11229.0,
+      "delta_share": 0.4115069001454904
+    },
+    "politician": {
+      "a": {
+        "class_entropy": 18.815848544300337,
+        "iri": "http://yago-knowledge.org/resource/Politician",
+        "population": 750961.0,
+        "predicates": 37.0
+      },
+      "b": {
+        "class_entropy": 12.063827090256458,
+        "iri": "http://dbpedia.org/ontology/Politician",
+        "population": 41016.0,
+        "predicates": 1499.0
+      },
+      "delta_class_entropy": 6.752021454043879,
+      "delta_population": 709945.0,
+      "delta_predicates": -1462.0,
+      "delta_share": 0.896421234455041
+    },
+    "river": {
+      "a": {
+        "class_entropy": 15.416364278364664,
+        "iri": "http://yago-knowledge.org/resource/River",
+        "population": 418684.0,
+        "predicates": 19.0
+      },
+      "b": {
+        "class_entropy": 9.728259677553542,
+        "iri": "http://dbpedia.org/ontology/River",
+        "population": 28445.0,
+        "predicates": 873.0
+      },
+      "delta_class_entropy": 5.688104600811123,
+      "delta_population": 390239.0,
+      "delta_predicates": -854.0,
+      "delta_share": 0.8727660250173888
+    },
+    "road": {
+      "a": {
+        "class_entropy": 15.61034493992801,
+        "iri": "http://yago-knowledge.org/resource/Road",
+        "population": 70780.0,
+        "predicates": 21.0
+      },
+      "b": {
+        "class_entropy": 13.300538453273667,
+        "iri": "http://dbpedia.org/ontology/Road",
+        "population": 21544.0,
+        "predicates": 759.0
+      },
+      "delta_class_entropy": 2.3098064866543435,
+      "delta_population": 49236.0,
+      "delta_predicates": -738.0,
+      "delta_share": 0.5332957844114207
+    },
+    "school": {
+      "a": {
+        "class_entropy": 14.304951412065352,
+        "iri": "http://yago-knowledge.org/resource/School",
+        "population": 50397.0,
+        "predicates": 29.0
+      },
+      "b": {
+        "class_entropy": 11.835860013281376,
+        "iri": "http://schema.org/School",
+        "population": 33291.0,
+        "predicates": 3295.0
+      },
+      "delta_class_entropy": 2.4690913987839753,
+      "delta_population": 17106.0,
+      "delta_predicates": -3266.0,
+      "delta_share": 0.20440206481215945
+    },
+    "ship": {
+      "a": {
+        "class_entropy": 13.926401824379319,
+        "iri": "http://yago-knowledge.org/resource/Ship",
+        "population": 77718.0,
+        "predicates": 17.0
+      },
+      "b": {
+        "class_entropy": 12.819542715539491,
+        "iri": "http://dbpedia.org/ontology/Ship",
+        "population": 30283.0,
+        "predicates": 944.0
+      },
+      "delta_class_entropy": 1.1068591088398279,
+      "delta_population": 47435.0,
+      "delta_predicates": -927.0,
+      "delta_share": 0.43920889621392395
+    },
+    "stream": {
+      "a": {
+        "class_entropy": 14.958804218699228,
+        "iri": "http://yago-knowledge.org/resource/Stream",
+        "population": 173598.0,
+        "predicates": 17.0
+      },
+      "b": {
+        "class_entropy": 9.769780661027069,
+        "iri": "http://dbpedia.org/ontology/Stream",
+        "population": 28914.0,
+        "predicates": 1013.0
+      },
+      "delta_class_entropy": 5.18902355767216,
+      "delta_population": 144684.0,
+      "delta_predicates": -996.0,
+      "delta_share": 0.7144465513154776
+    },
+    "village": {
+      "a": {
+        "class_entropy": 17.55351966010928,
+        "iri": "http://yago-knowledge.org/resource/Village",
+        "population": 233623.0,
+        "predicates": 31.0
+      },
+      "b": {
+        "class_entropy": 9.429010397925998,
+        "iri": "http://dbpedia.org/ontology/Village",
+        "population": 169128.0,
+        "predicates": 1537.0
+      },
+      "delta_class_entropy": 8.124509262183283,
+      "delta_population": 64495.0,
+      "delta_predicates": -1506.0,
+      "delta_share": 0.16013616353528606
+    },
+    "writer": {
+      "a": {
+        "class_entropy": 18.966269641489713,
+        "iri": "http://yago-knowledge.org/resource/Writer",
+        "population": 220792.0,
+        "predicates": 35.0
+      },
+      "b": {
+        "class_entropy": 9.991825796083283,
+        "iri": "http://dbpedia.org/ontology/Writer",
+        "population": 32093.0,
+        "predicates": 1071.0
+      },
+      "delta_class_entropy": 8.97444384540643,
+      "delta_population": 188699.0,
+      "delta_predicates": -1036.0,
+      "delta_share": 0.7461850248136505
+    }
+  },
+  "kg_a": "http://100.113.106.12:9006",
+  "kg_b": "http://100.113.106.12:9009"
+}
