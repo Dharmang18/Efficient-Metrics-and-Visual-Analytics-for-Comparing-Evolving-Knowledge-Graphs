@@ -66,7 +66,7 @@ Figure~\ref{fig:pipeline} shows the four stages and where the data volume drops.
 \begin{figure}[htbp]
   \centering
   \figpipeline
-  \caption[The measurement pipeline]{The measurement pipeline. Hundreds of
+  \caption[\entrydesc{The measurement pipeline}{Counting on the server, formulas in Rust, results to JSON and the dashboard}]{The measurement pipeline. Hundreds of
     millions of triples are aggregated inside the engine; only a few hundred
     counts cross the network to the client, which applies the formula and writes
     the result. The dashboard and the figures in
@@ -170,8 +170,8 @@ is. This thesis therefore combines them as a weighted geometric mean:
 The geometric mean is chosen deliberately over an arithmetic one: it collapses to
 zero whenever either factor is zero, which is the desired semantics here. A
 predicate must be both typical of the class and informative in its values to rank
-highly. The weight $w$ favours the entropy term; it is a parameter, and
-Chapter~\ref{chap:experiments} reports its effect.
+highly. The weight $w$ favours the entropy term; it is a parameter, and every
+result in Chapter~\ref{chap:experiments} uses $w = 0.75$.
 
 \subsection{Class Entropy}
 
@@ -453,7 +453,7 @@ Figure~\ref{fig:histogram} contrasts the two formulations.
 \begin{figure}[htbp]
   \centering
   \fighistogram
-  \caption[Count-of-counts histogram]{Computing entropy from a count-of-counts
+  \caption[\entrydesc{Count-of-counts histogram}{Exact entropy from a few hundred rows instead of millions of values}]{Computing entropy from a count-of-counts
     histogram. Streaming every object value transfers millions of rows per
     predicate and class; a nested \texttt{GROUP BY} returns one row per distinct
     multiplicity, typically a few hundred. The result is exact, not sampled,
@@ -516,7 +516,7 @@ Figure~\ref{fig:window} shows the scheme adopted instead, a
 \begin{figure}[htbp]
   \centering
   \figwindow
-  \caption[Subject-window scoping]{Subject-window scoping for metric~10. Each
+  \caption[\entrydesc{Subject-window scoping}{How metric 10 compares two versions without a global sort}]{Subject-window scoping for metric~10. Each
     version returns its lexicographically first $n$ subjects, which is far
     cheaper than ordering every triple. Both prefixes are then cut at the
     smaller bound, so the two versions cover exactly the same subjects and the
@@ -602,7 +602,7 @@ navigation code. Figure~\ref{fig:dash_overview} shows the layout.
 \begin{figure}[htbp]
   \centering
   \dashshot{dash-overview.png}{metric 1, sidebar, formula and separate panels}
-  \caption[Dashboard, metric 1]{The dashboard showing metric~1. The sidebar
+  \caption[\entrydesc{Dashboard, metric 1}{Sidebar, typeset formula, controls and one panel per snapshot}]{The dashboard showing metric~1. The sidebar
     lists all thirteen metrics grouped by analysis level. The panel opens with
     the metric name, its level, a one-line explanation and the typeset formula,
     followed by the controls, then the chart and the table. The formula is
@@ -622,7 +622,7 @@ metric changes the tile the next time the dashboard starts.
 \begin{figure}[htbp]
   \centering
   \dashshot{dash-home.png}{overview page: release timeline, snapshot cards, findings}
-  \caption[Dashboard, overview page]{The overview page the dashboard opens on. The
+  \caption[\entrydesc{Dashboard, overview page}{Release timeline, snapshot cards and linked findings}]{The overview page the dashboard opens on. The
     timeline places each release by date, one card per snapshot gives its vital
     statistics from metric~8, and each finding tile is computed from the result
     file of the metric it links to.}
@@ -648,7 +648,7 @@ mapping.
 
 \begin{table}[htbp]
   \centering
-  \caption[Chart type per metric]{The chart used for each metric, and the
+  \caption[\entrydesc{Chart type per metric}{Which chart each metric uses, and the data property behind the choice}]{The chart used for each metric, and the
     property of the data that selects it.}
   \label{tab:dash_charts}
   \footnotesize
@@ -741,7 +741,7 @@ Figure~\ref{fig:dash_combined} shows the combined heatmap of that view.
 \begin{figure}[htbp]
   \centering
   \dashshot{dash-combined.png}{metric 1, combined heatmap across snapshots}
-  \caption[Dashboard, combined heatmap]{The combined view of metric~1. Colour is
+  \caption[\entrydesc{Dashboard, combined heatmap}{All seven snapshots in one log-scaled grid with exact values}]{The combined view of metric~1. Colour is
     scaled by $\log_{10}$ of the entity count and each cell prints its exact
     value, so four orders of magnitude stay readable. A snapshot that does not
     carry a class has no cell, which distinguishes a vocabulary change from a
@@ -797,7 +797,7 @@ is never mistaken for an unmatched one.
 \begin{figure}[htbp]
   \centering
   \dashshot{dash-crosskg.png}{metric 13, cross-graph comparison}
-  \caption[Dashboard, cross-graph comparison]{Metric~13 comparing YAGO~4.5.0.2
+  \caption[\entrydesc{Dashboard, cross-graph comparison}{Dumbbell and parity views of YAGO 4.5.0.2 against DBpedia 2025}]{Metric~13 comparing YAGO~4.5.0.2
     with DBpedia 2025-12-01 over the sixteen automatically matched classes. Top:
     a dumbbell per class, where the connecting line is the population gap on a
     logarithmic axis. Bottom: class entropy of one graph against the other, with

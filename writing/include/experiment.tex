@@ -29,7 +29,7 @@ table is generated rather than transcribed from release notes.
 
 \begin{table}[htbp]
   \centering
-  \caption[Snapshot characteristics]{Characteristics of the seven measured
+  \caption[\entrydesc{Snapshot characteristics}{Size, classes, predicates and density of the seven snapshots}]{Characteristics of the seven measured
     snapshots, as reported by metric~8. Density is triples per typed entity.
     The DBpedia releases use the matched file subset described in
     Section~\ref{subsec:matched}.}
@@ -114,7 +114,7 @@ chapter. Table~\ref{tab:machines} lists them.
 
 \begin{table}[htbp]
   \centering
-  \caption[Hardware used]{The three machines. Metric computation always runs on
+  \caption[\entrydesc{Hardware used}{The client and the two servers that ran the experiments}]{The three machines. Metric computation always runs on
     the client; the servers only answer SPARQL.}
   \label{tab:machines}
   \footnotesize
@@ -150,7 +150,7 @@ Figure~\ref{fig:protocol} shows the measurement procedure.
 \begin{figure}[htbp]
   \centering
   \figprotocol
-  \caption[Measurement protocol]{The measurement protocol. Per-class metrics run
+  \caption[\entrydesc{Measurement protocol}{Descriptive and pinned passes for the per-class metrics}]{The measurement protocol. Per-class metrics run
     twice per snapshot, once over each snapshot's own top classes and once over
     a fixed class list, because only the second pass is comparable across
     snapshots.}
@@ -197,7 +197,7 @@ pinned class list. Figure~\ref{fig:classentropy} plots the object-entropy column
 
 \begin{table}[htbp]
   \centering
-  \caption[Class entropy, pinned classes]{Object and predicate entropy in bits
+  \caption[\entrydesc{Class entropy, pinned classes}{Object and predicate entropy for the fixed class list}]{Object and predicate entropy in bits
     for the pinned class list, from metric~4. DBpedia names the taxonomic class
     \texttt{Species} and the administrative class \texttt{AdministrativeRegion};
     both are reported under the YAGO name for comparability.}
@@ -220,31 +220,25 @@ pinned class list. Figure~\ref{fig:classentropy} plots the object-entropy column
   \centering
   \begin{tikzpicture}
     \begin{axis}[
-      kgaxis, ybar, area legend, width=\linewidth, height=6cm,
-      symbolic x coords={Person,Taxon,AdministrativeArea,Star,Galaxy,Chemical\_compound},
-      xtick=data, x tick label style={rotate=20, anchor=east, font=\scriptsize},
-      ylabel={object entropy (bits)}, ymin=0, ymax=26,
-      bar width=5pt, enlarge x limits=0.12,
-      legend style={at={(0.5,1.03)}, anchor=south, legend columns=4,
+      kgaxis, ybar, area legend, width=.96\linewidth, height=6.4cm,
+      bar width=3.2pt, ymin=0, ymax=25, ylabel={object entropy (bits)},
+      xtick=data, xticklabels from table={data/class_entropy_plot.csv}{class},
+      table/col sep=comma, x tick label style={font=\scriptsize},
+      enlarge x limits=0.1,
+      legend style={at={(0.5,1.03)}, anchor=south, legend columns=3,
                     /tikz/every even column/.append style={column sep=6pt}},
       ]
-      \addplot[fill=kgamber!80, draw=kgamber] coordinates
-        {(Person,20.645) (Taxon,18.073) (AdministrativeArea,16.397)
-         (Star,11.860) (Galaxy,10.687) (Chemical\_compound,8.137)};
-      \addplot[fill=kggreen!80, draw=kggreen] coordinates
-        {(Person,19.839) (Taxon,22.548) (AdministrativeArea,17.152)
-         (Star,22.107) (Galaxy,19.243) (Chemical\_compound,7.259)};
-      \addplot[fill=kgviolet!80, draw=kgviolet] coordinates
-        {(Person,14.492) (Taxon,11.835) (AdministrativeArea,12.590)
-         (Star,11.252) (Galaxy,9.265) (Chemical\_compound,10.213)};
-      \addplot[fill=kgolive!80, draw=kgolive] coordinates
-        {(Person,13.344) (Taxon,13.393) (AdministrativeArea,13.096)
-         (Star,10.284) (Galaxy,9.493) (Chemical\_compound,10.052)};
-      \legend{YAGO 4, YAGO 4.5.0.2, DBpedia 2015, DBpedia 2025}
+      \addplot[fill=kgamber, draw=kgamber] table[x expr=\coordindex, y=yago4]{data/class_entropy_plot.csv};
+      \addplot[fill=kggreen, draw=kggreen] table[x expr=\coordindex, y=yago4502]{data/class_entropy_plot.csv};
+      \addplot[fill=kgviolet, draw=kgviolet] table[x expr=\coordindex, y=dbpedia2015]{data/class_entropy_plot.csv};
+      \addplot[fill=kgorange, draw=kgorange] table[x expr=\coordindex, y=dbpedia2016]{data/class_entropy_plot.csv};
+      \addplot[fill=kgsky, draw=kgsky] table[x expr=\coordindex, y=dbpedia2022matched]{data/class_entropy_plot.csv};
+      \addplot[fill=kgolive, draw=kgolive] table[x expr=\coordindex, y=dbpedia2025]{data/class_entropy_plot.csv};
+      \legend{YAGO 4, YAGO 4.5.0.2, DBpedia 2015, DBpedia 2016, DBpedia 2022, DBpedia 2025}
     \end{axis}
   \end{tikzpicture}
-  \caption[Class entropy across snapshots]{Object entropy in bits for the pinned
-    classes, from metric~4. YAGO reports higher entropy than DBpedia for every
+  \caption[\entrydesc{Class entropy across snapshots}{Object entropy of the pinned classes, snapshot by snapshot}]{Object entropy in bits for the pinned
+    classes in the six snapshots that carry them, from metric~4. YAGO reports higher entropy than DBpedia for every
     class except \texttt{Chemical\_compound}, and YAGO~4.5 raises entropy sharply
     for \texttt{Star}, \texttt{Galaxy} and \texttt{Taxon}.}
   \label{fig:classentropy}
@@ -253,8 +247,125 @@ pinned class list. Figure~\ref{fig:classentropy} plots the object-entropy column
 Property entropy for \texttt{schema:Person} ranks
 \texttt{rdfs:label} highest in both YAGO releases, at 25.67 bits in YAGO~4 and
 23.03 bits in YAGO~4.5, followed by \texttt{owl:sameAs} at 23.02 and 21.51 bits.
-The lowest-entropy predicates on the same class are \texttt{schema:gender} at
-0.034 normalised weight and \texttt{schema:nationality} at 0.261.
+Apart from \texttt{rdf:type}, the lowest-entropy predicate on the same class is
+\texttt{schema:gender}, at 0.77 bits in YAGO~4 and 0.89 bits in YAGO~4.5: a
+handful of values shared by millions of people.
+
+\paragraph{Class population (metric~1)} Table~\ref{tab:poptop} lists the two
+largest classes of every snapshot and the share of typed entities each holds.
+Shares overlap, because an entity carries several types, so a root class near
+100\% is expected and the columns do not sum.
+
+\begin{table}[htbp]
+  \centering
+  \caption[\entrydesc{Largest classes per snapshot}{The two most populated classes and their share of typed entities}]{The two
+    most populated classes of each snapshot and their share of all typed
+    entities, from metric~1. An entity with several types counts in each of its
+    classes, so the shares do not sum to 100\%. YAGO~3 WordNet synset numbers are
+    omitted.}
+  \label{tab:poptop}
+  \scriptsize
+  \setlength{\tabcolsep}{3.5pt}
+  \pgfplotstabletypeset[
+    col sep=comma, string type,
+    columns={snapshot,entities,c1,s1,c2,s2},
+    columns/snapshot/.style={column name=Snapshot, column type=l},
+    columns/entities/.style={column name={Typed entities}, column type=r},
+    columns/c1/.style={column name=Largest, column type=l},
+    columns/s1/.style={column name=, column type=r},
+    columns/c2/.style={column name=Second, column type=l},
+    columns/s2/.style={column name=, column type=r},
+    every head row/.style={before row=\toprule, after row=\midrule},
+    every last row/.style={after row=\bottomrule},
+  ]{data/population_top.csv}
+\end{table}
+
+\paragraph{Property entropy and type importance (metrics~2 and~3)}
+Table~\ref{tab:personpreds} ranks the predicates of \texttt{Person} by property
+entropy and by the combined score EntETImp of Equation~\ref{eq:entetimp}, with
+$w = 0.75$, in the four snapshots of Table~\ref{tab:classentropy}.
+
+\begin{table}[htbp]
+  \centering
+  \caption[\entrydesc{Top predicates of Person}{Property entropy against entropy-weighted type importance}]{The three
+    highest-ranked predicates of \texttt{Person} by property entropy (metric~2,
+    bits) and by EntETImp (metric~3, Equation~\ref{eq:entetimp} with
+    $w = 0.75$), pinned pass.}
+  \label{tab:personpreds}
+  \footnotesize
+  \pgfplotstabletypeset[
+    col sep=comma, string type,
+    columns={snapshot,rank,entf_pred,entf,etimp_pred,etimp},
+    columns/snapshot/.style={column name=Snapshot, column type=l},
+    columns/rank/.style={column name=\#, column type=c},
+    columns/entf_pred/.style={column name={By EntF}, column type=l},
+    columns/entf/.style={column name=bits, column type=r},
+    columns/etimp_pred/.style={column name={By EntETImp}, column type=l},
+    columns/etimp/.style={column name=score, column type=r},
+    every head row/.style={before row=\toprule, after row=\midrule},
+    every row no 3/.style={before row=\midrule},
+    every row no 6/.style={before row=\midrule},
+    every row no 9/.style={before row=\midrule},
+    every last row/.style={after row=\bottomrule},
+  ]{data/person_entf_etimp.csv}
+\end{table}
+
+\paragraph{Entity informativeness (metric~5)} Table~\ref{tab:inforank} lists
+the three entities with the highest InfoRank in each snapshot, together with the
+number of distinct literal properties that earns it.
+
+\begin{table}[htbp]
+  \centering
+  \caption[\entrydesc{Most informative entities}{The three highest InfoRank entities of each snapshot}]{The three
+    entities with the highest InfoRank per snapshot, from metric~5, with the
+    number of distinct literal properties behind each score. $\mathrm{IR}$ is
+    given in units of $10^{-6}$; it is comparable within a snapshot, not across
+    snapshots, because it is normalised by each graph's total.}
+  \label{tab:inforank}
+  \footnotesize
+  \pgfplotstabletypeset[
+    col sep=comma, string type,
+    columns={snapshot,entity,props,ir_e6},
+    columns/snapshot/.style={column name=Snapshot, column type=l},
+    columns/entity/.style={column name=Entity, column type=l},
+    columns/props/.style={column name={Literal props.}, column type=r},
+    columns/ir_e6/.style={column name={$\mathrm{IR} \cdot 10^{6}$}, column type=r},
+    every head row/.style={before row=\toprule, after row=\midrule},
+    every row no 3/.style={before row=\midrule},
+    every row no 6/.style={before row=\midrule},
+    every row no 9/.style={before row=\midrule},
+    every row no 12/.style={before row=\midrule},
+    every row no 15/.style={before row=\midrule},
+    every row no 18/.style={before row=\midrule},
+    every last row/.style={after row=\bottomrule},
+  ]{data/inforank_top.csv}
+\end{table}
+
+\paragraph{Object diversity (metric~6)} Table~\ref{tab:diversity} gives, for
+each pinned class, the predicate with the most distinct object values in the
+latest release of each graph.
+
+\begin{table}[htbp]
+  \centering
+  \caption[\entrydesc{Most diverse predicate per class}{Distinct object values in YAGO 4.5.0.2 and DBpedia 2025}]{The predicate
+    with the most distinct object values for each pinned class, from metric~6, in
+    YAGO~4.5.0.2 and DBpedia 2025. DBpedia's \texttt{Species} is reported under
+    the YAGO name \texttt{Taxon}; see the discussion for why its 2025 row
+    matches \texttt{Person}.}
+  \label{tab:diversity}
+  \footnotesize
+  \pgfplotstabletypeset[
+    col sep=comma, string type,
+    columns={class,y_pred,y_n,d_pred,d_n},
+    columns/class/.style={column name=Class, column type=l},
+    columns/y_pred/.style={column name={YAGO 4.5.0.2}, column type=l},
+    columns/y_n/.style={column name=distinct, column type=r},
+    columns/d_pred/.style={column name={DBpedia 2025}, column type=l},
+    columns/d_n/.style={column name=distinct, column type=r},
+    every head row/.style={before row=\toprule, after row=\midrule},
+    every last row/.style={after row=\bottomrule},
+  ]{data/diversity_top.csv}
+\end{table}
 
 \subsection{Discussion}
 
@@ -288,6 +399,62 @@ far less predictable than a YAGO entity's drawn from 157. This is the ontology
 difference from Table~\ref{tab:datasets} showing up as an information measure,
 which is what Färber et al.~\cite{farber2018linked} describe qualitatively.
 
+The four additional metrics fill in the rest of the single-snapshot profile.
+
+Table~\ref{tab:poptop} shows two typing policies. YAGO~4 places 91.3\% of its
+typed entities under \texttt{schema:Thing} and nearly half under
+\texttt{CreativeWork}, the imported article corpus that YAGO~4.5 later dropped;
+no root class appears among YAGO~4.5's largest, and its biggest class,
+\texttt{Taxon}, holds 7.1\%. DBpedia 2015 and 2016 type every entity as
+\texttt{owl:Thing}. By 2025 \texttt{owl:Thing} covers only 18.0\%, while
+\texttt{dbo:Image} holds 43.4\% and \texttt{foaf:Document} 22.7\%: the 2025
+matched subset carries image and document metadata that the earlier releases did
+not. That is why DBpedia's typed-entity count grows by a factor of 4.3 between
+2022 and 2025 while its triples grow by 1.5, a gap Section~\ref{sec:exp2} returns
+to.
+
+Property entropy and EntETImp agree on DBpedia and disagree on YAGO, and
+Table~\ref{tab:personpreds} shows why. In YAGO~4, \texttt{rdfs:label} leads
+property entropy at 25.67 bits but is missing from the EntETImp top three,
+because nearly every person carries a label, so the coverage factor of
+Equation~\ref{eq:etimp} approaches $\log_2 1 = 0$. Predicates fewer people carry,
+\texttt{schema:alternateName} and \texttt{schema:birthDate}, take its place. In
+DBpedia \texttt{rdfs:label} and \texttt{dbp:name} lead on both measures. The
+combined score is doing what it was built for: it demotes a predicate that is
+diverse but universal, and property entropy alone cannot make that distinction.
+
+InfoRank separates the graphs more sharply than any other entity-level metric
+(Table~\ref{tab:inforank}). Both schema.org releases of YAGO rank real entities
+first: people and \texttt{Earth}. Every DBpedia release is topped
+by Wikipedia list pages instead, such as \emph{List of Doraemon episodes} in 2015
+and \emph{List of state highways in Louisiana} in 2022 and 2025, each with 3{,}200
+to 4{,}900 literal properties. Infobox extraction turns every row of a list into
+a property of one resource, and a measure that counts literal properties rewards
+exactly that. For an analyst the consequence is practical: a raw InfoRank ranking
+of DBpedia needs a list-page filter before it identifies informative entities,
+and without the comparison against YAGO the artefact would be easy to mistake
+for a finding.
+
+Object diversity (Table~\ref{tab:diversity}) is dominated by labels in YAGO,
+where \texttt{rdfs:label} is the most diverse predicate for all six pinned
+classes, from 1.2 million distinct values for chemical compounds to 112 million
+for \texttt{Taxon}. Labels in many languages multiply the distinct values. DBpedia's
+counts are smaller, by up to four orders of magnitude for \texttt{Star} and
+\texttt{Galaxy}, and its leading predicate varies by class.
+
+One row of that table exposes a change in DBpedia rather than a property of the
+metric. DBpedia's \texttt{Taxon} row reports \texttt{dbo:careerStation} with
+exactly the count of \texttt{Person}. The pinned comparison maps YAGO's
+\texttt{Taxon} to \texttt{dbo:Species}, and from 2022 on that class holds 70.8
+million triples against 8.3 million in 2015, with an object entropy within 0.1
+bits of \texttt{Person}'s: 13.856 against 13.756 in 2022 and 13.393 against
+13.344 in 2025. The DBpedia ontology places \texttt{dbo:Person} under
+\texttt{dbo:Animal}, which sits below \texttt{Eukaryote} and \texttt{Species},
+and the newer releases materialise those supertypes on every person. The DBpedia
+\texttt{Taxon} values for 2022 and 2025 in Figure~\ref{fig:classentropy} and
+Table~\ref{tab:classentropy} therefore describe mostly people. Only the 2015 and
+2016 values compare taxa with taxa.
+
 \section{Experiment 2: Evolution Between Versions}
 \label{sec:exp2}
 
@@ -297,7 +464,9 @@ This is the core experiment. It asks where a knowledge graph changes between
 releases, and whether the change concentrates in identifiable parts of the graph.
 Metrics 9, 10, 11 and 12 were run over the pairs YAGO~4 to YAGO~4.5.0.2 and
 DBpedia 2015-10 to 2025-12-01. Metrics 9 and 10 were scoped to a class, as
-Section~\ref{subsec:subject_window} requires.
+Section~\ref{subsec:subject_window} requires. Metric~11 then assembles the stored
+per-snapshot results into trajectories over each full series, YAGO~3 to 4 to
+4.5.0.2 and DBpedia 2015 to 2016 to 2022 to 2025.
 
 \subsection{Results}
 
@@ -306,7 +475,7 @@ Figure~\ref{fig:churn} plots per-class churn from metric~9.
 
 \begin{table}[htbp]
   \centering
-  \caption[Vocabulary evolution]{Classes and predicates added, kept and removed
+  \caption[\entrydesc{Vocabulary evolution}{Classes and predicates added, kept and removed per release step}]{Classes and predicates added, kept and removed
     between releases, from metric~12.}
   \label{tab:vocab}
   \footnotesize
@@ -342,7 +511,7 @@ Figure~\ref{fig:churn} plots per-class churn from metric~9.
          (0.562,Place)};
     \end{axis}
   \end{tikzpicture}
-  \caption[Per-class churn, YAGO 4 to 4.5.0.2]{Churn per class between YAGO~4 and
+  \caption[\entrydesc{Per-class churn, YAGO 4 to 4.5.0.2}{Share of each class's triples that changed between the two releases}]{Churn per class between YAGO~4 and
     YAGO~4.5.0.2, from metric~9. A value of 1.0 means every triple of the class
     changed. \texttt{GeoCoordinates} was removed outright.}
   \label{fig:churn}
@@ -354,7 +523,7 @@ a 50{,}000-subject window scoped to \texttt{Person}.
 
 \begin{table}[htbp]
   \centering
-  \caption[Triple diff composition]{Added, deleted and unchanged triples inside a
+  \caption[\entrydesc{Triple diff composition}{Added, deleted and unchanged triples in a Person subject window}]{Added, deleted and unchanged triples inside a
     50{,}000-subject window scoped to \texttt{Person}, from metric~10. Churn is
     $(\text{added} + \text{deleted}) / |T(v_1)|$.}
   \label{tab:diffcomposition}
@@ -371,6 +540,53 @@ a 50{,}000-subject window scoped to \texttt{Person}.
     every last row/.style={after row=\bottomrule},
   ]{data/diff_composition.csv}
 \end{table}
+
+\paragraph{Trajectories (metric~11)} Figure~\ref{fig:trajectories} follows
+four graph-level quantities across each series, every one indexed to the first
+release of its graph, so a value of 2 means doubled and 0.5 means halved.
+
+\newcommand{\trajpanel}[3]{%
+  \begin{axis}[
+    kgaxis, scale only axis, width=5.2cm, height=4.6cm, title={#2},
+    ymode=log, log basis y=10, ymin=#3, ymax=60,
+    ylabel={relative to first release}, ylabel style={font=\scriptsize},
+    xtick=data, table/col sep=comma, xticklabels from table={#1}{snapshot},
+    x tick label style={font=\scriptsize, rotate=25, anchor=north east},
+    enlarge x limits=0.08, legend columns=2,
+    legend style={at={(0.5,-0.36)}, anchor=north, font=\scriptsize},
+    line legend,
+  ]
+    \addplot[thick, color=kgnavy, mark=*] table[x expr=\coordindex, y=triples_idx]{#1};
+    \addplot[thick, color=kgblue, mark=square*] table[x expr=\coordindex, y=typed_entities_idx]{#1};
+    \addplot[thick, color=kgred, mark=triangle*] table[x expr=\coordindex, y=classes_idx]{#1};
+    \addplot[thick, color=kggrey, mark=diamond*] table[x expr=\coordindex, y=predicates_idx]{#1};
+    \legend{triples, typed entities, classes, predicates}
+  \end{axis}}
+
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}\trajpanel{data/traj_yago.csv}{YAGO}{0.01}\end{tikzpicture}\hfill
+  \begin{tikzpicture}\trajpanel{data/traj_dbpedia.csv}{DBpedia}{0.01}\end{tikzpicture}
+  \caption[\entrydesc{Graph-level trajectories}{Triples, entities, classes and predicates across each release series}]{Graph-level
+    trajectories from metric~11, each quantity divided by its value in the first
+    release of the series, on a logarithmic axis. YAGO's class count falls by a
+    factor of 47 at the schema.org rewrite and recovers by a factor of 12;
+    DBpedia's classes and predicates stay nearly flat while its typed entities
+    grow sixfold.}
+  \label{fig:trajectories}
+\end{figure}
+
+The two graphs trace different shapes. YAGO grows by a factor of 34 in triples
+from YAGO~3 to YAGO~4, from 73 million to 2.49 billion, then loses almost half
+at YAGO~4.5. Its class count moves the other way at both steps: from 475{,}673 to
+10{,}103 when WordNet synsets gave way to schema.org, then up to 118{,}303 when
+YAGO~4.5 imported the Wikidata taxonomy. DBpedia changes gradually by comparison.
+Its classes stay between 740 and 772 across the decade and its predicates fall
+by 11\%, while its triples double. The one abrupt move is the sixfold growth in
+typed entities, most of it between 2022 and 2025, which is the image and
+document metadata discussed in Section~\ref{sec:exp1}. A single pair of releases
+would show either graph's change as one number; the trajectory shows whether
+that change was a step or a drift.
 
 \subsection{Discussion}
 
@@ -429,7 +645,7 @@ using metric~9 over the same 50{,}000-subject window.
 
 \begin{table}[htbp]
   \centering
-  \caption[DBpedia churn by release step]{Churn for \texttt{owl:Thing} and
+  \caption[\entrydesc{DBpedia churn by release step}{Churn of Thing and Person across the DBpedia releases}]{Churn for \texttt{owl:Thing} and
     \texttt{dbo:Person} across each DBpedia release step, from metric~9, with
     the added and deleted triples for \texttt{dbo:Person}. Each row divides by
     the class's triples in its own earlier release.}
@@ -508,7 +724,7 @@ Figure~\ref{fig:benchmark} plots the time and memory columns.
 
 \begin{table}[htbp]
   \centering
-  \caption[Triple diff benchmark]{Integer-encoded against string-based set
+  \caption[\entrydesc{Triple diff benchmark}{Run time and memory of integer-encoded against string sets}]{Integer-encoded against string-based set
     difference on identical inputs. Both paths were asserted to return the same
     added and deleted sets.}
   \label{tab:benchmark}
@@ -563,7 +779,7 @@ Figure~\ref{fig:benchmark} plots the time and memory columns.
       \legend{encoded, naive}
     \end{axis}
       \end{tikzpicture}
-  \caption[Triple diff benchmark]{Integer encoding against the string baseline.
+  \caption[\entrydesc{Triple diff benchmark}{Speed-up and memory saving of the integer encoding}]{Integer encoding against the string baseline.
     Time improves by a factor between 2.3 and 6.2; memory improves by a factor
     between 16 and 19, and the memory result is the one that decides whether the
     comparison runs at all on a 16\,GB client.}
@@ -628,7 +844,7 @@ Figure~\ref{fig:weights} plots them.
 
 \begin{table}[htbp]
   \centering
-  \caption[Predicate weights]{Highest and lowest normalised property-entropy
+  \caption[\entrydesc{Predicate weights}{Most and least informative predicates on the YAGO 4 sample}]{Highest and lowest normalised property-entropy
     weights $w(p)$ on the sampled YAGO~4 subgraph, from metric~7.}
   \label{tab:weights}
   \footnotesize
@@ -659,7 +875,7 @@ Figure~\ref{fig:weights} plots them.
          (0.174,sport) (0.034,gender)};
     \end{axis}
   \end{tikzpicture}
-  \caption[Predicate weights in entropy-weighted PageRank]{Normalised property
+  \caption[\entrydesc{Predicate weights in entropy-weighted PageRank}{The edge weight each predicate receives in the PageRank walk}]{Normalised property
     entropy per predicate on the sampled YAGO~4 subgraph. The weight spans a
     factor of 29 between \texttt{geo} and \texttt{gender}, which is the
     separation classic PageRank cannot express.}
@@ -754,7 +970,7 @@ Figure~\ref{fig:crosskg} plots the population and entropy columns.
 
 \begin{table}[htbp]
   \centering
-  \caption[Cross-graph class comparison]{The sixteen classes matched
+  \caption[\entrydesc{Cross-graph class comparison}{Population, entropy and predicates for sixteen shared classes}]{The sixteen classes matched
     automatically between YAGO~4.5.0.2 and DBpedia 2025-12-01 over the 150 most
     populated classes of each graph, from metric~13.
     $\Delta H$ is YAGO minus DBpedia.}
@@ -797,7 +1013,7 @@ Figure~\ref{fig:crosskg} plots the population and entropy columns.
       \legend{YAGO 4.5.0.2, DBpedia 2025}
     \end{axis}
   \end{tikzpicture}
-  \caption[Cross-graph class entropy]{Class entropy for the sixteen matched
+  \caption[\entrydesc{Cross-graph class entropy}{YAGO 4.5.0.2 against DBpedia 2025 entropy per matched class}]{Class entropy for the sixteen matched
     classes. YAGO reports higher entropy everywhere except
     \texttt{organization}, where the two graphs agree to within 0.001 bits.}
   \label{fig:crosskg}
@@ -809,7 +1025,7 @@ each point of the decade.
 
 \begin{table}[htbp]
   \centering
-  \caption[Cross-graph comparison across a decade]{The same comparison run
+  \caption[\entrydesc{Cross-graph comparison across a decade}{Entropy gap between YAGO 4.5.0.2 and four DBpedia releases}]{The same comparison run
     against four DBpedia releases with YAGO~4.5.0.2 fixed on the other side,
     for the fifteen classes matched in all four. All values are object entropy
     in bits; the final columns give
@@ -841,7 +1057,7 @@ the YAGO value and therefore the gap differ.
 
 \begin{table}[htbp]
   \centering
-  \caption[Cross-graph comparison against YAGO 4]{The series of
+  \caption[\entrydesc{Cross-graph comparison against YAGO 4}{The same series with YAGO 4, as a control}]{The series of
     Table~\ref{tab:crosskgseries} with YAGO~4 in place of YAGO~4.5.0.2, for the
     nineteen classes matched against all four DBpedia releases. YAGO~4's root
     classes \texttt{Thing} and \texttt{CreativeWork} are excluded; see the text.
@@ -880,7 +1096,7 @@ a class whose distance to DBpedia moved, and a marker at zero is agreement.
   \begin{tikzpicture}
     \figgapdots{data/crosskg_series_yago4.csv}{against YAGO 4}{8cm}
   \end{tikzpicture}
-  \caption[Cross-graph entropy gap per DBpedia release]{The entropy gap between
+  \caption[\entrydesc{Cross-graph entropy gap per DBpedia release}{Gap per class and release for both YAGO versions}]{The entropy gap between
     YAGO and each DBpedia release, per class, from
     Tables~\ref{tab:crosskgseries} (left) and~\ref{tab:crosskgseriesyago4}
     (right). The 2016 markers (squares) sit furthest right on almost every row,

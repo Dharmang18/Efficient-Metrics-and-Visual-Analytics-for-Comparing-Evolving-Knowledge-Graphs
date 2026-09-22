@@ -64,3 +64,109 @@ def crosskg_series(yago, out):
 
 crosskg_series("yago-4.5.0.2", "crosskg_series.csv")
 crosskg_series("yago-4", "crosskg_series_yago4.csv")
+
+# ---- Experiment 1 / 2 additions: metrics 1, 2, 3, 5, 6, 11 and the class-entropy
+# figure, all from the stored results so no chart value is typed by hand.
+import re as _re
+SNAPS7 = ["yago-3", "yago-4", "yago-4.5.0.2", "dbpedia-2015", "dbpedia-2016",
+          "dbpedia-2022-matched", "dbpedia-2025"]
+PINNED6 = SNAPS7[1:]
+PREFIX = {"http://schema.org/": "schema:", "http://bioschemas.org/": "bio:",
+          "http://yago-knowledge.org/resource/": "yago:",
+          "http://dbpedia.org/ontology/": "dbo:", "http://dbpedia.org/property/": "dbp:",
+          "http://www.w3.org/2000/01/rdf-schema#": "rdfs:",
+          "http://www.w3.org/2002/07/owl#": "owl:", "http://xmlns.com/foaf/0.1/": "foaf:",
+          "http://www.w3.org/1999/02/22-rdf-syntax-ns#": "rdf:",
+          "http://www.w3.org/2004/02/skos/core#": "skos:",
+          "http://purl.org/dc/terms/": "dct:", "http://www.w3.org/ns/prov#": "prov:",
+          "http://www.georss.org/georss/": "georss:",
+          "http://www.w3.org/2003/01/geo/wgs84_pos#": "geo:",
+          "http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#": "dul:",
+          "http://www.wikidata.org/entity/": "wd:",
+          "http://yago-knowledge.org/resource/wikicat_": "wikicat:",
+          "http://yago-knowledge.org/resource/wordnet_": "wordnet:"}
+CANON = {"AdministrativeRegion": "AdministrativeArea", "Species": "Taxon",
+         "ChemicalCompound": "Chemical_compound"}
+
+def local(iri):
+    return _re.split(r"[/#]", iri)[-1]
+
+def qn(iri):
+    for k, v in sorted(PREFIX.items(), key=lambda kv: -len(kv[0])):
+        if iri.startswith(k):
+            return v + iri[len(k):]
+    return local(iri)
+
+def tex(s):                      # safe inside a pgfplotstable string cell
+    s = _re.sub(r"_u([0-9A-Fa-f]{4})_", lambda m: chr(int(m.group(1), 16)), s)
+    return (s.replace("\\", "").replace("_", "\\_").replace("&", "\\&")
+             .replace("%", "\\%").replace("#", "\\#").replace(",", "\\,"))
+
+def pct(x):
+    return f"{100 * x:.1f}\\%"
+
+def short30(name):             # YAGO 3 synset names run to 45 characters
+    name = _re.sub(r"_1\d{8}$", "", name)       # drop the WordNet synset id
+    return name if len(name) <= 32 else name[:30] + "..."
+
+# metric 1: the three largest classes per snapshot and their share of entities
+rows = []
+for s in SNAPS7:
+    d = load(f"{s}/class_population.json")
+    top = sorted(d["classes"].items(), key=lambda kv: -kv[1]["population"])[:3]
+    rows.append([s.replace("-matched", ""), num(d["total_entities"])] +
+                sum([[tex(short30(qn(i))), pct(v["share"])] for i, v in top], []))
+write("population_top.csv", ["snapshot", "entities", "c1", "s1", "c2", "s2", "c3", "s3"], rows)
+
+# metrics 2 and 3: Person's top predicates by property entropy and by ETImp
+rows = []
+for s in ["yago-4", "yago-4.5.0.2", "dbpedia-2015", "dbpedia-2025"]:
+    pe, et = load(f"{s}/property_entropy_pinned.json"), load(f"{s}/ent_etimp_pinned.json")
+    cls = [k for k in pe if local(k) == "Person"][0]
+    a = sorted(pe[cls].items(), key=lambda kv: -kv[1])[:3]
+    b = sorted(et[cls].items(), key=lambda kv: -kv[1])[:3]
+    for r in range(3):
+        rows.append([s if r == 0 else "", r + 1, tex(qn(a[r][0])), f"{a[r][1]:.2f}",
+                     tex(qn(b[r][0])), f"{b[r][1]:.1f}"])
+write("person_entf_etimp.csv", ["snapshot", "rank", "entf_pred", "entf", "etimp_pred", "etimp"], rows)
+
+# metric 5: the three most informative entities per snapshot
+rows = []
+for s in SNAPS7:
+    d = load(f"{s}/entity_informativeness.json")
+    top = sorted(d["entities"].items(), key=lambda kv: -kv[1]["inforank"])[:3]
+    for r, (iri, v) in enumerate(top):
+        name = local(iri).replace("_", " ")
+        name = _re.sub(r" u([0-9A-Fa-f]{4}) ", lambda m: chr(int(m.group(1), 16)), name)
+        name = name if len(name) <= 42 else name[:40] + "..."
+        rows.append([s.replace("-matched", "") if r == 0 else "", tex(name), num(v["literal_properties"]),
+                     f"{v['inforank'] * 1e6:.2f}"])
+write("inforank_top.csv", ["snapshot", "entity", "props", "ir_e6"], rows)
+
+# metric 6: most diverse predicate per pinned class, latest release of each graph
+def diversity(s):
+    d = load(f"{s}/object_diversity_pinned.json")
+    return {CANON.get(local(c), local(c)): max(v.items(), key=lambda kv: kv[1])
+            for c, v in d.items()}
+dy, dd = diversity("yago-4.5.0.2"), diversity("dbpedia-2025")
+rows = [[tex(c), tex(qn(dy[c][0])), num(dy[c][1]), tex(qn(dd[c][0])), num(dd[c][1])]
+        for c in sorted(dy, key=lambda c: -dy[c][1]) if c in dd]
+write("diversity_top.csv", ["class", "y_pred", "y_n", "d_pred", "d_n"], rows)
+
+# metric 4 figure: object entropy of the pinned classes in all six snapshots
+H = {}
+for s in PINNED6:
+    for c, v in load(f"{s}/class_entropy_pinned.json").items():
+        H.setdefault(CANON.get(local(c), local(c)), {})[s] = v["object_entropy"]
+order = ["Person", "Taxon", "AdministrativeArea", "Star", "Galaxy", "Chemical_compound"]
+write("class_entropy_plot.csv", ["class"] + [s.replace(".", "").replace("-", "") for s in PINNED6],
+      [[c.replace("_", " ")] + [f"{H[c][s]:.3f}" for s in PINNED6] for c in order])
+
+# metric 11: graph-shape trajectories, each series indexed to its first release
+for ev, out in [("yago-evolution", "traj_yago.csv"), ("dbpedia-evolution", "traj_dbpedia.csv")]:
+    d = load(f"{ev}/trajectories_graph_shape.json")
+    keys = ["triples", "typed_entities", "classes", "predicates"]
+    vals = {k: d["series"][k]["values"] for k in keys}
+    rows = [[sn.replace("-matched", "")] + [f"{vals[k][i] / vals[k][0]:.4f}" for k in keys]
+            + [num(vals[k][i]) for k in keys] for i, sn in enumerate(d["snapshots"])]
+    write(out, ["snapshot"] + [k + "_idx" for k in keys] + keys, rows)

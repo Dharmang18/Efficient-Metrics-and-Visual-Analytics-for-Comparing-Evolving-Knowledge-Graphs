@@ -1,0 +1,13 @@
+snapshot,rank,entf_pred,entf,etimp_pred,etimp
+yago-4,1,rdfs:label,25.67,schema:alternateName,438.3
+,2,schema:sameAs,23.20,schema:sameAs,437.3
+,3,owl:sameAs,23.02,schema:birthDate,311.0
+yago-4.5.0.2,1,rdfs:label,23.03,schema:mainEntityOfPage,323.1
+,2,owl:sameAs,21.51,schema:children,322.7
+,3,schema:alternateName,19.79,schema:alternateName,319.6
+dbpedia-2015,1,dbp:name,20.71,dbp:name,247.5
+,2,foaf:name,20.68,rdfs:label,241.7
+,3,rdfs:label,20.28,dbp:dateOfBirth,216.4
+dbpedia-2025,1,dbo:careerStation,20.92,dbo:careerStation,292.8
+,2,rdfs:label,20.59,dbp:name,287.3
+,3,dbp:name,20.27,rdfs:label,278.2

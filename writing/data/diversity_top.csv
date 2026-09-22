@@ -1,0 +1,7 @@
+class,y_pred,y_n,d_pred,d_n
+Taxon,rdfs:label,112\,073\,637,dbo:careerStation,1\,985\,932
+Star,rdfs:label,68\,978\,270,rdfs:label,5\,698
+Galaxy,rdfs:label,39\,588\,665,rdfs:label,2\,888
+Person,rdfs:label,11\,025\,477,dbo:careerStation,1\,985\,932
+AdministrativeArea,rdfs:label,2\,224\,568,rdfs:label,57\,273
+Chemical\_compound,rdfs:label,1\,234\,051,dbo:alternativeName,15\,260
