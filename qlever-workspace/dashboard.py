@@ -19,7 +19,7 @@ from html import escape
 import re
 from pathlib import Path
 import asyncio
-from nicegui import background_tasks, context, ui
+from nicegui import app, background_tasks, context, ui
 from nicegui.awaitable_response import AwaitableResponse
 import copy
 from collections.abc import MutableMapping
@@ -2105,8 +2105,12 @@ def index():
                  "Comparing Evolving Knowledge Graphs").classes(
             "text-xl font-bold text-white leading-tight")
         ui.space()
-        ui.chip(f"{len(LABELS)} snapshots", icon="storage") \
-            .classes("bg-white/15 text-white")
+        # looked like a button and did nothing; it now opens the Overview, whose
+        # timeline shows the snapshots, and names them on hover
+        ui.chip(f"{len(LABELS)} snapshots", icon="storage",
+                on_click=lambda: go("overview")) \
+            .classes("bg-white/15 text-white cursor-pointer") \
+            .tooltip("Loaded: " + ", ".join(LABELS) + ". Click for the overview.")
         ui.switch(on_change=lambda e: dark.enable() if e.value else dark.disable()) \
             .props('checked-icon="dark_mode" unchecked-icon="light_mode" color="amber"') \
             .tooltip("dark mode")
@@ -2336,6 +2340,13 @@ def index():
                 else:
                     pair_controls(crosskg_state, crosskg_view.refresh, CROSSKG_PAIRS)
                     crosskg_view()
+
+
+# Health check for hosting platforms. "/" builds all thirteen metric views
+# before it answers, which on a free-tier CPU outlasts the probe's timeout.
+@app.get("/healthz")
+def healthz():
+    return {"status": "ok"}
 
 
 # the thesis title as a readable address for the deployed copy
