@@ -33,3 +33,7 @@ vpn/
 # ───────── OS / editor ─────────
 .DS_Store
 .vscode/
+
+# Local working notes, not part of the thesis
+CLAUDE.md
+.claude/
