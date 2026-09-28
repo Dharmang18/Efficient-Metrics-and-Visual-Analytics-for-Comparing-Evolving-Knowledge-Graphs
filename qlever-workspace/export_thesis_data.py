@@ -170,3 +170,26 @@ for ev, out in [("yago-evolution", "traj_yago.csv"), ("dbpedia-evolution", "traj
     rows = [[sn.replace("-matched", "")] + [f"{vals[k][i] / vals[k][0]:.4f}" for k in keys]
             + [num(vals[k][i]) for k in keys] for i, sn in enumerate(d["snapshots"])]
     write(out, ["snapshot"] + [k + "_idx" for k in keys] + keys, rows)
+
+# ---- Experiment 4: how the weighting moves the ranking, at the head and at the
+# extremes, so the effect is visible on entities and not only as an aggregate
+def pagerank_movers(label="yago-4", n=5):
+    d = load(f"{label}/entropy_pagerank.json")
+    if not d:
+        print("  (no entropy_pagerank.json)"); return
+    nodes = d["nodes"]
+    def name(iri):
+        s = _re.split(r"[/#]", iri)[-1]
+        s = _re.sub(r"_u([0-9A-Fa-f]{4})_", lambda m: chr(int(m.group(1), 16)), s)
+        s = _re.sub(r"%[0-9A-Fa-f]{2}", " ", s).replace("_", " ").strip()
+        return tex(s if len(s) <= 30 else s[:28] + "...")
+    shift = lambda v: v["rank_unweighted"] - v["rank_weighted"]
+    ranked = sorted(nodes.items(), key=lambda kv: shift(kv[1]))
+    rows = []
+    for tag, items in (("up", ranked[-n:][::-1]), ("down", ranked[:n])):
+        for iri, v in items:
+            rows.append([tag, name(iri), v["rank_unweighted"], v["rank_weighted"],
+                         f"{shift(v):+d}"])
+    write("pagerank_movers.csv", ["direction", "entity", "unweighted", "weighted", "shift"], rows)
+
+pagerank_movers()

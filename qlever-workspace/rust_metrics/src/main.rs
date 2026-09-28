@@ -12,7 +12,7 @@
 //!
 //! Run `cargo run --release help` for the metric list.
 
-mod class_churn;
+mod class_change_rate;
 mod class_entropy;
 mod class_population;
 mod common;
@@ -56,7 +56,7 @@ GLOBAL
   entropy-pagerank [seeds=50] [hops=3] [edges=200000]
                                             7  entropy-weighted PageRank (own variant)
   shape                                     8  graph size & shape
-  churn        [classes=8] [cap=50000]      9  class-level change rate      [2 endpoints]
+  changerate   [classes=8] [cap=50000]      9  class-level change rate      [2 endpoints]
   diff         [class-IRI|-] [cap=200000]  10  triple diff, integer-encoded [2 endpoints]
   trajectories <metric> <label> <label>..  11  metric trajectories          [stored results]
   vocab        [cap=10000]                 12  vocabulary evolution         [2 endpoints]
@@ -70,7 +70,7 @@ BASELINES (provided, from Knowgly — not thesis contributions)
 
 Environment
   QLEVER_ENDPOINT    graph to measure    (default http://localhost:9004)
-  QLEVER_ENDPOINT_B  second graph        (needed by churn / diff / vocab / crosskg)
+  QLEVER_ENDPOINT_B  second graph        (needed by changerate / diff / vocab / crosskg)
   QLEVER_LABEL       snapshot name       (results/<label>/... — required for trajectories)
   QLEVER_PARALLELISM concurrent queries  (default 4; lower it if the server reports
                                           "Tried to allocate ... but only ... available")
@@ -144,7 +144,7 @@ fn main() {
         "entropy-pagerank" => entropy_pagerank::run(ep, num_arg(2, 50), num_arg(3, 3),
                                                     num_arg(4, 200_000)),
         "shape" => graph_shape::run(ep),
-        "churn" => class_churn::run(ep, &endpoint_b(), num_arg(2, 8), num_arg(3, 50_000)),
+        "changerate" => class_change_rate::run(ep, &endpoint_b(), num_arg(2, 8), num_arg(3, 50_000)),
         "diff" => triple_diff::run(ep, &endpoint_b(),
                                    optional_class(2).as_deref(), num_arg(3, 200_000)),
         "vocab" => vocab_evolution::run(ep, &endpoint_b(), num_arg(2, 10_000)),

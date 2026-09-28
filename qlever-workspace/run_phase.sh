@@ -14,7 +14,7 @@
 # classes in different versions (YAGO 4 and YAGO 4.5 share only Person in their
 # top 8), so the descriptive numbers cannot be compared across snapshots.
 #   phase 2  ENTITY-LEVEL  inforank, diversity, entropy-pagerank         (1 endpoint)
-#   phase 3  GLOBAL        shape, churn, diff,
+#   phase 3  GLOBAL        shape, changerate, diff,
 #                          vocab, crosskg, trajectories                  (2 endpoints)
 #
 # Results land in rust_metrics/results/<label>/<metric>.{json,csv}, which is the
@@ -51,7 +51,7 @@ case "$PHASE" in
               "$PAR_DEFAULT entetimp 8 10" "1 classentropy 8") ;;
   2) METRICS=("$PAR_DEFAULT inforank 50" "$PAR_DEFAULT diversity 8" \
               "1 entropy-pagerank 50 3 200000") ;;
-  3) METRICS=("$PAR_DEFAULT shape" "$PAR_DEFAULT churn 8 50000" \
+  3) METRICS=("$PAR_DEFAULT shape" "$PAR_DEFAULT changerate 8 50000" \
               "$PAR_DEFAULT vocab 200000") ;;
   *) echo "unknown phase $PHASE"; exit 1 ;;
 esac

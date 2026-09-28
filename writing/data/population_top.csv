@@ -1,8 +1,0 @@
-snapshot,entities,c1,s1,c2,s2,c3,s3
-yago-3,5\,130\,110,wikicat:Living\_people,13.0\%,wordnet:administrative\_district,6.8\%,wordnet:person,3.5\%
-yago-4,73\,260\,634,schema:Thing,91.3\%,schema:CreativeWork,49.0\%,schema:Article,44.6\%
-yago-4.5.0.2,49\,687\,891,schema:Taxon,7.1\%,yago:Star,6.6\%,schema:Person,6.0\%
-dbpedia-2015,4\,995\,957,owl:Thing,100.0\%,dbo:Agent,37.1\%,dul:Agent,37.1\%
-dbpedia-2016,5\,044\,223,owl:Thing,100.0\%,dbo:Agent,30.3\%,dul:Agent,30.3\%
-dbpedia-2022,7\,564\,288,owl:Thing,72.2\%,dbo:TimePeriod,27.7\%,dul:TimeInterval,27.7\%
-dbpedia-2025,32\,853\,621,dbo:Image,43.4\%,foaf:Document,22.7\%,owl:Thing,18.0\%

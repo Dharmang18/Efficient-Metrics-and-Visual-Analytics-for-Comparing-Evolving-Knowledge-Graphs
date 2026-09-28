@@ -37,3 +37,9 @@ vpn/
 # Local working notes, not part of the thesis
 CLAUDE.md
 .claude/
+
+# ───────── Thesis report: kept locally, not published ─────────
+writing/
+writing-tum/
+docs/
+Thesis_Setup_Explained.pdf

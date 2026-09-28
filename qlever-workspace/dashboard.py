@@ -246,10 +246,10 @@ METRICS = [
               "predicates, classes, density, and average degree.",
      "formula": "density = |T| / |E|"},
     {"id": "churn", "num": 9, "phase": 3, "level": "global · 2 endpoints",
-     "name": "Class-level churn",
+     "name": "Class-level change rate",
      "blurb": "For one class, what fraction of its triples changed between "
               "two versions of the same KG.",
-     "formula": "churn(t) = (|added_t| + |deleted_t|) / |T_t(v1)|"},
+     "formula": "CR(t) = (|added_t| + |deleted_t|) / |T_t(v1)|"},
     {"id": "diff", "num": 10, "phase": 3, "level": "global · 2 endpoints",
      "name": "Triple diff (integer-encoded)",
      "blurb": "Exact added / deleted / unchanged triples between two versions "
@@ -291,7 +291,7 @@ TEX = {
     "shape": r"\mathrm{density} = \frac{|T|}{|E|}, \qquad "
              r"\overline{\deg}^{\,+} = \frac{|T|}{|S|}, \qquad "
              r"\overline{\deg}^{\,-} = \frac{|T|}{|O|}",
-    "churn": r"\mathrm{churn}(t) = \frac{|A_t| + |D_t|}{|T_t(v_1)|}",
+    "churn": r"\mathrm{CR}(t) = \frac{|A_t| + |D_t|}{|T_t(v_1)|}",
     "diff": r"\mathrm{Added} = T_2 \setminus T_1, \qquad "
             r"\mathrm{Deleted} = T_1 \setminus T_2, \qquad "
             r"\mathrm{Unchanged} = T_1 \cap T_2",

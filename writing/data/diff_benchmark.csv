@@ -1,6 +1,0 @@
-pair,short,triples,enc_ms,naive_ms,enc_mb,naive_mb,speedup,memfactor
-DBpedia 2015$\rightarrow$2016,DBp15/16,1\,439\,473,151.3,762.5,16.5,318.8,5.04,19.3
-DBpedia 2015$\rightarrow$2022,DBp15/22,1\,251\,325,114.4,536.6,14.3,276.2,4.69,19.3
-DBpedia 2022$\rightarrow$2025,DBp22/25,1\,457\,215,127.8,715.9,16.7,323.3,5.60,19.4
-DBpedia 2015$\rightarrow$2025,DBp15/25,1\,124\,617,293.7,1812.4,12.9,249.3,6.17,19.4
-YAGO 4$\rightarrow$4.5.0.2,YAGO4/4.5,3\,083\,119,426.4,997.6,35.3,574.7,2.34,16.3
